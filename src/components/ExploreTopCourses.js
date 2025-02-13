@@ -64,7 +64,7 @@ export default function ExploreTopCourses() {
       description: "Complete preparation package for CUET law entrance examination."
     },
     {
-      image: "https://clatwallah.netlify.app/images/logo.png",
+      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
       category: "CUET",
       title: "CUET Complete Course",
       level: "Intermediate",
