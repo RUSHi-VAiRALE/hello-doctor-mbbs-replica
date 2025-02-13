@@ -6,7 +6,7 @@ import ChatComponent from './ChatComponent'
 export default function WhyChooseUs() {
   return (
     <section className="py-16 bg-[#e7edff]">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-8">
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Text Section */}
           <div className="md:w-1/2">

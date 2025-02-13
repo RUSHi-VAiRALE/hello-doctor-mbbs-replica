@@ -14,6 +14,8 @@ import FAQ from '@/components/FAQ'
 import SocialMedia from '@/components/SocialMedia'
 //import Footer from '@/components/Footer'
 import LearningResources from '@/components/LearningResources'
+import StudentSection from '@/components/StudentSection'
+import TeacherSection from '@/components/TeacherSection'
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
@@ -25,6 +27,8 @@ export default function Home() {
       <ExploreTopCourses />
       <Milestones />
       <LearningResources />
+      <StudentSection />
+      <TeacherSection />
       <BlogSection />
       <AppDownload />
       <Events />

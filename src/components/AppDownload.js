@@ -6,13 +6,13 @@ export default function AppDownload() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left: App Image */}
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2 px-24">
             <Image
               src="https://clatwallah.netlify.app/images/appp.png"
               alt="Mobile App"
               width={500}
               height={600}
-              className="w-full h-auto max-w-lg mx-auto"
+              className="w-full h-auto max-w-lg mx-auto ml-8"
             />
           </div>
 
@@ -23,9 +23,10 @@ export default function AppDownload() {
               End-To-End <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent">Learning</span>
             </h2>
             
-            <p className="text-gray-600 mb-8">
-              Access all your study materials, attend live classes, and track your progress
-              with our easy-to-use mobile app. Available for both iOS and Android devices.
+            <p className="text-gray-600 mb-8 max-w-md leading-relaxed">
+              Access all your study materials, attend live classes,<br className="hidden md:block" />
+              and track your progress with our easy-to-use mobile app.<br className="hidden md:block" />
+              Available for both iOS and Android devices.
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">

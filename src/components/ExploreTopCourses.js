@@ -13,7 +13,7 @@ export default function ExploreTopCourses() {
   const [progress, setProgress] = useState(0)
   const courses = [
     {
-      image: "https://clatwallah.netlify.app/images/logo.png",
+      image: "https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_640.jpg",
       category: "CLAT",
       title: "CLAT Foundation Course",
       level: "Beginner",
@@ -23,7 +23,7 @@ export default function ExploreTopCourses() {
       description: "Comprehensive preparation for CLAT examination with expert guidance and study materials."
     },
     {
-      image: "https://clatwallah.netlify.app/images/logo.png",
+      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
       category: "AILET",
       title: "AILET Crash Course",
       level: "Advanced",
@@ -33,7 +33,7 @@ export default function ExploreTopCourses() {
       description: "Intensive preparation program for AILET with mock tests and personalized mentoring."
     },
     {
-          image: "https://clatwallah.netlify.app/images/logo.png",
+      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
       category: "CUET",
       title: "CUET Complete Course",
       level: "Intermediate",
@@ -43,7 +43,7 @@ export default function ExploreTopCourses() {
       description: "Complete preparation package for CUET law entrance examination."
     },
     {
-        image: "https://clatwallah.netlify.app/images/logo.png",
+      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg", 
       category: "CUET",
       title: "CUET Complete Course",
       level: "Intermediate",
@@ -53,7 +53,7 @@ export default function ExploreTopCourses() {
       description: "Complete preparation package for CUET law entrance examination."
     },
     {
-        image: "https://clatwallah.netlify.app/images/logo.png",
+      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
       category: "CUET",
       title: "CUET Complete Course",
       level: "Intermediate",
@@ -75,9 +75,9 @@ export default function ExploreTopCourses() {
   ]
 
   return (
-    <section className="py-16 bg-[#e7edff] overflow-hidden">
-      <div className="container mx-auto w-[75%]">
-        <div className="text-center mb-12">
+    <section className="py-12 bg-[#e7edff] overflow-hidden">
+      <div className="container mx-auto w-[85%] lg:w-[80%]">
+        <div className="text-center mb-8">
           <h3 className="text-3xl font-bold uppercase">
             Explore Top <span className="text-blue-600">Courses</span>
           </h3>
@@ -95,19 +95,19 @@ export default function ExploreTopCourses() {
               disableOnInteraction: false,
             }}
             loop={true}
-            spaceBetween={20}
+            spaceBetween={15}
             breakpoints={{
               640: {
-                slidesPerView: 2,
-                spaceBetween: 15
+                slidesPerView: 1.5,
+                spaceBetween: 10
               },
               768: {
-                slidesPerView: 3,
-                spaceBetween: 20
+                slidesPerView: 2.5,
+                spaceBetween: 15
               },
               1024: {
-                slidesPerView: 4,
-                spaceBetween: 25
+                slidesPerView: 3.5,
+                spaceBetween: 20
               }
             }}
             onSlideChange={(swiper) => {
@@ -120,64 +120,65 @@ export default function ExploreTopCourses() {
               <SwiperSlide key={index}>
                 <div 
                   className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative"
-                  style={{ height: '327px' }}
+                  style={{ height: '420px' }}
                 >
                   {/* Course Image */}
-                    <div className="relative h-40">
+                  <div className="relative h-48">
                     <Image
                       src={course.image}
                       alt={course.title}
                       fill
                       className="object-cover"
+                      sizes="(max-width: 600px) 100vw, 600px"
                     />
-                    <span className="absolute bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-2 py-1 rounded-xl text-xs font-medium">
+                    <span className="absolute bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-xl text-sm font-medium">
                       {course.category}
                     </span>
                   </div>
 
                   {/* Course Details */}
-                  <div className="p-3">
-                    <h5 className="font-bold text-lg mb-2 group-hover:text-blue-600 transition-colors">
+                  <div className="p-4">
+                    <h5 className="font-bold text-lg mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
                       {course.title}
                     </h5>
                     
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="bg-blue-50 text-blue-600 px-2 py-1 rounded-full text-xs font-medium">
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
                         {course.level}
                       </span>
-                      <span className="text-green-600 font-bold text-md">
+                      <span className="text-green-600 font-bold text-lg">
                         {course.price}
                       </span>
                     </div>
 
-                    <div className="flex items-center text-gray-500 text-xs gap-4 mb-2">
+                    <div className="flex items-center text-gray-500 text-sm gap-4 mb-3">
                       <div className="flex items-center">
-                        <i className="bi bi-people-fill mr-1 text-blue-600"></i>
+                        <i className="bi bi-people-fill mr-2 text-blue-600"></i>
                         <span>{course.students} Students</span>
                       </div>
                       <div className="flex items-center">
-                        <i className="bi bi-journal-text mr-1 text-blue-600"></i>
+                        <i className="bi bi-journal-text mr-2 text-blue-600"></i>
                         <span>{course.lessons} Lessons</span>
                       </div>
                     </div>
 
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
-                      <p className="text-white mb-2 text-xs">
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                      <p className="text-white mb-4 text-sm">
                         {course.description}
                       </p>
-                      <button className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2 rounded-full font-semibold transform hover:scale-100 transition-transform duration-300 hover:shadow-lg">
+                      <button className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-transform duration-300 hover:shadow-lg">
                         Enroll Now
                       </button>
                     </div>
                   </div>
 
                   {/* Quick Actions */}
-                  <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
+                  <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
                       <i className="bi bi-heart text-red-500"></i>
                     </button>
-                    <button className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
+                    <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
                       <i className="bi bi-share text-blue-600"></i>
                     </button>
                   </div>
@@ -187,7 +188,7 @@ export default function ExploreTopCourses() {
           </Swiper>
         </div>
 
-        {/* Navigation Buttons and Progress Bar Container */}
+        {/* Navigation and Progress Bar */}
         <div className="w-[75%] mx-auto">
           <div className="flex items-center justify-between gap-4">
             <button className="relativeswiper-button-prev w-10 h-10 bg-white rounded-full flex items-center border-red-600 justify-center shadow-lg hover:bg-blue-50 transition-colors after:content-[''] group">
