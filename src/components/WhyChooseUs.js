@@ -5,9 +5,9 @@ import ChatComponent from './ChatComponent'
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-16 bg-[#e7edff]">
-      <div className="container mx-auto px-8">
-        <div className="flex flex-col md:flex-row items-center gap-8">
+    <section className="py-16 px-16 bg-[#e7edff]">
+      <div className="container mx-auto lg:pl-20">
+        <div className="flex flex-col md:flex-row items-center gap-24">
           {/* Text Section */}
           <div className="md:w-1/2">
             <h2 className="text-4xl font-bold mb-4">Why choose our learning platform?</h2>

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 export default function ChatComponent() {
   const [messages, setMessages] = useState([])
   const [isTyping, setIsTyping] = useState(false)
+  const [userInput, setUserInput] = useState('')
 
   const conversationFlow = [
     { type: "user", text: "Hello! What is CLATians?" },
@@ -41,6 +42,15 @@ export default function ChatComponent() {
 
     showNextMessage()
   }, [])
+
+  const handleSendMessage = (e) => {
+    e.preventDefault()
+    if (userInput.trim()) {
+      setMessages(prev => [...prev, { type: 'user', text: userInput.trim() }])
+      setUserInput('')
+      // Here you can add logic to handle the bot's response
+    }
+  }
 
   return (
     <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
@@ -86,6 +96,25 @@ export default function ChatComponent() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Chat Input Box */}
+      <div className="border-t border-gray-200 p-4 bg-white">
+        <form onSubmit={handleSendMessage} className="flex gap-2">
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Type your message..."
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+          >
+            <i className="bi bi-send-fill"></i>
+          </button>
+        </form>
       </div>
     </div>
   )
