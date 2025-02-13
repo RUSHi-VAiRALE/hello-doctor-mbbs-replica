@@ -8,6 +8,18 @@ export default function Events() {
       title: 'Engaging Students in Real-World Problems Finding',
       location: 'United States',
       image: 'https://placehold.co/400x300'
+    },{
+      date: { day: '01', month: 'Oct' },
+      time: '08:00 AM - 10:00 AM',
+      title: 'Engaging Students in Real-World Problems Finding',
+      location: 'United States',
+      image: 'https://placehold.co/400x300'
+    },{
+      date: { day: '01', month: 'Oct' },
+      time: '08:00 AM - 10:00 AM',
+      title: 'Engaging Students in Real-World Problems Finding',
+      location: 'United States',
+      image: 'https://placehold.co/400x300'
     },
     // Add more events...
   ]
@@ -33,7 +45,7 @@ export default function Events() {
                   height={300}
                   className="w-full h-48 object-cover"
                 />
-                <div className="absolute top-0 left-0 bg-white px-4 py-2 rounded-br-xl">
+                <div className="absolute top-0 left-0 bg-[#E3D7B8] px-4 py-2 rounded-br-xl">
                   <div className="text-center">
                     <h5 className="text-xl font-bold text-gray-800">{event.date.day}</h5>
                     <small className="text-gray-600">{event.date.month}</small>
@@ -54,7 +66,7 @@ export default function Events() {
                   <span className="text-sm text-gray-600">{event.location}</span>
                 </div>
 
-                <button className="w-full py-2 border-2 border-gray-800 text-gray-800 rounded-full font-semibold hover:bg-gray-800 hover:text-white transition-colors">
+                <button className="px-6 py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg">
                   View Details
                 </button>
               </div>

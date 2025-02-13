@@ -25,8 +25,8 @@ export default function Home() {
       <ExploreTopCourses />
       <Milestones />
       <LearningResources />
-      <AppDownload />
       <BlogSection />
+      <AppDownload />
       <Events />
       <FAQ />
       <SocialMedia />

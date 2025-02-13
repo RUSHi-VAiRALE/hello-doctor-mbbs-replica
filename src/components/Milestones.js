@@ -45,9 +45,9 @@ export default function Milestones() {
     <section className="bg-[#e7edff] py-12">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">
-          <span className="bg-gradient-to-br from-yellow-400 to-red-600 text-transparent bg-clip-text">KNOW</span> YOUR MILESTONE
+          <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">KNOW</span> YOUR MILESTONE
         </h2>
-        <div className="grid grid-cols-6 gap-5 justify-items-center">
+        <div className="flex flex-wrap justify-center gap-5">
           {milestones.map((milestone, index) => (
             <div className="milestone-step flex flex-col items-center" key={index}>
               <div className="milestone-circle w-30 h-30 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-transparent bg-clip-padding transition-transform duration-300 hover:scale-110">

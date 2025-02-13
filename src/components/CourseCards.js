@@ -4,11 +4,11 @@ export default function CourseCards() {
   return (
     <section className="bg-[#e7edff] py-12">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="flex flex-col sm:flex-row gap-8 items-center justify-center">
           {/* Online Courses Card */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="p-6">
-              <div className="flex justify-center mb-6">
+          <div className="bg-white w-full gap-y-3 flex-col justify-between rounded-lg shadow-lg">
+            <div className="flex flex-col gap-y-3 mb-3 justify-between items-center">
+              <div className="py-1">
                 <Image
                   src="/images/logo.png"
                   alt="CLATians Logo"
@@ -17,11 +17,11 @@ export default function CourseCards() {
                   className="w-auto"
                 />
               </div>
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-wrap justify-center gap-3 px-6">
                 {['CLAT', 'CLAT + AILET', 'CUET-LAW', 'OLET', 'CLAT + OLET', 'Mock Test Series'].map((course) => (
                   <button
                     key={course}
-                    className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
+                    className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
                   >
                     {course}
                   </button>
@@ -36,9 +36,9 @@ export default function CourseCards() {
           </div>
 
           {/* Offline Courses Card */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="p-6">
-              <div className="flex justify-center mb-6">
+          <div className="bg-white w-full gap-y-3 flex-col justify-between rounded-lg shadow-lg">
+            <div className="flex flex-col gap-y-3 mb-3 justify-between items-center">
+              <div className="py-1">
                 <Image
                   src="/images/logo.png"
                   alt="CLATians Logo"
@@ -47,11 +47,11 @@ export default function CourseCards() {
                   className="w-auto"
                 />
               </div>
-              <div className="flex flex-wrap justify-center gap-3">
-                {['CLAT', 'CLAT + AILET', 'CUET-LAW (UG)', 'CUET-LAW (PG)', 'AIL-LET', 'BOOSTER Courses'].map((course) => (
+              <div className="flex flex-wrap justify-center gap-3 px-6">
+                {['CLAT', 'CLAT + AILET', 'CUET-LAW', 'OLET', 'CLAT + OLET', 'Mock Test Series'].map((course) => (
                   <button
                     key={course}
-                    className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
+                    className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors"
                   >
                     {course}
                   </button>
