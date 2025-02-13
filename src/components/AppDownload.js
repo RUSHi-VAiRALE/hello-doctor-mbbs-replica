@@ -8,7 +8,7 @@ export default function AppDownload() {
           {/* Left: App Image */}
           <div className="lg:w-1/2">
             <Image
-              src="/images/appp.png"
+              src="https://clatwallah.netlify.app/images/appp.png"
               alt="Mobile App"
               width={500}
               height={600}

@@ -23,7 +23,7 @@ export default function Features() {
   ]
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 container mx-auto px-4 mt-8">
+    <div className="grid bg-[#E7EDFF] grid-cols-2 md:grid-cols-4 gap-4 container mx-auto px-4">
       {features.map((feature, index) => (
         <div 
           key={index}

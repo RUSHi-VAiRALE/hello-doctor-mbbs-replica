@@ -21,7 +21,7 @@ export default function BlogSection() {
             
             <div className="relative rounded-xl overflow-hidden mb-4">
               <Image
-                src="https://placehold.co/900x500"
+                src="https://clatwallah.netlify.app/images/logo.png"
                 alt="Featured Blog"
                 width={900}
                 height={500}
@@ -51,7 +51,7 @@ export default function BlogSection() {
               {[1, 2, 3, 4].map((index) => (
                 <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg">
                   <Image
-                    src="https://placehold.co/600x400"
+                    src="https://clatwallah.netlify.app/images/logo.png"
                     alt={`Blog ${index}`}
                     width={600}
                     height={400}

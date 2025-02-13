@@ -10,7 +10,7 @@ export default function CourseCards() {
             <div className="flex flex-col gap-y-3 mb-3 justify-between items-center">
               <div className="py-1">
                 <Image
-                  src="/images/logo.png"
+                  src="https://clatwallah.netlify.app/images/logo.png"
                   alt="CLATians Logo"
                   width={120}
                   height={120}
@@ -40,7 +40,7 @@ export default function CourseCards() {
             <div className="flex flex-col gap-y-3 mb-3 justify-between items-center">
               <div className="py-1">
                 <Image
-                  src="/images/logo.png"
+                  src="https://clatwallah.netlify.app/images/logo.png"
                   alt="CLATians Logo"
                   width={120}
                   height={120}
