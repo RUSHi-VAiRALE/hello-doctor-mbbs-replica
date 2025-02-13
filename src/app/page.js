@@ -12,10 +12,10 @@ import AppDownload from '@/components/AppDownload'
 import Events from '@/components/Events'
 import FAQ from '@/components/FAQ'
 import SocialMedia from '@/components/SocialMedia'
-//import Footer from '@/components/Footer'
 import LearningResources from '@/components/LearningResources'
 import StudentSection from '@/components/StudentSection'
 import TeacherSection from '@/components/TeacherSection'
+import Footer from '@/components/Footer'
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
@@ -35,8 +35,8 @@ export default function Home() {
       <FAQ />
       <SocialMedia />
       {/* <Testimonials />
-      <OurTeachers />
-      <Footer /> */}
+      <OurTeachers /> */}
+      <Footer />
     </main>
   )
 }

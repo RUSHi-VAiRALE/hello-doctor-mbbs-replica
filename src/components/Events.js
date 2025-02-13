@@ -12,6 +12,7 @@ import 'swiper/css/pagination';
 
 export default function Events() {
   const [progress, setProgress] = useState(0);
+  const [swiper, setSwiper] = useState(null);
   
   const events = [
     {
@@ -54,6 +55,7 @@ export default function Events() {
         </div>
 
         <Swiper
+          onSwiper={setSwiper}
           modules={[Navigation, Pagination, Autoplay]}
           navigation={{
             nextEl: '.swiper-button-next',
@@ -130,7 +132,10 @@ export default function Events() {
         {/* Navigation Buttons and Progress Bar */}
         <div className="w-[75%] mx-auto">
           <div className="flex items-center justify-between gap-4">
-            <button className="relativeswiper-button-prev w-10 h-10 bg-white rounded-full flex items-center border-red-600 justify-center shadow-lg hover:bg-blue-50 transition-colors after:content-[''] group">
+            <button 
+              onClick={() => swiper?.slidePrev()}
+              className="w-10 h-10 bg-white rounded-full flex items-center border-red-600 justify-center shadow-lg hover:bg-blue-50 transition-colors group"
+            >
               <i className="bi bi-chevron-left text-red-600 group-hover:text-blue-600"></i>
             </button>
             
@@ -141,7 +146,10 @@ export default function Events() {
               ></div>
             </div>
             
-            <button className="relativeswiper-button-next w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors after:content-[''] group">
+            <button 
+              onClick={() => swiper?.slideNext()}
+              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
+            >
               <i className="bi bi-chevron-right text-red-600 group-hover:text-blue-600"></i>
             </button>
           </div>

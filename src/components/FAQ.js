@@ -22,8 +22,8 @@ export default function FAQ() {
     },
     {
       index: 3,
-      question: "What is the admission process like?",
-      answer: "Admissions are open to all students who meet the eligibility criteria. The process includes an entrance exam, personal interview, and a review of academic records."
+      question: "What are the available course options?",
+      answer: "We offer comprehensive courses for various law entrance exams including CLAT, AILET, and CUET. Each course is tailored to the specific exam requirements."
     },
     
     // Add more FAQs...
@@ -39,11 +39,11 @@ export default function FAQ() {
           ASKED QUESTIONS
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="flex flex-wrap gap-8 max-w-4xl mx-auto">
           {faqs.map((faq) => (
             <div 
               key={faq.index}
-              className="border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden"
+              className="w-full md:w-[calc(50%-1rem)] border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden"
               style={{
                 backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #fbbf24, #ea580c, #b91c1c)',
                 backgroundOrigin: 'border-box',
