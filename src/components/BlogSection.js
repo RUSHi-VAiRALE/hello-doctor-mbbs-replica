@@ -53,7 +53,7 @@ export default function BlogSection() {
             <div className="h-[500px] overflow-y-auto pr-2">
               <div className="grid md:grid-cols-2 gap-4">
                 {[1, 2, 3, 4, 5, 6].map((index) => (
-                  <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col min-h-[320px]">
+                  <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg flex flex-col h-[500px] min-h-[320px]">
                     <div className="relative h-56">
                       <Image
                         src="https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
