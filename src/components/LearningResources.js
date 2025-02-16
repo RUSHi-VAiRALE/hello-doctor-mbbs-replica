@@ -2,8 +2,8 @@ import { FaBook, FaClipboardList, FaDesktop, FaRegNewspaper } from 'react-icons/
 
 export default function LearningResources() {
   return (
-    <section className="learning-resources py-5 px-5 bg-[#e7edff]">
-      <div className="container mx-auto w-[85%] lg:w-[75%]">
+    <section className="py-12 bg-[#e7edff]">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h3 className="font-bold text-2xl mb-2">Preparation Resources</h3>
           <p className="text-gray-600 max-w-2xl mx-auto">

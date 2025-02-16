@@ -44,7 +44,7 @@ export default function StudentSection() {
     <>
       {/* Testimonials Section */}
       <section className="py-8 bg-[#e7edff]">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 max-w-7xl">
+        <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
           {/* Section Header */}
           <div className="text-center mb-6">
             <h2 className="text-3xl font-bold">Students ❤️ CLATians</h2>

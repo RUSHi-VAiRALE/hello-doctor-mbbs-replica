@@ -4,9 +4,9 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-blue-600 to-blue-800 text-white">
+    <footer className="bg-[#2143D4] text-white py-12">
       {/* Newsletter Section */}
-      <div className="container mx-auto px-4 py-16 max-w-7xl">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-16">
           <span className="inline-block bg-white/20 px-4 py-2 rounded-md text-sm font-medium mb-4">
             GET LATEST UPDATES

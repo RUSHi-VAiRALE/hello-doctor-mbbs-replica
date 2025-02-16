@@ -77,7 +77,7 @@ export default function ExploreTopCourses() {
 
   return (
     <section className="py-12 bg-[#e7edff] overflow-hidden">
-      <div className="container mx-auto w-[85%] lg:w-[80%]">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold uppercase">
             Explore Top <span className="text-blue-600">Courses</span>
@@ -100,16 +100,20 @@ export default function ExploreTopCourses() {
             spaceBetween={15}
             breakpoints={{
               640: {
-                slidesPerView: 1.5,
+                slidesPerView: 1.2,
                 spaceBetween: 10
               },
               768: {
-                slidesPerView: 2.5,
+                slidesPerView: 3,
                 spaceBetween: 15
               },
               1024: {
-                slidesPerView: 3.5,
-                spaceBetween: 20
+                slidesPerView: 3,
+                spaceBetween: 15
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 15
               }
             }}
             onSlideChange={(swiper) => {
@@ -121,8 +125,8 @@ export default function ExploreTopCourses() {
             {courses.map((course, index) => (
               <SwiperSlide key={index}>
                 <div 
-                  className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative"
-                  style={{ height: '420px' }}
+                  className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative w-[300px] sm:w-full mx-auto"
+                  style={{ height: '450px' }}
                 >
                   {/* Course Image */}
                   <div className="relative h-48">
@@ -191,7 +195,7 @@ export default function ExploreTopCourses() {
         </div>
 
         {/* Navigation and Progress Bar */}
-        <div className="w-[75%] mx-auto">
+        <div className="md:w-full w-[78%] mx-auto">
           <div className="flex items-center justify-between gap-4">
             <button 
               onClick={() => swiper?.slidePrev()}

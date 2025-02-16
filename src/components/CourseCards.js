@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function CourseCards() {
   return (
     <section className="bg-[#e7edff] py-12">
-      <div className="container mx-auto px-4 w-[95%] lg:w-[82%]">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="flex flex-col sm:flex-row gap-8 items-center justify-center">
           {/* Online Courses Card */}
           <div className="bg-white w-full gap-y-3 flex-col justify-between rounded-lg shadow-lg">

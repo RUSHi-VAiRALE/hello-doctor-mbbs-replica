@@ -10,19 +10,6 @@ export default function ChatComponent() {
     { type: "user", text: "Hello! What is CLATians?" },
     { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna..." },
     { type: "user", text: "Hello! What is CLATians?" },
-                                    { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna, providing expert guidance for CLAT, AILET, CUET, AIL, and other law entrance exams." },
-
-                                    { type: "user", text: "What courses do you offer?" },
-                                    { type: "bot", text: "We offer three structured courses: CLAT Target Batch, CLAT Foundation Batch, and CLAT Crash Course to help students crack top law exams." },
-
-                                    { type: "user", text: "How do your mentors help students?" },
-                                    { type: "bot", text: "Our faculty members are experienced professionals who mentor students with personalized guidance, solving queries instantly to ensure success in exams." },
-
-                                    { type: "user", text: "How competitive is the CLAT exam?" },
-                                    { type: "bot", text: "The CLAT exam competition increases every year, so we have designed a structured course framework to help our students stay ahead of their competitors." },
-
-                                    { type: "user", text: "How can I join CLATians?" },
-                                    { type: "bot", text: "You can visit our official website or contact us directly for admission details. We will guide you through the enrollment process." },
   ]
 
   useEffect(() => {
