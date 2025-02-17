@@ -54,7 +54,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-              <Image src="https://s6.imgcdn.dev/YDF6zi.png" alt="clatians-Logo" width={100} height={48} />
+              <Image src="https://s6.imgcdn.dev/YDF6zi.png" alt="clatians-Logo" width={100} height={28} />
             </Link>
 
             {/* Mobile Menu Button */}
