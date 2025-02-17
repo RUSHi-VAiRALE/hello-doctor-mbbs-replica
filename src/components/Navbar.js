@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <>
       {/* Top Navbar */}
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 bg-white">
         <div className="flex flex-col lg:flex-row justify-between items-center py-1 border-b border-gray-200">
           {/* Left: Notification Marquee */}
           <div className="w-full lg:w-auto overflow-hidden mb-1 lg:mb-0">
@@ -31,9 +31,9 @@ export default function Navbar() {
             <Link href="/clat/admission.html" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
               Admission
             </Link>
-            <Link href="/clat/student-section.html" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
+            {/* <Link href="/clat/student-section.html" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
               Student Zone
-            </Link>
+            </Link> */}
             <Link href="#" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
               MockTest
             </Link>
@@ -89,7 +89,7 @@ export default function Navbar() {
               <Link href="/" className="text-gray-700 hover:text-red-700 font-semibold">Home</Link>
               <Link href="/p/another-page.html" className="text-gray-700 hover:text-red-700 font-semibold">About</Link>
               <Link href="/courses" className="text-gray-700 hover:text-red-700 font-semibold">Courses</Link>
-              {/* <Link href="/online-clatians/online-courses.html" className="text-gray-700 hover:text-red-700 font-semibold">Online Courses</Link> */}
+              <Link href="/online-clatians/online-courses.html" className="text-gray-700 hover:text-red-700 font-semibold">Student Zone</Link>
               <Link href="/p/blog.html" className="text-gray-700 hover:text-red-700 font-semibold">Blogs</Link>
               <Link href="/clat/about-us.html" className="text-gray-700 hover:text-red-700 font-semibold">Contact</Link>
             </div>
@@ -115,7 +115,7 @@ export default function Navbar() {
               <Link href="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Home</Link>
               <Link href="/p/another-page.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">About</Link>
               <Link href="/courses" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Courses</Link>
-              {/* <Link href="/online-clatians/online-courses.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Online Courses</Link> */}
+              <Link href="/online-clatians/online-courses.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Student Zone</Link>
               <Link href="/p/blog.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Blogs</Link>
               <Link href="/clat/about-us.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Contact</Link>
               
