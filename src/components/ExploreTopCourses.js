@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -95,6 +95,7 @@ export default function ExploreTopCourses() {
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
             loop={true}
             spaceBetween={15}
@@ -124,71 +125,7 @@ export default function ExploreTopCourses() {
           >
             {courses.map((course, index) => (
               <SwiperSlide key={index}>
-                <div 
-                  className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative w-[300px] sm:w-full mx-auto"
-                  style={{ height: '450px' }}
-                >
-                  {/* Course Image */}
-                  <div className="relative h-48">
-                    <Image
-                      src={course.image}
-                      alt={course.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 600px) 100vw, 600px"
-                    />
-                    <span className="absolute bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-xl text-sm font-medium">
-                      {course.category}
-                    </span>
-                  </div>
-
-                  {/* Course Details */}
-                  <div className="p-4">
-                    <h5 className="font-bold text-lg mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
-                      {course.title}
-                    </h5>
-                    
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
-                        {course.level}
-                      </span>
-                      <span className="text-green-600 font-bold text-lg">
-                        {course.price}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center text-gray-500 text-sm gap-4 mb-3">
-                      <div className="flex items-center">
-                        <i className="bi bi-people-fill mr-2 text-blue-600"></i>
-                        <span>{course.students} Students</span>
-                      </div>
-                      <div className="flex items-center">
-                        <i className="bi bi-journal-text mr-2 text-blue-600"></i>
-                        <span>{course.lessons} Lessons</span>
-                      </div>
-                    </div>
-
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                      <p className="text-white mb-4 text-sm">
-                        {course.description}
-                      </p>
-                      <button className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-transform duration-300 hover:shadow-lg">
-                        Enroll Now
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Quick Actions */}
-                  <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
-                      <i className="bi bi-heart text-red-500"></i>
-                    </button>
-                    <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
-                      <i className="bi bi-share text-blue-600"></i>
-                    </button>
-                  </div>
-                </div>
+                <CourseCard course={course} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -221,5 +158,126 @@ export default function ExploreTopCourses() {
         </div>
       </div>
     </section>
+  )
+}
+
+function CourseCard({ course }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const [isButtonHovered, setIsButtonHovered] = useState(false)
+  const hoverTimeoutRef = useRef(null)
+
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsHovered(true)
+    }, 50)
+  }
+
+  const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsHovered(false)
+    }, 5000)
+  }
+
+  return (
+    <div 
+      className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative w-[300px] sm:w-full mx-auto"
+      style={{ height: '420px' }}
+    >
+      {/* Course Image */}
+      <div 
+        className="relative h-48"
+        onMouseOver={handleMouseEnter}
+        onMouseOut={handleMouseLeave}
+      >
+        <Image
+          src={course.image}
+          alt={course.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 600px) 100vw, 600px"
+        />
+        <span className="absolute top-3 left-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-xl text-sm font-medium">
+          {course.category}
+        </span>
+      </div>
+
+      {/* Course Details */}
+      <div className="p-4 h-[calc(100%-192px)] flex flex-col">
+        <h5 className="font-bold text-lg mb-3 transition-colors line-clamp-2">
+          {course.title}
+        </h5>
+        
+        <div className="flex justify-between items-center mb-3">
+          <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
+            {course.level}
+          </span>
+          <span className="text-green-600 font-bold text-lg">
+            {course.price}
+          </span>
+        </div>
+
+        <div className="flex items-center text-gray-500 text-sm gap-4 mb-auto">
+          <div className="flex items-center">
+            <i className="bi bi-people-fill mr-2 text-blue-600"></i>
+            <span>{course.students} Students</span>
+          </div>
+          <div className="flex items-center">
+            <i className="bi bi-journal-text mr-2 text-blue-600"></i>
+            <span>{course.lessons} Lessons</span>
+          </div>
+        </div>
+
+        {/* View Details Button */}
+        <div 
+          className="relative z-30"
+        >
+          <button 
+            className={`w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${isHovered  ? 'opacity-0' : 'opacity-100'}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              // Add your view details functionality here
+            }}
+          >
+            View Details
+          </button>
+        </div>
+
+        {/* Hover Overlay */}
+        {isHovered && (
+          <div className="course-overlay absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black/90 transition-all duration-300 flex flex-col justify-end p-4 z-20">
+            <p className="text-white mb-4 text-sm">
+              {course.description}
+            </p>
+            <button 
+              className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-transform duration-300 hover:shadow-lg"
+              onClick={(e) => {
+                e.stopPropagation();
+                // Add your enroll functionality here
+              }}
+            >
+              Enroll Now
+            </button>
+          </div>
+        )}
+
+        {/* Quick Actions */}
+        {isHovered &&  (
+          <div className="absolute top-3 right-3 flex flex-col gap-2 transition-opacity duration-300">
+            <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
+              <i className="bi bi-heart text-red-500"></i>
+            </button>
+            <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
+              <i className="bi bi-share text-blue-600"></i>
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   )
 } 
