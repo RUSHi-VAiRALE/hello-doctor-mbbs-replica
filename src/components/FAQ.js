@@ -31,7 +31,7 @@ export default function FAQ() {
 
   return (
     <section className="bg-[#e7edff] py-16">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <h2 className="text-center text-3xl font-bold mb-12">
           <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md inline-block">
             FREQUENTLY
@@ -39,7 +39,7 @@ export default function FAQ() {
           ASKED QUESTIONS
         </h2>
 
-        <div className="flex flex-wrap gap-8 max-w-4xl mx-auto">
+        <div className="flex flex-wrap gap-8 max-w-6xl mx-auto">
           {faqs.map((faq) => (
             <div 
               key={faq.index}
@@ -51,14 +51,14 @@ export default function FAQ() {
               }}
             >
               <button
-                className="w-full flex justify-between items-center p-6 text-left h-20"
+                className="w-full flex justify-between items-center p-6 text-left min-h-[5rem]"
                 onClick={() => setActiveIndex(activeIndex === faq.index ? null : faq.index)}
               >
-                <span className="font-semibold flex items-center">
-                  <i className="bi bi-question-circle text-orange-500 mr-2"></i>
+                <span className="font-semibold flex items-center pr-4">
+                  <i className="bi bi-question-circle text-orange-500 mr-2 flex-shrink-0"></i>
                   {faq.question}
                 </span>
-                <i className={`bi bi-chevron-down transition-transform duration-300 ${
+                <i className={`bi bi-chevron-down transition-transform duration-300 flex-shrink-0 ${
                   activeIndex === faq.index ? 'rotate-180' : ''
                 }`}></i>
               </button>
