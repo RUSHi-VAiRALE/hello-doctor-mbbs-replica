@@ -1,10 +1,31 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/courses', label: 'Courses' },
+    { href: '/online-clatians/online-courses.html', label: 'Student Zone' },
+    { href: '/p/blog.html', label: 'Blogs' },
+    { href: '/clat/about-us.html', label: 'Contact' }
+  ]
+
+  const isActive = (path) => {
+    if (path === '/' && pathname !== '/') return false
+    return pathname.startsWith(path)
+  }
 
   return (
     <>
@@ -86,12 +107,22 @@ export default function Navbar() {
 
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center space-x-6">
-              <Link href="/" className="text-gray-700 hover:text-red-700 font-semibold">Home</Link>
-              <Link href="/about" className="text-gray-700 hover:text-red-700 font-semibold">About</Link>
-              <Link href="/courses" className="text-gray-700 hover:text-red-700 font-semibold">Courses</Link>
-              <Link href="/online-clatians/online-courses.html" className="text-gray-700 hover:text-red-700 font-semibold">Student Zone</Link>
-              <Link href="/p/blog.html" className="text-gray-700 hover:text-red-700 font-semibold">Blogs</Link>
-              <Link href="/clat/about-us.html" className="text-gray-700 hover:text-red-700 font-semibold">Contact</Link>
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.href}
+                  href={link.href}
+                  className={`relative font-semibold transition-colors ${
+                    isActive(link.href)
+                      ? 'text-red-700'
+                      : 'text-gray-700 hover:text-red-700'
+                  }`}
+                >
+                  {link.label}
+                  {isActive(link.href) && (
+                    <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-red-700 rounded-full"></span>
+                  )}
+                </Link>
+              ))}
             </div>
 
             {/* Desktop Right Buttons */}
@@ -112,13 +143,21 @@ export default function Navbar() {
             }`}
           >
             <div className="py-4 space-y-4 border-t border-gray-200">
-              <Link href="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Home</Link>
-              <Link href="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">About</Link>
-              <Link href="/courses" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Courses</Link>
-              <Link href="/online-clatians/online-courses.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Student Zone</Link>
-              <Link href="/p/blog.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Blogs</Link>
-              <Link href="/clat/about-us.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Contact</Link>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block px-4 py-2 rounded-lg transition-colors ${
+                    isActive(link.href)
+                      ? 'bg-red-50 text-red-700 font-semibold'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               
+              {/* Mobile Buttons */}
               <div className="px-4 py-2 space-y-3">
                 <button className="w-full px-4 py-2 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors">
                   Call Us
