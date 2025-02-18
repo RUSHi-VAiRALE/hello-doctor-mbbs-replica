@@ -73,81 +73,83 @@ const LawEntranceExams = () => {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-        Law Entrance Exams 2025-26
-      </h1>
+    <div className="py-8">
+      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+          Law Entrance Exams 2025-26
+        </h1>
 
-      <section className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
-          What is Law?
-        </h2>
-        <p className="text-gray-600">
-          A Law Entrance Exam is a standardized test used to assess the knowledge, skills, 
-          and aptitude of candidates seeking admission to law schools for undergraduate or 
-          postgraduate programs...
-        </p>
-      </section>
+        <section className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
+            What is Law?
+          </h2>
+          <p className="text-gray-600">
+            A Law Entrance Exam is a standardized test used to assess the knowledge, skills, 
+            and aptitude of candidates seeking admission to law schools for undergraduate or 
+            postgraduate programs...
+          </p>
+        </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
-          Top Law Entrance Exams for UG Courses
-        </h2>
-        <TableComponent 
-          headers={['Exam Name', 'Conducting Body']}
-          data={examData.ugExams}
-          columns={['name', 'body']}
-        />
-      </section>
+        <section className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
+            Top Law Entrance Exams for UG Courses
+          </h2>
+          <TableComponent 
+            headers={['Exam Name', 'Conducting Body']}
+            data={examData.ugExams}
+            columns={['name', 'body']}
+          />
+        </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
-          Eligibility Criteria
-        </h2>
-        <div className="space-y-4">
-          {examData.eligibilityCriteria.map((criteria, index) => (
-            <div key={index}>
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                {criteria.title}
-              </h3>
-              <p className="text-gray-600">{criteria.requirement}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+        <section className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
+            Eligibility Criteria
+          </h2>
+          <div className="space-y-4">
+            {examData.eligibilityCriteria.map((criteria, index) => (
+              <div key={index}>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                  {criteria.title}
+                </h3>
+                <p className="text-gray-600">{criteria.requirement}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
-          Exam Dates 2025-26
-        </h2>
-        <TableComponent 
-          headers={['Exam', 'Date']}
-          data={examData.examDates}
-          columns={['name', 'date']}
-        />
-      </section>
+        <section className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
+            Exam Dates 2025-26
+          </h2>
+          <TableComponent 
+            headers={['Exam', 'Date']}
+            data={examData.examDates}
+            columns={['name', 'date']}
+          />
+        </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
-          Study Materials
-        </h2>
-        <TableComponent 
-          headers={['Study Material', 'Link']}
-          data={examData.studyMaterials}
-          columns={['name', 'link']}
-        />
-      </section>
+        <section className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
+            Study Materials
+          </h2>
+          <TableComponent 
+            headers={['Study Material', 'Link']}
+            data={examData.studyMaterials}
+            columns={['name', 'link']}
+          />
+        </section>
 
-      <section className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
-          Preparation Tips
-        </h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-600">
-          {examData.preparationTips.map((tip, index) => (
-            <li key={index}>{tip}</li>
-          ))}
-        </ul>
-      </section>
+        <section className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-4">
+            Preparation Tips
+          </h2>
+          <ul className="list-disc pl-6 space-y-2 text-gray-600">
+            {examData.preparationTips.map((tip, index) => (
+              <li key={index}>{tip}</li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </div>
   );
 };

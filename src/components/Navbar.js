@@ -87,7 +87,7 @@ export default function Navbar() {
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center space-x-6">
               <Link href="/" className="text-gray-700 hover:text-red-700 font-semibold">Home</Link>
-              <Link href="/p/another-page.html" className="text-gray-700 hover:text-red-700 font-semibold">About</Link>
+              <Link href="/about" className="text-gray-700 hover:text-red-700 font-semibold">About</Link>
               <Link href="/courses" className="text-gray-700 hover:text-red-700 font-semibold">Courses</Link>
               <Link href="/online-clatians/online-courses.html" className="text-gray-700 hover:text-red-700 font-semibold">Student Zone</Link>
               <Link href="/p/blog.html" className="text-gray-700 hover:text-red-700 font-semibold">Blogs</Link>
@@ -113,7 +113,7 @@ export default function Navbar() {
           >
             <div className="py-4 space-y-4 border-t border-gray-200">
               <Link href="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Home</Link>
-              <Link href="/p/another-page.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">About</Link>
+              <Link href="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">About</Link>
               <Link href="/courses" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Courses</Link>
               <Link href="/online-clatians/online-courses.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Student Zone</Link>
               <Link href="/p/blog.html" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">Blogs</Link>

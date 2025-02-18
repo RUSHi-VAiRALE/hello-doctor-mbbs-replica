@@ -19,7 +19,6 @@ import Footer from '@/components/Footer'
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
       <Hero />
       <WhyChooseUs />
       <Features />
@@ -34,9 +33,6 @@ export default function Home() {
       <Events />
       <FAQ />
       <SocialMedia />
-      {/* <Testimonials />
-      <OurTeachers /> */}
-      <Footer />
     </main>
   )
 }
