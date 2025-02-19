@@ -18,7 +18,7 @@ export default function Navbar() {
     { href: '/about', label: 'About' },
     { href: '/courses', label: 'Courses' },
     { href: '/online-clatians/online-courses.html', label: 'Student Zone' },
-    { href: '/p/blog.html', label: 'Blogs' },
+    { href: 'blogs', label: 'Blogs' },
     { href: '/clat/about-us.html', label: 'Contact' }
   ]
 

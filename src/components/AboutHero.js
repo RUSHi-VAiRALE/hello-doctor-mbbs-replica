@@ -1,4 +1,4 @@
-export default function AboutHero() {
+export default function AboutHero({route, page}) {
   return (
     <div className="relative h-[200px]">
       <div className="absolute inset-0">
@@ -10,14 +10,14 @@ export default function AboutHero() {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/90 to-primary-dark/90 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-4xl md:text-[42px] font-bold text-white uppercase tracking-wider mb-2">
-              About Us
+              {page}
             </h1>
             <nav className="text-base md:text-lg font-medium">
               <a href="/" className="text-amber-400 hover:text-orange-600 transition-colors font-bold">
-                Home
+                {route}
               </a>
               <span className="text-white mx-2 font-bold">»</span>
-              <span className="text-white">About Us</span>
+              <span className="text-white">{page}</span>
             </nav>
           </div>
         </div>

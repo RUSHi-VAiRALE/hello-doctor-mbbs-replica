@@ -1,4 +1,4 @@
-import AboutHero from '@/components/about/AboutHero'
+import AboutHero from '@/components/AboutHero'
 import ExperienceSection from '@/components/about/ExperienceSection'
 import StatsSection from '@/components/about/StatsSection'
 import Timeline from '@/components/about/Timeline'
@@ -7,7 +7,7 @@ import TeacherSection from '@/components/TeacherSection'
 export default function About() {
   return (
     <>
-      <AboutHero />
+      <AboutHero route="Home" page="About Us" />
       <ExperienceSection />
       <StatsSection />
       <TeacherSection />
