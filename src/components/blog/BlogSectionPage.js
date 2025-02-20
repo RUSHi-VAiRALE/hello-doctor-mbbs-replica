@@ -66,7 +66,7 @@ export default function BlogSection() {
                   The legal entrance exam pattern has been updated for 2025. Students are advised to check the latest guidelines and syllabus updates to stay ahead in their preparation.
                 </p>
                 <Link 
-                  href="#" 
+                  href="/blogs/1" 
                   className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg"
                 >
                   Read More

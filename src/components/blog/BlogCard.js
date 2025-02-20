@@ -22,7 +22,7 @@ export default function BlogCard({ image, title, description }) {
         
         <div className="text-center mt-6">
           <Link 
-            href="#" 
+            href="/blogs/1" 
             className="inline-block px-6 py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg"
           >
             Read More

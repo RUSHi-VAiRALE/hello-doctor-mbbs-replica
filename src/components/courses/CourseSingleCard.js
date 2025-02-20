@@ -14,7 +14,7 @@ export default function CourseSingleCard({ course }) {
           />
         </div>
         
-        <div className="absolute top-3 left-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-xl text-sm">
+        <div className="absolute top-0 left-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-r-lg text-sm">
           {course.tag}
         </div>
         

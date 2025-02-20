@@ -1,5 +1,5 @@
 import Image from 'next/image'
-
+import Link from 'next/link'
 export default function BlogSection() {
   return (
     <section className="py-8 bg-[#e7edff]">
@@ -36,8 +36,10 @@ export default function BlogSection() {
                 Libero integer duis facilisis magna etiam tempor orci. Sem et tortor consequat egestas tellus.
               </p>
               <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
-                <h5 className="font-bold mr-2 text-base">Read More</h5>
-                <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                <Link href="/blogs/1" className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
+                          <h5 className="font-bold mr-2 text-base">Read More</h5>
+                          <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                        </Link>
               </div>
             </div>
           </div>
@@ -74,8 +76,10 @@ export default function BlogSection() {
                         Libero integer duis facilisis magna etiam tempor orci. Sem et tortor consequat egestas tellus.
                       </p>
                       <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
-                        <h5 className="font-bold mr-2 text-base">Read More</h5>
-                        <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                        <Link href="/blogs/1" className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
+                          <h5 className="font-bold mr-2 text-base">Read More</h5>
+                          <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -116,10 +120,11 @@ export default function BlogSection() {
                 </div>
               </div>
 
-              <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-6">
-                <h5 className="font-bold mr-2 text-base">Read More</h5>
-                <span className="transform group-hover:translate-x-2 transition-transform">→</span>
-              </div>
+          
+                <Link href="/blogs/1" className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-2">
+                          <h5 className="font-bold mr-2 text-base">Read More</h5>
+                          <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                        </Link>
             </div>
           </div>
 
@@ -154,10 +159,10 @@ export default function BlogSection() {
                       <p className="text-gray-600 mb-4 text-sm">
                         Odio faucibus ante ante nibh imperdiet ornare aliquam suscipit. Lorem ipsum dolor sit amet consectetur adipisicing elit...
                       </p>
-                      <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-auto">
-                        <span className="transform group-hover:translate-x-2 transition-transform mr-2">→</span>
+                        <Link href="/blogs/1" className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
+                          <span className="transform group-hover:translate-x-2 transition-transform mr-2">→</span>
                         <p className="font-medium text-base">Read More</p>
-                      </div>
+                        </Link>
                     </div>
                   </div>
                 ))}

@@ -3,7 +3,7 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-
+import Link from 'next/link'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -181,7 +181,7 @@ function CourseCard({ course }) {
     }
     hoverTimeoutRef.current = setTimeout(() => {
       setIsHovered(false)
-    }, 5000)
+    }, 3000)
   }
 
   return (
@@ -202,7 +202,7 @@ function CourseCard({ course }) {
           className="object-cover"
           sizes="(max-width: 600px) 100vw, 600px"
         />
-        <span className="absolute top-3 left-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-xl text-sm font-medium">
+        <span className="absolute top-0 left-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-r-lg text-sm font-medium">
           {course.category}
         </span>
       </div>
@@ -237,7 +237,8 @@ function CourseCard({ course }) {
         <div 
           className="relative z-30"
         >
-          <button 
+          <Link href="/courses/1">
+            <button 
             className={`w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${isHovered  ? 'opacity-0' : 'opacity-100'}`}
             onClick={(e) => {
               e.stopPropagation();
@@ -246,6 +247,7 @@ function CourseCard({ course }) {
           >
             View Details
           </button>
+          </Link>
         </div>
 
         {/* Hover Overlay */}
