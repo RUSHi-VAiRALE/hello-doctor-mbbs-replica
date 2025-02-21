@@ -17,9 +17,9 @@ export default function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/courses', label: 'Courses' },
-    { href: '/online-clatians/online-courses.html', label: 'Student Zone' },
+    { href: '/studentZone', label: 'Student Zone' },
     { href: '/blogs', label: 'Blogs' },
-    { href: '/clat/about-us.html', label: 'Contact' }
+    { href: '/contactUs', label: 'Contact' }
   ]
 
   const isActive = (path) => {
@@ -55,15 +55,12 @@ export default function Navbar() {
             {/* <Link href="/clat/student-section.html" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
               Student Zone
             </Link> */}
-            <Link href="#" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
-              MockTest
+            <Link href="/lawEntranceExams" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
+              Law Entrance Exams
             </Link>
-            <Link href="#" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50 relative">
-              Live Classes
-              <span className="absolute -top-1 -right-1 h-1.5 w-1.5 bg-red-500 rounded-full animate-ping"></span>
-            </Link>
-            <Link href="#" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
-              Videos
+            <Link href="/onlineResources" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50 relative">
+              Online Resources
+              {/* <span className="absolute -top-1 -right-1 h-1.5 w-1.5 bg-red-500 rounded-full animate-ping"></span> */}
             </Link>
           </div>
         </div>
