@@ -62,7 +62,7 @@ export default function CourseSchedule() {
   scheduleSubjects.slice(0, 3)
 
   return (
-    <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-lg">
+    <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-xl">
       {/* ... Schedule section content ... */}
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Batch Schedules</h2>
       

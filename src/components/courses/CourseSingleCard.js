@@ -63,7 +63,7 @@ export default function CourseSingleCard({ course }) {
 
         <div className="grid grid-cols-2 gap-3">
           <Link 
-            href={`/courses/${course.id}`}
+            href={`/courses/online/${course.parentInd}/courseCard/${course.id-1}`}
             className="text-center py-2.5 border border-blue-600 text-blue-600 rounded-full font-medium hover:bg-blue-50 transition-colors"
           >
             EXPLORE

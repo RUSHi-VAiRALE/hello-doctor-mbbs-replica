@@ -16,7 +16,7 @@ export default function CourseFeatures() {
   ]
 
   return (
-    <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-lg">
+    <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-xl">
       <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Batch Features</h2>
       
       <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">

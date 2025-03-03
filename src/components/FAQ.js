@@ -39,11 +39,11 @@ export default function FAQ() {
           ASKED QUESTIONS
         </h2>
 
-        <div className="flex flex-wrap gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 max-w-6xl mx-auto">
           {faqs.map((faq) => (
             <div 
               key={faq.index}
-              className="w-full md:w-[calc(50%-1rem)] border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden"
+              className="w-full border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden"
               style={{
                 backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #fbbf24, #ea580c, #b91c1c)',
                 backgroundOrigin: 'border-box',

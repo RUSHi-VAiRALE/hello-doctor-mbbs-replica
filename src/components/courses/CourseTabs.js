@@ -2,7 +2,7 @@ export default function CourseTabs({ activeTab, setActiveTab }) {
   const tabs = ['Features', 'About', 'Schedule', 'Teachers', 'Free Content','Details']
 
   return (
-    <div className="border-b border-gray-200 mb-8 overflow-x-auto">
+    <div className="sticky top-0 z-30 bg-[#E7EDFF]">
       <nav className="flex space-x-2 sm:space-x-8 min-w-max">
         {tabs.map((tab) => (
           <button

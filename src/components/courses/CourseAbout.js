@@ -53,7 +53,7 @@ export default function CourseAbout() {
   slice(0, 4)
 
   return (
-    <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-lg">
+    <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-xl">
       {/* ... About section content ... */}
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">About the Batch</h2>
       

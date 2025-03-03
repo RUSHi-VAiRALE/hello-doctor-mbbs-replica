@@ -6,17 +6,53 @@ import { usePathname } from 'next/navigation'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isCoursesOpen, setIsCoursesOpen] = useState(false)
+  const [selectedCourseType, setSelectedCourseType] = useState('online')
+  const [expandedMobileType, setExpandedMobileType] = useState(null)
   const pathname = usePathname()
 
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false)
+    setIsCoursesOpen(false)
+    setExpandedMobileType(null)
   }, [pathname])
+
+  const courseTypes = {
+    online: {
+      label: 'Online Coaching',
+      courses: [
+        { name: 'CLAT', href: '/courses/online/0' },
+        { name: 'CLAT+AILET', href: '/courses/online/1' },
+        { name: 'CUET-Law (UG)', href: '/courses/online/2' },
+        { name: 'CUET-Law (PG)', href: '/courses/online/3' },
+        { name: 'AIL-LET', href: '/courses/online/4' },
+        { name: 'Booster Courses', href: '/courses/online/5' },
+      ]
+    },
+    offline: {
+      label: 'Offline Coaching',
+      courses: [
+        { name: 'CLAT', href: '/courses/offline/0' },
+        { name: 'CLAT+AILET', href: '/courses/offline/1' },
+        { name: 'CUET-Law', href: '/courses/offline/2' },
+        { name: 'CLAT + OLET', href: '/courses/offline/3' },
+        { name: 'OLET(CUET-LAW + AIL-LET + MH-CET', href: '/courses/offline/4' },
+      ]
+    },
+    mock: {
+      label: 'Mock Test',
+      courses: [
+        { name: 'CLAT Mock Test', href: '/courses/mock/clat' },
+        { name: 'All Exams Mock Test', href: '/courses/mock/all-exams' },
+      ]
+    }
+  }
 
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/courses', label: 'Courses' },
+    { href: '/courses', label: 'Courses', hasDropdown: true },
     { href: '/studentZone', label: 'Student Zone' },
     { href: '/blogs', label: 'Blogs' },
     { href: '/contactUs', label: 'Contact' }
@@ -105,20 +141,87 @@ export default function Navbar() {
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center space-x-6">
               {navLinks.map((link) => (
-                <Link 
-                  key={link.href}
-                  href={link.href}
-                  className={`relative font-semibold transition-colors ${
-                    isActive(link.href)
-                      ? 'text-red-700'
-                      : 'text-gray-700 hover:text-red-700'
-                  }`}
-                >
-                  {link.label}
-                  {isActive(link.href) && (
-                    <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-red-700 rounded-full"></span>
+                <div key={link.href} className="relative">
+                  {link.hasDropdown ? (
+                    <button
+                      onClick={() => setIsCoursesOpen(!isCoursesOpen)}
+                      onMouseEnter={() => setIsCoursesOpen(true)}
+                      className={`relative font-semibold transition-colors ${
+                        isActive(link.href) || isCoursesOpen
+                          ? 'text-red-700'
+                          : 'text-gray-700 hover:text-red-700'
+                      }`}
+                    >
+                      {link.label}
+                      <span className={`ml-1 align-middle inline-block transition-transform ${isCoursesOpen ? 'rotate-180' : ''}`}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
+  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+</svg></span>
+                      {(isActive(link.href) || isCoursesOpen) && (
+                        <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-red-700 rounded-full"></span>
+                      )}
+                    </button>
+                  ) : (
+                    <Link 
+                      href={link.href}
+                      className={`relative font-semibold transition-colors ${
+                        isActive(link.href)
+                          ? 'text-red-700'
+                          : 'text-gray-700 hover:text-red-700'
+                      }`}
+                    >
+                      {link.label}
+                      {isActive(link.href) && (
+                        <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-red-700 rounded-full"></span>
+                      )}
+                    </Link>
                   )}
-                </Link>
+
+                  {/* Courses Dropdown */}
+                  {link.hasDropdown && isCoursesOpen && (
+                    <div
+                      className="absolute top-full left-0 mt-2 w-[650px] bg-white shadow-xl rounded-lg overflow-hidden"
+                      onMouseLeave={() => setIsCoursesOpen(false)}
+                    >
+                      <div className="flex">
+                        {/* Course Types */}
+                        <div className="w-1/2 bg-gray-50 ">
+                          {Object.entries(courseTypes).map(([type, { label }]) => (
+                            <button
+                              key={type}
+                              className={`w-full flex justify-between text-left py-2 pl-4 mb-2 ${
+                                selectedCourseType === type
+                                  ? 'bg-red-50 text-red-700 font-semibold'
+                                  : 'hover:bg-gray-100'
+                              }`}
+                              onMouseEnter={() => setSelectedCourseType(type)}
+                            >
+                              {label}
+                              <span className={`ml-1 align-middle inline-block`}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
+  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+</svg>
+
+</span>
+                            </button>
+                          ))}
+                        </div>
+                        {/* Course List */}
+                        <div className="w-2/3 p-4 bg-red-50">
+                          <div className="grid grid-cols-2 gap-4 bg-red-50">
+                            {courseTypes[selectedCourseType].courses.map((course) => (
+                              <Link
+                                key={course.href}
+                                href={course.href}
+                                className="px-3 py-2 shadow-lg rounded-lg bg-white text-sm truncate  hover:text-red-700 transition-colors"
+                              >
+                                {course.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -136,22 +239,82 @@ export default function Navbar() {
           {/* Mobile Menu */}
           <div 
             className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-              isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+              isMobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
             <div className="py-4 space-y-4 border-t border-gray-200">
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`block px-4 py-2 rounded-lg transition-colors ${
-                    isActive(link.href)
-                      ? 'bg-red-50 text-red-700 font-semibold'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  {link.label}
-                </Link>
+                <div key={link.href}>
+                  {link.hasDropdown ? (
+                    <>
+                      <button
+                        onClick={() => {
+                          setIsCoursesOpen(!isCoursesOpen)
+                          if (!isCoursesOpen) {
+                            setExpandedMobileType(null)
+                          }
+                        }}
+                        className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
+                          isActive(link.href) || isCoursesOpen
+                            ? 'bg-red-50 text-red-700 font-semibold'
+                            : 'text-gray-700 hover:bg-gray-50'
+                        }`}
+                      >
+                        {link.label}
+                        <span className={`ml-1 inline-block align-middle transition-transform ${isCoursesOpen ? 'rotate-180' : ''}`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                          </svg>
+                        </span>
+                      </button>
+                      {isCoursesOpen && (
+                        <div className="mt-2 ml-4 space-y-2">
+                          {Object.entries(courseTypes).map(([type, { label, courses }]) => (
+                            <div key={type} className="space-y-2">
+                              <button
+                                onClick={() => setExpandedMobileType(expandedMobileType === type ? null : type)}
+                                className={`w-full flex items-center justify-between px-4 py-2 font-semibold ${
+                                  expandedMobileType === type ? 'text-red-700' : 'text-gray-700'
+                                }`}
+                              >
+                                {label}
+                                <span className={`transition-transform ${expandedMobileType === type ? 'rotate-180' : ''}`}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                  </svg>
+                                </span>
+                              </button>
+                              <div className={`ml-4 space-y-1 overflow-hidden transition-all duration-300 ${
+                                expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                              }`}>
+                                {courses.map((course) => (
+                                  <Link
+                                    key={course.href}
+                                    href={course.href}
+                                    className="block px-4 py-1.5 rounded-lg hover:bg-red-50 hover:text-red-700"
+                                  >
+                                    {course.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`block px-4 py-2 rounded-lg transition-colors ${
+                        isActive(link.href)
+                          ? 'bg-red-50 text-red-700 font-semibold'
+                          : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </div>
               ))}
               
               {/* Mobile Buttons */}
