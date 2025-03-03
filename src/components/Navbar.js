@@ -109,7 +109,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image 
-                src="https://s6.imgcdn.dev/YDF6zi.png" 
+                src="https://clatwallah.netlify.app/images/logo.png" 
                 alt="clatians-Logo" 
                 width={90} 
                 height={42} 

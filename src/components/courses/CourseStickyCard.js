@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function CourseStickyCard({courseData}) {
   return (
-    <div className="lg:col-span-1 hidden lg:block">
+    <div className="lg:col-span-1 lg:block">
       <div className="sticky top-16">
         {/* ... Sticky card content ... */}
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg">

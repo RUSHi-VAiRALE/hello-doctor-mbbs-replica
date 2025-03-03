@@ -37,7 +37,7 @@ export default function StatsSection() {
     counters.forEach(counter => {
       let startValue = 0
       const endValue = parseFloat(counter.getAttribute("data-target"))
-      const duration = 2000 // Animation duration in milliseconds
+      const duration = 1000 // Animation duration in milliseconds
       const steps = 50 // Number of steps in the animation
       const increment = endValue / steps
       const stepTime = duration / steps
