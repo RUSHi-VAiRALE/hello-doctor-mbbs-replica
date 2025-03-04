@@ -64,7 +64,7 @@ export default function Features() {
               <div 
                 className={hasAnimated ? 'animate-fade-up' : 'opacity-0 translate-y-8'}
                 style={{ 
-                  animationDelay: `${index * 150}ms`,
+                  animationDelay: `${index * 250}ms`,
                   animationFillMode: 'both'
                 }}
               >
