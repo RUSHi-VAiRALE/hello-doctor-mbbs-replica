@@ -184,13 +184,13 @@ export default function Navbar() {
                     >
                       <div className="flex">
                         {/* Course Types */}
-                        <div className="w-1/2 bg-gray-50 ">
+                        <div className="w-1/2 bg-white">
                           {Object.entries(courseTypes).map(([type, { label }]) => (
                             <button
                               key={type}
                               className={`w-full flex justify-between text-left py-2 pl-4 mb-2 ${
                                 selectedCourseType === type
-                                  ? 'bg-red-50 text-red-700 font-semibold'
+                                  ? 'bg-[#F8F8F8] text-black font-semibold'
                                   : 'hover:bg-gray-100'
                               }`}
                               onMouseEnter={() => setSelectedCourseType(type)}
@@ -205,13 +205,13 @@ export default function Navbar() {
                           ))}
                         </div>
                         {/* Course List */}
-                        <div className="w-2/3 p-4 bg-red-50">
-                          <div className="grid grid-cols-2 gap-4 bg-red-50">
+                        <div className="w-2/3 p-4 bg-[#F8F8F8]">
+                          <div className="grid grid-cols-2 gap-4 bg-[#F8F8F8]">
                             {courseTypes[selectedCourseType].courses.map((course) => (
                               <Link
                                 key={course.href}
                                 href={course.href}
-                                className="px-3 py-2 shadow-lg rounded-lg bg-white text-sm truncate  hover:text-red-700 transition-colors"
+                                className="px-3 py-[14px] md:h-12 shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate  hover:text-black hover:border-[1px] hover:border-black transition-colors"
                               >
                                 {course.name}
                               </Link>
@@ -270,11 +270,11 @@ export default function Navbar() {
                       {isCoursesOpen && (
                         <div className="mt-2 ml-4 space-y-2">
                           {Object.entries(courseTypes).map(([type, { label, courses }]) => (
-                            <div key={type} className="space-y-2">
+                            <div key={type} className="space-y-2 bg-[#F8F8F8] rounded-md">
                               <button
                                 onClick={() => setExpandedMobileType(expandedMobileType === type ? null : type)}
                                 className={`w-full flex items-center justify-between px-4 py-2 font-semibold ${
-                                  expandedMobileType === type ? 'text-red-700' : 'text-gray-700'
+                                  expandedMobileType === type ? 'text-gray-700' : 'text-gray-700'
                                 }`}
                               >
                                 {label}
@@ -284,18 +284,20 @@ export default function Navbar() {
                                   </svg>
                                 </span>
                               </button>
-                              <div className={`ml-4 space-y-1 overflow-hidden transition-all duration-300 ${
+                              <div className={`overflow-hidden transition-all duration-300 ${
                                 expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                               }`}>
-                                {courses.map((course) => (
-                                  <Link
-                                    key={course.href}
-                                    href={course.href}
-                                    className="block px-4 py-1.5 rounded-lg hover:bg-red-50 hover:text-red-700"
-                                  >
-                                    {course.name}
-                                  </Link>
-                                ))}
+                                <div className="grid grid-cols-2 gap-2 px-4 py-2">
+                                  {courses.map((course) => (
+                                    <Link
+                                      key={course.href}
+                                      href={course.href}
+                                      className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors"
+                                    >
+                                      {course.name}
+                                    </Link>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           ))}

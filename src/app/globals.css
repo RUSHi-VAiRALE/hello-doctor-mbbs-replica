@@ -11,6 +11,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: white;
+  font-family: 'Reddit Sans', sans-serif !important;
 }
 
 /* Timeline line drawing animation */

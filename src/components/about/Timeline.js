@@ -264,7 +264,7 @@ export default function Timeline() {
   ]
 
   return (
-    <section className="bg-[#f7f9fc] py-16 md:py-20 overflow-x-hidden">
+    <section className="bg-[#f7f9fc] pb-0 pt-16 md:pt-20 overflow-x-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 uppercase mb-2">Our Journey</h2>
@@ -275,9 +275,9 @@ export default function Timeline() {
         <div ref={timelineRef} className="relative mx-auto">
           {/* Mobile View - Stack milestones vertically with wave */}
           <div className="md:hidden relative pt-10 pb-20">
-            <svg className="absolute left-0 h-[850px] w-24" preserveAspectRatio="none" viewBox="0 0 100 800">
+            <svg className="absolute left-0 h-[700px] w-24" preserveAspectRatio="none" viewBox="0 0 100 800">
               <path 
-                d="M50,10 C0,200 80,320 50,480 C0,740 80,800 30,800" 
+                d="M50,10 C0,200 80,320 50,480 C0,740 80,800 30,1000" 
                 fill="none" 
                 stroke="url(#gradient-mobile)" 
                 strokeWidth="6"
@@ -298,10 +298,10 @@ export default function Timeline() {
               <div key={index} className="milestone-point relative ml-24 mb-16">
                 {/* Dot marker */}
                 <div 
-                  className={`timeline-dot absolute -left-24 w-10 h-10 bg-gradient-to-br ${milestone.color} 
+                  className={`timeline-dot absolute -left-20 w-10 h-10 bg-gradient-to-br ${milestone.color} 
                   rounded-full flex items-center justify-center opacity-0 scale-0 shadow-md`}
                   style={{ 
-                    top: '50%',
+                    top: '0%',
                     transform: 'translateY(-50%)'
                   }}
                 >
@@ -324,7 +324,7 @@ export default function Timeline() {
           {/* Tablet and Desktop View - Horizontal sine wave */}
           <div className="hidden md:block relative md:pr-24">
             {/* Container with responsive height and padding */}
-            <div className="relative h-96 mx-auto py-40 mb-20 md:py-44 lg:py-40">
+            <div className="relative h-96 mx-auto pt-40 md:py-44 lg:py-40">
               {/* SVG for the sine wave with increased amplitude */}
               <svg className="absolute top-0 left-0 w-full h-60" viewBox="0 0 1200 200" preserveAspectRatio="none">
                 <path 
