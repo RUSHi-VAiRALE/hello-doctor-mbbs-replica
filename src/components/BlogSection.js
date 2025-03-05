@@ -121,7 +121,7 @@ export default function BlogSection() {
               </div>
 
           
-                <Link href="/blogs/1" className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-2">
+                <Link href="/blogs" className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-2">
                           <h5 className="font-bold mr-2 text-base">Read More</h5>
                           <span className="transform group-hover:translate-x-2 transition-transform">→</span>
                         </Link>

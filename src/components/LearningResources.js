@@ -1,5 +1,11 @@
 import { FaBook, FaClipboardList, FaDesktop, FaRegNewspaper } from 'react-icons/fa';
-
+import Link from 'next/link';
+const resources = [
+  { title: "Blogs", description: "Explore Our Latest Blogs", icon: <FaDesktop className="text-blue-500 text-3xl" />, bgColor: "bg-[#eaf4fe]",link:"/blogs" },
+  { title: "Online Courses", description: "Click Here to Explore Online Courses", icon: <FaRegNewspaper className="text-red-500 text-3xl" />, bgColor: "bg-[#fdecef]", link:"/courses/online/0" },
+  { title: "Test Series", description: "Explore Test Series for Preparation", icon: <FaClipboardList className="text-green-500 text-3xl" />, bgColor: "bg-[#eaffea]", link:"/onlineResources" },
+  { title: "Books", description: "Explore Recommended Books", icon: <FaBook className="text-blue-400 text-3xl" />, bgColor: "bg-[#e8f4fe]", link:"/onlineResources" }
+];
 export default function LearningResources() {
   return (
     <section className="py-12 bg-[#e7edff]">
@@ -13,45 +19,17 @@ export default function LearningResources() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Resource Cards */}
-          <div className="aspect-square">
-            <div className="resource-card text-center p-6 bg-[#eaf4fe] rounded-2xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center">
-              <div className="icon-wrapper mb-4 flex justify-center items-center w-20 h-20 bg-white rounded-full shadow-lg">
-                <FaDesktop className="text-blue-500 text-3xl" />
-              </div>
-              <h5 className="font-bold text-lg mb-2">Blogs</h5>
-              <p className="text-gray-600 text-sm">Explore Our Latest Blogs</p>
+          {resources.map((resource, index) => (
+        <Link href={resource.link} key={index} className="aspect-square">
+          <div className={`resource-card text-center p-6 ${resource.bgColor} rounded-2xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center`}>
+            <div className="icon-wrapper mb-4 flex justify-center items-center w-20 h-20 bg-white rounded-full shadow-lg">
+              {resource.icon}
             </div>
+            <h5 className="font-bold text-lg mb-2">{resource.title}</h5>
+            <p className="text-gray-600 text-sm">{resource.description}</p>
           </div>
-          
-          <div className="aspect-square">
-            <div className="resource-card text-center p-6 bg-[#fdecef] rounded-2xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center">
-              <div className="icon-wrapper mb-4 flex justify-center items-center w-20 h-20 bg-white rounded-full shadow-lg">
-                <FaRegNewspaper className="text-red-500 text-3xl" />
-              </div>
-              <h5 className="font-bold text-lg mb-2">Online Courses</h5>
-              <p className="text-gray-600 text-sm">Click Here to Explore Online Courses</p>
-            </div>
-          </div>
-          
-          <div className="aspect-square">
-            <div className="resource-card text-center p-6 bg-[#eaffea] rounded-2xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center">
-              <div className="icon-wrapper mb-4 flex justify-center items-center w-20 h-20 bg-white rounded-full shadow-lg">
-                <FaClipboardList className="text-green-500 text-3xl" />
-              </div>
-              <h5 className="font-bold text-lg mb-2">Test Series</h5>
-              <p className="text-gray-600 text-sm">Explore Test Series for Preparation</p>
-            </div>
-          </div>
-          
-          <div className="aspect-square">
-            <div className="resource-card text-center p-6 bg-[#e8f4fe] rounded-2xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center">
-              <div className="icon-wrapper mb-4 flex justify-center items-center w-20 h-20 bg-white rounded-full shadow-lg">
-                <FaBook className="text-blue-400 text-3xl" />
-              </div>
-              <h5 className="font-bold text-lg mb-2">Books</h5>
-              <p className="text-gray-600 text-sm">Explore Recommended Books</p>
-            </div>
-          </div>
+        </Link>
+      ))}
         </div>
       </div>
     </section>

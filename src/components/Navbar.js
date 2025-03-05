@@ -53,9 +53,9 @@ export default function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/courses', label: 'Courses', hasDropdown: true },
-    { href: '/studentZone', label: 'Student Zone' },
-    { href: '/blogs', label: 'Blogs' },
-    { href: '/contactUs', label: 'Contact' }
+    { href: '/admission', label: 'Admission' },
+    { href: '/lawEntranceExams', label: 'Law Entrance Exams' },
+    { href: '/onlineResources', label: 'Online Resources' }
   ]
 
   const isActive = (path) => {
@@ -86,16 +86,16 @@ export default function Navbar() {
           {/* Right: Menu Buttons */}
           <div className="flex flex-wrap justify-center gap-1.5">
             <Link href="/admission" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
-              Admission
+              Student Zone
             </Link>
             {/* <Link href="/clat/student-section.html" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
               Student Zone
             </Link> */}
-            <Link href="/lawEntranceExams" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
-              Law Entrance Exams
+            <Link href="/blogs" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
+              Blogs
             </Link>
-            <Link href="/onlineResources" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50 relative">
-              Online Resources
+            <Link href="/contactUs" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50 relative">
+              Contact
               {/* <span className="absolute -top-1 -right-1 h-1.5 w-1.5 bg-red-500 rounded-full animate-ping"></span> */}
             </Link>
           </div>

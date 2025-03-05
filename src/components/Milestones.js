@@ -18,25 +18,25 @@ export default function Milestones() {
     {
       title: "MH-CET",
       description: "Ace MH-CET with expert coaching—your path to top law colleges in Maharashtra.",
-      image: "https://clatwallah.netlify.app/images/milestone2.png",
+      image: "https://clatwallah.netlify.app/images/milestone4.png",
       link: "/clat/about-mhcet.html"
     },
     {
       title: "LSAT",
       description: "Crack LSAT with expert coaching—your gateway to top law schools globally.",
-      image: "https://clatwallah.netlify.app/images/milestone3.png",
+      image: "https://clatwallah.netlify.app/images/milestone5.png",
       link: "/clat/about-lsat.html"
     },
     {
       title: "AIL-LET",
       description: "Crack AIL-LET with expert coaching—your path to the Army Institute of Law.",
-      image: "https://clatwallah.netlify.app/images/milestone4.png",
+      image: "https://clatwallah.netlify.app/images/milestone3.png",
       link: "/clat/about-ail-let.html"
     },
     {
       title: "CUET",
       description: "Prepare for CUET with expert coaching—your gateway to top universities.",
-      image: "https://clatwallah.netlify.app/images/milestone5.png",
+      image: "https://clatwallah.netlify.app/images/milestone2.png",
       link: "/about-cuet.html"
     }
   ]
