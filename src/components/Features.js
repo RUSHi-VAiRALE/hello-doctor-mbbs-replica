@@ -14,7 +14,7 @@ export default function Features() {
         }
       },
       {
-        threshold: 0.5 // Triggers when 10% of the section is visible
+        threshold: 0.1 // Triggers when 10% of the section is visible
       }
     )
 
@@ -59,12 +59,12 @@ export default function Features() {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-lg hover:transform hover:-translate-y-1 transition-transform duration-300 min-h-[180px] overflow-hidden"
+              className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-lg hover:transform hover:-translate-y-1 transition-transform duration-1000 min-h-[180px] overflow-hidden"
             >
               <div 
                 className={hasAnimated ? 'animate-fade-up' : 'opacity-0 translate-y-8'}
                 style={{ 
-                  animationDelay: `${index * 250}ms`,
+                  animationDelay: `${index * 700}ms`,
                   animationFillMode: 'both'
                 }}
               >
