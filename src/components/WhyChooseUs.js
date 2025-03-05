@@ -1,6 +1,7 @@
 'use client'
 import ChatComponent from './ChatComponent'
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 
 export default function WhyChooseUs() {
   const [count1, setCount1] = useState(0)
@@ -33,15 +34,15 @@ export default function WhyChooseUs() {
 
   const startCounting = () => {
     const duration = 2000
-    const steps1 = 5
+    const steps1 = 1000
     const steps2 = 99
     const interval1 = duration / steps1
     const interval2 = duration / steps2
 
     const timer1 = setInterval(() => {
       setCount1((prevCount) => {
-        if (prevCount < 5) {
-          return prevCount + 1
+        if (prevCount < 1000) {
+          return prevCount + 2
         }
         clearInterval(timer1)
         return prevCount
@@ -79,9 +80,9 @@ export default function WhyChooseUs() {
             <div className="flex gap-8 md:gap-12 lg:gap-16">
               <div>
                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 transition-all duration-200">
-                  {count1} X
+                  {count1}+
                 </h3>
-                <p className="text-gray-500 text-sm md:text-xl">Faster Learning</p>
+                <p className="text-gray-500 text-sm md:text-xl">Fast Learning Student</p>
               </div>
               <div>
                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 transition-all duration-200">
@@ -90,10 +91,14 @@ export default function WhyChooseUs() {
                 <p className="text-gray-500 text-sm md:text-xl">Success Rate</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 group cursor-pointer">
-              <h5 className="font-bold text-base md:text-lg lg:text-xl">Get Started</h5>
-              <span className="text-lg md:text-xl transform group-hover:translate-x-2 transition-transform">→</span>
-            </div>
+            <Link href="/admission" className="flex items-center gap-3 group cursor-pointer">
+  <h5 className="font-bold text-base md:text-2xl lg:text-3xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
+    Get Started
+  </h5>
+  <span className="text-lg md:text-3xl transform group-hover:translate-x-2 transition-transform bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
+    →
+  </span>
+</Link>
           </div>
 
           {/* Chat Section */}

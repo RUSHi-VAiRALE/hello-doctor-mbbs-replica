@@ -14,7 +14,7 @@ export default function Features() {
         }
       },
       {
-        threshold: 0.1 // Triggers when 10% of the section is visible
+        threshold: 0.5 // Triggers when 10% of the section is visible
       }
     )
 
@@ -89,7 +89,7 @@ export default function Features() {
         }
         
         .animate-fade-up {
-          animation: fadeUp 0.5s ease-out forwards;
+          animation: fadeUp 1s ease-out forwards;
         }
       `}</style>
     </section>
