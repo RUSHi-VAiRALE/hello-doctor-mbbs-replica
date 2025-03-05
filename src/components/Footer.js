@@ -36,11 +36,11 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <div className="mb-6">
               <Image
-                src="https://placehold.co/150x50"
+                src="https://clatwallah.netlify.app/images/logo.png"
                 alt="Logo"
                 width={150}
                 height={50}
-                className="mb-4"
+                className="mb-4 bg-white"
               />
               <p className="text-gray-200 mb-4">
                 Your trusted institute for CLAT, AILET, and other law entrance preparations.
@@ -53,18 +53,18 @@ export default function Footer() {
                 </p>
               </div>
               <div className="flex gap-3">
-                {['Facebook', 'LinkedIn', 'Twitter', 'YouTube', 'Instagram'].map((social) => (
+                {['Facebook', 'LinkedIn', 'Twitter', 'YouTube', 'Instagram'].map((social,ind) => (
                   <Link
                     key={social}
                     href="#"
                     className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300"
                   >
                     <Image
-                      src="https://placehold.co/34"
+                      src={`https://clatwallah.netlify.app/images/milestone${ind+1}.png`}
                       alt={social}
                       width={20}
                       height={20}
-                      className="rounded-full"
+                      className="rounded-full bg-white"
                     />
                   </Link>
                 ))}
