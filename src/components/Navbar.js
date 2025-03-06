@@ -98,7 +98,7 @@ export default function Navbar() {
 
           {/* Right: Menu Buttons */}
           <div className="flex flex-wrap justify-center gap-1.5">
-            <Link href="/admission" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
+            <Link href="/studentZone" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
               Student Zone
             </Link>
             {/* <Link href="/clat/student-section.html" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
