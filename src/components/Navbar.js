@@ -244,7 +244,7 @@ export default function Navbar() {
                               <Link
                                 key={course.href}
                                 href={course.href}
-                                className="px-3 py-[14px] md:h-12 shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center"
+                                className="px-3 py-[14px] md:h-12 shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center uppercase"
                               >
                                 {course.name}
                               </Link>
@@ -267,7 +267,7 @@ export default function Navbar() {
                             <Link
                               key={exam.href}
                               href={exam.href}
-                              className="px-3 py-[14px] md:h-12 shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center"
+                              className="px-3 py-[14px] md:h-12 shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center uppercase"
                             >
                               {exam.name}
                             </Link>
@@ -371,7 +371,7 @@ export default function Navbar() {
                                         <Link
                                           key={course.href}
                                           href={course.href}
-                                          className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors"
+                                          className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors capitalize"
                                         >
                                           {course.name}
                                         </Link>
@@ -394,7 +394,7 @@ export default function Navbar() {
                                 <Link
                                   key={exam.href}
                                   href={exam.href}
-                                  className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors"
+                                  className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors capitalize"
                                 >
                                   {exam.name}
                                 </Link>
