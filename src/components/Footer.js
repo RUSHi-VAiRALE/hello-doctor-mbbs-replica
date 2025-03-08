@@ -2,6 +2,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+const socialLinks = [
+    { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'bg-[#1877F2]' },
+    { platform: 'https://www.instagram.com/clatians/', icon: 'bi-instagram', color: 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500' },
+    { platform: 'https://www.youtube.com/@CLATians', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
+    { platform: 'https://t.me/CLATians', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
+    { platform: 'https://g.co/kgs/3NcAYmD', icon: 'bi-google', color: 'bg-[#DB4437]' },
+    { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#DB4437]'},
+    { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#DB4437]'},
+  ]
+
 export default function Footer() {
   return (
     <footer className="bg-[#2143D4] text-white py-12">
@@ -52,22 +62,16 @@ export default function Footer() {
                   Boring Road Chauraha, Patna
                 </p>
               </div>
-              <div className="flex gap-3">
-                {['Facebook', 'LinkedIn', 'Twitter', 'YouTube', 'Instagram'].map((social,ind) => (
-                  <Link
-                    key={social}
-                    href="#"
-                    className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300"
-                  >
-                    <Image
-                      src={`https://clatwallah.netlify.app/images/milestone${ind+1}.png`}
-                      alt={social}
-                      width={20}
-                      height={20}
-                      className="rounded-full bg-white"
-                    />
-                  </Link>
-                ))}
+              <div className="flex gap-2 md:gap-1 md:w-[300px]">
+          {socialLinks.map((social) => (
+            <a
+              key={social.platform}
+              href={`#${social.platform}`}
+              className={`${social.color} w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white text-lg transform hover:scale-110 transition-transform shadow-lg`}
+            >
+              <i className={`bi ${social.icon}`}></i>
+            </a>
+          ))}
               </div>
             </div>
           </div>

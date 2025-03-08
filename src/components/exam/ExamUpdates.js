@@ -6,8 +6,8 @@ export default function ExamUpdates({ exam }) {
         <table className="w-full">
           <thead className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Timeline</th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Update</th>
+              <th className="px-4 py-3 text-left font-bold text-white">Timeline</th>
+              <th className="px-4 py-3 text-left font-bold text-white">Update</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">

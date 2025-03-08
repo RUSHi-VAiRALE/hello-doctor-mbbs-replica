@@ -33,7 +33,7 @@ export default function AppDownload() {
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 md:gap-4">
-              <a href="#" className="transform hover:scale-105 transition-transform">
+              <a href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="transform hover:scale-105 transition-transform">
                 <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                   alt="Get it on Google Play"

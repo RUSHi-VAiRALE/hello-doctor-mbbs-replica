@@ -1,10 +1,12 @@
 export default function SocialMedia() {
   const socialLinks = [
-    { platform: 'facebook', icon: 'bi-facebook', color: 'bg-[#1877F2]' },
-    { platform: 'instagram', icon: 'bi-instagram', color: 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500' },
-    { platform: 'youtube', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
-    { platform: 'telegram', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
-    { platform: 'google', icon: 'bi-google', color: 'bg-[#DB4437]' }
+    { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'bg-[#1877F2]' },
+    { platform: 'https://www.instagram.com/clatians/', icon: 'bi-instagram', color: 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500' },
+    { platform: 'https://www.youtube.com/@CLATians', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
+    { platform: 'https://t.me/CLATians', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
+    { platform: 'https://g.co/kgs/3NcAYmD', icon: 'bi-google', color: 'bg-[#DB4437]' },
+    { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#DB4437]'},
+    { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#DB4437]'},
   ]
 
   return (
@@ -21,7 +23,7 @@ export default function SocialMedia() {
             <a
               key={social.platform}
               href={`#${social.platform}`}
-              className={`${social.color} w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center text-white text-lg md:text-2xl transform hover:scale-110 transition-transform shadow-lg`}
+              className={`${social.color} w-9 h-9 md:w-14 md:h-14 rounded-full flex items-center justify-center text-white text-lg md:text-2xl transform hover:scale-110 transition-transform shadow-lg`}
             >
               <i className={`bi ${social.icon}`}></i>
             </a>
