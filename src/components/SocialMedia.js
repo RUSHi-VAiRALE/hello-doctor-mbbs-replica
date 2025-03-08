@@ -22,7 +22,7 @@ export default function SocialMedia() {
           {socialLinks.map((social) => (
             <a
               key={social.platform}
-              href={`#${social.platform}`}
+              href={`${social.platform}`}
               className={`${social.color} w-9 h-9 md:w-14 md:h-14 rounded-full flex items-center justify-center text-white text-lg md:text-2xl transform hover:scale-110 transition-transform shadow-lg`}
             >
               <i className={`bi ${social.icon}`}></i>

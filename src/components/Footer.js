@@ -66,7 +66,7 @@ export default function Footer() {
           {socialLinks.map((social) => (
             <a
               key={social.platform}
-              href={`#${social.platform}`}
+              href={`${social.platform}`}
               className={`${social.color} w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white text-lg transform hover:scale-110 transition-transform shadow-lg`}
             >
               <i className={`bi ${social.icon}`}></i>
