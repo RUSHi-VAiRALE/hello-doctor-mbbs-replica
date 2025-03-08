@@ -71,21 +71,21 @@ export default function WhyChooseUs() {
         <div className="flex flex-col md:flex-row items-stretch gap-8 md:gap-16 lg:gap-24">
           {/* Text Section */}
           <div className={`md:w-1/2 lg:h-[450px] flex flex-col transition-all justify-between gap-6 md:gap-8 lg:gap-12 duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="md:text-4xl/10 text-3xl/10 lg:text-5xl font-bold leading-tight">
-              Why choose our<br /> learning platform?
+            <h2 className="md:text-4xl/10 text-3xl/10 lg:text-5xl font-bold leading-tight bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text pb-2">
+              Why Choose CLATians Law Coaching Institute
             </h2>
             <p className="text-gray-600 text-sm md:text-xl lg:text-xl">
               Expert guidance and structured courses to help you succeed in CLAT, AILET, and other law entrance exams.
             </p>
             <div className="flex gap-8 md:gap-12 lg:gap-16">
               <div>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 transition-all duration-200">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 transition-all duration-200 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
                   {count1}+
                 </h3>
                 <p className="text-gray-500 text-sm md:text-xl">Fast Learning Student</p>
               </div>
               <div>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 transition-all duration-200">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 transition-all duration-200 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
                   {count2}%
                 </h3>
                 <p className="text-gray-500 text-sm md:text-xl">Success Rate</p>

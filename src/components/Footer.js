@@ -79,7 +79,7 @@ export default function Footer() {
               <div>
                 <h5 className="font-semibold text-lg mb-4">Quick Links</h5>
                 <ul className="space-y-2">
-                  {['Admission', 'PSAT', 'Gallery', 'Test Series', 'FAQs'].map((link) => (
+                  {['Admission', 'Student Zone', 'Gallery', 'Test Series', 'FAQs'].map((link) => (
                     <li key={link}>
                       <Link href="#" className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
                         {link}
@@ -121,7 +121,7 @@ export default function Footer() {
               <div>
                 <h5 className="font-semibold text-lg mb-4">Courses</h5>
                 <ul className="space-y-2">
-                  {['CLAT', 'AILET', 'CUET', 'Crash Course'].map((link) => (
+                  {['CLAT', 'CLAT+AILET', 'CUET(UG)','CUET(PG)', 'OLET','CLAT+OLET','Booster Course'].map((link) => (
                     <li key={link}>
                       <Link href="#" className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
                         {link}

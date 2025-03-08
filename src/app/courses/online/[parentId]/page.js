@@ -396,7 +396,7 @@ export default function CoursesPage() {
           examDescription : data[index].description
       }}/>
       <CourseCategories />
-      <CoursesList courses={data[index].courses}/>
+      <CoursesList courseData={data[index].courses} examName={data[index].examName} batchType={"Online"}/>
       <LawEntranceExams />
       <FAQ />
     </main>

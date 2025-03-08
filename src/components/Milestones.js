@@ -6,13 +6,13 @@ export default function Milestones() {
     {
       title: "CLAT",
       description: "Crack CLAT with expert coaching—your gateway to top NLUs!",
-      image: "https://clatwallah.netlify.app/images/milestone.png",
+      image: "https://clatwallah.netlify.app/images/milestone2.png",
       link: "/clat/about-clat.html"
     },
     {
       title: "AILET",
       description: "Crack AILET with expert coaching—your path to NLU Delhi.",
-      image: "https://clatwallah.netlify.app/images/milestone1.png",
+      image: "https://clatwallah.netlify.app/images/milestone.png",
       link: "/clat/about-ailet.html"
     },
     {
@@ -36,7 +36,7 @@ export default function Milestones() {
     {
       title: "CUET",
       description: "Prepare for CUET with expert coaching—your gateway to top universities.",
-      image: "https://clatwallah.netlify.app/images/milestone2.png",
+      image: "https://clatwallah.netlify.app/images/milestone1.png",
       link: "/about-cuet.html"
     }
   ]

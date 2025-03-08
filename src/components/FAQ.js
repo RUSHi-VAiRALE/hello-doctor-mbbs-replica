@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null)
+  const [hoveredIndex, setHoveredIndex] = useState(null)
 
   const faqs = [
     { 
@@ -39,34 +40,50 @@ export default function FAQ() {
           ASKED QUESTIONS
         </h2>
 
-        <div className="grid grid-cols-1 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 gap-5 max-w-6xl mx-auto">
           {faqs.map((faq) => (
             <div 
               key={faq.index}
-              className="w-full border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden"
+              className={`w-full border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden transition-all duration-300 ${
+                hoveredIndex === faq.index ? 'transform scale-102 shadow-xl' : ''
+              }`}
               style={{
-                backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #fbbf24, #ea580c, #b91c1c)',
+                backgroundImage: `linear-gradient(white, white), ${
+                  hoveredIndex === faq.index 
+                    ? 'linear-gradient(to right, #f59e0b, #ea580c, #dc2626)' 
+                    : 'linear-gradient(to right, #fbbf24, #ea580c, #b91c1c)'
+                }`,
                 backgroundOrigin: 'border-box',
                 backgroundClip: 'content-box, border-box',
               }}
+              onMouseEnter={() => setHoveredIndex(faq.index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <button
-                className="w-full flex justify-between items-center p-6 text-left min-h-[5rem]"
+                className={`w-full flex justify-between items-center pl-6 text-left min-h-[4rem] transition-colors duration-300 ${
+                  hoveredIndex === faq.index ? 'bg-orange-50' : ''
+                }`}
                 onClick={() => setActiveIndex(activeIndex === faq.index ? null : faq.index)}
               >
-                <span className="font-semibold flex items-center pr-4">
-                  <i className="bi bi-question-circle text-orange-500 mr-2 flex-shrink-0"></i>
+                <span className={`font-semibold flex items-center pr-4 transition-colors duration-300 ${
+                  hoveredIndex === faq.index ? 'text-orange-600' : ''
+                }`}>
+                  <i className={`bi bi-question-circle mr-2 flex-shrink-0 transition-colors duration-300 ${
+                    hoveredIndex === faq.index ? 'text-red-500' : 'text-orange-500'
+                  }`}></i>
                   {faq.question}
                 </span>
-                <i className={`bi bi-chevron-down transition-transform duration-300 flex-shrink-0 ${
+                <i className={`bi bi-chevron-down transition-all pr-6 duration-300 flex-shrink-0 ${
                   activeIndex === faq.index ? 'rotate-180' : ''
+                } ${
+                  hoveredIndex === faq.index ? 'text-red-500' : ''
                 }`}></i>
               </button>
 
               <div className={`overflow-hidden transition-all duration-300 ${
                 activeIndex === faq.index ? 'max-h-40' : 'max-h-0'
               }`}>
-                <p className="px-6 pb-6 text-gray-600">
+                <p className="px-6 pb-6 text-gray-600 pt-8">
                   {faq.answer}
                 </p>
               </div>
@@ -76,4 +93,4 @@ export default function FAQ() {
       </div>
     </section>
   )
-} 
+}

@@ -68,7 +68,7 @@ export default function Features() {
                   animationFillMode: 'both'
                 }}
               >
-                <i className={`bi ${feature.icon} text-4xl text-blue-600 mb-4 block text-center`}></i>
+                <i className={`bi ${feature.icon} text-4xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent mb-4 block text-center`}></i>
                 <h5 className="text-lg font-bold mb-2 text-center">{feature.title}</h5>
                 <p className="text-gray-600 text-center text-sm">{feature.description}</p>
               </div>
