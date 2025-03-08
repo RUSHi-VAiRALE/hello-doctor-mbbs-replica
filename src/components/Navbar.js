@@ -10,6 +10,7 @@ export default function Navbar() {
   const [isLawExamsOpen, setIsLawExamsOpen] = useState(false)
   const [selectedCourseType, setSelectedCourseType] = useState('online')
   const [expandedMobileType, setExpandedMobileType] = useState(null)
+  const [activeDropdown, setActiveDropdown] = useState(null)
   const pathname = usePathname()
 
   // Close mobile menu when route changes
@@ -18,6 +19,7 @@ export default function Navbar() {
     setIsCoursesOpen(false)
     setIsLawExamsOpen(false)
     setExpandedMobileType(null)
+    setActiveDropdown(null)
   }, [pathname])
 
   const courseTypes = {
@@ -305,15 +307,23 @@ export default function Navbar() {
                       <button
                         onClick={() => {
                           if (link.isLawExams) {
+                            if (activeDropdown === 'lawExams') {
+                              setActiveDropdown(null)
+                            } else {
+                              setActiveDropdown('lawExams')
+                            }
                             setIsLawExamsOpen(!isLawExamsOpen)
                             setIsCoursesOpen(false)
                           } else {
+                            if (activeDropdown === 'courses') {
+                              setActiveDropdown(null)
+                            } else {
+                              setActiveDropdown('courses')
+                            }
                             setIsCoursesOpen(!isCoursesOpen)
                             setIsLawExamsOpen(false)
                           }
-                          if (!isCoursesOpen && !isLawExamsOpen) {
-                            setExpandedMobileType(null)
-                          }
+                          setExpandedMobileType(null)
                         }}
                         className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
                           isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)
@@ -335,51 +345,52 @@ export default function Navbar() {
                       {!link.isLawExams && isCoursesOpen && (
                         <div className="mt-2 mx-2">
                           <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-                            <div className="flex flex-col sm:flex-row">
-                              {/* Course Types */}
-                              <div className="w-full sm:w-1/2 bg-white">
-                                {Object.entries(courseTypes).map(([type, { label }]) => (
+                            <div className="flex flex-col">
+                              {/* Course Types with nested courses */}
+                              {Object.entries(courseTypes).map(([type, { label, courses }]) => (
+                                <div key={type} className="border-b last:border-b-0">
                                   <button
-                                    key={type}
-                                    onClick={() => setExpandedMobileType(expandedMobileType === type ? null : type)}
-                                    className={`w-full flex justify-between text-left py-2 pl-4 ${
+                                    onClick={() => {
+                                      if (expandedMobileType === type) {
+                                        setExpandedMobileType(null)
+                                      } else {
+                                        setExpandedMobileType(type)
+                                      }
+                                    }}
+                                    className={`w-full flex justify-between items-center text-left py-3 px-4 ${
                                       expandedMobileType === type
                                         ? 'bg-[#F8F8F8] text-black font-semibold'
-                                        : 'hover:bg-gray-100'
+                                        : 'hover:bg-gray-50'
                                     }`}
                                   >
                                     {label}
-                                    <span className={`transition-transform ${expandedMobileType === type ? 'rotate-180' : ''}`}>
+                                    <span className={`transition-transform duration-200 ${
+                                      expandedMobileType === type ? 'rotate-180' : ''
+                                    }`}>
                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                       </svg>
                                     </span>
                                   </button>
-                                ))}
-                              </div>
-                              {/* Course List */}
-                              <div className="w-full sm:w-2/3 p-4 bg-[#F8F8F8]">
-                                {Object.entries(courseTypes).map(([type, { courses }]) => (
-                                  <div
-                                    key={type}
-                                    className={`overflow-hidden transition-all duration-300 ${
-                                      expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 sm:max-h-full sm:opacity-100'
-                                    }`}
-                                  >
-                                    <div className="grid grid-cols-2 gap-2">
+                                  
+                                  {/* Courses for each type */}
+                                  <div className={`overflow-hidden transition-all duration-300 bg-[#F8F8F8] ${
+                                    expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                                  }`}>
+                                    <div className="grid grid-cols-3 sm:grid-cols-2 gap-2 p-4">
                                       {courses.map((course) => (
                                         <Link
                                           key={course.href}
                                           href={course.href}
-                                          className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors capitalize"
+                                          className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center capitalize"
                                         >
                                           {course.name}
                                         </Link>
                                       ))}
                                     </div>
                                   </div>
-                                ))}
-                              </div>
+                                </div>
+                              ))}
                             </div>
                           </div>
                         </div>
