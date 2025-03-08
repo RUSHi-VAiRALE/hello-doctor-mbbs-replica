@@ -11,6 +11,7 @@ import FAQ from '@/components/FAQ'
 
 export default function CourseDetails(courseData) {
   const [activeTab, setActiveTab] = useState('features')
+  const [price , setPrice] = useState('9,999')
   
   // Create refs for each section
   const featuresRef = useRef(null)
@@ -44,6 +45,8 @@ export default function CourseDetails(courseData) {
       rootMargin: '-10px 0px -40% 0px', // Adjust these values to control when the highlighting happens
       threshold: 0
     }
+
+    
 
     const handleIntersect = (entries) => {
       entries.forEach(entry => {
@@ -88,7 +91,7 @@ export default function CourseDetails(courseData) {
               </div>
               
               <div ref={featuresRef} className='mb-5' data-section="features">
-                <CourseFeatures />
+                <CourseFeatures setPriceHook={setPrice}/>
               </div>
               
               <div ref={aboutRef} className='mb-5' data-section="about">
@@ -104,7 +107,7 @@ export default function CourseDetails(courseData) {
             </div>
           </div>
           
-          <CourseStickyCard courseData={courseData.index}/>
+          <CourseStickyCard courseData={courseData.index} coursePrice={price}/>
         </div>
       </div>
     </div>

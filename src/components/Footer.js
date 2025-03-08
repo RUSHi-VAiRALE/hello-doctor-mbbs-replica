@@ -58,8 +58,8 @@ export default function Footer() {
               <div className="mb-4">
                 <strong className="block mb-2">Address:</strong>
                 <p className="text-gray-200">
-                  Pushpanjali Palace, Opposite Alankar Jewellers,<br />
-                  Boring Road Chauraha, Patna
+                  2nd Floor, Gangotri Palace, Boring Rd, near Sumati Palace<br />
+                  Nageshwar Colony, Kidwaipuri, Patna, Bihar 800001.
                 </p>
               </div>
               <div className="flex gap-2 md:gap-1 md:w-[300px]">
@@ -67,6 +67,7 @@ export default function Footer() {
             <a
               key={social.platform}
               href={`${social.platform}`}
+              target='_blank'
               className={`${social.color} w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white text-lg transform hover:scale-110 transition-transform shadow-lg`}
             >
               <i className={`bi ${social.icon}`}></i>

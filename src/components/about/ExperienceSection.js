@@ -1,3 +1,4 @@
+import Link from "next/link"
 export default function ExperienceSection() {
   return (
     <section className="bg-[#e7edff] py-16">
@@ -17,12 +18,12 @@ export default function ExperienceSection() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#" className="inline-block px-6 py-3 bg-gradient-to-r from-amber-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:from-red-700 hover:via-orange-500 hover:to-amber-400 transition-all duration-300">
+              <Link href="/onlineResources" className="inline-block px-6 py-3 bg-gradient-to-r from-amber-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:from-red-700 hover:via-orange-500 hover:to-amber-400 transition-all duration-300">
                 Learn More →
-              </a>
-              <a href="#" className="inline-block px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
+              </Link>
+              <Link href="/admission" className="inline-block px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
                 How it Works →
-              </a>
+              </Link>
             </div>
           </div>
 

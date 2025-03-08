@@ -1,4 +1,4 @@
-export default function CourseFeatures() {
+export default function CourseFeatures({setPriceHook}) {
   const features = [
     "Live Lectures and Recorded Lectures",
     "Notes and DPPs",
@@ -21,7 +21,7 @@ export default function CourseFeatures() {
       
       <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
         {/* Regular Batch */}
-        <div className="border border-gray-200 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-amber-50 to-red-50">
+        <div onClick={()=>setPriceHook('9,999')} className="border border-gray-200 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-amber-50 to-red-50">
           {/* ... Regular batch content ... */}
           <div className="border border-gray-200 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-amber-50 to-red-50">
                     <div className="flex justify-between items-center mb-4 sm:mb-6">
@@ -40,7 +40,7 @@ export default function CourseFeatures() {
         </div>
 
         {/* Pro Batch */}
-        <div className="border border-gray-200 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+        <div onClick={()=>setPriceHook('14,999')} className="border border-gray-200 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
           {/* ... Pro batch content ... */}
           <div className="flex justify-between items-center mb-4 sm:mb-6">
                       <h3 className="text-lg sm:text-xl font-bold">CLAT PRO 2026 Batch</h3>
