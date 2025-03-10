@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import LiveLogo from '../../public/CLATiansLive.png'
 import ClassLogo from '../../public/CLATiansClassroom.png'
+import Link from 'next/link'
 
 export default function CourseCards() {
   return (
@@ -31,9 +32,12 @@ export default function CourseCards() {
               </div>
             </div>
             <div className="px-6 py-4 bg-gray-50">
-              <button className="w-full py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
+                <Link href="/courses/online/0" >
+                  <button className="w-full py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
                 Explore Online Courses
               </button>
+                </Link>
+              
             </div>
           </div>
 
@@ -61,9 +65,11 @@ export default function CourseCards() {
               </div>
             </div>
             <div className="px-6 py-4 bg-gray-50">
-              <button className="w-full py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
+                <Link href="/courses/offline/0">
+                    <button  className="w-full py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
                 Explore Offline Courses
               </button>
+                </Link>
             </div>
           </div>
         </div>

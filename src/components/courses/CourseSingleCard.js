@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function CourseSingleCard({ course }) {
+export default function CourseSingleCard({ course ,batchType}) {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 w-full">
       <div className="relative">
@@ -63,7 +63,7 @@ export default function CourseSingleCard({ course }) {
 
         <div className="grid grid-cols-2 gap-3">
           <Link 
-            href={`/courses/online/${course.parentInd}/courseCard/${course.id-1}`}
+            href={`/courses/${course.batchType}/${course.parentInd}/courseCard/${course.id-1}`}
             className="text-center py-2.5 border border-blue-600 text-blue-600 rounded-full font-medium hover:bg-blue-50 transition-colors"
           >
             EXPLORE

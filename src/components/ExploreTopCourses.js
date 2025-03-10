@@ -21,7 +21,8 @@ export default function ExploreTopCourses() {
       price: "₹25,000",
       students: 320,
       lessons: 15,
-      description: "Comprehensive preparation for CLAT examination with expert guidance and study materials."
+      description: "Comprehensive preparation for CLAT examination with expert guidance and study materials.",
+      link : "courses/online/0/courseCard/0"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",

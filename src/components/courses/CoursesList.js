@@ -14,7 +14,7 @@ export default function CoursesList({courseData,examName,batchType}) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {courseData.map((course) => (
             <div key={course.id} className="w-full max-w-md mx-auto">
-              <CourseCard course={course} />
+              <CourseCard course={course} batchType={batchType}/>
             </div>
           ))}
         </div>
