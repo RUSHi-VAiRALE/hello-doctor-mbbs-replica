@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import LiveLogo from '../../public/CLATiansLive.png'
+import ClassLogo from '../../public/CLATiansClassroom.png'
 
 export default function CourseCards() {
   return (
@@ -10,10 +12,10 @@ export default function CourseCards() {
             <div className="flex flex-col gap-y-3 mb-3 justify-between items-center">
               <div className="py-1">
                 <Image
-                  src="https://clatwallah.netlify.app/images/logo.png"
+                  src={LiveLogo}
                   alt="CLATians Logo"
-                  width={120}
-                  height={120}
+                  width={140}
+                  height={140}
                   className="w-auto"
                 />
               </div>
@@ -21,7 +23,7 @@ export default function CourseCards() {
                 {['CLAT', 'CLAT + AILET', 'CUET-LAW(UG)', 'CUET-LAW(PG)', 'AIL-LET', 'BOOSTER COURSES'].map((course) => (
                   <button
                     key={course}
-                    className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize"
+                    className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize truncate"
                   >
                     {course}
                   </button>
@@ -40,10 +42,10 @@ export default function CourseCards() {
             <div className="flex flex-col gap-y-3 mb-3 justify-between items-center">
               <div className="py-1">
                 <Image
-                  src="https://clatwallah.netlify.app/images/logo.png"
+                  src={ClassLogo}
                   alt="CLATians Logo"
-                  width={120}
-                  height={120}
+                  width={140}
+                  height={140}
                   className="w-auto"
                 />
               </div>
@@ -51,7 +53,7 @@ export default function CourseCards() {
                 {['CLAT', 'CLAT + AILET', 'CUET-LAW', 'OLET', 'CLAT + OLET', 'MOCK TEST SERIES'].map((course) => (
                   <button
                     key={course}
-                    className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize"
+                    className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize  truncate"
                   >
                     {course}
                   </button>
