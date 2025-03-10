@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import ExamHero from './exam/ExamHero'
 import ExamTabs from './exam/ExamTabs'
@@ -14,6 +14,18 @@ import ExamPreparation from './exam/ExamPreparation'
 
 const ExamDetails = ({ exam }) => {
   const [activeTab, setActiveTab] = useState('overview')
+  
+  // Create refs for each section
+  const sectionRefs = {
+    overview: useRef(null),
+    updates: useRef(null),
+    pattern: useRef(null),
+    eligibility: useRef(null),
+    syllabus: useRef(null),
+    application: useRef(null),
+    universities: useRef(null),
+    preparation: useRef(null),
+  }
 
   const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -26,41 +38,99 @@ const ExamDetails = ({ exam }) => {
     { id: 'preparation', label: 'Preparation' },
   ]
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'overview':
-        return <ExamOverview exam={exam} />
-      case 'updates':
-        return <ExamUpdates exam={exam} />
-      case 'pattern':
-        return <ExamPattern exam={exam} />
-      case 'eligibility':
-        return <ExamEligibility exam={exam} />
-      case 'syllabus':
-        return <ExamSyllabus exam={exam} />
-      case 'application':
-        return <ExamApplication exam={exam} />
-      case 'universities':
-        return <ExamUniversities exam={exam} />
-      case 'preparation':
-        return <ExamPreparation exam={exam} />
-      default:
-        return <ExamOverview exam={exam} />
+  // Scroll to section when tab is clicked
+  const scrollToSection = (tabId) => {
+    const sectionRef = sectionRefs[tabId]
+    if (sectionRef.current) {
+      const navHeight = 140 // Adjust this value based on your navbar height
+      const elementPosition = sectionRef.current.offsetTop - navHeight
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
     }
   }
+
+  // Update active tab based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200 // Offset for better UX
+
+      // Find the current section in view
+      for (const tab of tabs) {
+        const section = sectionRefs[tab.id].current
+        if (section) {
+          const sectionTop = section.offsetTop
+          const sectionBottom = sectionTop + section.offsetHeight
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveTab(tab.id)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <div className="bg-[#E7EDFF] min-h-screen">
       <ExamHero exam={exam} />
-      <ExamTabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className="sticky top-14 z-40 bg-white shadow-md">
+        <ExamTabs 
+          tabs={tabs} 
+          activeTab={activeTab} 
+          setActiveTab={(tabId) => {
+            setActiveTab(tabId)
+            scrollToSection(tabId)
+          }} 
+        />
+      </div>
       
       {/* Content Section */}
       <div className="container mx-auto max-w-7xl px-4 py-8">
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          {renderContent()}
+          {/* Overview Section */}
+          <div ref={sectionRefs.overview} className='bg-white mb-4 p-4 rounded-lg' id="overview">
+            <ExamOverview exam={exam} />
+          </div>
+          {/* Updates Section */}
+          <div ref={sectionRefs.updates} className='bg-white mb-4 p-4 rounded-lg' id="updates">
+            <ExamUpdates exam={exam} />
+          </div>
+
+          {/* Pattern Section */}
+          <div ref={sectionRefs.pattern} className='bg-white mb-4 p-4 rounded-lg' id="pattern">
+            <ExamPattern exam={exam} />
+          </div>
+
+          {/* Eligibility Section */}
+          <div ref={sectionRefs.eligibility} className='bg-white mb-4 p-4 rounded-lg' id="eligibility">
+            <ExamEligibility exam={exam} />
+          </div>
+
+          {/* Syllabus Section */}
+          <div ref={sectionRefs.syllabus} className='bg-white mb-4 p-4 rounded-lg' id="syllabus">
+            <ExamSyllabus exam={exam} />
+          </div>
+
+          {/* Application Section */}
+          <div ref={sectionRefs.application} className='bg-white mb-4 p-4 rounded-lg' id="application">
+            <ExamApplication exam={exam} />
+          </div>
+
+          {/* Universities Section */}
+          <div ref={sectionRefs.universities} className='bg-white mb-4 p-4 rounded-lg' id="universities">
+            <ExamUniversities exam={exam} />
+          </div>
+
+          {/* Preparation Section */}
+          <div ref={sectionRefs.preparation} className='bg-white mb-4 p-4 rounded-lg' id="preparation">
+            <ExamPreparation exam={exam} />
+          </div>
         </div>
       </div>
-    </div>
   )
 }
 

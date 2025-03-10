@@ -3,7 +3,7 @@ export default function CourseTabs({ activeTab, setActiveTab }) {
     { id: 'features', label: 'Features' },
     { id: 'about', label: 'About' },
     { id: 'schedule', label: 'Schedule' },
-    { id: 'freeContent', label: 'Free Content' },
+    { id: 'download', label: 'Free Content' },
     { id: 'details', label: 'Details' }
   ]
 

@@ -18,7 +18,7 @@ export default function CourseCards() {
                 />
               </div>
               <div className="flex flex-wrap justify-center gap-3 px-6 capitalize">
-                {['CLAT', 'CLAT + AILET', 'CUET-LAW', 'OLET', 'CLAT + OLET', 'BOOSTER COURSES'].map((course) => (
+                {['CLAT', 'CLAT + AILET', 'CUET-LAW(UG)', 'CUET-LAW(PG)', 'AIL-LET', 'BOOSTER COURSES'].map((course) => (
                   <button
                     key={course}
                     className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize"

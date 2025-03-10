@@ -55,11 +55,11 @@ export default function Navbar() {
 
   const lawExams = {
     exams: [
-      { name: 'CLAT', href: '/lawEntranceExams/1' },
-      { name: 'AILET', href: '/lawEntranceExams/2' },
-      { name: 'MH CET-LAW', href: '/lawEntranceExams/5' },
-      { name: 'LSAT', href: '/lawEntranceExams/3' },
-      { name: 'CUET', href: '/lawEntranceExams/0' },
+      { name: 'CLAT', href: '/lawEntranceExams/0' },
+      { name: 'AILET', href: '/lawEntranceExams/5' },
+      { name: 'MH CET-LAW', href: '/lawEntranceExams/3' },
+      { name: 'LSAT', href: '/lawEntranceExams/2' },
+      { name: 'CUET', href: '/lawEntranceExams/1' },
       { name: 'AIL-LET', href: '/lawEntranceExams/4' },
     ]
   }

@@ -1,7 +1,7 @@
 import { FaBook, FaClipboardList, FaDesktop, FaRegNewspaper } from 'react-icons/fa';
 import Link from 'next/link';
 const resources = [
-  { title: "Placement Support", description: "Get expert placement support to kickstart your career!", icon: <FaBook className="text-blue-400 text-3xl" />, bgColor: "bg-[#e8f4fe]", link:"/onlineResources" },
+  { title: "Alumi Support", description: "Empowering Alumni, Strengthening Connections.", icon: <FaBook className="text-blue-400 text-3xl" />, bgColor: "bg-[#e8f4fe]", link:"/onlineResources" },
   { title: "Carrier Guidance", description: "Expert career guidance to help you achieve your goals!", icon: <FaRegNewspaper className="text-red-500 text-3xl" />, bgColor: "bg-[#fdecef]", link:"/courses/online/0" },
   { title: "Blogs", description: "Explore Our Latest Blogs", icon: <FaDesktop className="text-blue-500 text-3xl" />, bgColor: "bg-[#eaf4fe]",link:"/blogs" },
   { title: "Test Series", description: "Explore Test Series for Preparation", icon: <FaClipboardList className="text-green-500 text-3xl" />, bgColor: "bg-[#eaffea]", link:"/onlineResources" },
@@ -11,7 +11,9 @@ export default function LearningResources() {
     <section className="py-12 bg-[#e7edff]">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
-          <h3 className="font-bold text-2xl mb-2">Preparation Resources</h3>
+          <h2 className="text-3xl font-bold mb-8">
+          <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md inline-block">CLATians</span> SPECIAL
+        </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Explore resources to enhance your preparation for exams with our curated blogs, courses, test
             series, and books.

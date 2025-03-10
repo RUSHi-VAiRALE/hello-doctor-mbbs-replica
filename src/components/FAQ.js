@@ -1,34 +1,11 @@
 'use client'
 import { useState } from 'react'
 
-export default function FAQ() {
+export default function FAQ({faqs}) {
   const [activeIndex, setActiveIndex] = useState(null)
   const [hoveredIndex, setHoveredIndex] = useState(null)
 
-  const faqs = [
-    { 
-      index: 0,
-      question: "What is CLATians coaching known for?",
-      answer: "CLATians is the best CLAT coaching institute in Patna, offering structured courses for CLAT, AILET, CUET, and other law entrance exams."
-    },
-    {
-      index: 1,
-      question: "How does the coaching help students succeed?",
-      answer: "We provide expert mentorship, structured courses, and practice tests to prepare students for top NLUs and law schools."
-    },
-    {
-      index: 2,
-      question: "What is the admission process like?",
-      answer: "Admissions are open to all students who meet the eligibility criteria. The process includes an entrance exam, personal interview, and a review of academic records."
-    },
-    {
-      index: 3,
-      question: "What are the available course options?",
-      answer: "We offer comprehensive courses for various law entrance exams including CLAT, AILET, and CUET. Each course is tailored to the specific exam requirements."
-    },
-    
-    // Add more FAQs...
-  ]
+  
 
   return (
     <section className="bg-[#e7edff] py-16">

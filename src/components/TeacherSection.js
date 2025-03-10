@@ -6,62 +6,74 @@ export default function TeacherSection() {
   // Teacher data
   const teachers = [
     {
-      name: "Alexendra Scott",
-      role: "CLAT Expert",
-      location: "Delhi, India",
-      description: "Expert in teaching Legal Reasoning and Legal Knowledge for CLAT and other law entrance exams. Over 8 years of experience in guiding students for top NLUs.",
+      id:1,
+      name: "A. K. Singh",
+      role: "Director CLATians",
+      location: "Patna, India",
+      exp : 15,
+      description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
       image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
       email: "alexendra@clatwallah.com",
       phone: "+91-98765-43210"
     },
     {
-      name: "Christopher Lisa",
-      role: "English Language Specialist",
-      location: "Mumbai, India",
+      id:2,
+      name: "Shweta Singh",
+      role: "English Language",
+      exp:10,
+      location: "Patna, India",
       description: "Specialized in English Language and Comprehension. Helped hundreds of students improve their reading and comprehension skills for law entrances.",
       image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
       email: "christopher@clatwallah.com",
       phone: "+91-98765-43211"
     },
     {
-      name: "Emma Watson",
-      role: "Current Affairs Expert",
-      location: "Bangalore, India",
-      description: "Current Affairs and GK specialist with deep knowledge of national and international affairs relevant to law entrance exams.",
-      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
-      email: "emma@clatwallah.com",
-      phone: "+91-98765-43212"
-    },
-    {
-      name: "John Doe",
-      role: "Logical Reasoning Expert",
-      location: "Pune, India",
+      id:3,
+      name: "R. K. Choudhary",
+      role: "Logical Reasoning",
+      location: "Patna, India",
+      exp:10,
       description: "Specialized in Logical Reasoning and Analytical Skills. Known for making complex problems simple and approachable.",
       image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
       email: "john@clatwallah.com",
       phone: "+91-98765-43213"
     },
     {
-      name: "Sarah Smith",
-      role: "Mathematics Expert",
+      id:4,
+      name: "Hari Bhushan Sir",
+      role: "Quantitative Techniques",
       location: "Chennai, India",
+      exp : 10,
       description: "Mathematics and Quantitative Techniques specialist. Helps students overcome their fear of numbers with innovative teaching methods.",
       image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
       email: "sarah@clatwallah.com",
       phone: "+91-98765-43214"
     },
     {
-      name: "Michael Brown",
-      role: "Legal Aptitude Trainer",
+      id:5,
+      name: "B. N. Pandey",
+      role: "Legal Reasoning",
+      exp : 5,
       location: "Kolkata, India",
-      description: "Expert in Legal Aptitude and Legal Awareness. Brings real-world legal insights into classroom teaching.",
+      description: "Expert in Legal Reasoning and Legal Awareness. Brings real-world legal insights into classroom teaching.",
       image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
       email: "michael@clatwallah.com",
       phone: "+91-98765-43215"
     }
+    ,{
+      id:6,
+      name: "Yuvraj Singh",
+      role: "Current Affairs",
+      location: "Patna, India",
+      exp : 5,
+      description: "Current Affairs and GK specialist with deep knowledge of national and international affairs relevant to law entrance exams.",
+      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
+      email: "emma@clatwallah.com",
+      phone: "+91-98765-43212"
+    },
   ]
 
-  const [selectedTeacher, setSelectedTeacher] = useState(teachers[0])
+  const [selectedTeacher, setSelectedTeacher] = useState(teachers[0]);
 
   return (
     <section className="py-8 bg-[#e7edff]">
@@ -98,7 +110,7 @@ export default function TeacherSection() {
                   </svg>
                   {selectedTeacher.location}
                 </p>
-                <p className="my-4 text-gray-600">{selectedTeacher.description}</p>
+                <p className="my-4 text-gray-600">{selectedTeacher.description} Over <strong className='text-black'>{selectedTeacher.exp}+ years</strong> of experience in guiding students for top NLUs.</p>
                 <div className="flex gap-4 mb-4">
                   <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
@@ -130,18 +142,24 @@ export default function TeacherSection() {
 
           {/* Teacher Grid */}
           <div className="grid grid-cols-3 gap-3 md:gap-4">
-            {teachers.map((teacher, index) => (
+            {teachers.map((teacher) => (
               <div 
-                key={index}
-                className="relative group cursor-pointer"
-                onClick={() => setSelectedTeacher(teacher)}
+                key={teacher.id}
+                className={`relative group cursor-pointer rounded-lg`}
+                onClick={() => {
+                  setSelectedTeacher(teacher)
+                }}
               >
                 <div className="relative aspect-square">
                   <Image
                     src={teacher.image}
                     alt={teacher.name}
                     fill
-                    className="rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
+                    className={`rounded-lg object-cover transition-transform duration-300 group-hover:scale-105 ${
+                  selectedTeacher.id === teacher.id 
+                    ? 'scale-105' 
+                    : 'hover:ring-2 hover:ring-gray-300 hover:ring-offset-1'
+                }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/50 via-orange-500/50 to-red-700/50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
