@@ -30,12 +30,12 @@ const ExamDetails = ({ exam }) => {
   const tabs = [
     { id: 'overview', label: 'Overview' },
     { id: 'updates', label: 'Latest Updates' },
-    { id: 'pattern', label: 'Exam Pattern' },
     { id: 'eligibility', label: 'Eligibility' },
+    { id: 'pattern', label: 'Exam Pattern' },
     { id: 'syllabus', label: 'Syllabus' },
     { id: 'application', label: 'Application Process' },
-    { id: 'universities', label: 'Universities' },
     { id: 'preparation', label: 'Preparation' },
+    { id: 'universities', label: 'Universities' },
   ]
 
   // Scroll to section when tab is clicked

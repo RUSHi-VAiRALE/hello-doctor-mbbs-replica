@@ -25,9 +25,9 @@ const studentZoneData = [
   },
   {
     icon: "bi-person-video3",
-    title: "Live Sessions",
+    title: "Quizzes",
     description: "Participate in live doubt clearing sessions with expert faculty members.",
-    buttonText: "Join Sessions",
+    buttonText: "Join Quizzes",
     link: "#"
   }
 ]
