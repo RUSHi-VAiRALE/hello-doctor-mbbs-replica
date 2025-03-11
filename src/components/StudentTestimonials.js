@@ -164,12 +164,12 @@ function TestimonialCard({ testimonial }) {
 
   return (
     <div 
-      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Student Image and Rank */}
-      <div className="relative h-44 sm:h-48">
+      <div className="relative h-44 sm:h-48 md:h-44">
         <Image
           src={testimonial.image}
           alt={testimonial.name}
@@ -178,7 +178,7 @@ function TestimonialCard({ testimonial }) {
           sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
         
         {/* Rank Badge */}
         <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center transform rotate-12 shadow-lg">
@@ -199,9 +199,8 @@ function TestimonialCard({ testimonial }) {
       {/* Testimonial Content */}
       <div className="p-4">
         <div className="relative">
-          {/* Quote Icon */}
           <i className="bi bi-quote text-xl text-red-100 absolute -top-3 -left-1"></i>
-          <p className="text-gray-600 text-xs leading-relaxed pl-4 line-clamp-4 sm:line-clamp-5">
+          <p className="text-gray-600 text-xs leading-relaxed pl-4 line-clamp-3 sm:line-clamp-4 md:line-clamp-5">
             {testimonial.description}
           </p>
         </div>
@@ -219,4 +218,4 @@ function TestimonialCard({ testimonial }) {
       </div>
     </div>
   )
-} 
+}

@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import Link from 'next/link'
 
 const resourcesData = {
   studyMaterials: [
@@ -33,7 +34,7 @@ const resourcesData = {
   ],
   practicePapers: [
     {
-      title: "Mock Test Series 2024",
+      title: "English Language Test",
       description: "Set of 10 full-length mock tests",
       type: "ZIP",
       size: "45 MB",
@@ -42,18 +43,45 @@ const resourcesData = {
       downloadLink: "/practice/mock-tests.zip"
     },
     {
-      title: "Section-wise Practice Papers",
+      title: "Current Affairs",
       description: "Topic-wise practice questions with solutions",
       type: "PDF",
       size: "30 MB",
       icon: "bi-file-pdf",
       isPremium: false,
       downloadLink: "/practice/section-practice.pdf"
-    }
+    },
+    {
+      title: "Legal Resoning",
+      description: "Set of 10 full-length mock tests",
+      type: "PDF",
+      size: "30 MB",
+      icon: "bi-file-pdf",
+      isPremium: false,
+      downloadLink: "/practice/section-practice.pdf"
+    },
+    {
+      title: "Logical Reasoning",
+      description: "Set of 10 full-length mock tests",
+      type: "PDF",
+      size: "30 MB",
+      icon: "bi-file-pdf",
+      isPremium: false,
+      downloadLink: "/practice/section-practice.pdf"
+    },
+    {
+      title: "Quantitative Test",
+      description: "Set of 10 full-length mock tests",
+      type: "PDF",
+      size: "30 MB",
+      icon: "bi-file-pdf",
+      isPremium: false,
+      downloadLink: "/practice/section-practice.pdf"
+    },
   ],
   previousYearPapers: [
     {
-      title: "CLAT 2023 Question Paper",
+      title: "CLAT Last 10 Years Question Paper",
       description: "Official question paper with detailed solutions",
       type: "PDF",
       size: "8 MB",
@@ -62,7 +90,7 @@ const resourcesData = {
       downloadLink: "/pyq/clat-2023.pdf"
     },
     {
-      title: "CLAT 2022 Question Paper",
+      title: "AILET Last 10 Years Question Paper",
       description: "Official question paper with detailed solutions",
       type: "PDF",
       size: "7 MB",
@@ -71,7 +99,34 @@ const resourcesData = {
       downloadLink: "/pyq/clat-2022.pdf"
     },
     {
-      title: "CLAT 2021 Question Paper",
+      title: "MHCET-LAW Last 10 Years Question Paper",
+      description: "Official question paper with detailed solutions",
+      type: "PDF",
+      size: "7 MB",
+      icon: "bi-file-pdf",
+      isPremium: false,
+      downloadLink: "/pyq/clat-2021.pdf"
+    },
+    {
+      title: "LSAT Last 10 Years Question Paper",
+      description: "Official question paper with detailed solutions",
+      type: "PDF",
+      size: "7 MB",
+      icon: "bi-file-pdf",
+      isPremium: false,
+      downloadLink: "/pyq/clat-2021.pdf"
+    },
+    {
+      title: "CUET Last 10 Years Question Paper",
+      description: "Official question paper with detailed solutions",
+      type: "PDF",
+      size: "7 MB",
+      icon: "bi-file-pdf",
+      isPremium: false,
+      downloadLink: "/pyq/clat-2021.pdf"
+    },
+    {
+      title: "AIL-LET Last 10 Years Question Paper",
       description: "Official question paper with detailed solutions",
       type: "PDF",
       size: "7 MB",
@@ -82,21 +137,21 @@ const resourcesData = {
   ],
   referenceBooks: [
     {
-      title: "Legal Aptitude Guide",
-      author: "Dr. Sarah Johnson",
-      description: "Comprehensive guide for legal reasoning and legal knowledge",
+      title: "The Art of Logical & Critical Reasoning for CLAT",
+      author: "A. K. Singh",
+      description: "Passage Based Logical Reasoning with 500+ Comprehensive Questions",
       price: "₹599",
       icon: "bi-book",
-      purchaseLink: "/store/legal-aptitude-guide"
+      purchaseLink: "https://www.amazon.in/Logical-Critical-Reasoning-CLAT-Comprehensive/dp/B0CJMCGQ1X/ref=sr_1_19?sr=8-19"
     },
     {
-      title: "Logical Reasoning Master",
-      author: "Prof. Robert Smith",
-      description: "Advanced concepts and practice questions",
-      price: "₹499",
+      title: "The Art of Logical & Critical Reasoning for CLAT",
+      author: "A. K. Singh",
+      description: "Passage Based Logical Reasoning with 500+ Comprehensive Questions",
+      price: "₹599",
       icon: "bi-book",
-      purchaseLink: "/store/logical-reasoning"
-    }
+      purchaseLink: "https://www.amazon.in/Logical-Critical-Reasoning-CLAT-Comprehensive/dp/B0CJMCGQ1X/ref=sr_1_19?sr=8-19"
+    },
   ]
 }
 
@@ -117,9 +172,11 @@ export default function OnlineResources() {
               <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold text-gray-900">{resource.price}</span>
+                <Link href="https://www.amazon.in/Logical-Critical-Reasoning-CLAT-Comprehensive/dp/B0CJMCGQ1X/ref=sr_1_19?sr=8-19" target="_blank">
                 <button className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
                   Purchase
                 </button>
+                </Link>
               </div>
             </div>
           </div>

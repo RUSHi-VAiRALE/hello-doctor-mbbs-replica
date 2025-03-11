@@ -44,10 +44,10 @@ export default function Admission() {
             <StatsSection />
             <ScholarshipSteps />
             <ScholarshipDetails />
-            <StudentTestimonials />
+            <AdmissionFAQ /> 
             <Timeline />
+            <StudentTestimonials />
             <Events />
-            <AdmissionFAQ />
         </>
     )
 }

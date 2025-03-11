@@ -16,6 +16,7 @@ import LearningResources from '@/components/LearningResources'
 import StudentSection from '@/components/StudentSection'
 import TeacherSection from '@/components/TeacherSection'
 import Footer from '@/components/Footer'
+import StudentTestimonials from '@/components/StudentTestimonials'
 
 export default function Home() {
   const faqs = [
@@ -55,7 +56,7 @@ export default function Home() {
       <ExploreTopCourses />
       <Milestones />
       <LearningResources />
-      <StudentSection />
+      <StudentTestimonials />
       <TeacherSection />
       <BlogSection />
       <AppDownload />
