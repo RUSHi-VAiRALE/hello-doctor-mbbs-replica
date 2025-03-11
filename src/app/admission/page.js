@@ -1,6 +1,8 @@
 import StatsSection from "@/components/about/StatsSection";
 import Timeline from "@/components/about/Timeline";
+import AdmissionFAQ from "@/components/admission/AdmissionFAQ";
 import AdmissionSection from "@/components/admission/AdmissionSection";
+import ScholarshipDetails from "@/components/admission/ScholarshipDetails";
 import ScholarshipForm from "@/components/admission/ScholarshipForm";
 import Events from "@/components/Events";
 import FAQ from "@/components/FAQ";
@@ -41,10 +43,11 @@ export default function Admission() {
             <ScholarshipForm />
             <StatsSection />
             <ScholarshipSteps />
+            <ScholarshipDetails />
             <StudentTestimonials />
             <Timeline />
             <Events />
-            <FAQ faqs={faqs}/>
+            <AdmissionFAQ />
         </>
     )
 }
