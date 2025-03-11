@@ -97,7 +97,7 @@ const ExamDetails = ({ exam }) => {
           </div>
           {/* Updates Section */}
           <div ref={sectionRefs.updates} className='bg-white mb-4 p-4 rounded-lg' id="updates">
-            <ExamUpdates exam={exam} />
+            <ExamUpdates update={exam.updates} />
           </div>
 
           {/* Pattern Section */}

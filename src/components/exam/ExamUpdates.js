@@ -1,4 +1,4 @@
-export default function ExamUpdates({ exam }) {
+export default function ExamUpdates({ update }) {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold mb-4">Latest Updates</h2>
@@ -11,7 +11,7 @@ export default function ExamUpdates({ exam }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {exam.updates.map((update, index) => (
+            {update.map((update, index) => (
               <tr key={index}>
                 <td className="px-4 py-3 text-sm text-gray-600">{update.date}</td>
                 <td className="px-4 py-3 text-sm text-gray-600">{update.description}</td>

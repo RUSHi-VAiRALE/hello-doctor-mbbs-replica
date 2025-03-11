@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import React from 'react'
 
 const studentZoneData = [
@@ -14,7 +15,7 @@ const studentZoneData = [
     title: "Exam Updates & Notifications",
     description: "Get real-time alerts on exam schedules, syllabus updates, and results and updates.",
     buttonText: "View Updates",
-    link: "#"
+    link: "/examUpdate"
   },
   {
     icon: "bi-journal-check",
@@ -67,12 +68,12 @@ export default function StudentZone() {
                   <p className="text-gray-600 mb-6">
                     {item.description}
                   </p>
-                  <a 
+                  <Link
                     href={item.link}
                     className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity duration-300"
                   >
                     {item.buttonText}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

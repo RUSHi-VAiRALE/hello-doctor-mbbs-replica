@@ -273,7 +273,7 @@ export default function LawEntranceExams() {
     console.log(examData)
     return (
         <>
-            <ExamDetails exam={examData[id]}/>
+            <ExamDetails exam={examData[parseInt(id)]}/>
         </>
     )
 }
