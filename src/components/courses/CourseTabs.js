@@ -8,7 +8,7 @@ export default function CourseTabs({ activeTab, setActiveTab }) {
   ]
 
   return (
-    <div className="overflow-x-auto no-scrollbar">
+    <div className="overflow-x-auto shadow-2xl no-scrollbar">
       <div className="flex min-w-max bg-white px-2 sm:px-4">
         {tabs.map(tab => (
           <button
