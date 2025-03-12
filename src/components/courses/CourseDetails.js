@@ -8,6 +8,7 @@ import CourseSchedule from './CourseSchedule'
 import CourseStickyCard from './CourseStickyCard'
 import AppDownload from '@/components/AppDownload'
 import FAQ from '@/components/FAQ'
+import MoreDetails from './MoreDetails'
 
 export default function CourseDetails(courseData) {
   const [activeTab, setActiveTab] = useState('features')
@@ -48,13 +49,17 @@ export default function CourseDetails(courseData) {
   const scheduleRef = useRef(null)
   const downloadRef = useRef(null)
 
-  // Function to handle scroll to section
+  // Add moreDetailsRef
+  const moreDetailsRef = useRef(null)
+
+  // Update scrollToSection function
   const scrollToSection = (sectionId) => {
     const refs = {
       features: featuresRef,
       about: aboutRef,
       schedule: scheduleRef,
-      download : downloadRef
+      download: downloadRef,
+      moreDetails: moreDetailsRef // Add this line
     }
     
     const ref = refs[sectionId]
@@ -92,7 +97,7 @@ export default function CourseDetails(courseData) {
     const observer = new IntersectionObserver(handleIntersect, options)
 
     // Observe all sections
-    const sections = [featuresRef.current, aboutRef.current, scheduleRef.current,downloadRef.current]
+    const sections = [featuresRef.current, aboutRef.current, scheduleRef.current,moreDetailsRef.current,downloadRef.current]
     sections.forEach(section => {
       if (section) observer.observe(section)
     })
@@ -133,6 +138,10 @@ export default function CourseDetails(courseData) {
                 <CourseSchedule />
               </div>
               
+              <div ref={moreDetailsRef} className='mb-5' data-section="moreDetails">
+                <MoreDetails />
+              </div>
+
               <div ref={downloadRef} className='mb-5' data-section="download">
                 <AppDownload />
               </div>
@@ -145,4 +154,4 @@ export default function CourseDetails(courseData) {
       </div>
     </div>
   )
-} 
+}

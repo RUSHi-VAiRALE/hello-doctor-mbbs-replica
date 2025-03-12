@@ -3,8 +3,8 @@ export default function CourseTabs({ activeTab, setActiveTab }) {
     { id: 'features', label: 'Features' },
     { id: 'about', label: 'About' },
     { id: 'schedule', label: 'Schedule' },
-    { id: 'download', label: 'Free Content' },
-    { id: 'details', label: 'Details' }
+    { id: 'moreDetails', label: 'More Details' }, // Add this line
+    { id: 'download', label: 'Download' },
   ]
 
   return (
@@ -26,4 +26,4 @@ export default function CourseTabs({ activeTab, setActiveTab }) {
       </div>
     </div>
   )
-} 
+}

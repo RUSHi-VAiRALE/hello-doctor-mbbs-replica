@@ -8,27 +8,36 @@ export default function AdmissionFAQ() {
     {
       index: 0,
       question: "Scholarship Test Details",
-      answer: "Our scholarship test consists of multiple-choice questions covering logical reasoning, legal aptitude, and general knowledge. Duration: 90 minutes."
+      answer: ["No. of Questions = 50." ,"Time Duration = 50 min (For Online Test) & 60 min for (Offline Test)","Timing = Online Test (24×7) & Offline Test 10:00am to 06:00pm","Mode of Test = Online and Offline"]
     },
     {
       index: 1,
       question: "Eligibility for the Test",
-      answer: "Students who have completed or are appearing in Class 12th examinations are eligible to apply for the scholarship test."
+      answer: ["Any Candidate who want to appear for CLAT 2025/CLAT 2026."]
     },
     {
       index: 2,
       question: "What are the Test Syllabus ?",
-      answer: "The test covers Legal Reasoning, Logical Reasoning, English Language, Current Affairs, and Basic Mathematics."
+      answer: ["Completely based on your Knowledge, Language and IQ."]
     },
     {
       index: 3,
       question: "What are the Subjects ?",
-      answer: "Key subjects include Legal Aptitude (25%), English (25%), Current Affairs (25%), and Logical Reasoning (25%)."
+      answer: ["Reading Comprehension – 20Q","Legal Awareness – 10Q","Logical Reasoning – 10Q","General Awareness – 5Q","General Maths – 5Q"]
     },
     {
       index: 4,
       question: "Scholarship Test Benefits!",
-      answer: "Students can get up to 100% scholarship based on their performance. Additional benefits include free study materials and mentorship sessions."
+      answer:  ["Upto 1o Marks – 10% Scholarship",
+              "11 to 15 Marks – 15% Scholarship",
+              "16 to 20 Marks – 20% Scholarship",
+              "21 to 25 Marks – 25% Scholarship",
+              "26 to 30 Marks – 30% Scholarship",
+              "31 to 35 Marks – 35% Scholarship",
+              "36 to 40 Marks – 40% Scholarship",
+              "41 to 45 Marks – 50% Scholarship",
+              "46 to 48 Marks – 70% Scholarship",
+              "49 to 50 Marks – 100% Scholarship"]
     }
   ]
 
@@ -83,11 +92,17 @@ export default function AdmissionFAQ() {
                     <div 
                       className={`px-6 transition-all duration-200 ease-in-out ${
                         activeIndex === index 
-                          ? 'max-h-48 py-4 opacity-100' 
+                          ? 'max-h-[500px] py-4 opacity-100' 
                           : 'max-h-0 py-0 opacity-0'
                       }`}
                     >
-                      <p className="text-gray-600">{faq.answer}</p>
+                      <ul className="space-y-2">
+                        {faq.answer.map((answer, index) => (
+                          <li key={index} className="text-gray-700">
+                            {answer}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 ))}
