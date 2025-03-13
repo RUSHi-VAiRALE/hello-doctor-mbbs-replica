@@ -38,7 +38,7 @@ const examUpdates = {
 export default function ExamUpdate (){
     return (
         <>
-        <ExamUpdates exam={examUpdates}/>
+        <ExamUpdates exam={examUpdates} isHero={true}/>
     </>
     )
 }

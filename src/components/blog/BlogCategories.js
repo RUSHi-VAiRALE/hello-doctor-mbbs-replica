@@ -1,16 +1,73 @@
 'use client'
 import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import LegalArticles from './LegalArticles'
+import CurrentAffairs from './CurrentAffairs'
+import ExamUpdates from '@/components/examUpdates/examUpdate'
 
 export default function BlogCategories() {
   const [activeCategory, setActiveCategory] = useState('legal')
   const [activeTab, setActiveTab] = useState('daily')
+  const [selectedMonth, setSelectedMonth] = useState('all')
+  const [selectedYear, setSelectedYear] = useState('2024')
+
+  const months = [
+    { id: 'all', name: 'All Months' },
+    { id: '01', name: 'January' },
+    { id: '02', name: 'February' },
+    { id: '03', name: 'March' },
+    { id: '04', name: 'April' },
+    { id: '05', name: 'May' },
+    { id: '06', name: 'June' },
+    { id: '07', name: 'July' },
+    { id: '08', name: 'August' },
+    { id: '09', name: 'September' },
+    { id: '10', name: 'October' },
+    { id: '11', name: 'November' },
+    { id: '12', name: 'December' }
+  ]
+
+  const years = ['2024', '2025', '2026']
+
+  const examUpdates = {
+    title : "All Law Entrance Exam Updates & Notifications",
+    description : "Get real-time alerts on exam schedules, syllabus updates, and results and updates.",
+    updates : [
+        [
+    { date: 'May 2025', description: 'CLAT 2026 notification expected to be released' },
+    { date: 'Mid-July 2025', description: 'CLAT 2025 final admission lists released by all participating NLUs' },
+    { date: 'January 20, 2025', description: 'Third CLAT 2025 counseling round completed' },
+    { date: 'January 5, 2025', description: 'Second CLAT 2025 counseling round completed' },
+    { date: 'December 28, 2024', description: 'First CLAT 2025 counseling round initiated' },
+    { date: 'December 22, 2024', description: 'CLAT 2025 results declared; cutoffs announced for all NLUs' },
+    { date: 'December 8, 2024', description: 'CLAT 2025 examination successfully conducted' },
+    { date: 'November 30, 2024', description: 'CLAT 2025 admit cards released for download' }
+  ],[
+    { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+  ],
+  [
+    { "date": "March 8, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+  ],
+  [
+    { "date": "March 2025", "description": "Digital Testing Format: LSAT-India has fully transitioned to computer-based testing at designated centers." },
+    { "date": "March 2025", "description": "Additional Test Dates: Starting 2025, LSAT-India is offering more flexible testing options throughout the year." },
+    { "date": "March 2025", "description": "Score Validity: LSAT-India scores are now valid for two years from the test date." },
+    { "date": "March 2025", "description": "New Participating Law Schools: Several additional law institutions have begun accepting LSAT-India scores." }
+  ],
+  [
+    { date: 'March 5, 2025', description: 'NTA announces the tentative schedule for CUET Law 2025-26 admissions. Applications expected to open by end of March.' },
+    { date: 'February 28, 2025', description: 'Two new Central Universities added to the list of participating institutions.' },
+    { date: 'February 15, 2025', description: 'Revised syllabus announced for the Legal Reasoning section.' },
+    { date: 'January 30, 2025', description: 'NTA launches new practice portal with free mock tests.' }
+  ],[
+    { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+  ]
+    ]
+}
 
   const categories = [
     { 
       id: 'legal', 
-      name: 'Legal Blogs',
+      name: 'Legal Articles',
       icon: '⚖️',
       description: 'Latest updates in legal education and law'
     },
@@ -19,6 +76,12 @@ export default function BlogCategories() {
       name: 'Current Affairs',
       icon: '🌏',
       description: 'Stay updated with daily news and events'
+    },
+    { 
+      id: 'examUpdates', 
+      name: 'Exam Updates',
+      icon: '📝',
+      description: 'Latest updates about law entrance exams'
     }
   ]
 
@@ -202,7 +265,14 @@ export default function BlogCategories() {
           image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
           date: "April 15, 2024",
           readTime: "5 min read"
-        },,],
+        },{
+          id: 5,
+          title: "Understanding CLAT Pattern 2025",
+          description: "Key changes and updates in the CLAT examination pattern...",
+          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
+          date: "April 15, 2024",
+          readTime: "5 min read"
+        },],
       weekly: [{
         id: 1,
         title: "Understanding CLAT Pattern 2025",
@@ -307,11 +377,54 @@ export default function BlogCategories() {
     }
   }
 
+  const renderContent = () => {
+    switch (activeCategory) {
+      case 'legal':
+        return <LegalArticles posts={blogPosts.legal} activeTab={activeTab} />
+      case 'current':
+        return (
+          <>
+            <div className="bg-white rounded-2xl shadow-lg p-3 mb-12 max-w-xl mx-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 sm:gap-2">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      activeTab === tab.id
+                      ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+                      : 'hover:bg-gray-50 text-gray-600'
+                    }`}
+                  >
+                    {tab.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <CurrentAffairs 
+              posts={blogPosts.current}
+              activeTab={activeTab}
+              selectedMonth={selectedMonth}
+              selectedYear={selectedYear}
+              months={months}
+              years={years}
+              setSelectedMonth={setSelectedMonth}
+              setSelectedYear={setSelectedYear}
+            />
+          </>
+        )
+      case 'examUpdates':
+        return <ExamUpdates exam={examUpdates} isHero={false} />
+      default:
+        return null
+    }
+  }
+
   return (
     <section className="py-16 bg-[#fdf6f4]">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
-        {/* Category Selection */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+        {/* Category Selection - keep existing code */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -332,64 +445,8 @@ export default function BlogCategories() {
           ))}
         </div>
 
-        {/* Tabs */}
-        <div className="bg-white rounded-2xl shadow-lg p-3 mb-12 max-w-xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 sm:gap-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                  activeTab === tab.id
-                  ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
-                  : 'hover:bg-gray-50 text-gray-600'
-                }`}
-              >
-                {tab.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts[activeCategory][activeTab].map((post, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-              <div className="relative h-48">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="flex items-center text-white text-sm gap-4">
-                    <span className="flex items-center">
-                      <i className="bi bi-calendar3 mr-2"></i>
-                      {post.date}
-                    </span>
-                    <span className="flex items-center">
-                      <i className="bi bi-clock mr-2"></i>
-                      {post.readTime}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-bold text-lg mb-2 text-gray-800">{post.title}</h3>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">{post.description}</p>
-                <Link 
-                  href={`/blogs/${post.id}`}
-                  className="inline-flex items-center text-orange-500 hover:text-orange-600 font-medium text-sm group"
-                >
-                  Read More 
-                  <i className="bi bi-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Render content based on active category */}
+        {renderContent()}
       </div>
     </section>
   )

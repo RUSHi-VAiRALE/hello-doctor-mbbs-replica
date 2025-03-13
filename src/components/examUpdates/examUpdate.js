@@ -66,7 +66,7 @@ const examUpdates = {
     ]
 }
 
-const ExamUpdates = ({ exam }) => {
+const ExamUpdates = ({ exam ,isHero}) => {
     const [activeTab, setActiveTab] = useState('CLAT')
     
     // Use the passed exam prop if available, otherwise use the default examUpdates
@@ -130,7 +130,7 @@ const ExamUpdates = ({ exam }) => {
 
     return (
       <div className="bg-[#E7EDFF] min-h-screen">
-          <ExamHero exam={examData}/>
+          {(isHero) && <ExamHero exam={examData}/>}
           <div className="sticky top-14 z-40 bg-white shadow-md">
           <ExamTabs 
             tabs={tabs} 

@@ -22,29 +22,25 @@ export default function Home() {
   const faqs = [
     { 
       index: 0,
-      question: "Scholarship Test Details",
-      answer: "No. of Questions = 50 Time Duration = 50 min (For Online Test) & 60 min for (Offline Test)Timing = Online Test (24×7) & Offline Test 10:00am to 06:00pmMode of Test = Online and Offline"
-    },
+      question: "What is the CLAT exam pattern for 2025?",
+      answer: "CLAT 2025 follows a 2-hour computer-based test format with 150 questions across five sections: English Language, Current Affairs & GK, Legal Reasoning, Logical Reasoning, and Quantitative Techniques. Each question carries 1 mark with a 0.25 negative marking for incorrect answers. Our coaching methodology is specifically designed to align with this latest pattern."},
     {
       index: 1,
-      question: "Eligibility for the Test",
-      answer: "Any Candidate who want to appear for CLAT 2025/CLAT 2026."
-    },
+      question: "When is CLAT 2025 scheduled and what are the important dates?",
+      answer: "CLAT 2025 is tentatively scheduled for May 2025. The application process typically begins in January, with the exact exam date announced by the Consortium of NLUs. Our coaching institute provides timely updates on application deadlines, admit card release dates, and result announcements to ensure you never miss critical milestones." },
     {
       index: 2,
-      question: "What are the Test Syllabus ?",
-      answer: "Completely based on your Knowledge, Language and IQ. "
+      question: "What is CLAT and how can I prepare effectively for it?",
+      answer: "The Common Law Admission Test (CLAT) is the premier national-level entrance examination for admission to 22+ National Law Universities (NLUs) across India. Effective preparation includes mastering logical reasoning, legal reasoning, English comprehension, general knowledge, and quantitative techniques. Our specialized coaching program offers comprehensive coverage of all CLAT sections with expert guidance from top NLU alumni and legal educators."
     },
     {
       index: 3,
-      question: "What are the Subjects ?",
-      answer: "Reading Comprehension – 20Q Legal Awareness – 10Q Logical Reasoning – 10Q General Awareness – 5Q General Maths – 5Q"
-    },
+      question: "What exactly is the CLAT exam and why is it important for law aspirants?",
+      answer: "The Common Law Admission Test (CLAT) is the unified national entrance examination for admissions to 22+ National Law Universities (NLUs) across India. It serves as the gateway to India's premier legal education institutions, testing candidates on five key areas: English Language, Current Affairs, Legal Reasoning, Logical Reasoning, and Quantitative Techniques."   },
     {
       index: 4,
-      question: "Scholarship Test Benefits!",
-      answer: "Upto 1o Marks – 10% Scholarship 11 to 15 Marks – 15% Scholarship 16 to 20 Marks – 20% Scholarship 21 to 25 Marks – 25% Scholarship 26 to 30 Marks – 30% Scholarship 31 to 35 Marks – 35% Scholarship 36 to 40 Marks – 40% Scholarship 41 to 45 Marks – 50% Scholarship 46 to 48 Marks – 70% Scholarship 49 to 50 Marks – 100% Scholarship"
-    },
+      question: "What are the basic eligibility criteria for appearing in the CLAT exam?",
+      answer: "For CLAT UG (undergraduate), candidates must have completed or be appearing for their 10+2 examination with a minimum of 45% marks (40% for SC/ST/OBC/PWD categories). For CLAT PG (postgraduate), candidates must have completed or be in the final year of their LLB degree with at least 50% marks (45% for reserved categories)."  },
     // Add more FAQs...
   ]
   return (

@@ -161,23 +161,25 @@ export default function OnlineResources() {
   const renderResourceCard = (resource, type) => {
     if (type === 'referenceBooks') {
       return (
-        <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 flex-shrink-0 rounded-full bg-blue-50 flex items-center justify-center">
-              <i className={`bi ${resource.icon} text-2xl text-blue-600`}></i>
-            </div>
-            <div className="flex-grow">
-              <h3 className="text-lg font-semibold mb-1">{resource.title}</h3>
-              <p className="text-sm text-gray-500 mb-2">By {resource.author}</p>
-              <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-lg font-bold text-gray-900">{resource.price}</span>
-                <Link href="https://www.amazon.in/Logical-Critical-Reasoning-CLAT-Comprehensive/dp/B0CJMCGQ1X/ref=sr_1_19?sr=8-19" target="_blank">
+        <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+          <div className="relative h-64 w-full flex items-center justify-center bg-gray-50">
+            <img
+              src="https://m.media-amazon.com/images/I/81L7+KTgnfL._SY425_.jpg"
+              alt={resource.title}
+              className="h-full w-auto object-contain"
+            />
+          </div>
+          <div className="p-6">
+            <h3 className="text-lg font-semibold mb-1">{resource.title}</h3>
+            <p className="text-sm text-gray-500 mb-2">By {resource.author}</p>
+            <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
+            <div className="flex items-center justify-between">
+              <span className="text-lg font-bold text-gray-900">{resource.price}</span>
+              <Link href={resource.purchaseLink} target="_blank">
                 <button className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
                   Purchase
                 </button>
-                </Link>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -259,4 +261,4 @@ export default function OnlineResources() {
       </div>
     </div>
   )
-} 
+}
