@@ -100,14 +100,14 @@ const ExamDetails = ({ exam }) => {
             <ExamUpdates update={exam.updates} />
           </div>
 
-          {/* Pattern Section */}
-          <div ref={sectionRefs.pattern} className='bg-white mb-4 p-4 rounded-lg' id="pattern">
-            <ExamPattern exam={exam} />
-          </div>
-
           {/* Eligibility Section */}
           <div ref={sectionRefs.eligibility} className='bg-white mb-4 p-4 rounded-lg' id="eligibility">
             <ExamEligibility exam={exam} />
+          </div>
+
+          {/* Pattern Section */}
+          <div ref={sectionRefs.pattern} className='bg-white mb-4 p-4 rounded-lg' id="pattern">
+            <ExamPattern exam={exam} />
           </div>
 
           {/* Syllabus Section */}
@@ -120,15 +120,16 @@ const ExamDetails = ({ exam }) => {
             <ExamApplication exam={exam} />
           </div>
 
+          {/* Preparation Section */}
+          <div ref={sectionRefs.preparation} className='bg-white mb-4 p-4 rounded-lg' id="preparation">
+            <ExamPreparation exam={exam} />
+          </div>
+
           {/* Universities Section */}
           <div ref={sectionRefs.universities} className='bg-white mb-4 p-4 rounded-lg' id="universities">
             <ExamUniversities exam={exam} />
           </div>
 
-          {/* Preparation Section */}
-          <div ref={sectionRefs.preparation} className='bg-white mb-4 p-4 rounded-lg' id="preparation">
-            <ExamPreparation exam={exam} />
-          </div>
         </div>
       </div>
   )

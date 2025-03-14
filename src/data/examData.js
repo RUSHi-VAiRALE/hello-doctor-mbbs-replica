@@ -450,7 +450,7 @@ export const examData = [
   title: 'CUET Law Entrance Exam Guide: 5-Year and 3-Year Programs',
   shortTitle: 'CUET Law',
   description: 'Your Gateway to Central Universities Law Programs',
-  overview: 'The Central University Entrance Test (CUET) for Law programs is a standardized examination for admission to 5-year integrated law programs (BA LLB, BBA LLB, BSc LLB) and 3-year LLB programs offered by various Central Universities across India. Organized by the National Testing Agency (NTA), CUET Law provides a single-window opportunity for students seeking admission to prestigious law universities without having to appear for multiple entrance examinations.',
+  overview: 'The Central University Entrance Test (CUET) for Law programs is a standardized examination for admission to 5-year integrated law programs (BA LLB, BBA LLB, BSc LLB) and 3-year LLB programs offered by various Central Universities across India. Organized by the National Testing Agency (NTA), CUET Law provides a single-window opportunity for students seeking admission to prestigious law universities without having to appear for multiple entrance examinations.CUET Law aims to standardize the admission process for law programs, ensuring a merit-based, transparent selection process that evaluates candidates on their aptitude for legal studies. The exam focuses on testing logical reasoning, legal aptitude, general knowledge, and language comprehension—skills essential for success in legal education.',
 
   updates: [
     { date: 'March 5, 2025', description: 'NTA announces the tentative schedule for CUET Law 2025-26 admissions. Applications expected to open by end of March.' },
@@ -500,16 +500,16 @@ export const examData = [
       title: 'For 5-Year Programs',
       criteria: [
         'Passed 10+2 or equivalent examination from a recognized board',
-        'Minimum 45% aggregate (40% for SC/ST/PwD)',
-        'Maximum age: 20 years for General (5 years relaxation for SC/ST/PwD)'
+        '45% aggregate for General/OBC categories, 40% for SC/ST/PwD categories',
+        'Maximum 20 years for General category (as of July 1 of the admission year). Relaxation of 5 years for SC/ST/PwD candidates'
       ]
     },
     {
       title: 'For 3-Year Programs',
       criteria: [
         'Completed Bachelor\'s degree (10+2+3 pattern)',
-        'Minimum 45% aggregate (40% for SC/ST/PwD)',
-        'No specific age limit (as per BCI guidelines)'
+        '45% aggregate for General/OBC categories, 40% for SC/ST/PwD categories.',
+        '•	No specific age limit (as per Bar Council of India guidelines, however, individual universities may have their own restrictions).'
       ]
     }
   ],
@@ -526,7 +526,10 @@ export const examData = [
             'Grammar',
             'Sentence Correction',
             'Idioms and Phrases',
-            'Para Jumbles and Completion'
+            'Synonyms and Antonyms',
+            'Para Jumbles and Completion',
+            'Fill in the Blanks',
+            'Spotting Errors'
           ]
         },
         {
@@ -537,9 +540,56 @@ export const examData = [
             'Legal Principles and Facts',
             'Indian Constitution',
             'Law of Contracts',
-            'Criminal Law'
+            'Criminal Law',
+            'Law of Torts',
+            'Family Law',
+            'Legal Propositions'
           ]
-        },
+        },{
+  "name": "General Knowledge & Current Affairs",
+  "topics": [
+    "History of India",
+    "Geography",
+    "Indian Polity and Constitution",
+    "Economics",
+    "Science and Technology",
+    "Current Events (National and International)",
+    "Sports",
+    "Books and Authors",
+    "Art and Culture",
+    "Awards and Recognitions"
+  ]
+},{
+  "name": "Logical Reasoning",
+  "topics": [
+    "Analytical Reasoning",
+    "Logical Sequences",
+    "Blood Relations",
+    "Direction Sense",
+    "Series Completion",
+    "Coding-Decoding",
+    "Statements and Assumptions",
+    "Syllogisms",
+    "Logical Deduction",
+    "Cause and Effect",
+    "Analogies",
+    "Strong and Weak Arguments"
+  ]
+},{
+  "name": "Quantitative Techniques (Only for 5-Year Program)",
+  "topics": [
+    "Number System",
+    "Percentages",
+    "Profit and Loss",
+    "Simple and Compound Interest",
+    "Time, Speed, and Distance",
+    "Work and Time",
+    "Ratio and Proportion",
+    "Averages",
+    "Basic Algebra",
+    "Data Interpretation"
+  ]
+}
         // ... Add other subjects similarly
       ]
     }
@@ -548,7 +598,7 @@ export const examData = [
   applicationSteps: [
     {
       title: 'Registration',
-      description: 'Visit cuet.nta.nic.in and register with basic details'
+      description: 'Visit cuet.nta.nic.in and register with basic details like name, email ID, and mobile number.'
     },
     {
       title: 'Form Filling',
@@ -556,15 +606,18 @@ export const examData = [
     },
     {
       title: 'Document Upload',
-      description: 'Upload required documents and photographs'
+      description: 'Upload required documents and photographs like Passport-sized photograph (recent), Signature,Category certificate (if applicable) and PwD certificate (if applicable)'
     },
     {
       title: 'Center Selection',
-      description: 'Choose preferred test centers (3-4 options)'
+      description: 'Choose preferred test centers (usually 3-4 options in order of preference).'
     },
     {
       title: 'Fee Payment',
       description: 'Pay application fee online through available payment methods'
+    },{
+      title : 'Confirmation',
+      description : 'After successful payment, download and print the confirmation page for future reference.'
     }
   ],
 
@@ -589,27 +642,156 @@ export const examData = [
   ],
 
   universities: [
-    {
-      name: 'Delhi University',
-      location: 'Delhi',
-      department: 'Faculty of Law',
-      website: 'law.du.ac.in'
-    },
-    // ... Add other universities
-  ],
+  {
+    "name": "Delhi University",
+    "location": "Delhi",
+    "department": "Faculty of Law",
+    "website": "law.du.ac.in",
+    "rank": 1,
+    "established": 1924
+  },
+  {
+    "name": "Banaras Hindu University",
+    "location": "Varanasi, Uttar Pradesh",
+    "department": "Faculty of Law",
+    "website": "bhu.ac.in/law",
+    "rank": 2,
+    "established": 1916
+  },
+  {
+    "name": "Jamia Millia Islamia",
+    "location": "Delhi",
+    "department": "Faculty of Law",
+    "website": "jmi.ac.in/law",
+    "rank": 3,
+    "established": 1920
+  },
+  {
+    "name": "The English and Foreign Languages University",
+    "location": "Hyderabad, Telangana",
+    "department": "Not Applicable",
+    "website": "efluniversity.ac.in",
+    "rank": 4,
+    "established": 1958
+  },
+  {
+    "name": "Aligarh Muslim University",
+    "location": "Aligarh, Uttar Pradesh",
+    "department": "Faculty of Law",
+    "website": "amu.ac.in/department/law",
+    "rank": 5,
+    "established": 1875
+  },
+  {
+    "name": "Visva-Bharati University",
+    "location": "Santiniketan, West Bengal",
+    "department": "Not Applicable",
+    "website": "visvabharati.ac.in",
+    "rank": 6,
+    "established": 1921
+  },
+  {
+    "name": "Central University of Gujarat",
+    "location": "Gandhinagar, Gujarat",
+    "department": "Not Applicable",
+    "website": "cug.ac.in",
+    "rank": 7,
+    "established": 2009
+  },
+  {
+    "name": "Central University of Kerala",
+    "location": "Kasaragod, Kerala",
+    "department": "Not Applicable",
+    "website": "cukerala.ac.in",
+    "rank": 8,
+    "established": 2009
+  },
+  {
+    "name": "Central University of Punjab",
+    "location": "Bathinda, Punjab",
+    "department": "Not Applicable",
+    "website": "cup.edu.in",
+    "rank": 9,
+    "established": 2009
+  },
+  {
+    "name": "Central University of Jharkhand",
+    "location": "Ranchi, Jharkhand",
+    "department": "Not Applicable",
+    "website": "cuj.ac.in",
+    "rank": 10,
+    "established": 2009
+  },
+  {
+    "name": "Central University of Rajasthan",
+    "location": "Ajmer, Rajasthan",
+    "department": "Not Applicable",
+    "website": "curaj.ac.in",
+    "rank": 11,
+    "established": 2009
+  }
+],
 
   preparationTips: [
-    {
-      name: 'English Language',
-      tips: [
-        'Read newspapers and magazines regularly',
-        'Maintain vocabulary diary',
-        'Practice grammar exercises',
-        'Solve previous years\' papers'
-      ]
-    },
-    // ... Add other subjects
-  ],
+  {
+    "name": "English Language",
+    "tips": [
+      "Read newspapers, magazines, and good books regularly",
+      "Maintain a personal vocabulary diary",
+      "Practice grammar exercises and reading comprehension passages",
+      "Solve previous years' question papers"
+    ]
+  },
+  {
+    "name": "Legal Reasoning",
+    "tips": [
+      "Read about basic legal concepts and principles",
+      "Study landmark judgments",
+      "Practice application of legal principles to given situations",
+      "Focus on understanding rather than memorizing"
+    ]
+  },
+  {
+    "name": "General Knowledge & Current Affairs",
+    "tips": [
+      "Read newspapers daily (print or digital)",
+      "Follow reliable news websites and apps",
+      "Maintain notes on important events",
+      "Refer to standard GK books and yearbooks",
+      "Subscribe to monthly GK magazines"
+    ]
+  },
+  {
+    "name": "Logical Reasoning",
+    "tips": [
+      "Practice puzzles and brain teasers",
+      "Solve reasoning problems daily",
+      "Understand logical patterns and techniques",
+      "Time yourself while solving practice questions"
+    ]
+  },
+  {
+    "name": "Quantitative Techniques",
+    "tips": [
+      "Strengthen your basic mathematical concepts",
+      "Practice calculation shortcuts",
+      "Solve data interpretation problems regularly",
+      "Focus on accuracy and speed"
+    ]
+  },
+  {
+    "name": "General Tips",
+    "tips": [
+      "Create a structured study plan with dedicated time for each section",
+      "Take regular mock tests to simulate actual exam conditions",
+      "Analyze your performance and work on weak areas",
+      "Join a reliable coaching program like CLATians for specialized guidance",
+      "Manage time effectively during the exam (allocate time to each section)",
+      "Attempt questions strategically (attempt easy questions first)"
+    ]
+  }
+]
+,
   strategies: [
     {
       title: 'Mock Tests',
@@ -656,32 +838,13 @@ export const examData = [
   "title": "LSAT (Law School Admission Test): A Comprehensive Guide for 5-Year Integrated Programs",
   "shortTitle": "LSAT",
   "description": "Your Gateway to Prestigious Law Institutions",
-  "overview": "The Law School Admission Test (LSAT) is a standardized examination designed to assess key skills necessary for success in law school. For students interested in 5-year integrated law programs, the LSAT-India serves as a gateway to some of the most prestigious law institutions in the country. The LSAT evaluates critical reading, analytical reasoning, logical reasoning, and persuasive writing skills – all essential competencies for prospective law students. Unlike many other entrance exams, the LSAT doesn't test specific subject knowledge but rather focuses on skills that predict success in legal education.",
+  "overview": "The Law School Admission Test (LSAT) is a standardized examination designed to assess key skills necessary for success in law school. For students interested in 5-year integrated law programs, the LSAT-India serves as a gateway to some of the most prestigious law institutions in the country.The LSAT evaluates critical reading, analytical reasoning, logical reasoning, and persuasive writing skills – all essential competencies for prospective law students. Unlike many other entrance exams, the LSAT doesn't test specific subject knowledge but rather focuses on skills that predict success in legal education.The 5-year integrated law programs in India (BA LLB, BBA LLB, BSc LLB) allow students to pursue law studies directly after completing their 12th standard education, making it an attractive option for those who have early clarity about their legal career aspirations.",
   
   "updates": [
     { "date": "March 2025", "description": "Digital Testing Format: LSAT-India has fully transitioned to computer-based testing at designated centers." },
     { "date": "March 2025", "description": "Additional Test Dates: Starting 2025, LSAT-India is offering more flexible testing options throughout the year." },
     { "date": "March 2025", "description": "Score Validity: LSAT-India scores are now valid for two years from the test date." },
     { "date": "March 2025", "description": "New Participating Law Schools: Several additional law institutions have begun accepting LSAT-India scores." }
-  ],
-  
-  "patterns": [
-    {
-      "title": "LSAT-India Format",
-      "duration": "2 hours and 20 minutes",
-      "mode": "Digital (computer-based)",
-      "sections": [
-        { "name": "Reading Comprehension", "questions": "24-26", "marksPerQuestion": 1, "totalMarks": "24-26" },
-        { "name": "Analytical Reasoning", "questions": "22-24", "marksPerQuestion": 1, "totalMarks": "22-24" },
-        { "name": "Logical Reasoning - Section 1", "questions": "24-26", "marksPerQuestion": 1, "totalMarks": "24-26" },
-        { "name": "Logical Reasoning - Section 2", "questions": "24-26", "marksPerQuestion": 1, "totalMarks": "24-26" }
-      ],
-      "markingScheme": [
-        "+1 for each correct answer",
-        "No negative marking for incorrect answers",
-        "Raw scores are converted to LSAT-India score (percentile ranking)"
-      ]
-    }
   ],
   
   "eligibility": [
@@ -698,11 +861,37 @@ export const examData = [
         "No specific age limitations set by LSAT-India itself",
         "However, individual law schools may have their own age requirements (typically minimum 17 years)"
       ]
-    },
+    },{
+  "title": "Important Considerations",
+  "criteria": [
+    "Meeting LSAT eligibility doesn't guarantee admission to law schools",
+    "Each participating law school may have additional eligibility requirements",
+    "Candidates must check specific requirements of their target institutions"
+  ]
+},
     {
       "title": "Nationality",
       "criteria": [
         "Open to Indian nationals as well as NRIs, PIOs, and foreign nationals"
+      ]
+    }
+  ],
+
+  "patterns": [
+    {
+      "title": "LSAT-India Format",
+      "duration": "2 hours and 20 minutes",
+      "mode": "Digital (computer-based)",
+      "sections": [
+        { "name": "Reading Comprehension", "questions": "24-26", "marksPerQuestion": 1, "totalMarks": "24-26" },
+        { "name": "Analytical Reasoning", "questions": "22-24", "marksPerQuestion": 1, "totalMarks": "22-24" },
+        { "name": "Logical Reasoning - Section 1", "questions": "24-26", "marksPerQuestion": 1, "totalMarks": "24-26" },
+        { "name": "Logical Reasoning - Section 2", "questions": "24-26", "marksPerQuestion": 1, "totalMarks": "24-26" }
+      ],
+      "markingScheme": [
+        "+1 for each correct answer",
+        "No negative marking for incorrect answers",
+        "Raw scores are converted to LSAT-India score (percentile ranking)"
       ]
     }
   ],
@@ -790,43 +979,55 @@ export const examData = [
   ],
   
   "universities": [
-    {
-      "name": "Jindal Global Law School",
-      "location": "Sonipat",
-      "department": "Law School",
-      "website": "jgls.edu.in"
-    },
-    {
-      "name": "UPES School of Law",
-      "location": "Dehradun",
-      "department": "School of Law",
-      "website": "upes.ac.in"
-    },
-    {
-      "name": "Symbiosis Law School",
-      "location": "Pune",
-      "department": "Law School",
-      "website": "symlaw.ac.in"
-    },
-    {
-      "name": "NMIMS School of Law",
-      "location": "Mumbai",
-      "department": "School of Law",
-      "website": "nmims.edu"
-    },
-    {
-      "name": "The Northcap University",
-      "location": "Gurugram",
-      "department": "School of Law",
-      "website": "ncuindia.edu"
-    },
-    {
-      "name": "BML Munjal University",
-      "location": "Gurugram",
-      "department": "School of Law",
-      "website": "bmu.edu.in"
-    }
-  ],
+  {
+    "name": "Jindal Global Law School",
+    "location": "Sonipat",
+    "department": "Law School",
+    "website": "jgls.edu.in",
+    "rank": 1,
+    "established": 2009
+  },
+  {
+    "name": "UPES School of Law",
+    "location": "Dehradun",
+    "department": "School of Law",
+    "website": "upes.ac.in",
+    "rank": 2,
+    "established": 2003
+  },
+  {
+    "name": "Symbiosis Law School",
+    "location": "Pune",
+    "department": "Law School",
+    "website": "symlaw.ac.in",
+    "rank": 3,
+    "established": 1977
+  },
+  {
+    "name": "NMIMS School of Law",
+    "location": "Mumbai",
+    "department": "School of Law",
+    "website": "nmims.edu",
+    "rank": 4,
+    "established": 2018
+  },
+  {
+    "name": "The Northcap University",
+    "location": "Gurugram",
+    "department": "School of Law",
+    "website": "ncuindia.edu",
+    "rank": 5,
+    "established": 1996
+  },
+  {
+    "name": "BML Munjal University",
+    "location": "Gurugram",
+    "department": "School of Law",
+    "website": "bmu.edu.in",
+    "rank": 6,
+    "established": 2014
+  }
+],
   
   "preparationTips": [
     {
@@ -855,7 +1056,15 @@ export const examData = [
         "Practice spotting logical fallacies",
         "Develop skills in strengthening/weakening arguments"
       ]
-    }
+    },{
+  "name": "Time Management Skills",
+  "tips": [
+    "Allocate specific time for each section",
+    "Learn when to move on from difficult questions",
+    "Practice with timed sections regularly",
+    "Develop strategies for difficult questions"
+  ]
+}
   ],
   
   "strategies": [
@@ -904,7 +1113,7 @@ export const examData = [
   "title": "MH-CET LAW 2025: Complete Guide for 5-Year and 3-Year Programs",
   "shortTitle": "MH-CET LAW",
   "description": "Your Gateway to Law Colleges in Maharashtra",
-  "overview": "Maharashtra Common Entrance Test for Law (MH-CET LAW) is a state-level entrance examination conducted for admission to law courses in various law colleges across Maharashtra. The exam is conducted for two programs: 5-Year Integrated Law Program for students who have completed or are appearing for their 12th standard examination, and 3-Year Law Program for candidates who have already completed their graduation. MH-CET LAW scores are accepted by government, government-aided, and private unaided law colleges in Maharashtra for admission to law programs.",
+  "overview": "Maharashtra Common Entrance Test for Law (MH-CET LAW) is a state-level entrance examination conducted for admission to law courses in various law colleges across Maharashtra. The exam is conducted for two programs: •	5-Year Integrated Law Program: For students who have completed or are appearing for their 12th standard examination (LLB program integrated with BA, BCom, or BSc) •	3-Year Law Program: For candidates who have already completed their graduation (LLB program) MH-CET LAW scores are accepted by government, government-aided, and private unaided law colleges in Maharashtra for admission to law programs.",
   
   "updates": [
     { "date": "March 8, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
@@ -942,7 +1151,7 @@ export const examData = [
         "No negative marking for incorrect answers",
         "Maximum marks: 150"
       ]
-    }
+    },
   ],
   
   "eligibility": [
@@ -1060,11 +1269,11 @@ export const examData = [
   "applicationFees": [
     {
       "category": "General/OBC",
-      "amount": "₹800"
+      "amount": "800"
     },
     {
       "category": "SC/ST/PwD (Maharashtra)",
-      "amount": "₹600"
+      "amount": "600"
     }
   ],
   
@@ -1080,45 +1289,67 @@ export const examData = [
   ],
   
   "universities": [
-    {
-      "name": "Government Law College",
-      "location": "Mumbai",
-      "department": "Law College",
-      "website": "glcmumbai.com"
-    },
-    {
-      "name": "ILS Law College",
-      "location": "Pune",
-      "department": "Law College",
-      "website": "ilslaw.edu"
-    },
-    {
-      "name": "Symbiosis Law School",
-      "location": "Pune",
-      "department": "Law School",
-      "website": "symlaw.ac.in"
-    },
-    {
-      "name": "K.C. Law College",
-      "location": "Mumbai",
-      "department": "Law College",
-      "website": "kclawcollege.edu.in"
-    },
-    {
-      "name": "D.E.S. Shri Navalmal Firodia Law College",
-      "location": "Pune",
-      "department": "Law College",
-      "website": "deslaw.edu.in"
-    },
-    {
-      "name": "Maharashtra National Law University",
-      "location": "Mumbai",
-      "department": "Law University",
-      "website": "mnlumumbai.edu.in"
-    }
-  ],
+  {
+    "name": "Government Law College",
+    "location": "Mumbai",
+    "department": "Law College",
+    "website": "glcmumbai.com",
+    "rank": 1,
+    "established": 1855
+  },
+  {
+    "name": "ILS Law College",
+    "location": "Pune",
+    "department": "Law College",
+    "website": "ilslaw.edu",
+    "rank": 2,
+    "established": 1924
+  },
+  {
+    "name": "Symbiosis Law School",
+    "location": "Pune",
+    "department": "Law School",
+    "website": "symlaw.ac.in",
+    "rank": 3,
+    "established": 1977
+  },
+  {
+    "name": "K.C. Law College",
+    "location": "Mumbai",
+    "department": "Law College",
+    "website": "kclawcollege.edu.in",
+    "rank": 4,
+    "established": 1955
+  },
+  {
+    "name": "D.E.S. Shri Navalmal Firodia Law College",
+    "location": "Pune",
+    "department": "Law College",
+    "website": "deslaw.edu.in",
+    "rank": 5,
+    "established": 2004
+  },
+  {
+    "name": "Maharashtra National Law University",
+    "location": "Mumbai",
+    "department": "Law University",
+    "website": "mnlumumbai.edu.in",
+    "rank": 6,
+    "established": 2014
+  }
+],
   
   "preparationTips": [
+    {
+  "name": "General Tips",
+  "tips": [
+    "Understand the Exam Pattern: Familiarize yourself with the exam structure, marking scheme, and time constraints",
+    "Create a Study Plan: Develop a balanced study schedule covering all sections",
+    "Focus on Fundamentals: Build strong foundational knowledge in all subjects",
+    "Regular Practice: Solve previous years' papers and take mock tests",
+    "Time Management: Practice solving questions within the time limit"
+  ]
+},
     {
       "name": "Legal Aptitude & Legal Reasoning",
       "tips": [
@@ -1218,7 +1449,11 @@ export const examData = [
   "overview": "The Army Institute of Law (AIL), Mohali is a prestigious law institution established in 1999 by the Indian Army under the aegis of the Army Welfare Education Society (AWES). The institute conducts the Army Institute of Law Law Entrance Test (AIL LET) for admission to its 5-year integrated BA LLB program and 3-year LLB program. Known for its disciplined approach to legal education, AIL provides quality education to the wards of Army personnel and civilians alike.",
   
   "updates": [
-    { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+    { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." },
+    { "date": "March 10, 2025", "description": "Application portal for AIL LET 2025 expected to open in February 2025" },
+    { "date": "March 10, 2025", "description": "Exam pattern remains consistent with previous year" },
+    { "date": "March 10, 2025", "description": "Stay tuned for official notification release" },
+    { "date": "March 10, 2025", "description": "Check back for updates on exam centers and admit card release dates" }
   ],
   
   "patterns": [
@@ -1239,23 +1474,6 @@ export const examData = [
         "Maximum marks: 150"
       ]
     },
-    {
-      "title": "3-Year LLB Program",
-      "duration": "2 hours (120 minutes)",
-      "mode": "Computer-Based Test (Online)",
-      "sections": [
-        { "name": "English", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "General Knowledge & Current Affairs", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Legal Aptitude", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Logical Reasoning", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Elementary Mathematics (Numerical Ability)", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" }
-      ],
-      "markingScheme": [
-        "+1 for each correct answer",
-        "No negative marking for incorrect answers",
-        "Maximum marks: 150"
-      ]
-    }
   ],
   
   "eligibility": [
@@ -1268,14 +1486,6 @@ export const examData = [
         "Candidates appearing in 10+2 can also apply (admission subject to fulfilling criteria)"
       ]
     },
-    {
-      "title": "3-Year LLB Program",
-      "criteria": [
-        "Candidate must be a graduate in any discipline from any recognized university",
-        "Minimum percentage criteria as per Bar Council of India rules",
-        "Age limit as per Bar Council of India guidelines"
-      ]
-    }
   ],
   
   "syllabus": [
@@ -1379,11 +1589,11 @@ export const examData = [
   "applicationFees": [
     {
       "category": "General/OBC",
-      "amount": "₹1,500"
+      "amount": "1,500"
     },
     {
       "category": "SC/ST",
-      "amount": "₹1,000"
+      "amount": "1,000"
     }
   ],
   
@@ -1399,12 +1609,15 @@ export const examData = [
   
   "universities": [
     {
-      "name": "Army Institute of Law",
-      "location": "Mohali",
-      "department": "Law College",
-      "website": "www.ail.ac.in",
-      "affiliation": "Punjabi University, Patiala"
-    }
+  "name": "Army Institute of Law",
+  "location": "Mohali",
+  "department": "Law College",
+  "website": "www.ail.ac.in",
+  "affiliation": "Punjabi University, Patiala",
+  "rank": 1,
+  "established": 1999
+}
+
   ],
   
   "preparationTips": [
@@ -1521,48 +1734,59 @@ export const examData = [
     }
   ]
 },{
-  "id": "ail-let",
-  "title": "Army Institute of Law Entrance Test 2025: Complete Guide",
-  "shortTitle": "AIL LET",
-  "description": "Your Gateway to the Army Institute of Law, Mohali",
-  "overview": "The Army Institute of Law (AIL), Mohali is a prestigious law institution established in 1999 by the Indian Army under the aegis of the Army Welfare Education Society (AWES). The institute conducts the Army Institute of Law Law Entrance Test (AIL LET) for admission to its 5-year integrated BA LLB program and 3-year LLB program. Known for its disciplined approach to legal education, AIL provides quality education to the wards of Army personnel and civilians alike.",
+  "id": "ai-let",
+  "title": "All India Law Entrance Test",
+  "shortTitle": "AI-LET",
+  "description": "Stay informed with the latest announcements and developments related to AILET examinations. This section is regularly updated to provide you with timely information.",
+  "overview": "The All India Law Entrance Test (AILET) is a national-level entrance examination conducted by National Law University, Delhi (NLU Delhi) for admissions to its undergraduate (BA LLB), postgraduate (LLM), and doctoral (PhD) programs. Unlike other National Law Universities that admit students through CLAT, NLU Delhi maintains its independent entrance examination, making AILET a crucial gateway to one of India's most prestigious law schools.",
   
   "updates": [
-    { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
-  ],
+  { "date": "March 5, 2025", "description": "AILET 2025 final admission process completed for all categories." },
+  { "date": "February 20, 2025", "description": "Foreign national seat allocation results announced for AILET 2025." },
+  { "date": "February 10, 2025", "description": "Second waiting list for AILET 2025 BA LLB admissions released." },
+  { "date": "January 25, 2025", "description": "First waiting list for AILET 2025 BA LLB admissions released." },
+  { "date": "January 15, 2025", "description": "AILET 2025 first merit list released for all programs." },
+  { "date": "January 2, 2025", "description": "AILET 2025 results declared with category-wise cutoffs." },
+  { "date": "December 10, 2024", "description": "AILET 2025 examination successfully conducted across India." },
+  { "date": "December 1, 2024", "description": "AILET 2025 admit cards released for download." },
+  { "date": "October 30, 2024", "description": "AILET 2025 application process closed." }
+]
+,
   
   "patterns": [
     {
-      "title": "5-Year Integrated BA LLB Program",
+      "title": "AILET BA LLB (Hons.)",
       "duration": "2 hours (120 minutes)",
       "mode": "Computer-Based Test (Online)",
       "sections": [
-        { "name": "English", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "General Knowledge & Current Affairs", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Legal Aptitude", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Logical Reasoning", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Elementary Mathematics (Numerical Ability)", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" }
+        { "name": "English", "questions": "35", "marksPerQuestion": 1, "totalMarks": "35" },
+        { "name": "General Knowledge & Current Affairs", "questions": "35", "marksPerQuestion": 1, "totalMarks": "35" },
+        { "name": "Legal Aptitude", "questions": "35", "marksPerQuestion": 1, "totalMarks": "35" },
+        { "name": "Logical Reasoning", "questions": "35", "marksPerQuestion": 1, "totalMarks": "35" },
+        { "name": "Quantitative Techniques", "questions": "10", "marksPerQuestion": 1, "totalMarks": "10" }
       ],
       "markingScheme": [
         "+1 for each correct answer",
-        "No negative marking for incorrect answers",
+        "0.25 marks deducted for each incorrect answer (negative marking)",
         "Maximum marks: 150"
       ]
     },
     {
-      "title": "3-Year LLB Program",
+      "title": "AILET LLM",
       "duration": "2 hours (120 minutes)",
       "mode": "Computer-Based Test (Online)",
       "sections": [
-        { "name": "English", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "General Knowledge & Current Affairs", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Legal Aptitude", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Logical Reasoning", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" },
-        { "name": "Elementary Mathematics (Numerical Ability)", "questions": "30", "marksPerQuestion": 1, "totalMarks": "30" }
+        { "name": "Law of Contracts", "questions": "20", "marksPerQuestion": 1, "totalMarks": "20" },
+        { "name": "Constitutional Law", "questions": "20", "marksPerQuestion": 1, "totalMarks": "20" },
+        { "name": "Jurisprudence", "questions": "20", "marksPerQuestion": 1, "totalMarks": "20" },
+        { "name": "Family Law", "questions": "20", "marksPerQuestion": 1, "totalMarks": "20" },
+        { "name": "Public International Law", "questions": "20", "marksPerQuestion": 1, "totalMarks": "20" },
+        { "name": "Criminal Law", "questions": "25", "marksPerQuestion": 1, "totalMarks": "25" },
+        { "name": "Research Methodology", "questions": "25", "marksPerQuestion": 1, "totalMarks": "25" }
       ],
       "markingScheme": [
         "+1 for each correct answer",
-        "No negative marking for incorrect answers",
+        "0.25 marks deducted for each incorrect answer (negative marking)",
         "Maximum marks: 150"
       ]
     }
@@ -1570,27 +1794,32 @@ export const examData = [
   
   "eligibility": [
     {
-      "title": "5-Year Integrated BA LLB Program",
+      "title": "BA LLB (Hons.) - 5-year Integrated Program",
       "criteria": [
-        "Candidates must have passed 10+2 or equivalent examination from a recognized board",
-        "Minimum 50% aggregate marks in 10+2 (45% for SC/ST categories)",
-        "Maximum age limit: 21 years (23 years for SC/ST and J&K residents)",
-        "Candidates appearing in 10+2 can also apply (admission subject to fulfilling criteria)"
+        "Candidates must have passed 10+2 or equivalent examination with a minimum of 50% marks (45% for SC/ST/OBC/PWD categories)",
+        "Age limit: Not more than 21 years as of July 31 of the admission year (23 years for SC/ST/OBC/PWD categories)",
       ]
     },
     {
-      "title": "3-Year LLB Program",
+      "title": "LLM - 1-year Program",
       "criteria": [
-        "Candidate must be a graduate in any discipline from any recognized university",
-        "Minimum percentage criteria as per Bar Council of India rules",
-        "Age limit as per Bar Council of India guidelines"
+        "Candidates must have completed LLB or an equivalent law degree with a minimum of 55% marks (50% for SC/ST/OBC/PWD categories)",
+        "No upper age limits"
+      ]
+    },
+    {
+      "title": "PhD in Law",
+      "criteria": [
+        "Candidates must have completed LLM or an equivalent law degree with a minimum of 55% marks (50% for SC/ST/OBC/PWD categories)",
+        "Qualified UGC NET/JRF or equivalent examination in law",
+        "No upper age limits"
       ]
     }
   ],
   
   "syllabus": [
     {
-      "title": "AIL LET Syllabus",
+      "title": "AILET BA LLB Syllabus",
       "subjects": [
         {
           "name": "English",
@@ -1642,7 +1871,7 @@ export const examData = [
           ]
         },
         {
-          "name": "Elementary Mathematics (Numerical Ability)",
+          "name": "Quantitative Techniques",
           "topics": [
             "Number System",
             "Percentage",
@@ -1654,7 +1883,31 @@ export const examData = [
             "Data Interpretation",
             "Basic Algebra and Geometry"
           ]
-        }
+        },
+        {
+  "name": "AILET LLM Syllabus",
+  "topics": [
+    "Constitutional Law",
+    "Jurisprudence",
+    "Law of Contracts",
+    "Torts",
+    "Criminal Law",
+    "Family Law",
+    "Public International Law",
+    "Administrative Law",
+    "Company Law",
+    "Research Methodology"
+  ]
+},{
+  "name": "AILET PhD Syllabus",
+  "topics": [
+    "Research Methodology",
+    "Subject-specific knowledge",
+    "Current legal developments",
+    "Legal scholarship and academic writing"
+  ]
+}
+
       ]
     }
   ],
@@ -1709,61 +1962,80 @@ export const examData = [
   
   "universities": [
     {
-      "name": "Army Institute of Law",
-      "location": "Mohali",
+      "name": "National Law University, Delhi",
+      "location": "Delhi",
+      "established" : 2008,
+      "rank": 1,
+      "website": "nludelhi.ac.in",
       "department": "Law College",
-      "website": "www.ail.ac.in",
       "affiliation": "Punjabi University, Patiala"
     }
   ],
   
   "preparationTips": [
-    {
-      "name": "English",
-      "tips": [
-        "Read newspapers, magazines, and quality books to improve vocabulary",
-        "Practice reading comprehension passages regularly",
-        "Work on grammar rules and their applications",
-        "Learn common idioms and phrases"
-      ]
-    },
-    {
-      "name": "General Knowledge & Current Affairs",
-      "tips": [
-        "Read newspapers daily (The Hindu, Indian Express)",
-        "Follow reputable news websites and magazines",
-        "Make notes of important events, appointments, and awards",
-        "Use GK mobile apps for daily quizzes"
-      ]
-    },
-    {
-      "name": "Legal Aptitude",
-      "tips": [
-        "Understand basic legal concepts and principles",
-        "Practice legal reasoning questions from previous years' papers",
-        "Learn important legal maxims and terminology",
-        "Read about landmark judgments"
-      ]
-    },
-    {
-      "name": "Logical Reasoning",
-      "tips": [
-        "Practice puzzles and brain teasers",
-        "Solve logical reasoning questions from aptitude books",
-        "Develop analytical thinking through regular practice",
-        "Time yourself while solving problems"
-      ]
-    },
-    {
-      "name": "Mathematics (Numerical Ability)",
-      "tips": [
-        "Revise basic mathematical concepts",
-        "Practice calculation techniques to improve speed",
-        "Focus on data interpretation and percentage calculations",
-        "Solve previous years' questions"
-      ]
-    }
-  ],
+  {
+    "name": "English",
+    "tips": [
+      "Read quality newspapers, magazines, and literary works",
+      "Practice reading comprehension regularly",
+      "Improve vocabulary through word lists and flashcards",
+      "Focus on grammar rules and their application",
+      "Solve previous years' papers for pattern familiarization"
+    ]
+  },
+  {
+    "name": "General Knowledge & Current Affairs",
+    "tips": [
+      "Follow a daily news routine covering major publications",
+      "Create monthly compilations of important events",
+      "Study static GK topics systematically",
+      "Focus on legal developments and landmark judgments",
+      "Maintain a current affairs diary"
+    ]
+  },
+  {
+    "name": "Legal Aptitude",
+    "tips": [
+      "Understand basic legal principles and terminology",
+      "Practice legal reasoning questions from previous papers",
+      "Read about landmark cases in simple language",
+      "Develop analytical skills to apply legal principles to facts",
+      "Study the Constitution of India and basic laws"
+    ]
+  },
+  {
+    "name": "Reasoning",
+    "tips": [
+      "Solve puzzles, critical reasoning problems regularly",
+      "Practice analytical reasoning sets",
+      "Study syllogisms, assumptions, and inferences",
+      "Work on speed and accuracy through timed practice",
+      "Focus on logical consistency in arguments"
+    ]
+  },
+  {
+    "name": "Quantitative Techniques",
+    "tips": [
+      "Master basic mathematical concepts",
+      "Practice data interpretation sets",
+      "Focus on speed calculations",
+      "Solve previous years' questions regularly",
+      "Identify shortcuts for quick calculations"
+    ]
+  },
+  {
+    "name": "AILET Performance Improvement Strategies",
+    "tips": [
+      "Mock Tests: Take regular mock tests under timed conditions",
+      "Section-wise Analysis: Identify strengths and weaknesses in each section",
+      "Time Management: Develop a strategy for allocating time to each section",
+      "Revision Schedule: Create a systematic revision plan for all topics",
+      "Error Analysis: Maintain an error log to avoid repeating mistakes",
+      "Strategic Guessing: Learn when to attempt questions and when to leave them"
+    ]
+  }
+]
+,
   
   "strategies": [
     {
