@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation'
 const data = [
   {
     "examName": "CLAT Entrance Exam",
-    "description": "Candidates preparing for the CLAT 2025-2026 can enroll in our online coaching provided by Clatians at the most reasonable rates. We offer proper guidance, resources, and mock test series to help students prepare effectively.",
+    "description": "Are you searching for the best offline CLAT coaching institute to ace the Common Law Admission Test (CLAT)? Look no further! CLATians, India’s leading CLAT preparation institute, offers expert-led classroom training designed for top NLU admissions.With personalized mentorship, structured study material, and real-time mock tests, our Offline CLAT Course ensures focused, interactive learning to maximize your success. Get hands-on guidance from experienced faculty and CLAT toppers, master the CLAT syllabus with in-depth coverage, and stay ahead with our exam-oriented approach.Enroll in the Best Offline CLAT Course Today & Start Your Journey to NLU Success!",
     "courses": [
     {
       id: 1,
@@ -88,7 +88,7 @@ const data = [
   },
   {
     "examName": "CLAT + AILET",
-    "description": "Prepare for CLAT and AILET 2025-2026 with our comprehensive online coaching. Get access to advanced study material, test series, and expert guidance.",
+    "description": "Looking for the best offline coaching for CLAT & AILET to secure admission in top NLUs and NLUD? CLATians, India’s premier law entrance coaching institute, offers expert-led classroom training designed to help you excel in the Common Law Admission Test (CLAT) and the All India Law Entrance Test (AILET).Our Offline CLAT & AILET Coaching provides personalized mentorship, interactive learning, structured study material, and real-time mock tests to ensure exam-focused preparation. With one-on-one guidance, doubt-solving sessions, and a competitive classroom environment, we help you boost your accuracy, speed, and confidence to achieve your dream of getting into top National Law Universities (NLUs) and NLUD.",
     "courses": [
     {
       id: 1,
@@ -167,7 +167,7 @@ const data = [
   },
   {
     "examName": "CUET-LAW",
-    "description": "Students preparing for CUET-LAW (UG) can enroll in our expert-guided online coaching, which includes study resources, crash courses, and test series.",
+    "description": "Are you determined to excel in the Common University Entrance Test for Law (CUET-LAW)? Experience unparalleled preparation with CLATians' specialized offline batches—where legal aspirations meet excellence.Our tailored programs address the unique requirements for both undergraduate and postgraduate law aspirants, ensuring targeted preparation for your specific exam pattern.Join hundreds of successful CLATians who secured admissions in prestigious Central and State Universities through CUET-LAW. Enroll today to reserve your spot in India's most result-oriented CUET-LAW offline coaching program.",
     "courses": [
     {
       id: 1,
@@ -230,14 +230,14 @@ const data = [
   ]
   },
   {
-    "examName": "OLET(CUET-LAW + AIL-LET + MH-CET)",
-    "description": "Join our online coaching for OLET(CUET-LAW + AIL-LET + MH-CET) and get structured guidance with expert-curated courses and test series.",
+    "examName": "CLAT+OLET",
+    "description": "Our Offline CLAT & OLET (Other Law Entrance Test) Course is designed for aspirants who prefer in-person learning with personalized attention. Get expert guidance from our experienced mentors, who bring years of expertise in preparing students for CLAT, AILET, CUET-LAW, LSAT, MH-CET-LAW, and AIL Entrance Exams.At CLATians, we believe in quality over quantity. With our Offline CLAT Coaching, we focus on your unique strengths and weaknesses, providing a tailored study plan to help you succeed in competitive law exams like CLAT, AILET, CUET-LAW, MH-CET-LAW, and more.",
     "courses": [
     {
       id: 1,
       parentInd : 3,
       title: "Target OLET 2026",
-      tag: "OLET",
+      tag: "CLAT+OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -251,7 +251,7 @@ const data = [
       id: 2,
       parentInd : 3,
       title: "Advanced Crash Courses",
-      tag: "OLET",
+      tag: "CLAT+OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -265,7 +265,7 @@ const data = [
       id: 3,
       parentInd : 3,
       title: "Crash Course",
-      tag: "OLET",
+      tag: "CLAT+OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -280,7 +280,7 @@ const data = [
       id: 4,
       parentInd : 3,
       title: "Mock test series",
-      tag: "OLET",
+      tag: "CLAT+OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -294,14 +294,14 @@ const data = [
   ]
   },
 {
-    "examName": "OLET(CUET-LAW + AIL-LET + MH-CET) Entrance Exam",
-    "description": "Candidates preparing for the OLET(CUET-LAW + AIL-LET + MH-CET) 2025-2026 can enroll in our online coaching provided by Clatians at the most reasonable rates. We offer proper guidance, resources, and mock test series to help students prepare effectively.",
+    "examName": "OLET (Other Law Entrance Test)",
+    "description": "At CLATians, we understand the challenges of cracking AILET, CUET-LAW, MH-CET-LAW, LSAT and AIL Entrance Exam. Our Offline OLET Coaching is designed to provide you with an immersive, results-driven approach to help you achieve your law school dreams.Maximize Your Chances of Success Our expert mentors will guide you through each step of your OLET preparation journey, ensuring that you are fully prepared to take on any challenge during your exam. With a strategic approach and a focus on exam-relevant content, CLATians helps you gain the confidence and knowledge needed to secure a seat in the top law universities.Join Our Offline OLET Coaching Today! Take advantage of our personalized coaching, interactive learning environment, and proven study strategies to succeed in AILET, CUET-LAW, MH-CET-LAW, LSAT and AIL Entrance Exam. Enroll today and start your path to success!",
     "courses": [
     {
       id: 1,
       parentInd : 4,
       title: "Target OLET(CUET-LAW + AIL-LET + MH-CET) 2026",
-      tag: "OLET(CUET-LAW + AIL-LET + MH-CET)",
+      tag: "OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -315,7 +315,7 @@ const data = [
       id: 2,
       parentInd : 4,
       title: "Advanced Crash Courses",
-      tag: "OLET(CUET-LAW + AIL-LET + MH-CET)",
+      tag: "OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -329,7 +329,7 @@ const data = [
       id: 3,
       parentInd : 4,
       title: "Crash Course",
-      tag: "OLET(CUET-LAW + AIL-LET + MH-CET)",
+      tag: "OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       batchType : "offline",
@@ -344,7 +344,7 @@ const data = [
       id: 4,
       parentInd : 4,
       title: "Mock test series",
-      tag: "OLET(CUET-LAW + AIL-LET + MH-CET)",
+      tag: "OLET",
       badges: ["NEW", "Hinglish"],
       batchType : "offline",
       startDate: "13 Jan, 2025",
@@ -358,7 +358,7 @@ const data = [
       id: 5,
       parentInd : 4,
       title: "Foundation CLAT+OLET 2026",
-      tag: "OLET(CUET-LAW + AIL-LET + MH-CET)",
+      tag: "OLET",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       batchType : "offline",

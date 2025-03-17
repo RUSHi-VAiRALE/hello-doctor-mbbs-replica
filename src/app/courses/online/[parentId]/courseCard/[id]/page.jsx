@@ -65,6 +65,12 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     }
+  ],
+  "details" : [
+    <p>Looking for the <strong>best online CLAT coaching</strong> to ace the <strong>Common Law Admission Test (CLAT)</strong>? Join <strong>CLATians</strong>, India&apos;s leading <strong>CLAT preparation platform</strong></p>,
+    <p>We offer <strong>live interactive classes, expert mentorship, structured study material, and real-time mock tests</strong>.</p>,
+    <p>Our <strong>Online CLAT Course</strong> ensures <strong>flexible learning, AI-driven performance analysis, and 24/7 access to study resources.</strong></p>,
+    <p>Secure a seat in the top <strong>NLUs (National Law Universities)</strong> from the comfort of your home with CLATians</p>,
   ]
   },
   {
@@ -129,7 +135,13 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     }
-  ]
+  ],
+  "details" : [<p>1. Looking for the best online <strong>CLAT & AILET</strong> coaching to ace the <strong>Common Law Admission Test (CLAT)</strong> and <strong>All India LawEntrance Test (AILET)</strong>? Join <strong>CLATians</strong>, India's leading online law entrance preparation platform.</p>  ,
+              <p>We offer live interactive classes, expert mentorship, structured study material, and real-time mock tests.</p>  ,
+              <p>3. Our Online <strong>CLAT & AILET Course</strong> ensures flexible learning, personalized doubt-solving sessions, and exam-focused preparation.</p>  ,
+
+              <p>4. Secure admission in top <strong>National Law Universities (NLUs)</strong> and <strong>NLU Delhi</strong> with <strong>CLATians</strong>.</p>]
+
   },
   {
     "examName": "CUET-LAW (UG)",
@@ -193,6 +205,16 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     }
+  ],
+  "details" : [
+    <p>1. Looking for the best online <strong>CUET-LAW (UG)</strong> coaching to secure admission in top central universities? Join <strong>CLATians</strong>, India&apos;s leading <strong>CUET Law</strong> preparation institute.</p>,
+
+<p>2. We offer live interactive classes, expert mentorship, structured study material, and real-time mock tests.</p>,
+
+<p>3. Our Online <strong>CUET-LAW (UG) Course</strong> provides flexible learning, personalized attention, and exam-focused preparation.</p>,
+
+<p>4. Excel in the <strong>CUET-LAW (UG)</strong> entrance exam and secure a seat in prestigious law programs at central universities with <strong>CLATians</strong>.</p>
+
   ]
   },
   {
@@ -257,6 +279,16 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     }
+  ],
+  "details" :[
+    <p>Looking for the best online <strong>CUET-LAW (PG)</strong> coaching to excel in the <strong>Common University Entrance Test for Law (PG)</strong>? Join <strong>CLATians</strong>, India&apos;s leading <strong>CUET-LAW (PG)</strong> preparation institute.</p>, 
+
+<p>We offer live interactive classes, expert mentorship, structured study material, and real-time mock tests.</p>,
+
+<p>Our Online <strong>CUET-LAW (PG) Course</strong> ensures personalized guidance, flexible learning, and exam-focused preparation.</p> , 
+
+<p>Secure admission to top central universities and law schools with <strong>CLATians</strong>.</p>
+
   ]
   },
   {
@@ -321,6 +353,15 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     }
+  ],"details" : [
+      <p>Looking for the best online coaching for <strong>AIL-LET</strong> to secure admission to the <strong>Army Institute of Law (AIL), Mohali</strong>? Join <strong>CLATians</strong>, India&apos;s leading <strong>AIL-LET</strong> preparation institute.</p>,
+
+<p>We offer live interactive classes, expert mentorship, structured study material, and real-time mock tests.</p>,  
+
+<p>Our <strong>AIL-LET Online Batch</strong> ensures personalized guidance, flexible learning, and strategic preparation.</p>,  
+
+<p>Ace the <strong>AIL Law Entrance Test (AIL-LET)</strong> and secure your dream seat with <strong>CLATians</strong>.</p>
+
   ]
   },
   {
@@ -400,14 +441,21 @@ const data = [
         "discount": "50% OFF",
         "image": "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
       }
-    ]
-  }
+    ],
+    "details" : [
+    <p>Struggling with a specific section of the <strong>Common Law Admission Test (CLAT)</strong>? Strengthen your weak areas with <strong>CLATians Online BOOSTER Batches
+    </strong>, designed to provide in-depth, subject-wise coaching for <strong>Legal Reasoning, English, Logical Reasoning, Current Affairs,</strong> and <strong>Math</strong>.
+    </p> , 
+      <p>Our expert-led online classes, exam-focused study material, and real-time mock tests ensure you master each section and boost your overall <strong>CLAT</strong> score.</p>,
+  ]
+  },
+  
 ]
 export default function CourseDetailsPage() {
   const {parentId, id} = useParams();
   return (
     <>
-        <CourseDetails index={data[parseInt(parentId)].courses[parseInt(id)]}/>
+        <CourseDetails courseData={data[parseInt(parentId)].courses[parseInt(id)]} details={data[parseInt(parentId)].details}/>
     </>
   )
 }

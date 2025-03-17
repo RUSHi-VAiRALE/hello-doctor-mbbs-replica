@@ -10,10 +10,10 @@ import AppDownload from '@/components/AppDownload'
 import FAQ from '@/components/FAQ'
 import MoreDetails from './MoreDetails'
 
-export default function CourseDetails(courseData) {
+export default function CourseDetails({courseData,details}) {
   const [activeTab, setActiveTab] = useState('features')
   const [price , setPrice] = useState('9,999')
-
+console.log(courseData)
 
   const faqs = [
     { 
@@ -111,7 +111,7 @@ export default function CourseDetails(courseData) {
 
   return (
     <div className="min-h-screen bg-[#E7EDFF]">
-      <CourseHeader courseData={courseData.index}/>
+      <CourseHeader courseData={courseData}/>
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px] pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -139,7 +139,7 @@ export default function CourseDetails(courseData) {
               </div>
               
               <div ref={moreDetailsRef} className='mb-5' data-section="moreDetails">
-                <MoreDetails />
+                <MoreDetails details={details}/>
               </div>
 
               <div ref={downloadRef} className='mb-5' data-section="download">
@@ -149,7 +149,7 @@ export default function CourseDetails(courseData) {
             </div>
           </div>
           
-          <CourseStickyCard courseData={courseData.index} coursePrice={price}/>
+          <CourseStickyCard courseData={courseData} coursePrice={price}/>
         </div>
       </div>
     </div>

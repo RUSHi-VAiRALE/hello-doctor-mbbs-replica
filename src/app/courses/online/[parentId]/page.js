@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation'
 const data = [
   {
     "examName": "CLAT Entrance Exam",
-    "description": "Candidates preparing for the CLAT 2025-2026 can enroll in our online coaching provided by Clatians at the most reasonable rates. We offer proper guidance, resources, and mock test series to help students prepare effectively.",
+    "description": "Looking for the best online CLAT coaching to ace the Common Law Admission Test (CLAT)? Join CLATians, India’s leading CLAT preparation platform, offering live interactive classes, expert mentorship, structured study material, and real-time mock tests. Our Online CLAT Course ensures flexible learning, AI-driven performance analysis, and 24/7 access to study resources, helping you secure a seat in the top NLUs (National Law Universities) from the comfort of your home.",
     "courses": [
     {
       id: 1,
@@ -74,7 +74,7 @@ const data = [
   },
   {
     "examName": "CLAT + AILET",
-    "description": "Prepare for CLAT and AILET 2025-2026 with our comprehensive online coaching. Get access to advanced study material, test series, and expert guidance.",
+    "description": "Looking for the best online CLAT & AILET coaching to ace the Common Law Admission Test (CLAT) and All India Law Entrance Test (AILET)? Join CLATians, India's leading online law entrance preparation platform, offering live interactive classes, expert mentorship, structured study material, and real-time mock tests. Our Online CLAT & AILET Course ensures flexible learning, personalized doubt-solving sessions, and exam-focused preparation to help you secure admission in top National Law Universities (NLUs) and NLU Delhi.",
     "courses": [
     {
       id: 1,
@@ -138,13 +138,13 @@ const data = [
   },
   {
     "examName": "CUET-LAW (UG)",
-    "description": "Students preparing for CUET-LAW (UG) can enroll in our expert-guided online coaching, which includes study resources, crash courses, and test series.",
+    "description": "Looking for the best online CUET-LAW (UG) coaching to secure admission in top central universities? Join CLATians, India’s leading CUET Law preparation institute, offering live interactive classes, expert mentorship, structured study material, and real-time mock tests. Our Online CUET-LAW (UG) Course provides flexible learning, personalized attention, and exam-focused preparation, ensuring you excel in the CUET-LAW (UG) entrance exam and secure a seat in prestigious law programs at central universities.",
     "courses": [
     {
       id: 1,
       parentInd : 2,
       title: "Target CUET-LAW(UG) 2026",
-      tag: "CLAT + AILET",
+      tag: "CUET-LAW (UG)",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -158,7 +158,7 @@ const data = [
       id: 2,
       parentInd : 2,
       title: "Advanced Crash Courses",
-      tag: "CLAT + AILET",
+      tag: "CUET-LAW (UG)",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -172,7 +172,7 @@ const data = [
       id: 3,
       parentInd : 2,
       title: "Crash Course",
-      tag: "CLAT + AILET",
+      tag: "CUET-LAW (UG)",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       batchType : "online",
@@ -187,7 +187,7 @@ const data = [
       id: 4,
       parentInd : 2,
       title: "Mock test series",
-      tag: "CLAT + AILET",
+      tag: "CUET-LAW (UG)",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -202,7 +202,7 @@ const data = [
   },
   {
     "examName": "CUET-LAW (PG)",
-    "description": "Enroll in CUET-LAW (PG) coaching and get the best preparation resources, including advanced courses and mock test series.",
+    "description": "Looking for the best online CUET-LAW (PG) coaching to excel in the Common University Entrance Test for Law (PG)? Join CLATians, India’s leading CUET-LAW (PG) preparation institute, offering live interactive classes, expert mentorship, structured study material, and real-time mock tests. Our Online CUET-LAW (PG) Course ensures personalized guidance, flexible learning, and exam-focused preparation to help you secure admission to top central universities and law schools.",
     "courses": [
     {
       id: 1,
@@ -266,7 +266,7 @@ const data = [
   },
   {
     "examName": "AIL-LET",
-    "description": "Join our online coaching for AIL-LET and get structured guidance with expert-curated courses and test series.",
+    "description": "Looking for the best online coaching for AIL-LET to secure admission to the Army Institute of Law (AIL), Mohali? Join CLATians, India’s leading AIL-LET preparation institute, offering live interactive classes, expert mentorship, structured study material, and real-time mock tests. Our AIL-LET Online Batch ensures personalized guidance, flexible learning, and strategic preparation to help you ace the AIL Law Entrance Test (AIL-LET) and secure your dream seat.",
     "courses": [
     {
       id: 1,
@@ -330,7 +330,7 @@ const data = [
   },
   {
     "examName": "Booster Courses",
-    "description": "Specialized booster courses to strengthen core subjects in law exams, including Legal Reasoning, English, Logical Reasoning, Current Affairs, and Math.",
+    "description": "Struggling with a specific section of the Common Law Admission Test (CLAT)? Strengthen your weak areas with CLATians’ Online BOOSTER Batches, designed to provide in-depth, subject-wise coaching for Legal Reasoning, English, Logical Reasoning, Current Affairs, and Math. Our expert-led online classes, exam-focused study material, and real-time mock tests ensure you master each section and boost your overall CLAT score.",
     "courses": [
       {
         "id": 1,

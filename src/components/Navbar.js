@@ -41,7 +41,7 @@ export default function Navbar() {
         { name: 'CLAT+AILET', href: '/courses/offline/1' },
         { name: 'CUET-Law', href: '/courses/offline/2' },
         { name: 'CLAT + OLET', href: '/courses/offline/3' },
-        { name: 'OLET(CUET-LAW + AIL-LET + MH-CET)', href: '/courses/offline/4' },
+        { name: 'OLET (Other Law Entrance Test)', href: '/courses/offline/4' },
       ]
     },
     mock: {
