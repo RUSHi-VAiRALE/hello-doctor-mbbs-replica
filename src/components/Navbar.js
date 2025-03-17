@@ -284,9 +284,9 @@ export default function Navbar() {
 
             {/* Desktop Right Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
-              <button className="px-3 py-1.5 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors text-sm">
+              <a href="tel:9325344545" className="px-3 py-1.5 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors text-sm">
                 Call Us
-              </button>
+              </a>
               <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="px-4 py-1.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm">
                 Download App
               </Link>
@@ -432,9 +432,9 @@ export default function Navbar() {
               
               {/* Mobile Buttons */}
               <div className="px-4 py-2 space-y-3">
-                <button className="w-full px-4 py-2 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors">
+                <a href="tel:9325344545" className="w-full px-4 py-2 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors">
                   Call Us
-                </button>
+                </a>
                 <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full text-center hover:opacity-90 transition-opacity shadow-lg">
                   Download App
                 </Link>
