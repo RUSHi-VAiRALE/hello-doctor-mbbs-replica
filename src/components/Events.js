@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import Link from 'next/link';
 //import image from '../../public/400x300.png'
 
 // Import Swiper styles
@@ -136,9 +137,11 @@ export default function Events() {
                       <span className="text-sm text-gray-600">{event.location}</span>
                     </div>
 
-                    <button className="px-6 py-2.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm">
-                      View Details
-                    </button>
+                    <Link href={`/events/${index}`}>
+                      <button className="px-6 py-2.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm">
+                        View Details
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </SwiperSlide>
@@ -174,4 +177,4 @@ export default function Events() {
       </div>
     </section>
   );
-} 
+}
