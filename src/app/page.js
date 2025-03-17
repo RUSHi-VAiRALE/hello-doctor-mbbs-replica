@@ -5,8 +5,6 @@ import Features from '@/components/Features'
 import CourseCards from '@/components/CourseCards'
 import ExploreTopCourses from '@/components/ExploreTopCourses'
 import Milestones from '@/components/Milestones'
-//import Testimonials from '@/components/Testimonials'
-//import OurTeachers from '@/components/OurTeachers'
 import BlogSection from '@/components/BlogSection'
 import AppDownload from '@/components/AppDownload'
 import Events from '@/components/Events'
@@ -43,9 +41,28 @@ export default function Home() {
       answer: "For CLAT UG (undergraduate), candidates must have completed or be appearing for their 10+2 examination with a minimum of 45% marks (40% for SC/ST/OBC/PWD categories). For CLAT PG (postgraduate), candidates must have completed or be in the final year of their LLB degree with at least 50% marks (45% for reserved categories)."  },
     // Add more FAQs...
   ]
+
+   const slides = [
+      {
+        id: 1,
+        image: "https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg",
+        alt: "Slide 1"
+      },
+      {
+        id: 2, 
+        image: "https://cdn.pixabay.com/photo/2014/03/31/17/50/class-302116_1280.jpg",
+        alt: "Slide 2"
+      },
+      {
+        id: 3,
+        image: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg", 
+        alt: "Slide 3"
+      }
+    ]
+
   return (
     <main className="min-h-screen bg-white">
-      <Hero />
+      <Hero slides={slides} height={"250px"}/>
       <WhyChooseUs />
       <Features />
       <CourseCards />

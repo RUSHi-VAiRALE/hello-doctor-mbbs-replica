@@ -7,6 +7,7 @@ import ExamUpdates from '@/components/examUpdates/examUpdate'
 export default function BlogCategories() {
   const [activeCategory, setActiveCategory] = useState('legal')
   const [activeTab, setActiveTab] = useState('daily')
+  const [activeTabLegal, setActiveTabLegal] = useState('recent')
   const [selectedMonth, setSelectedMonth] = useState('all')
   const [selectedYear, setSelectedYear] = useState('2024')
 
@@ -79,23 +80,28 @@ export default function BlogCategories() {
     },
     { 
       id: 'examUpdates', 
-      name: 'Exam Updates',
+      name: 'Law Exam Updates',
       icon: '📝',
       description: 'Latest updates about law entrance exams'
     }
   ]
 
-  const tabs = [
+  const tabs = {
+    "legal" :[
+      { id: 'recent', name: 'Recent' },
+      { id: 'judiciary', name: 'Judiciary' },
+      { id: 'parliamentary', name: 'Parliamentary' },
+    ],
+    "currentAffairs" :[
     { id: 'daily', name: 'Daily' },
-    { id: 'weekly', name: 'Weekly' },
     { id: 'monthly', name: 'Monthly' },
-    { id: 'yearly', name: 'Yearly' }
   ]
+  }
 
   // Example blog data
   const blogPosts = {
     legal: {
-      daily: [
+      "recent": [
         {
           id: 1,
           title: "Understanding CLAT Pattern 2025",
@@ -141,7 +147,7 @@ export default function BlogCategories() {
           }
         // Add more posts...
       ],
-      weekly: [{
+      "judiciary": [{
         id: 1,
         title: "Understanding CLAT Pattern 2025",
         description: "Key changes and updates in the CLAT examination pattern...",
@@ -177,7 +183,7 @@ export default function BlogCategories() {
           date: "April 15, 2024",
           readTime: "5 min read"
         },],
-      monthly: [{
+      "parliamentary": [{
         id: 1,
         title: "Understanding CLAT Pattern 2025",
         description: "Key changes and updates in the CLAT examination pattern...",
@@ -206,35 +212,6 @@ export default function BlogCategories() {
           date: "April 15, 2024",
           readTime: "5 min read"
         },,],
-      yearly: [{
-        id: 1,
-        title: "Understanding CLAT Pattern 2025",
-        description: "Key changes and updates in the CLAT examination pattern...",
-        image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-        date: "April 15, 2024",
-        readTime: "5 min read"
-      },{
-          id: 2,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 3,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 4,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },,]
     },
     current: {
       daily: [{
@@ -380,13 +357,32 @@ export default function BlogCategories() {
   const renderContent = () => {
     switch (activeCategory) {
       case 'legal':
-        return <LegalArticles posts={blogPosts.legal} activeTab={activeTab} />
+        return (<>
+        <div className="bg-white rounded-2xl shadow-lg p-3 mb-12 max-w-sm mx-auto">
+              <div className="flex items-center justify-between">
+                {tabs["legal"].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTabLegal(tab.id)}
+                    className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      activeTabLegal === tab.id
+                      ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+                      : 'hover:bg-gray-50 text-gray-600'
+                    }`}
+                  >
+                    {tab.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+        <LegalArticles posts={blogPosts.legal} activeTab={activeTabLegal} />
+        </>)
       case 'current':
         return (
           <>
-            <div className="bg-white rounded-2xl shadow-lg p-3 mb-12 max-w-xl mx-auto">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 sm:gap-2">
-                {tabs.map((tab) => (
+            <div className="bg-white rounded-2xl shadow-lg p-3 max-w-[250px] mb-12 mx-auto">
+              <div className="flex items-center justify-between">
+                {tabs["currentAffairs"].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
@@ -421,7 +417,7 @@ export default function BlogCategories() {
   }
 
   return (
-    <section className="py-16 bg-[#fdf6f4]">
+    <section className="py-16 bg-gradient-to-br from-blue-50 to-red-50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {/* Category Selection - keep existing code */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">

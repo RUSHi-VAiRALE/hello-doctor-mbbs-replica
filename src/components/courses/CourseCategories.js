@@ -11,7 +11,7 @@ export default function CourseCategories() {
     },
     {
       title: 'Online Courses',
-      description: 'Click Here to Explore PW Online Courses',
+      description: 'Click Here to Explore CLATians Online Courses',
       icon: 'bi bi-laptop',
       link: '/courses',
       bgColor: 'bg-red-50'
@@ -25,7 +25,7 @@ export default function CourseCategories() {
     },
     {
       title: 'Books',
-      description: 'Explore PW LAW Preparation Books',
+      description: 'Explore CLATians LAW Preparation Books',
       icon: 'bi bi-book',
       link: '/books',
       bgColor: 'bg-purple-50'

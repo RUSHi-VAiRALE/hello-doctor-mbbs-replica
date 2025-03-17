@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
 
-export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = true, interval = 5000 }) {
+export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = true, interval = 5000 , height}) {
   useEffect(() => {
     if (!autoPlay) return
 
@@ -14,7 +14,7 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
   }, [autoPlay, interval, slides.length, setCurrentSlide])
 
   return (
-    <div className="relative h-[250px] md:h-[250px] w-full overflow-hidden py-4 mb-4">
+    <div className={`relative h-[250px] md:h-[${height}] w-full overflow-hidden py-4 mb-4`}>
       {slides.map((slide, index) => (
         <div
           key={slide.id}
@@ -27,7 +27,7 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
           }`}
         >
           <Image
-            src="https://cdn.pixabay.com/photo/2023/03/08/23/21/books-7838952_1280.jpg"
+            src={slide.image}
             alt={slide.alt}
             fill
             className="object-cover"

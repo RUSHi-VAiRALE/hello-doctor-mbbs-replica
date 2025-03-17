@@ -22,7 +22,7 @@ export default function ExploreTopCourses() {
       students: 320,
       lessons: 15,
       description: "Comprehensive preparation for CLAT examination with expert guidance and study materials.",
-      link : "courses/online/0/courseCard/0"
+      link : "courses/online/0"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
@@ -32,47 +32,52 @@ export default function ExploreTopCourses() {
       price: "₹15,000",
       students: 250,
       lessons: 12,
-      description: "Intensive preparation program for AILET with mock tests and personalized mentoring."
+      description: "Intensive preparation program for AILET with mock tests and personalized mentoring.",
+      link : "courses/online/4"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-      category: "CUET",
-      title: "CUET Complete Course",
+      category: "CUET(UG)",
+      title: "CUET(UG) Complete Course",
       level: "Intermediate",
       price: "₹20,000",
       students: 280,
       lessons: 18,
-      description: "Complete preparation package for CUET law entrance examination."
+      description: "Complete preparation package for CUET law entrance examination.",
+      link : "courses/online/2"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg", 
-      category: "CUET",
-      title: "CUET Complete Course",
+      category: "CUET(PG)",
+      title: "CUET(PG) Complete Course",
       level: "Intermediate",
       price: "₹20,000",
       students: 280,
       lessons: 18,
-      description: "Complete preparation package for CUET law entrance examination."
+      description: "Complete preparation package for CUET law entrance examination.",
+      link : "courses/online/3"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-      category: "CUET",
-      title: "CUET Complete Course",
+      category: "Booster",
+      title: "Booster Course",
       level: "Intermediate",
       price: "₹20,000",
       students: 280,
       lessons: 18,
-      description: "Complete preparation package for CUET law entrance examination."
+      description: "Complete preparation package for CUET law entrance examination.",
+      link : "courses/online/5"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-      category: "CUET",
-      title: "CUET Complete Course",
+      category: "OLET",
+      title: "OLET(Other Law Entrance Exam)  Complete Course",
       level: "Intermediate",
       price: "₹20,000",
       students: 280,
       lessons: 18,
-      description: "Complete preparation package for CUET law entrance examination."
+      description: "Complete preparation package for CUET law entrance examination.",
+      link : "courses/offline/4"
     }
   ]
 
@@ -238,7 +243,7 @@ function CourseCard({ course }) {
         <div 
           className="relative z-30"
         >
-          <Link href="/courses/1">
+          <Link href={`${course.link}`}>
             <button 
             className={`w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${isHovered  ? 'opacity-0' : 'opacity-100'}`}
             onClick={(e) => {

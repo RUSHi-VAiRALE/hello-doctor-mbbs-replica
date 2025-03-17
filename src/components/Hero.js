@@ -2,35 +2,19 @@
 import { useState } from 'react'
 import { Carousel } from '@/components/ui/Carousel'
 
-export default function Hero() {
+export default function Hero({slides,height}) {
   const [currentSlide, setCurrentSlide] = useState(0)
   
-  const slides = [
-    {
-      id: 1,
-      image: "https://placehold.co/1528x250",
-      alt: "Slide 1"
-    },
-    {
-      id: 2, 
-      image: "https://placehold.co/1528x250",
-      alt: "Slide 2"
-    },
-    {
-      id: 3,
-      image: "https://placehold.co/1528x250", 
-      alt: "Slide 3"
-    }
-  ]
 
   return (
-    <section className="relative w-full overflow-hidden px-4 sm:px-11">
+    <section className="relative w-full h-full overflow-hidden px-4 sm:px-11">
       <Carousel
         slides={slides}
         currentSlide={currentSlide}
         setCurrentSlide={setCurrentSlide}
         autoPlay={true}
         interval={5000}
+        height = {height}
       />
       
       {/* Indicators */}
