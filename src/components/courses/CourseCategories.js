@@ -3,20 +3,6 @@ import Link from 'next/link'
 export default function CourseCategories() {
   const categories = [
     {
-      title: 'Blogs',
-      description: 'Explore Our Latest Blogs',
-      icon: 'bi bi-journal-text',
-      link: '/blogs',
-      bgColor: 'bg-blue-50'
-    },
-    {
-      title: 'Online Courses',
-      description: 'Click Here to Explore CLATians Online Courses',
-      icon: 'bi bi-laptop',
-      link: '/courses',
-      bgColor: 'bg-red-50'
-    },
-    {
       title: 'Test Series',
       description: 'Explore LAW 2025-2026 Test Series',
       icon: 'bi bi-file-text',
@@ -29,7 +15,21 @@ export default function CourseCategories() {
       icon: 'bi bi-book',
       link: '/books',
       bgColor: 'bg-purple-50'
-    }
+    },
+    {
+      title: 'Preparation Tips',
+      description: 'Explore Preparation Tips',
+      icon: 'bi bi-journal-text',
+      link: '/preparation-tips',
+      bgColor: 'bg-blue-50'
+    },
+    {
+      title: 'Booster Courses',
+      description: 'Click Here to Explore CLATians Booster Courses',
+      icon: 'bi bi-laptop',
+      link: '/courses/online/0',
+      bgColor: 'bg-red-50'
+    },
   ]
 
   return (

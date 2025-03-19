@@ -437,6 +437,236 @@ const faqs = [
     // Add more FAQs...
   ]
 
+  // Default props with CLAT data
+  const examData = {
+    heroTitle: "Excel in CLAT with Expert Coaching at CLATians",
+    heroSubtitle: "Your Gateway to Premier Law Universities",
+    introduction: [
+      "The Common Law Admission Test (CLAT) stands as the gateway to India's prestigious National Law Universities (NLUs). This competitive examination evaluates your proficiency in English language, current affairs, legal reasoning, logical reasoning, and quantitative techniques. At CLATians, we provide comprehensive CLAT coaching designed by legal experts to transform aspirants into successful law professionals.",
+      "Our CLAT preparation programs are meticulously structured to address individual learning needs, helping you master the exam and secure admission to your dream law school."
+    ],
+    whyChooseTitle: "Why Choose CLATians?",
+    whyChoosePoints: [
+      "Expert legal faculty",
+      "Comprehensive study resources",
+      "Rigorous testing system",
+      "Proven success rate"
+    ],
+    eligibility: {
+      title: "Understanding CLAT Eligibility Requirements",
+      headers: ["Program Level", "Required Qualifications", "Minimum Marks"],
+      data: [
+        {
+          program: "UG Program (5-year integrated LLB)",
+          qualifications: "Completed or Appearing Class 12th examination",
+          marks: "45% (General/OBC/NRI/PWD)\n40% (SC/ST)"
+        },
+        {
+          program: "PG Program (LLM)",
+          qualifications: "Completed or Appearing 3-year or 5-year LLB",
+          marks: "50% (General/OBC/NRI/PWD)\n45% (SC/ST)"
+        }
+      ],
+      footer: "Verify your eligibility status before enrolling in our specialized coaching programs."
+    },
+    examStructure: {
+      title: "CLAT Exam Structure: Know What to Expect",
+      headers: ["Section", "Question Range", "Marks Allocation", "Examination Duration"],
+      data: [
+        {
+          section: "English Language",
+          questions: "28-32",
+          marks: "28-32",
+          duration: "2 hours (combined)"
+        },
+        {
+          section: "Current Affairs & GK",
+          questions: "35-39",
+          marks: "35-39",
+          duration: ""
+        },
+        {
+          section: "Legal Reasoning",
+          questions: "35-39",
+          marks: "35-39",
+          duration: ""
+        },
+        {
+          section: "Logical Reasoning",
+          questions: "28-32",
+          marks: "28-32",
+          duration: ""
+        },
+        {
+          section: "Quantitative Techniques",
+          questions: "13-17",
+          marks: "13-17",
+          duration: ""
+        }
+      ],
+      notes: [
+        "Correct answers earn +1 mark",
+        "Incorrect responses deduct 0.25 marks",
+        "Total questions: 120",
+        "Maximum score: 120 marks"
+      ],
+      notesFooter: "This understanding helps you develop effective time management strategies during your preparation."
+    },
+    syllabus: {
+      title: "Comprehensive CLAT Syllabus Coverage",
+      data: [
+        {
+          section: "English Language",
+          topics: "Reading comprehension, vocabulary enhancement, grammar mastery, sentence correction, verbal reasoning"
+        },
+        {
+          section: "Current Affairs & GK",
+          topics: "National and international developments, legal events, awards and recognition, sports updates, scientific advancements, social issues"
+        },
+        {
+          section: "Legal Reasoning",
+          topics: "Legal principles application, case scenarios analysis, tort law, contract law, constitutional fundamentals"
+        },
+        {
+          section: "Logical Reasoning",
+          topics: "Analytical reasoning, Critical Reasoning, arrangements, logical deductions, data sufficiency"
+        },
+        {
+          section: "Quantitative Techniques",
+          topics: "Data interpretation, percentage calculations, time-speed-distance problems, algebraic concepts, probability, arithmetic reasoning"
+        }
+      ],
+      footer: "Our expert faculty ensures complete mastery of the CLAT syllabus through structured learning modules."
+    },
+    strategicApproach: {
+      title: "Strategic CLAT Preparation Approach",
+      intro: "Follow these proven strategies to maximize your CLAT success potential:",
+      strategies: [
+        {
+          title: "Master the Exam Framework",
+          description: "Thoroughly analyze the CLAT syllabus and understand examination patterns to develop targeted preparation strategies."
+        },
+        {
+          title: "Implement a Disciplined Study Schedule",
+          description: "Create a balanced timetable covering all sections, with additional focus on challenging areas through our personalized study plans."
+        },
+        {
+          title: "Regular Assessment through Mock Tests",
+          description: "Participate in our comprehensive mock tests that simulate actual exam conditions, helping you evaluate progress and refine time management skills."
+        },
+        {
+          title: "Stay Current with Legal Developments",
+          description: "Follow our current affairs digest to remain updated on relevant legal and general developments crucial for the examination."
+        },
+        {
+          title: "Develop Effective Time Management",
+          description: "Master time allocation techniques through our specialized workshops, particularly beneficial for quantitative and logical reasoning sections."
+        },
+        {
+          title: "Learn from Expert Mentors",
+          description: "Benefit from our experienced faculty who provide structured guidance, proven strategies, and premium study resources."
+        }
+      ]
+    },
+    whyWeStandApart: {
+      title: "Why CLATians Stands Apart",
+      intro: "Our success record speaks volumes about our coaching excellence:",
+      points: [
+        {
+          title: "Expert Legal Faculty",
+          description: "Instruction from practicing lawyers and CLAT toppers who provide insider perspectives on exam strategies."
+        },
+        {
+          title: "Comprehensive Study Resources",
+          description: "Access to meticulously crafted study materials covering all CLAT topics with practice questions."
+        },
+        {
+          title: "Rigorous Testing System",
+          description: "Regular practice tests designed to mirror actual examination conditions."
+        },
+        {
+          title: "Proven Success Rate",
+          description: "Consistent record of students securing top ranks and admissions to premier NLUs."
+        }
+      ]
+    },
+    learningOptions: {
+      title: "Flexible Learning Options at CLATians",
+      headers: ["Program Type", "Ideal For", "Key Features"],
+      data: [
+        {
+          type: "Regular Classroom Program",
+          idealFor: "Full-time aspirants",
+          features: "Daily interactive sessions, comprehensive coverage, continuous doubt resolution, regular assessment"
+        },
+        {
+          type: "Weekend Intensive Program",
+          idealFor: "Working professionals & school students",
+          features: "Concentrated weekend sessions, focused topic coverage, specialized practice materials"
+        },
+        {
+          type: "Accelerated Revision Course",
+          idealFor: "Late starters & final preparation",
+          features: "Rapid syllabus review, strategic shortcuts, intensive mock testing, personalized feedback"
+        },
+        {
+          type: "Digital Learning Platform",
+          idealFor: "Remote learners & flexibility seekers",
+          features: "Live online classes, recorded sessions, virtual doubt clearing, digital practice resources"
+        }
+      ]
+    },
+    feeStructure: {
+      title: "Affordable Excellence: Fee Structure",
+      description: "CLATians offers competitive pricing for all coaching programs with flexible payment options. Our merit scholarships make quality CLAT coaching accessible to deserving students."
+    },
+    successStories: {
+      title: "Success Stories: From CLATians to NLUs",
+      stories: [
+        {
+          name: "Aryan Sharma",
+          institution: "NLSIU Bangalore",
+          testimonial: "CLATians' structured approach and mock test series were instrumental in my securing a seat at NLSIU Bangalore."
+        },
+        {
+          name: "Priya Mehta",
+          institution: "CLAT Topper",
+          testimonial: "The personalized attention and current affairs focus at CLATians helped me excel in the CLAT examination."
+        }
+      ]
+    },
+    faqs: {
+      title: "Common Questions About CLAT Preparation",
+      questions: [
+        {
+          question: "When should I ideally begin CLAT preparation?",
+          answer: "We recommend 8-12 months of dedicated preparation. However, our accelerated programs can accommodate shorter timeframes."
+        },
+        {
+          question: "Is online CLAT coaching effective?",
+          answer: "Absolutely! Our digital learning platform provides comprehensive preparation with live classes, recorded sessions, and interactive doubt-clearing."
+        },
+        {
+          question: "How can I improve my CLAT performance?",
+          answer: "Regular practice with our mock tests, consistent current affairs updates, and focused improvement in weak areas through our targeted modules."
+        },
+        {
+          question: "Are scholarship opportunities available?",
+          answer: "Yes, we offer merit-based scholarships to deserving candidates. Contact our admissions team for details."
+        }
+      ]
+    },
+    cta: {
+      title: "Begin Your CLAT Journey with CLATians Today",
+      description: "Ready to transform your law school aspirations into reality? Join CLATians and experience the difference that expert coaching makes.",
+      primaryButton: "Contact Our Counselors",
+      secondaryButton: "Enroll Now"
+    },
+    footer: "CLATians: Building Legal Minds, Creating Future Leaders"
+  }
+
+// PropTypes for validation
+
 export default function CoursesPage() {
   const pathName = usePathname();
   const index = pathName.split('/')[3];
@@ -449,7 +679,7 @@ export default function CoursesPage() {
       }}/>
       <CourseCategories />
       <CoursesList courseData={data[index].courses} examName={data[index].examName} batchType={"Online"}/>
-      <LawEntranceExams />
+      <LawEntranceExams examData={examData}/>
       <FAQ faqs={faqs}/>
     </main>
   )

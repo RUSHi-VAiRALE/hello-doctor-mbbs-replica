@@ -20,7 +20,7 @@ export default function CourseHeader({courseData}) {
           {courseData.title}
         </h1>
         <p className="text-gray-600 text-base sm:text-lg mb-8">
-          Get ready to ace LAW with top-notch guidance from the finest teachers across India.
+          {courseData.description}
         </p>
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">

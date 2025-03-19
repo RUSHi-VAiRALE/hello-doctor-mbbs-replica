@@ -7,7 +7,7 @@ export default function CoursesHero({exam}) {
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
           {exam.examName}
         </h1>
-        <p className="text-gray-600 text-sm md:text-base max-w-3xl">
+        <p className="text-gray-600 text-sm md:text-base max-w-7xl">
           {exam.examDescription}
         </p>
       </div>

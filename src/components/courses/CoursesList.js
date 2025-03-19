@@ -8,7 +8,7 @@ export default function CoursesList({courseData,examName,batchType}) {
     <div className="py-8">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <h2 className="text-2xl font-bold mb-8">
-          {batchType} {examName} <span className="text-blue-600">Batches</span>
+          {batchType} Batches : <span className="text-blue-600">{examName}</span>
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
