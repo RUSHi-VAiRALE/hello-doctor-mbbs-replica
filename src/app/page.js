@@ -69,7 +69,7 @@ export default function Home() {
       <ExploreTopCourses />
       <Milestones />
       <LearningResources />
-      <StudentSection />
+      <StudentTestimonials />
       <TeacherSection />
       <BlogSection />
       <AppDownload />

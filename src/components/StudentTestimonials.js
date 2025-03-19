@@ -37,7 +37,7 @@ export default function StudentTestimonials() {
       name: "Kumar Satyam",
       image: "https://cdn.pixabay.com/photo/2021/03/08/20/14/child-6080185_1280.jpg",
       rank: 65,
-      description: "I am grateful to CLATians for helping me crack CLAT and secure my place at CNLU, Patna. The expert faculty, personalized guidance, and excellent study material made my CLAT preparation smooth and effective. I highly recommend CLATians to anyone aiming for top NLUs. It’s truly the best CLAT coaching institute for achieving your law career dreams"
+      description: "I am grateful to CLATians for helping me crack CLAT and secure my place at CNLU, Patna. The expert faculty, personalized guidance, and excellent study material made my CLAT preparation smooth and effective. I highly recommend CLATians to anyone aiming for top NLUs. It's truly the best CLAT coaching institute for achieving your law career dreams"
     },{
       name: "Annu Kumar",
       image: "https://cdn.pixabay.com/photo/2021/03/08/20/14/child-6080185_1280.jpg",
@@ -73,13 +73,50 @@ export default function StudentTestimonials() {
     // Add more testimonials...
   ]
 
+  // Featured testimonial (first one from the list)
+  const mainTestimonial = testimonials[0];
+
   return (
     <section className="py-12 bg-[#e7edff] overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold">
-            Our <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">SUCCESS</span> STORIES
+            Student ❤️ <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">CLATians</span>
           </h3>
+        </div>
+
+        {/* Featured Testimonial Card */}
+        <div className="mb-8">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
+            {/* Image */}
+            <div className="md:w-1/2">
+              <img 
+                src={mainTestimonial.image} 
+                alt={mainTestimonial.name} 
+                className="w-full h-48 md:h-full object-cover"
+              />
+              {/* Rank Badge */}
+              <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center transform rotate-12 shadow-lg">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform -rotate-12">
+                  <div className="text-center">
+                    <div className="text-[8px] font-semibold text-gray-600">RANK</div>
+                    <div className="text-base font-bold text-red-600">{mainTestimonial.rank}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Content */}
+            <div className="p-6 md:w-1/2">
+              <div className="mb-4">
+                <i className="bi bi-quote text-xl text-red-100"></i>
+                <p className="mt-3 text-gray-600 leading-relaxed text-sm">{mainTestimonial.description}</p>
+              </div>
+              <div className="text-center">
+                <p className="font-bold text-base">{mainTestimonial.name}</p>
+                <p className="text-xs text-gray-500">CLAT Student</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="relative">
@@ -96,22 +133,22 @@ export default function StudentTestimonials() {
             breakpoints={{
               // Mobile
               400: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 12
               },
               // Tablet
               768: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 16
               },
               // Laptop
               1024: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetween: 16
               },
               // Desktop
               1280: {
-                slidesPerView: 5,
+                slidesPerView: 4,
                 spaceBetween: 16
               }
             }}
@@ -121,9 +158,30 @@ export default function StudentTestimonials() {
             }}
             className="w-full mb-8"
           >
-            {testimonials.map((testimonial, index) => (
+            {testimonials.slice(1).map((testimonial, index) => (
               <SwiperSlide key={index}>
-                <TestimonialCard testimonial={testimonial} />
+                <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col h-full">
+                  {/* Testimonial Content */}
+                  <div className="flex-grow">
+                    <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-4">{testimonial.description}</p>
+                  </div>
+                  {/* User Info */}
+                  <div className="text-center mt-auto">
+                    <div className="relative inline-block">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        className="w-10 h-10 rounded-full mx-auto mb-2 object-cover"
+                      />
+                      {/* Mini Rank Badge */}
+                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center text-[8px] text-white font-bold">
+                        {testimonial.rank}
+                      </div>
+                    </div>
+                    <p className="font-bold text-base">{testimonial.name}</p>
+                    <p className="text-xs text-gray-500">CLAT Student</p>
+                  </div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -156,66 +214,5 @@ export default function StudentTestimonials() {
         </div>
       </div>
     </section>
-  )
-}
-
-function TestimonialCard({ testimonial }) {
-  const [isHovered, setIsHovered] = useState(false)
-
-  return (
-    <div 
-      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-auto"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Student Image and Rank */}
-      <div className="relative h-44 sm:h-48 md:h-44">
-        <Image
-          src={testimonial.image}
-          alt={testimonial.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-        />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-        
-        {/* Rank Badge */}
-        <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center transform rotate-12 shadow-lg">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform -rotate-12">
-            <div className="text-center">
-              <div className="text-[8px] font-semibold text-gray-600">RANK</div>
-              <div className="text-base font-bold text-red-600">{testimonial.rank}</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Student Name */}
-        <div className="absolute bottom-2 left-3 right-3">
-          <h4 className="text-white text-lg font-bold truncate">{testimonial.name}</h4>
-        </div>
-      </div>
-
-      {/* Testimonial Content */}
-      <div className="p-4">
-        <div className="relative">
-          <i className="bi bi-quote text-xl text-red-100 absolute -top-3 -left-1"></i>
-          <p className="text-gray-600 text-xs leading-relaxed pl-4 line-clamp-3 sm:line-clamp-4 md:line-clamp-5">
-            {testimonial.description}
-          </p>
-        </div>
-
-        {/* Read More Button */}
-        <button 
-          className="mt-2 text-xs text-red-600 hover:text-red-700 font-medium flex items-center gap-1"
-          onClick={() => {/* Add read more functionality */}}
-        >
-          Read More
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
-      </div>
-    </div>
   )
 }

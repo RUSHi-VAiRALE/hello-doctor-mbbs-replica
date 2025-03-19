@@ -1,9 +1,16 @@
-import React from 'react';
-
-
-// Install Swiper modules
+'use client'
+import { useState, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function StudentSection() {
+  const [progress, setProgress] = useState(0);
+  const [swiper, setSwiper] = useState(null);
+  
   // Main featured testimonial data
   const mainTestimonial = {
     name: "Tathagat Awatar",
@@ -31,6 +38,18 @@ export default function StudentSection() {
       role: "IBPS Topper",
       avatar: "https://placehold.co/50",
       content: "Physics Wallah helped me establish the basics of every subject and allowed me to progress quickly while maintaining accuracy. It was a game-changer!"
+    },
+    {
+      name: "Jane Doe",
+      role: "NEET 2023 AIR 10",
+      avatar: "https://placehold.co/50",
+      content: "Physics Wallah gave me confidence and structured my learning to crack my exam. I owe my success to their excellent teaching!"
+    },
+    {
+      name: "Jane Doe",
+      role: "NEET 2023 AIR 10",
+      avatar: "https://placehold.co/50",
+      content: "Physics Wallah gave me confidence and structured my learning to crack my exam. I owe my success to their excellent teaching!"
     },
     {
       name: "Jane Doe",
@@ -76,29 +95,96 @@ export default function StudentSection() {
             </div>
           </div>
 
-          {/* Grid of Testimonials */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-lg flex flex-col h-full">
-                {/* Testimonial Content */}
-                <div className="flex-grow">
-                  <p className="text-gray-600 mb-4 leading-relaxed text-sm">{testimonial.content}</p>
-                </div>
-                {/* User Info */}
-                <div className="text-center mt-auto">
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={testimonial.name} 
-                    className="w-10 h-10 rounded-full mx-auto mb-2"
-                  />
-                  <p className="font-bold text-base">{testimonial.name}</p>
-                  <p className="text-xs text-gray-500">{testimonial.role}</p>
-                </div>
+          {/* Testimonials Carousel */}
+          <div className="relative">
+            <Swiper
+              onSwiper={setSwiper}
+              modules={[Navigation, Pagination, Autoplay]}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              loop={true}
+              spaceBetween={16}
+              breakpoints={{
+                // Mobile
+                400: {
+                  slidesPerView: 1,
+                  spaceBetween: 12
+                },
+                // Tablet
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 16
+                },
+                // Laptop
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 16
+                },
+                // Desktop
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 16
+                }
+              }}
+              onSlideChange={(swiper) => {
+                const progress = ((swiper.realIndex + 1) / testimonials.length) * 100;
+                setProgress(progress);
+              }}
+              className="w-full mb-8"
+            >
+              {testimonials.map((testimonial, index) => (
+                <SwiperSlide key={index}>
+                  <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col h-full">
+                    {/* Testimonial Content */}
+                    <div className="flex-grow">
+                      <p className="text-gray-600 mb-4 leading-relaxed text-sm">{testimonial.content}</p>
+                    </div>
+                    {/* User Info */}
+                    <div className="text-center mt-auto">
+                      <img 
+                        src={testimonial.avatar} 
+                        alt={testimonial.name} 
+                        className="w-10 h-10 rounded-full mx-auto mb-2"
+                      />
+                      <p className="font-bold text-base">{testimonial.name}</p>
+                      <p className="text-xs text-gray-500">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          {/* Navigation and Progress Bar */}
+          <div className="md:w-full w-[78%] mx-auto">
+            <div className="flex items-center justify-between gap-4">
+              <button 
+                onClick={() => swiper?.slidePrev()}
+                className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
+              >
+                <i className="bi bi-chevron-left text-red-600 group-hover:text-blue-600"></i>
+              </button>
+              
+              <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                ></div>
               </div>
-            ))}
+              
+              <button 
+                onClick={() => swiper?.slideNext()}
+                className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
+              >
+                <i className="bi bi-chevron-right text-red-600 group-hover:text-blue-600"></i>
+              </button>
+            </div>
           </div>
         </div>
       </section>
     </>
   )
-} 
+}

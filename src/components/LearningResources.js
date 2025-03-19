@@ -4,7 +4,7 @@ const resources = [
   { title: "Alumni Support", description: "Empowering Alumni, Strengthening Connections.", icon: <FaBook className="text-blue-400 text-3xl" />, bgColor: "bg-[#e8f4fe]", link:"/onlineResources" },
   { title: "Carrier Guidance", description: "Expert career guidance to help you achieve your goals!", icon: <FaRegNewspaper className="text-red-500 text-3xl" />, bgColor: "bg-[#fdecef]", link:"/courses/online/0" },
   { title: "Blogs", description: "Explore Our Latest Blogs", icon: <FaDesktop className="text-blue-500 text-3xl" />, bgColor: "bg-[#eaf4fe]",link:"/blogs" },
-  { title: "Test Series", description: "Explore Test Series for Preparation", icon: <FaClipboardList className="text-green-500 text-3xl" />, bgColor: "bg-[#eaffea]", link:"/onlineResources" },
+  { title: "Online Mock Test", description: "Explore Online Mock Test Series for Preparation", icon: <FaClipboardList className="text-green-500 text-3xl" />, bgColor: "bg-[#eaffea]", link:"/onlineResources" },
 ];
 export default function LearningResources() {
   return (

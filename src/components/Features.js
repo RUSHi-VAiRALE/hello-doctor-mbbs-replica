@@ -38,7 +38,7 @@ export default function Features() {
     {
       icon: "bi-journal-text",
       title: "10 Million +",
-      description: "Tests, sample papers & notes"
+      description: "Quetion Bank"
     },
     {
       icon: "bi-chat-dots-fill",
@@ -47,8 +47,8 @@ export default function Features() {
     },
     {
       icon: "bi-building",
-      title: "100 +",
-      description: "Offline centres"
+      title: "10 +",
+      description: "Year Teaching Experience"
     }
   ]
 

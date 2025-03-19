@@ -71,12 +71,12 @@ export default function WhyChooseUs() {
         <div className="flex flex-col md:flex-row items-stretch gap-8 md:gap-16 lg:gap-24">
           {/* Text Section */}
           <div className={`md:w-1/2 lg:h-[450px] flex flex-col transition-all justify-between gap-6 md:gap-2 lg:gap-4 duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="md:text-4xl/10 text-3xl/10 lg:text-5xl font-bold leading-tight">
+            <h2 className="md:text-xl text-2xl/10 lg:text-4xl font-bold leading-tight">
               CLATians - India's Most Trusted & Best CLAT Coaching Institute
             </h2>
             <p className="text-gray-600 text-sm md:text-md lg:text-lg">
               Crack CLAT with India's affordable and comprehensive law entrance preparation program. From Legal Reasoning to Current Affairs, comprehensive study material to mock tests series, our expert mentors guide you through every section of CLAT to secure your seat in Top National Law Universities (NLUs).
-              <br/> Join 10,000+ successful aspirants. Start your NLU journey today at unmatched Study Environment!
+              <br/><strong className='text-black'>Start your NLU journey today at unmatched Study Environment!</strong>
 
             </p>
             <div className="flex gap-8 md:gap-12 lg:gap-16">
