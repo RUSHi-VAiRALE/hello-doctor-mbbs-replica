@@ -46,7 +46,7 @@ console.log(courseData)
   // Create refs for each section
   const featuresRef = useRef(null)
   const aboutRef = useRef(null)
-  const scheduleRef = useRef(null)
+  const batchStrategyRef = useRef(null)
   const downloadRef = useRef(null)
 
   // Add moreDetailsRef
@@ -57,7 +57,7 @@ console.log(courseData)
     const refs = {
       features: featuresRef,
       about: aboutRef,
-      schedule: scheduleRef,
+      batchStrategy: batchStrategyRef,
       download: downloadRef,
       moreDetails: moreDetailsRef // Add this line
     }
@@ -97,7 +97,7 @@ console.log(courseData)
     const observer = new IntersectionObserver(handleIntersect, options)
 
     // Observe all sections
-    const sections = [featuresRef.current, aboutRef.current, scheduleRef.current,moreDetailsRef.current,downloadRef.current]
+    const sections = [featuresRef.current, aboutRef.current, batchStrategyRef.current,moreDetailsRef.current,downloadRef.current]
     sections.forEach(section => {
       if (section) observer.observe(section)
     })
@@ -127,14 +127,14 @@ console.log(courseData)
               </div>
               
               <div ref={featuresRef} className='mb-5' data-section="features">
-                <CourseFeatures setPriceHook={setPrice}/>
+                <CourseFeatures setPriceHook={setPrice} courseData={courseData}/>
               </div>
               
               <div ref={aboutRef} className='mb-5' data-section="about">
-                <CourseAbout />
+                <CourseAbout courseData={courseData}/>
               </div>
               
-              <div ref={scheduleRef} className='mb-5' data-section="schedule">
+              <div ref={batchStrategyRef} className='mb-5' data-section="batchStrategy">
                 <CourseSchedule />
               </div>
               
@@ -142,9 +142,9 @@ console.log(courseData)
                 <MoreDetails details={details}/>
               </div>
 
-              <div ref={downloadRef} className='mb-5' data-section="download">
+              {/* <div ref={downloadRef} className='mb-5' data-section="download">
                 <AppDownload />
-              </div>
+              </div> */}
               <FAQ faqs={faqs}/>
             </div>
           </div>

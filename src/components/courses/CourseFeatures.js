@@ -1,5 +1,5 @@
 import { useState } from 'react'
-export default function CourseFeatures({setPriceHook}) {
+export default function CourseFeatures({setPriceHook, courseData}) {
   const [selectedPlan, setSelectedPlan] = useState('pro') // Add this line at the top
 
   const features = [
@@ -44,10 +44,10 @@ export default function CourseFeatures({setPriceHook}) {
           <div className="border border-gray-200 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-amber-50 to-red-50 transition-all duration-300 hover:border-amber-200">
             <div className="flex justify-between items-center mb-4 sm:mb-6">
               <h3 className="text-lg sm:text-xl font-bold">CLAT Achievers 2026</h3>
-              <span className="text-xl sm:text-2xl font-bold text-red-700">₹9,999</span>
+              <span className="text-xl sm:text-2xl font-bold text-red-700">{courseData?.price}</span>
             </div>
             <div className="space-y-3 sm:space-y-4">
-              {features.map((feature, index) => (
+              {courseData?.simple?.map((feature, index) => (
                 <div key={index} className="flex items-start gap-2 sm:gap-3">
                   <i className="bi bi-check-circle-fill text-amber-500 mt-1 text-sm sm:text-base"></i>
                   <span className="text-sm sm:text-base">{feature}</span>
@@ -58,7 +58,7 @@ export default function CourseFeatures({setPriceHook}) {
           {/* Hover Select Button - Regular Batch */}
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-transparent via-black/50 to-black/70 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-xl">
             <button 
-              onClick={() => handlePlanSelect('9,999', 'regular')}
+              onClick={() => handlePlanSelect(courseData?.price, 'regular')}
               className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-8 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg"
             >
               Select Plan
@@ -81,10 +81,10 @@ export default function CourseFeatures({setPriceHook}) {
           </div>
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h3 className="text-lg sm:text-xl font-bold">CLAT PRO 2026 Batch</h3>
-            <span className="text-xl sm:text-2xl font-bold">₹14,999</span>
+            <span className="text-xl sm:text-2xl font-bold">{courseData?.proPrice}</span>
           </div>
           <div className="space-y-3 sm:space-y-4">
-            {proFeatures.map((feature, index) => (
+            {courseData?.proBatch?.map((feature, index) => (
               <div key={index} className="flex items-start gap-2 sm:gap-3">
                 <i className="bi bi-check-circle-fill text-green-400 mt-1 text-sm sm:text-base"></i>
                 <span className="text-sm sm:text-base">{feature}</span>
@@ -94,7 +94,7 @@ export default function CourseFeatures({setPriceHook}) {
           {/* Hover Select Button - Pro Batch */}
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-transparent via-black/50 to-black/70 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-xl">
             <button 
-              onClick={() => handlePlanSelect('14,999', 'pro')}
+              onClick={() => handlePlanSelect(courseData?.proPrice, 'pro')}
               className="bg-gradient-to-r from-green-400 to-emerald-600 text-white px-8 py-3 rounded-full font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg"
             >
               Select Pro Plan

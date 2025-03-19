@@ -95,6 +95,11 @@ export default function BlogCategories() {
     "currentAffairs" :[
     { id: 'daily', name: 'Daily' },
     { id: 'monthly', name: 'Monthly' },
+  ],
+  "exams" :[
+    { id: 'clat', name: 'CLAT' },
+    { id: 'lsat', name: 'LSAT' },
+    { id: 'cuet', name: 'CUET' },
   ]
   }
 

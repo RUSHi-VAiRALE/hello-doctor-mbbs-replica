@@ -57,9 +57,9 @@ export default function StatsSection() {
   }
 
   const stats = [
-    { icon: "person-plus-fill", value: 256, label: "Enrolled Learner" },
-    { icon: "journal-bookmark-fill", value: 2.36, label: "Finished Session" },
-    { icon: "emoji-smile-fill", value: 99, label: "Satisfaction Rate", suffix: "%" },
+    { icon: "person-plus-fill", value: 100, label: "Succesfull Students" },
+    { icon: "journal-bookmark-fill", value: 1000, label: "Active Students" },
+    { icon: "emoji-smile-fill", value: 100, label: "Satisfaction Rate", suffix: "%" },
     { icon: "award-fill", value: 83, label: "Awards Winning" },
   ]
 

@@ -12,7 +12,68 @@ const data = [
       parentInd : 0,
       title: "Target CLAT-2026",
       tag: "CLAT",
-      batchType : "offline",
+      batchType : "offline",batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
+      price: "₹9,999",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -27,6 +88,68 @@ const data = [
       title: "Advanced Crash Courses",
       tag: "CLAT",
       badges: ["NEW", "Hinglish"],
+      batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
+      price: "₹9,999",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
       batchType : "offline",
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -41,6 +164,68 @@ const data = [
       title: "Crash Course",
       tag: "CLAT",
       batchType : "offline",
+      batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
+      price: "₹9,999",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
@@ -49,28 +234,75 @@ const data = [
       originalPrice: "₹21,000",
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    },
-    {
+    },,{
       id: 4,
-      parentInd : 0,
-      title: "Mock test series",
-      tag: "CLAT",
-      batchType : "offline",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    },{
-      id: 5,
       parentInd : 0,
       title: "Foundation CLAT-2026",
       tag: "CLAT",
       badges: ["NEW", "Hinglish"],
       batchType : "offline",
+      batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
+      price: "₹9,999",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
       features: "Premium Features Included",

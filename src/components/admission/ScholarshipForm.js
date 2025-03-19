@@ -86,12 +86,12 @@ export default function ScholarshipForm() {
               <div className="space-y-6">
               <input
                     type="text"
-                    name="Name"
-                    value={formData.Name}
+                    name="FullName"
+                    value={formData.FullName}
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg outline-none transition-colors duration-300 focus:border-red-500 peer"
-                    placeholder="First Name"
+                    placeholder="Full Name"
                   />
                 <input
                   type="tel"

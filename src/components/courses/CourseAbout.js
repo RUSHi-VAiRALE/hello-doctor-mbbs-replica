@@ -1,55 +1,12 @@
 'use client'
 import { useState } from 'react'
 
-export default function CourseAbout() {
+export default function CourseAbout({courseData}) {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
   
   // ... batchFeatures array ...
-  const batchFeatures = [
-    {
-      icon: "bi-calendar-event",
-      title: "Duration:",
-      content: "13 Jan 2025 - 25 Nov 2025"
-    },
-    {
-      icon: "bi-star",
-      title: "Validity:",
-      content: "31 Dec 2025"
-    },
-    {
-      icon: "bi-laptop",
-      title: "Online Lectures",
-      content: ""
-    },
-    {
-      icon: "bi-journal-text",
-      title: "DPPs and Test With Solutions",
-      content: ""
-    },
-    // Hidden features that show on expansion
-    {
-      icon: "bi-book",
-      title: "Study Material",
-      content: "Comprehensive study materials and notes"
-    },
-    {
-      icon: "bi-person-video3",
-      title: "Live Classes",
-      content: "Interactive sessions with expert faculty"
-    },
-    {
-      icon: "bi-question-circle",
-      title: "Doubt Resolution",
-      content: "24/7 doubt solving support"
-    },
-    {
-      icon: "bi-graph-up",
-      title: "Performance Tracking",
-      content: "Regular progress monitoring and analysis"
-    }
-  ]
 
-  const visibleFeatures = showAllFeatures ? batchFeatures : batchFeatures.
+  const visibleFeatures = showAllFeatures ? courseData.batchFeatures : courseData.batchFeatures.
   slice(0, 4)
 
   return (

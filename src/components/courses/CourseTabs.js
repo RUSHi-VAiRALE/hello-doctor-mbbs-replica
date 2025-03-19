@@ -2,9 +2,8 @@ export default function CourseTabs({ activeTab, setActiveTab }) {
   const tabs = [
     { id: 'features', label: 'Features' },
     { id: 'about', label: 'About' },
-    { id: 'schedule', label: 'Schedule' },
-    { id: 'moreDetails', label: 'More Details' }, // Add this line
-    { id: 'download', label: 'Download' },
+    { id: 'batchStrategy', label: 'Batch Strategy' },
+    { id: 'moreDetails', label: 'More Details' },
   ]
 
   return (

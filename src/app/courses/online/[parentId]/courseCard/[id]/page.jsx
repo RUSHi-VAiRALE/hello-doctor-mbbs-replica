@@ -17,6 +17,68 @@ const data = [
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
+      batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
+      price: "₹9,999",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
       features: "Premium Features Included",
       price: "₹9,999",
       originalPrice: "₹21,000",
@@ -31,7 +93,68 @@ const data = [
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
       endDate: "31 Dec, 2025",
-      batchType : "online",
+      batchType : "online",batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
+      price: "₹9,999",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
       features: "Premium Features Included",
       price: "₹9,999",
       originalPrice: "₹21,000",
@@ -45,7 +168,68 @@ const data = [
       tag: "CLAT",
       badges: ["NEW", "Hinglish"],
       startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
+      endDate: "31 Dec, 2025",batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
+      price: "₹9,999",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
       batchType : "online",
       features: "Premium Features Included",
       price: "₹9,999",
@@ -75,9 +259,71 @@ const data = [
       startDate: "13 Jan, 2025",
       batchType : "online",
       endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
+      batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ],
       price: "₹9,999",
-      originalPrice: "₹21,000",
+      "proBatch": [
+        "Live Lectures and Recorded Videos",
+        "Online Resource Access",
+        "Practice Modules, Notes & DPD",
+        "CLATians CA CODE",
+        "Sectional & Topic-wise Test",
+        "Online Mock Test Series",
+        "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  proPrice: "₹15,000",
+  originalPrice: "₹21,000",
+  features: "Premium Features Included",
+      
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },{
@@ -87,14 +333,75 @@ const data = [
       description:"The Advanced Crash Course for CLAT + AILET 2026 provides intensive, fast-paced coaching designed to enhance last-minute preparation, helping students boost their performance and increase their chances of securing admission to top NLUs.",
       tag: "CLAT + AILET",
       badges: ["NEW", "Hinglish"],
+      "proBatch": [
+    "Live Lectures and Recorded Videos",
+    "Online Resource Access",
+    "Practice Modules, Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
+  "simple": [
+    "Live Lectures",
+    "Notes & DPD",
+    "CLATians CA CODE",
+    "Sectional & Topic-wise Test",
+    "Online Mock Test Series",
+    "CLAT Question Banks"
+  ],
       startDate: "13 Jan, 2025",
       batchType : "online",
       endDate: "31 Dec, 2025",
       features: "Premium Features Included",
-      price: "₹9,999",
+      price: "₹10,000",
+      proPrice: "₹15,000",
       originalPrice: "₹21,000",
       discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
+      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
+      batchFeatures : [
+        {
+          icon: "bi-calendar-event",
+          title: "Duration:",
+          content: "From Admission – CLAT 2026 Exam"
+        },
+        {
+          icon: "bi-star",
+          title: "Batch Strategy:",
+          content: "Syllabus → Practice Session → Mock Test Series"
+        },
+        {
+          icon: "bi-laptop",
+          title: "Online Resources Access",
+          content: ""
+        },
+        {
+          icon: "bi-journal-text",
+          title: "Monthly Magazine",
+          content: "Current Affairs & Legal Affairs"
+        },
+        // Hidden features that show on expansion
+        {
+          icon: "bi-book",
+          title: "Study Material",
+          content: "Comprehensive study materials, DPDs & more"
+        },
+        {
+          icon: "bi-person-video3",
+          title: "Live Classes",
+          content: "Interactive sessions with expert faculty"
+        },
+        {
+          icon: "bi-question-circle",
+          title: "Doubt Resolution",
+          content: "Special Doubt Session (Online)"
+        },
+        {
+          icon: "bi-graph-up",
+          title: "Performance Tracking",
+          content: "Regular progress monitoring and analysis"
+        }
+      ]
     },{
       id: 3,
       parentInd : 1,
@@ -112,11 +419,24 @@ const data = [
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
   ],
-  "details" : [<p>1. Looking for the best online <strong>CLAT & AILET</strong> coaching to ace the <strong>Common Law Admission Test (CLAT)</strong> and <strong>All India LawEntrance Test (AILET)</strong>? Join <strong>CLATians</strong>, India's leading online law entrance preparation platform.</p>  ,
-              <p>We offer live interactive classes, expert mentorship, structured study material, and real-time mock tests.</p>  ,
-              <p>3. Our Online <strong>CLAT & AILET Course</strong> ensures flexible learning, personalized doubt-solving sessions, and exam-focused preparation.</p>  ,
-
-              <p>4. Secure admission in top <strong>National Law Universities (NLUs)</strong> and <strong>NLU Delhi</strong> with <strong>CLATians</strong>.</p>]
+  "details" : [
+    <p>Comprehensive Preparation Method & Syllabus Coverage of <strong>CLAT 2026</strong>.</p>,
+    <p>Preparation Strategy Guide for Students: with a detailed & structured approach that will maximize your chances of success. This comprehensive plan divides your journey into three phases, each with specific goals and activities.</p>,
+    <p>Well Qualified & Cooperative Faculties.</p>,
+    <p><strong>5000+ Questions Practice</strong> with Solutions.</p>,
+    <p>More than <strong>100 Comprehensive Tests</strong> with Solutions.</p>,
+    <p>Monthly Magazines (including <strong>Current Affairs & Legal Reasoning</strong>).</p>,
+    <p>Total <strong>100+ Daily Practice Drills (DPDs)</strong> with detailed solutions.</p>,
+    <p>Our <strong>Adv Crash Course Pro</strong> for CLAT batch offers <strong>Special 1-1 Interaction</strong> to provide personalized coaching, targeted strategy, and expert guidance, ensuring optimized preparation and better results for your CLAT exam success.</p>,
+    <p>The <strong>Personal Mentorship</strong> feature: one-on-one guidance from expert mentors. Tailored to individual needs, this personalized support helps students enhance their strengths, address weaknesses, and stay focused on their CLAT preparation. With regular progress reviews and customized strategies, students are equipped to excel in the CLAT exam and secure top <strong>NLU admissions</strong>.</p>,
+    <p>Our <strong>Performance Analysis</strong> feature in this batch includes offline tests and detailed report cards to pinpoint weak areas. This helps students focus on improvement, enhancing skills in <strong>legal aptitude, reasoning, and general knowledge</strong>, ensuring steady progress and better chances of excelling in the CLAT exam and securing top <strong>NLU admissions</strong>.</p>,
+    <p>Our <strong>Bilingual Teaching</strong> feature ensures that classes are taught in <strong>Hinglish (Hindi & English)</strong>, making complex concepts easier to understand. This approach helps students grasp key topics more effectively, improving their CLAT preparation and boosting their chances of securing top <strong>NLUs</strong>.</p>,
+    <p>For any queries & concerns, please reach out to us on <strong>8507700177</strong>.</p>,
+    <p><strong>Non-Refundable Fees:</strong> Fees for study materials, tax, and registration are not refundable.</p>,
+    <p>The registration fee is included in the price of the batch shown on the website. The breakup of the registration fee will be mentioned on the invoice. The exact details might change from one batch to another.</p>,
+    <p><strong>T&C Applicable</strong>.</p>
+  ]
+  
 
   },
   {
@@ -234,13 +554,24 @@ const data = [
     },
   ],
   "details" :[
-    <p>Looking for the best online <strong>CUET-LAW (PG)</strong> coaching to excel in the <strong>Common University Entrance Test for Law (PG)</strong>? Join <strong>CLATians</strong>, India&apos;s leading <strong>CUET-LAW (PG)</strong> preparation institute.</p>, 
-
-<p>We offer live interactive classes, expert mentorship, structured study material, and real-time mock tests.</p>,
-
-<p>Our Online <strong>CUET-LAW (PG) Course</strong> ensures personalized guidance, flexible learning, and exam-focused preparation.</p> , 
-
-<p>Secure admission to top central universities and law schools with <strong>CLATians</strong>.</p>
+    [
+      <p>Comprehensive Preparation Method & Syllabus Coverage of <strong>CLAT 2026</strong>.</p>,
+      <p>Preparation Strategy Guide for Students: with a detailed & structured approach that will maximize your chances of success. This comprehensive plan divides your journey into three phases, each with specific goals and activities.</p>,
+      <p>Well Qualified & Cooperative Faculties.</p>,
+      <p><strong>5000+ Questions Practice</strong> with Solutions.</p>,
+      <p>More than <strong>100 Comprehensive Tests</strong> with Solutions.</p>,
+      <p>Monthly Magazines (including <strong>Current Affairs & Legal Reasoning</strong>).</p>,
+      <p>Total <strong>100+ Daily Practice Drills (DPDs)</strong> with detailed solutions.</p>,
+      <p>Our <strong>Adv Crash Course Pro</strong> for CLAT batch offers <strong>Special 1-1 Interaction</strong> to provide personalized coaching, targeted strategy, and expert guidance, ensuring optimized preparation and better results for your CLAT exam success.</p>,
+      <p>The <strong>Personal Mentorship</strong> feature: one-on-one guidance from expert mentors. Tailored to individual needs, this personalized support helps students enhance their strengths, address weaknesses, and stay focused on their CLAT preparation. With regular progress reviews and customized strategies, students are equipped to excel in the CLAT exam and secure top <strong>NLU admissions</strong>.</p>,
+      <p>Our <strong>Performance Analysis</strong> feature in this batch includes offline tests and detailed report cards to pinpoint weak areas. This helps students focus on improvement, enhancing skills in <strong>legal aptitude, reasoning, and general knowledge</strong>, ensuring steady progress and better chances of excelling in the CLAT exam and securing top <strong>NLU admissions</strong>.</p>,
+      <p>Our <strong>Bilingual Teaching</strong> feature ensures that classes are taught in <strong>Hinglish (Hindi & English)</strong>, making complex concepts easier to understand. This approach helps students grasp key topics more effectively, improving their CLAT preparation and boosting their chances of securing top <strong>NLUs</strong>.</p>,
+      <p>For any queries & concerns, please reach out to us on <strong>8507700177</strong>.</p>,
+      <p><strong>Non-Refundable Fees:</strong> Fees for study materials, tax, and registration are not refundable.</p>,
+      <p>The registration fee is included in the price of the batch shown on the website. The breakup of the registration fee will be mentioned on the invoice. The exact details might change from one batch to another.</p>,
+      <p><strong>T&C Applicable</strong>.</p>
+    ]
+    
 
   ]
   },
@@ -295,15 +626,23 @@ const data = [
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
   ],"details" : [
-      <p>Looking for the best online coaching for <strong>AIL-LET</strong> to secure admission to the <strong>Army Institute of Law (AIL), Mohali</strong>? Join <strong>CLATians</strong>, India&apos;s leading <strong>AIL-LET</strong> preparation institute.</p>,
-
-<p>We offer live interactive classes, expert mentorship, structured study material, and real-time mock tests.</p>,  
-
-<p>Our <strong>AIL-LET Online Batch</strong> ensures personalized guidance, flexible learning, and strategic preparation.</p>,  
-
-<p>Ace the <strong>AIL Law Entrance Test (AIL-LET)</strong> and secure your dream seat with <strong>CLATians</strong>.</p>
-
+    <p>Comprehensive Preparation Method & Syllabus Coverage of <strong>CLAT 2026</strong>.</p>,
+    <p>Preparation Strategy Guide for Students: with a detailed & structured approach that will maximize your chances of success. This comprehensive plan divides your journey into three phases, each with specific goals and activities.</p>,
+    <p>Well Qualified & Cooperative Faculties.</p>,
+    <p><strong>5000+ Questions Practice</strong> with Solutions.</p>,
+    <p>More than <strong>100 Comprehensive Tests</strong> with Solutions.</p>,
+    <p>Monthly Magazines (including <strong>Current Affairs & Legal Reasoning</strong>).</p>,
+    <p>Total <strong>100+ Daily Practice Drills (DPDs)</strong> with detailed solutions.</p>,
+    <p>Our <strong>Adv Crash Course Pro</strong> for CLAT batch offers <strong>Special 1-1 Interaction</strong> to provide personalized coaching, targeted strategy, and expert guidance, ensuring optimized preparation and better results for your CLAT exam success.</p>,
+    <p>The <strong>Personal Mentorship</strong> feature: one-on-one guidance from expert mentors. Tailored to individual needs, this personalized support helps students enhance their strengths, address weaknesses, and stay focused on their CLAT preparation. With regular progress reviews and customized strategies, students are equipped to excel in the CLAT exam and secure top <strong>NLU admissions</strong>.</p>,
+    <p>Our <strong>Performance Analysis</strong> feature in this batch includes offline tests and detailed report cards to pinpoint weak areas. This helps students focus on improvement, enhancing skills in <strong>legal aptitude, reasoning, and general knowledge</strong>, ensuring steady progress and better chances of excelling in the CLAT exam and securing top <strong>NLU admissions</strong>.</p>,
+    <p>Our <strong>Bilingual Teaching</strong> feature ensures that classes are taught in <strong>Hinglish (Hindi & English)</strong>, making complex concepts easier to understand. This approach helps students grasp key topics more effectively, improving their CLAT preparation and boosting their chances of securing top <strong>NLUs</strong>.</p>,
+    <p>For any queries & concerns, please reach out to us on <strong>8507700177</strong>.</p>,
+    <p><strong>Non-Refundable Fees:</strong> Fees for study materials, tax, and registration are not refundable.</p>,
+    <p>The registration fee is included in the price of the batch shown on the website. The breakup of the registration fee will be mentioned on the invoice. The exact details might change from one batch to another.</p>,
+    <p><strong>T&C Applicable</strong>.</p>
   ]
+  
   },
   {
     "examName": "Booster Courses",

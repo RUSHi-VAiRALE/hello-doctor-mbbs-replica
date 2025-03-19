@@ -89,7 +89,7 @@ export default function StudentTestimonials() {
         <div className="mb-8">
           <div className="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
             {/* Image */}
-            <div className="md:w-1/2">
+            <div className="relative md:w-1/2">
               <img 
                 src={mainTestimonial.image} 
                 alt={mainTestimonial.name} 
