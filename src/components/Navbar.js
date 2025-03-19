@@ -47,8 +47,8 @@ export default function Navbar() {
     mock: {
       label: 'Mock Test',
       courses: [
-        { name: 'Online Mock Test', href: '/courses/mock/online' },
-        { name: 'Offline Mock Test', href: '/courses/mock/offline' },
+        { name: 'Online Mock Test', href: '/mock-tests/online' },
+        { name: 'Offline Mock Test', href: '/mock-tests/offline' },
       ]
     }
   }

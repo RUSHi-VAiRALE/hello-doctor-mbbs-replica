@@ -6,7 +6,6 @@ export default function Blogs() {
     return (
         <>
             <AboutHero route="Home" page="Blogs" />
-            <FeaturedBlog />
             <BlogCategories />
         </>
     )

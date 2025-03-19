@@ -8,6 +8,7 @@ export default function BlogCategories() {
   const [activeCategory, setActiveCategory] = useState('legal')
   const [activeTab, setActiveTab] = useState('daily')
   const [activeTabLegal, setActiveTabLegal] = useState('recent')
+  const [activeTabExam, setActiveTabExam] = useState('clat')
   const [selectedMonth, setSelectedMonth] = useState('all')
   const [selectedYear, setSelectedYear] = useState('2024')
 
@@ -98,8 +99,11 @@ export default function BlogCategories() {
   ],
   "exams" :[
     { id: 'clat', name: 'CLAT' },
+    { id: 'ailet', name: 'AILET' },
+    { id: 'cetlaw', name: 'MH CET-LAW' },
     { id: 'lsat', name: 'LSAT' },
     { id: 'cuet', name: 'CUET' },
+    { id: 'aillet', name: 'AIL-LET' },
   ]
   }
 
@@ -415,7 +419,26 @@ export default function BlogCategories() {
           </>
         )
       case 'examUpdates':
-        return <ExamUpdates exam={examUpdates} isHero={false} />
+        return <>
+        <div className="bg-white rounded-2xl shadow-lg p-3 max-w-xl mb-12 mx-auto">
+              <div className="grid grid-cols-3">
+                {tabs["exams"].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTabExam(tab.id)}
+                    className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      activeTabExam === tab.id
+                      ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+                      : 'hover:bg-gray-50 text-gray-600'
+                    }`}
+                  >
+                    {tab.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+        <ExamUpdates exam={examUpdates} isHero={false} />
+        </>
       default:
         return null
     }

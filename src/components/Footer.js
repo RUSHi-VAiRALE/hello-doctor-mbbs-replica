@@ -8,9 +8,43 @@ const socialLinks = [
     { platform: 'https://www.youtube.com/@CLATians', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
     { platform: 'https://t.me/CLATians', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
     { platform: 'https://g.co/kgs/3NcAYmD', icon: 'bi-google', color: 'bg-[#DB4437]' },
-    { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#DB4437]'},
-    { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#DB4437]'},
+    { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#1DA1F2]'},
+    { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#0A66C2]'},
   ]
+
+// New arrays with text and link for each footer section
+const quickLinks = [
+  { text: 'Admission', link: '/admission' },
+  { text: 'Student Zone', link: '/studentZone' },
+  { text: 'Gallery', link: '/gallery' },
+  { text: 'Test Series', link: '/mock-tests/online' },
+  { text: 'FAQs', link: '/faqs' }
+]
+
+const resourceLinks = [
+  { text: 'Previous Year Papers', link: '/onlineResources' },
+  { text: 'Current Affairs', link: '/blogs' },
+  { text: 'Quizzes', link: '/onlineResources' },
+  { text: 'Mains Resources', link: '/onlieResources' }
+]
+
+const companyLinks = [
+  { text: 'About Us', link: '/about' },
+  { text: 'Careers', link: '/careers' },
+  { text: 'Faculty', link: '/faculty' },
+  { text: 'Contact', link: '/contact' },
+  { text: 'Legal', link: '/legal' }
+]
+
+const courseLinks = [
+  { text: 'CLAT', link: '/courses/online/0' },
+  { text: 'CLAT+AILET', link: '/courses/online/1' },
+  { text: 'CUET(UG)', link: '/courses/online/2' },
+  { text: 'CUET(PG)', link: '/courses/online/3' },
+  { text: 'OLET', link: '/courses/offline/4' },
+  { text: 'CLAT+OLET', link: '/courses/offline/3' },
+  { text: 'Booster Course', link: '/courses/online/5' }
+]
 
 export default function Footer() {
   return (
@@ -84,10 +118,10 @@ export default function Footer() {
               <div>
                 <h5 className="font-semibold text-lg mb-4">Quick Links</h5>
                 <ul className="space-y-2">
-                  {['Admission', 'Student Zone', 'Gallery', 'Test Series', 'FAQs'].map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
-                        {link}
+                  {quickLinks.map((link) => (
+                    <li key={link.text}>
+                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                        {link.text}
                       </Link>
                     </li>
                   ))}
@@ -98,10 +132,10 @@ export default function Footer() {
               <div>
                 <h5 className="font-semibold text-lg mb-4">Resources</h5>
                 <ul className="space-y-2">
-                  {['Previous Year Papers', 'Current Affairs', 'Quizzes', 'Mains Resources'].map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
-                        {link}
+                  {resourceLinks.map((link) => (
+                    <li key={link.text}>
+                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                        {link.text}
                       </Link>
                     </li>
                   ))}
@@ -112,10 +146,10 @@ export default function Footer() {
               <div>
                 <h5 className="font-semibold text-lg mb-4">Company</h5>
                 <ul className="space-y-2">
-                  {['About Us', 'Careers', 'Faculty', 'Contact', 'Legal'].map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
-                        {link}
+                  {companyLinks.map((link) => (
+                    <li key={link.text}>
+                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                        {link.text}
                       </Link>
                     </li>
                   ))}
@@ -126,10 +160,10 @@ export default function Footer() {
               <div>
                 <h5 className="font-semibold text-lg mb-4">Courses</h5>
                 <ul className="space-y-2">
-                  {['CLAT', 'CLAT+AILET', 'CUET(UG)','CUET(PG)', 'OLET','CLAT+OLET','Booster Course'].map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
-                        {link}
+                  {courseLinks.map((link) => (
+                    <li key={link.text}>
+                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                        {link.text}
                       </Link>
                     </li>
                   ))}
@@ -148,4 +182,4 @@ export default function Footer() {
       </div>
     </footer>
   )
-} 
+}
