@@ -55,21 +55,6 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
-      id: 4,
-      parentInd : 0,
-      title: "Mock test series",
-      tag: "CLAT",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      batchType : "online",
-      endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    }
   ]
   },
   {
@@ -119,21 +104,6 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
-      id: 4,
-      parentInd : 1,
-      title: "Mock test series",
-      tag: "CLAT + AILET",
-      badges: ["NEW", "Hinglish"],
-      batchType : "online",
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    }
   ]
   },
   {
@@ -183,21 +153,6 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
-      id: 4,
-      parentInd : 2,
-      title: "Mock test series",
-      tag: "CUET-LAW (UG)",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      batchType : "online",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    }
   ]
   },
   {
@@ -247,21 +202,6 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
-      id: 4,
-      parentInd : 3,
-      title: "Mock test series",
-      tag: "CUET-LAW (PG)",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      batchType : "online",
-      endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    }
   ]
   },
   {
@@ -311,21 +251,6 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
-      id: 4,
-      parentInd : 4,
-      title: "Mock test series",
-      tag: "AIL-LET",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      batchType : "online",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    }
   ]
   },
   {

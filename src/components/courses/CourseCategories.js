@@ -6,28 +6,28 @@ export default function CourseCategories() {
       title: 'Test Series',
       description: 'Explore LAW 2025-2026 Test Series',
       icon: 'bi bi-file-text',
-      link: '/test-series',
+      link: '/mock-tests/online',
       bgColor: 'bg-green-50'
     },
     {
       title: 'Books',
       description: 'Explore CLATians LAW Preparation Books',
       icon: 'bi bi-book',
-      link: '/books',
+      link: '/onlineResourses',
       bgColor: 'bg-purple-50'
     },
     {
       title: 'Preparation Tips',
       description: 'Explore Preparation Tips',
       icon: 'bi bi-journal-text',
-      link: '/preparation-tips',
+      link: '/blogs',
       bgColor: 'bg-blue-50'
     },
     {
       title: 'Booster Courses',
       description: 'Click Here to Explore CLATians Booster Courses',
       icon: 'bi bi-laptop',
-      link: '/courses/online/0',
+      link: '/courses/online/5',
       bgColor: 'bg-red-50'
     },
   ]

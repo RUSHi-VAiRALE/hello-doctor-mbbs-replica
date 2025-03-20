@@ -7,38 +7,38 @@ export default function Milestones() {
       title: "CLAT",
       description: "Crack CLAT with expert coaching—your gateway to top NLUs!",
       image: "https://clatwallah.netlify.app/images/milestone2.png",
-      link: "/clat/about-clat.html"
+      link: "/lawEntranceExams/0"
     },
     {
       title: "AILET",
       description: "Crack AILET with expert coaching—your path to NLU Delhi.",
       image: "https://clatwallah.netlify.app/images/milestone.png",
-      link: "/clat/about-ailet.html"
+      link: "/lawEntranceExams/5"
     },
     {
-      title: "MH-CET",
+      title: "MH-CET LAW",
       description: "Ace MH-CET with expert coaching—your path to top law colleges in Maharashtra.",
       image: "https://clatwallah.netlify.app/images/milestone4.png",
-      link: "/clat/about-mhcet.html"
+      link: "/lawEntranceExams/3"
     },
     {
       title: "CUET",
       description: "Prepare for CUET with expert coaching—your gateway to top universities.",
       image: "https://clatwallah.netlify.app/images/milestone1.png",
-      link: "/about-cuet.html"
+      link: "/lawEntranceExams/1"
     },
     
     {
       title: "AIL-LET",
       description: "Crack AIL-LET with expert coaching—your path to the Army Institute of Law.",
       image: "https://clatwallah.netlify.app/images/milestone3.png",
-      link: "/clat/about-ail-let.html"
+      link: "/lawEntranceExams/4"
     },
     {
       title: "LSAT",
       description: "Crack LSAT with expert coaching—your gateway to top law schools globally.",
       image: "https://clatwallah.netlify.app/images/milestone5.png",
-      link: "/clat/about-lsat.html"
+      link: "/lawEntranceExams/2"
     },
   ]
 

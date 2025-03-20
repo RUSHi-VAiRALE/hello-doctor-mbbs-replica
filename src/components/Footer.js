@@ -31,7 +31,7 @@ const companyLinks = [
   { text: 'About Us', link: '/about' },
   { text: 'Careers', link: '/careers' },
   { text: 'Faculty', link: '/gallery' },
-  { text: 'Contact', link: '/contact' },
+  { text: 'Contact', link: '/contactUs' },
   { text: 'Legal', link: '/legal' }
 ]
 

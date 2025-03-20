@@ -55,22 +55,8 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
+   ,{
       id: 4,
-      parentInd : 0,
-      title: "Mock test series",
-      tag: "CLAT",
-      batchType : "offline",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    },{
-      id: 5,
       parentInd : 0,
       title: "Foundation CLAT-2026",
       tag: "CLAT",
@@ -136,21 +122,6 @@ const data = [
     {
       id: 4,
       parentInd : 1,
-      title: "Mock test series",
-      tag: "CLAT + AILET",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      batchType : "offline",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    },
-    {
-      id: 5,
-      parentInd : 1,
       title: "Foundation CLAT + AILET 2026",
       tag: "CLAT + AILET",
       badges: ["NEW", "Hinglish"],
@@ -212,21 +183,6 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
-      id: 4,
-      parentInd : 2,
-      title: "Mock test series",
-      tag: "CUET-LAW",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      batchType : "offline",
-      endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    }
   ]
   },
   {
@@ -276,21 +232,6 @@ const data = [
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },
-    {
-      id: 4,
-      parentInd : 3,
-      title: "Mock test series",
-      tag: "CLAT+OLET",
-      badges: ["NEW", "Hinglish"],
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      batchType : "offline",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    }
   ]
   },
 {
@@ -339,23 +280,8 @@ const data = [
       originalPrice: "₹21,000",
       discount: "55% OFF",
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
-    },
-    {
-      id: 4,
-      parentInd : 4,
-      title: "Mock test series",
-      tag: "OLET",
-      badges: ["NEW", "Hinglish"],
-      batchType : "offline",
-      startDate: "13 Jan, 2025",
-      endDate: "31 Dec, 2025",
-      features: "Premium Features Included",
-      price: "₹9,999",
-      originalPrice: "₹21,000",
-      discount: "55% OFF",
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
     },{
-      id: 5,
+      id: 4,
       parentInd : 4,
       title: "Foundation CLAT+OLET 2026",
       tag: "OLET",
