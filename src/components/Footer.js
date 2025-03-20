@@ -175,7 +175,7 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="text-center pt-8 border-t border-white/20">
           <p className="text-gray-300 text-sm">
-            © 2025 Zencodx - All rights reserved.
+            © {new Date().getFullYear()} CLATians - All rights reserved.
           </p>
         </div>
       </div>
