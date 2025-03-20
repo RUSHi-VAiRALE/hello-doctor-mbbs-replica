@@ -8,7 +8,7 @@ const studentZoneData = [
     title: "Discussion Forums",
     description: "Engage in discussions, ask questions, and collaborate with fellow students.",
     buttonText: "Join Forum",
-    link: "#"
+    link: "/forums"
   },
   {
     icon: "bi-calendar-event",
@@ -29,7 +29,7 @@ const studentZoneData = [
     title: "Quizzes",
     description: "Participate in live doubt clearing sessions with expert faculty members.",
     buttonText: "Join Quizzes",
-    link: "#"
+    link: "/quizzes"
   }
 ]
 

@@ -28,6 +28,9 @@ export default function ContactSection() {
                   <input type="email" className="form-control border rounded-lg p-4 w-full" placeholder="Your Email" required />
                 </div>
                 <div className="mb-4">
+                  <input type="number" className="form-control border rounded-lg p-4 w-full" placeholder="Your Phone Number" required />
+                </div>
+                <div className="mb-4">
                   <textarea className="form-control border rounded-lg p-4 w-full" rows="5" placeholder="Your Message" required></textarea>
                 </div>
                 <button type="submit" className="btn-gradient">Send Message</button>

@@ -18,20 +18,19 @@ const quickLinks = [
   { text: 'Student Zone', link: '/studentZone' },
   { text: 'Gallery', link: '/gallery' },
   { text: 'Test Series', link: '/mock-tests/online' },
-  { text: 'FAQs', link: '/faqs' }
 ]
 
 const resourceLinks = [
   { text: 'Previous Year Papers', link: '/onlineResources' },
   { text: 'Current Affairs', link: '/blogs' },
-  { text: 'Quizzes', link: '/onlineResources' },
-  { text: 'Mains Resources', link: '/onlieResources' }
+  { text: 'Quizzes', link: '/quizzes' },
+  { text: 'Online Resources', link: '/onlieResources' }
 ]
 
 const companyLinks = [
   { text: 'About Us', link: '/about' },
   { text: 'Careers', link: '/careers' },
-  { text: 'Faculty', link: '/faculty' },
+  { text: 'Faculty', link: '/gallery' },
   { text: 'Contact', link: '/contact' },
   { text: 'Legal', link: '/legal' }
 ]

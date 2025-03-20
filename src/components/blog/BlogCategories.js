@@ -3,6 +3,7 @@ import { useState } from 'react'
 import LegalArticles from './LegalArticles'
 import CurrentAffairs from './CurrentAffairs'
 import ExamUpdates from '@/components/examUpdates/examUpdate'
+import ExamUpdatesTips from './ExamUpdatesTips'
 
 export default function BlogCategories() {
   const [activeCategory, setActiveCategory] = useState('legal')
@@ -81,7 +82,7 @@ export default function BlogCategories() {
     },
     { 
       id: 'examUpdates', 
-      name: 'Law Exam Updates',
+      name: 'Law Exam Preparation Tips',
       icon: '📝',
       description: 'Latest updates about law entrance exams'
     }
@@ -367,45 +368,23 @@ export default function BlogCategories() {
     switch (activeCategory) {
       case 'legal':
         return (<>
-        <div className="bg-white rounded-2xl shadow-lg p-3 mb-12 max-w-sm mx-auto">
-              <div className="flex items-center justify-between">
-                {tabs["legal"].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTabLegal(tab.id)}
-                    className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                      activeTabLegal === tab.id
-                      ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
-                      : 'hover:bg-gray-50 text-gray-600'
-                    }`}
-                  >
-                    {tab.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-        <LegalArticles posts={blogPosts.legal} activeTab={activeTabLegal} />
+        
+        <LegalArticles 
+          posts={blogPosts.legal} 
+          activeTabLegal={activeTabLegal}
+          selectedMonth={selectedMonth}
+          selectedYear={selectedYear}
+          months={months}
+          years={years}
+          setSelectedMonth={setSelectedMonth}
+          setSelectedYear={setSelectedYear}
+          setActiveTabLegal={setActiveTabLegal}
+          tabs={tabs}
+        />
         </>)
       case 'current':
         return (
           <>
-            <div className="bg-white rounded-2xl shadow-lg p-3 max-w-[250px] mb-12 mx-auto">
-              <div className="flex items-center justify-between">
-                {tabs["currentAffairs"].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                      activeTab === tab.id
-                      ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
-                      : 'hover:bg-gray-50 text-gray-600'
-                    }`}
-                  >
-                    {tab.name}
-                  </button>
-                ))}
-              </div>
-            </div>
             <CurrentAffairs 
               posts={blogPosts.current}
               activeTab={activeTab}
@@ -415,18 +394,20 @@ export default function BlogCategories() {
               years={years}
               setSelectedMonth={setSelectedMonth}
               setSelectedYear={setSelectedYear}
+              setActiveTab={setActiveTab}
+              tabs={tabs}
             />
           </>
         )
       case 'examUpdates':
         return <>
-        <div className="bg-white rounded-2xl shadow-lg p-3 max-w-xl mb-12 mx-auto">
-              <div className="grid grid-cols-3">
+        <div className="bg-white rounded-2xl shadow-lg p-3 max-w-3xl mb-12 mx-auto">
+              <div className="grid grid-cols-3 md:grid-cols-6">
                 {tabs["exams"].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTabExam(tab.id)}
-                    className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                    className={`px-6 py-3 truncate rounded-xl text-sm font-medium transition-all duration-300 ${
                       activeTabExam === tab.id
                       ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
                       : 'hover:bg-gray-50 text-gray-600'
@@ -437,7 +418,9 @@ export default function BlogCategories() {
                 ))}
               </div>
             </div>
-        <ExamUpdates exam={examUpdates} isHero={false} />
+        
+        {/* Add the new ExamUpdatesTips component */}
+        <ExamUpdatesTips activeTabExam={activeTabExam} />
         </>
       default:
         return null

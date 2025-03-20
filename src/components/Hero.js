@@ -7,7 +7,7 @@ export default function Hero({slides,height}) {
   
 
   return (
-    <section className="relative w-full h-full overflow-hidden px-4 sm:px-11">
+    <section className="relative w-full h-full overflow-hidden">
       <Carousel
         slides={slides}
         currentSlide={currentSlide}

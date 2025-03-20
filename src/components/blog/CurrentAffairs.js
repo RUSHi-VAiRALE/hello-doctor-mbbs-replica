@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function CurrentAffairs({ posts, activeTab, selectedMonth, selectedYear, months, years, setSelectedMonth, setSelectedYear }) {
+export default function CurrentAffairs({ posts, activeTab, selectedMonth, selectedYear, months, years, setSelectedMonth, setSelectedYear,setActiveTab,tabs }) {
   return (
     <>
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-12 max-w-4xl mx-auto">
@@ -31,7 +31,23 @@ export default function CurrentAffairs({ posts, activeTab, selectedMonth, select
           </div>
         </div>
       </div>
-
+      <div className="bg-white rounded-2xl shadow-lg p-3 max-w-[250px] mb-12 mx-auto">
+              <div className="flex items-center justify-between">
+                {tabs["currentAffairs"].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      activeTab === tab.id
+                      ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+                      : 'hover:bg-gray-50 text-gray-600'
+                    }`}
+                  >
+                    {tab.name}
+                  </button>
+                ))}
+              </div>
+            </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts[activeTab]
           .filter(post => {
