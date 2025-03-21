@@ -15,6 +15,7 @@ import StudentSection from '@/components/StudentSection'
 import TeacherSection from '@/components/TeacherSection'
 import Footer from '@/components/Footer'
 import StudentTestimonials from '@/components/StudentTestimonials'
+import AlternatingCarousel from '@/components/AlternatingCarousel'
 
 export default function Home() {
   const faqs = [
@@ -72,6 +73,7 @@ export default function Home() {
       <StudentTestimonials />
       <TeacherSection />
       <BlogSection />
+      <AlternatingCarousel />
       <AppDownload />
       <Events />
       <FAQ faqs={faqs}/>
