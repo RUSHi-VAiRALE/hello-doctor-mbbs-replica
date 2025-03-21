@@ -9,6 +9,7 @@ import Events from "@/components/Events";
 import FAQ from "@/components/FAQ";
 import ScholarshipSteps from "@/components/ScholarshipSteps";
 import StudentTestimonials from "@/components/StudentTestimonials";
+import AlternatingCarousel from "@/components/AlternatingCarousel";
 
 export default function Admission() {
     const faqs = [
@@ -48,6 +49,7 @@ export default function Admission() {
             <ScholarshipDetails />
             <Timeline />
             <StudentTestimonials />
+            <AlternatingCarousel />
             <Events />
         </>
     )

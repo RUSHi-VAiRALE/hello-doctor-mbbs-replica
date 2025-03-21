@@ -73,7 +73,6 @@ export default function Home() {
       <StudentTestimonials />
       <TeacherSection />
       <BlogSection />
-      <AlternatingCarousel />
       <AppDownload />
       <Events />
       <FAQ faqs={faqs}/>
