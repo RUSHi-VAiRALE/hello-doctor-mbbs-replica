@@ -11,6 +11,24 @@ import 'swiper/css/pagination'
 export default function StudentTestimonials() {
   const [progress, setProgress] = useState(0)
   const [swiper, setSwiper] = useState(null)
+  const [isScrolling, setIsScrolling] = useState(false)
+
+  // Add a function to handle scroll events
+  const handleScroll = () => {
+    if (swiper) {
+      swiper.autoplay.stop();
+      
+      // Clear any existing timeout
+      if (window.scrollTimeout) {
+        clearTimeout(window.scrollTimeout);
+      }
+      
+      // Set a timeout to restart autoplay after scrolling stops
+      window.scrollTimeout = setTimeout(() => {
+        swiper.autoplay.start();
+      }, 2000); // Resume after 2 seconds of no scrolling
+    }
+  };
 
   const testimonials = [
     {
@@ -163,7 +181,10 @@ export default function StudentTestimonials() {
                 <div className="bg-white p-4 rounded-lg shadow-lg flex cursor-pointer flex-col h-full">
                   {/* Testimonial Content */}
                   <div className="flex-grow">
-                    <p className="text-gray-600 mb-4 leading-relaxed text-sm h-[120px] overflow-y-auto pr-2 scrollbar-hide">
+                    <p 
+                      className="text-gray-600 mb-4 leading-relaxed text-sm h-[120px] overflow-y-auto pr-2 scrollbar-hide"
+                      onScroll={handleScroll}
+                    >
                       {testimonial.description}
                     </p>
                   </div>

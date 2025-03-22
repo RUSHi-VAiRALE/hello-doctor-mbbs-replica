@@ -27,7 +27,7 @@ export default function LearningResources() {
             <div className="icon-wrapper w-12 h-12 mb-4 flex justify-center items-center md:w-20 md:h-20 bg-white rounded-full shadow-lg">
               {resource.icon}
             </div>
-            <h5 className="font-bold text-lg mb-2">{resource.title}</h5>
+            <h5 className="font-bold text:md md:text-lg mb-2">{resource.title}</h5>
             <p className="text-gray-600 text-sm">{resource.description}</p>
           </div>
         </Link>
