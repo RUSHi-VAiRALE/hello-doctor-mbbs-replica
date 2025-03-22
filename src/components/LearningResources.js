@@ -19,12 +19,12 @@ export default function LearningResources() {
             series, and books.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Resource Cards */}
           {resources.map((resource, index) => (
         <Link href={resource.link} key={index} className="aspect-square">
-          <div className={`resource-card text-center p-6 ${resource.bgColor} rounded-2xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center`}>
-            <div className="icon-wrapper mb-4 flex justify-center items-center w-20 h-20 bg-white rounded-full shadow-lg">
+          <div className={`resource-card text-center p-2 md:p-6 ${resource.bgColor} rounded-2xl h-full shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center`}>
+            <div className="icon-wrapper w-12 h-12 mb-4 flex justify-center items-center md:w-20 md:h-20 bg-white rounded-full shadow-lg">
               {resource.icon}
             </div>
             <h5 className="font-bold text-lg mb-2">{resource.title}</h5>

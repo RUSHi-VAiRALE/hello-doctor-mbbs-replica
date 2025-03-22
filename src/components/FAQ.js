@@ -58,9 +58,9 @@ export default function FAQ({faqs}) {
               </button>
 
               <div className={`overflow-hidden transition-all duration-300 ${
-                activeIndex === faq.index ? 'max-h-40' : 'max-h-0'
+                activeIndex === faq.index ? 'max-h-40 md:max-h-96 overflow-y-auto scrollbar-hide' : 'max-h-0'
               }`}>
-                <p className="px-6 pb-6 text-gray-600 pt-8">
+                <p className="px-6 pb-6 text-gray-600 pt-4">
                   {faq.answer}
                 </p>
               </div>

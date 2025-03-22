@@ -22,7 +22,7 @@ export default function StudentTestimonials() {
       name: "Badal",
       image: "https://cdn.pixabay.com/photo/2021/03/08/20/14/child-6080185_1280.jpg",
       rank: 9,
-      description: "I am currently studying at HNLU, Raipur, and I also cleared the AIL-LET exam. I am really thankful to CLATians for their excellent CLAT coaching and guidance. Their experienced faculty, mock tests, and study material helped me crack CLAT with confidence. If you are looking for the best CLAT coaching institute, I highly recommend CLATians for your law entrance preparation."
+      description: "I am incredibly grateful to CLATians, the best CLAT coaching institute, for helping me achieve my dream of securing AIR 10 in CLAT and becoming Bihar's 2nd Topper. The expert guidance, personalized mentoring, and high-quality study material provided by CLATians played a crucial role in my preparation.The regular mock tests, doubt-clearing sessions, and smart preparation strategies boosted my confidence and helped me perform well in the CLAT exam. I am now pursuing my law degree at NLSIU, Bengaluru, and I sincerely thank CLATians for their immense support.If you are an aspiring law student aiming for top NLUs, I highly recommend CLATians for CLAT preparation. With the right coaching and dedication, cracking CLAT becomes much easier.Thank you, CLATians, for shaping my journey to success!"
     },{
       name: "Nihal Swaraj Pal",
       image: "https://cdn.pixabay.com/photo/2021/03/08/20/14/child-6080185_1280.jpg",
@@ -160,10 +160,12 @@ export default function StudentTestimonials() {
           >
             {testimonials.slice(1).map((testimonial, index) => (
               <SwiperSlide key={index}>
-                <div className="bg-white p-4 rounded-lg shadow-lg flex flex-col h-full">
+                <div className="bg-white p-4 rounded-lg shadow-lg flex cursor-pointer flex-col h-full">
                   {/* Testimonial Content */}
                   <div className="flex-grow">
-                    <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-4">{testimonial.description}</p>
+                    <p className="text-gray-600 mb-4 leading-relaxed text-sm h-[120px] overflow-y-auto pr-2 scrollbar-hide">
+                      {testimonial.description}
+                    </p>
                   </div>
                   {/* User Info */}
                   <div className="text-center mt-auto">
