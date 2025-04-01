@@ -1,10 +1,78 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Carousel } from '@/components/ui/Carousel'
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { app } from '../firebase' // Import the initialized Firebase app
 
-export default function Hero({slides,height}) {
+export default function Hero({ height }) {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [slides, setSlides] = useState([])
+  const [loading, setLoading] = useState(true)
   
+  useEffect(() => {
+    const fetchCarouselImages = async () => {
+      try {
+        const db = getFirestore(app)
+        const carouselCollection = collection(db, 'carousel')
+        const carouselSnapshot = await getDocs(carouselCollection)
+        
+        if (!carouselSnapshot.empty) {
+          const carouselData = carouselSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+          setSlides(carouselData)
+        } else {
+          // Fallback data if no images in database
+          setSlides([
+            {
+              id: 1,
+              image: "https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg",
+              alt: "Slide 1"
+            },
+            {
+              id: 2, 
+              image: "https://cdn.pixabay.com/photo/2014/03/31/17/50/class-302116_1280.jpg",
+              alt: "Slide 2"
+            },
+            {
+              id: 3,
+              image: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg", 
+              alt: "Slide 3"
+            }
+          ])
+        }
+      } catch (error) {
+        console.error('Error fetching carousel images:', error)
+        // Fallback data in case of error
+        setSlides([
+          {
+            id: 1,
+            image: "https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg",
+            alt: "Slide 1"
+          },
+          {
+            id: 2, 
+            image: "https://cdn.pixabay.com/photo/2014/03/31/17/50/class-302116_1280.jpg",
+            alt: "Slide 2"
+          },
+          {
+            id: 3,
+            image: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg", 
+            alt: "Slide 3"
+          }
+        ])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCarouselImages()
+  }, [])
+  
+  if (loading || slides.length === 0) {
+    return <div className={`h-[${height}] w-full bg-gray-200 animate-pulse`}></div>
+  }
 
   return (
     <section className="relative w-full h-full overflow-hidden">
@@ -14,7 +82,7 @@ export default function Hero({slides,height}) {
         setCurrentSlide={setCurrentSlide}
         autoPlay={true}
         interval={5000}
-        height = {height}
+        height={height}
       />
       
       {/* Indicators */}
@@ -52,4 +120,4 @@ export default function Hero({slides,height}) {
       </button>
     </section>
   )
-} 
+}
