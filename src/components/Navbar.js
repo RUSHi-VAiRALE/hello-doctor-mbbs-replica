@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { collection, getDocs, query, where, getFirestore } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -11,18 +13,7 @@ export default function Navbar() {
   const [selectedCourseType, setSelectedCourseType] = useState('online')
   const [expandedMobileType, setExpandedMobileType] = useState(null)
   const [activeDropdown, setActiveDropdown] = useState(null)
-  const pathname = usePathname()
-
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false)
-    setIsCoursesOpen(false)
-    setIsLawExamsOpen(false)
-    setExpandedMobileType(null)
-    setActiveDropdown(null)
-  }, [pathname])
-
-  const courseTypes = {
+  const [courseTypes, setCourseTypes] = useState({
     online: {
       label: 'Online Coaching',
       courses: [
@@ -51,7 +42,62 @@ export default function Navbar() {
         { name: 'Offline Mock Test', href: '/mock-tests/offline' },
       ]
     }
-  }
+  })
+  const pathname = usePathname()
+
+  // Fetch courses from Firebase
+  useEffect(() => {
+    const db = getFirestore(app)
+    const fetchCourses = async () => {
+      try {
+        // Create a copy of the default course types
+        const updatedCourseTypes = { ...courseTypes };
+        
+        // Fetch online courses
+        const onlineQuery = query(collection(db, "courses"), where("batchType", "==", "online"));
+        const onlineSnapshot = await getDocs(onlineQuery);
+        
+        if (!onlineSnapshot.empty) {
+          const onlineCourses = onlineSnapshot.docs.map((doc, index) => ({
+            name: doc.data().examName || `Course ${index + 1}`,
+            href: `/courses/online/${doc.id}`
+          }));
+          
+          updatedCourseTypes.online.courses = onlineCourses;
+        }
+        
+        // Fetch offline courses
+        const offlineQuery = query(collection(db, "courses"), where("batchType", "==", "offline"));
+        const offlineSnapshot = await getDocs(offlineQuery);
+        
+        if (!offlineSnapshot.empty) {
+          const offlineCourses = offlineSnapshot.docs.map((doc, index) => ({
+            name: doc.data().examName || `Course ${index + 1}`,
+            href: `/courses/offline/${doc.id}`
+          }));
+          
+          updatedCourseTypes.offline.courses = offlineCourses;
+        }
+        
+        // Update state with fetched data
+        setCourseTypes(updatedCourseTypes);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+        // Fallback to default data is already handled since we initialized with default data
+      }
+    };
+    
+    fetchCourses();
+  }, []);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+    setIsCoursesOpen(false)
+    setIsLawExamsOpen(false)
+    setExpandedMobileType(null)
+    setActiveDropdown(null)
+  }, [pathname])
 
   const lawExams = {
     exams: [

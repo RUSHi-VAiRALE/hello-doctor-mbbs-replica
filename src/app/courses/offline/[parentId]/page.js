@@ -1,12 +1,16 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import CoursesHero from '@/components/courses/CoursesHero'
 import CourseCategories from '@/components/courses/CourseCategories'
 import CoursesList from '@/components/courses/CoursesList'
 import LawEntranceExams from '@/components/courses/LawEntranceExams'
 import FAQ from '@/components/FAQ'
 import { usePathname } from 'next/navigation'
+import { doc, getDoc, collection,getFirestore, query, where, getDocs } from 'firebase/firestore'
+import { app } from '../../../../firebase'
 
+// Fallback data in case Firebase fetch fails
 const data = [
   {
     "examName": "CLAT Entrance Exam",
@@ -555,16 +559,83 @@ const faqs = [
   }
 export default function CoursesPage() {
   const pathName = usePathname();
-  const index = pathName.split('/')[3];
-  //console.log(data[index].courses)
+  const parentId = pathName.split('/')[3];
+  const [courseData, setCourseData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const db = getFirestore(app)
+    const fetchCourseData = async () => {
+      try {
+        setLoading(true);
+        
+        // Try to fetch the course document by ID first
+        const courseDocRef = doc(db, "courses", parentId);
+        const courseDocSnap = await getDoc(courseDocRef);
+        
+        if (courseDocSnap.exists()) {
+          // If document exists with this ID, use it
+          setCourseData(courseDocSnap.data());
+        } else {
+          // If no document with this ID, try to find by parentInd
+          const coursesQuery = query(
+            collection(db, "courses"), 
+            where("parentInd", "==", parseInt(parentId)),
+            where("batchType", "==", "offline")
+          );
+          
+          const querySnapshot = await getDocs(coursesQuery);
+          
+          if (!querySnapshot.empty) {
+            // Get the first matching document
+            const courseDoc = querySnapshot.docs[0];
+            setCourseData(courseDoc.data());
+          } else {
+            // If no data found in Firebase, use fallback data
+            setCourseData(data[parseInt(parentId)] || data[0]);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching course data:", err);
+        setError(err);
+        // Use fallback data on error
+        setCourseData(data[parseInt(parentId)] || data[0]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourseData();
+  }, [parentId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#e7edff] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    console.error("Error loading course data:", error);
+  }
+
+  // Use fallback data if courseData is still null after loading
+  const displayData = courseData || data[parseInt(parentId)] || data[0];
+
   return (
     <main className="min-h-screen bg-[#e7edff]">
       <CoursesHero exam={{
-          examName : data[index].examName,
-          examDescription : data[index].description
+        examName: displayData.examName,
+        examDescription: displayData.description
       }}/>
       <CourseCategories />
-      <CoursesList courseData={data[index].courses} examName={data[index].examName} batchType={"Offline"}/>
+      <CoursesList 
+        courseData={displayData.courses} 
+        examName={displayData.examName} 
+        batchType={displayData.batchType}
+      />
       <LawEntranceExams examData={examData}/>
       <FAQ faqs={faqs}/>
     </main>

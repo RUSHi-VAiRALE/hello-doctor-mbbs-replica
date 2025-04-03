@@ -18,7 +18,7 @@ export default function ExploreTopCourses() {
       category: "CLAT",
       title: "CLAT Foundation Course",
       level: "Beginner",
-      price: "₹25,000",
+      price: "25,000",
       students: 320,
       lessons: 15,
       description: "Comprehensive preparation for CLAT examination with expert guidance and study materials.",
@@ -29,7 +29,7 @@ export default function ExploreTopCourses() {
       category: "AILET",
       title: "AILET Crash Course",
       level: "Advanced",
-      price: "₹15,000",
+      price: "15,000",
       students: 250,
       lessons: 12,
       description: "Intensive preparation program for AILET with mock tests and personalized mentoring.",
@@ -40,7 +40,7 @@ export default function ExploreTopCourses() {
       category: "CUET(UG)",
       title: "CUET(UG) Complete Course",
       level: "Intermediate",
-      price: "₹20,000",
+      price: "20,000",
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
@@ -51,7 +51,7 @@ export default function ExploreTopCourses() {
       category: "CUET(PG)",
       title: "CUET(PG) Complete Course",
       level: "Intermediate",
-      price: "₹20,000",
+      price: "20,000",
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
@@ -62,7 +62,7 @@ export default function ExploreTopCourses() {
       category: "Booster",
       title: "Booster Course",
       level: "Intermediate",
-      price: "₹20,000",
+      price: "20,000",
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
@@ -73,7 +73,7 @@ export default function ExploreTopCourses() {
       category: "OLET",
       title: "OLET(Other Law Entrance Exam)  Complete Course",
       level: "Intermediate",
-      price: "₹20,000",
+      price: "20,000",
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
@@ -224,7 +224,7 @@ function CourseCard({ course }) {
             {course.level}
           </span>
           <span className="text-green-600 font-bold text-lg">
-            {course.price}
+            ₹ {course.price}
           </span>
         </div>
 

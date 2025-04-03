@@ -12,7 +12,8 @@ const data = [
       parentInd : 0,
       title: "Target CLAT-2026",
       tag: "CLAT",
-      batchType : "offline",batchFeatures : [
+      batchType : "offline",
+      batchFeatures : [
         {
           icon: "bi-calendar-event",
           title: "Duration:",
