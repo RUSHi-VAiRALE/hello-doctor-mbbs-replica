@@ -1,6 +1,8 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function CurrentAffairs({ posts, activeTab, selectedMonth, selectedYear, months, years, setSelectedMonth, setSelectedYear,setActiveTab,tabs }) {
+  console.log(posts)
   return (
     <>
       <div className="bg-white rounded-2xl shadow-lg p-6 mb-12 max-w-4xl mx-auto">
@@ -49,15 +51,7 @@ export default function CurrentAffairs({ posts, activeTab, selectedMonth, select
               </div>
             </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts[activeTab]
-          .filter(post => {
-            if (selectedMonth === 'all') return post.date.includes(selectedYear);
-            const postDate = new Date(post.date);
-            const month = String(postDate.getMonth() + 1).padStart(2, '0');
-            const year = String(postDate.getFullYear());
-            return month === selectedMonth && year === selectedYear;
-          })
-          .map((post) => (
+        {posts[activeTab].map((post) => (
             <div 
               key={post.id} 
               className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
@@ -72,11 +66,16 @@ export default function CurrentAffairs({ posts, activeTab, selectedMonth, select
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-gray-900">{post.title}</h3>
-                <p className="text-gray-600 mb-4">{post.description}</p>
-                <div className="flex justify-between items-center text-sm text-gray-500">
+                <p className="text-gray-600 mb-4 line-clamp-2">{post.content}</p>
+                <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
                   <span>{post.date}</span>
-                  <span>{post.readTime}</span>
+                  <span>{post.readTime} min read</span>
                 </div>
+                <Link href={`/blogs/${post.id}`} className="block w-full">
+                  <button className="w-full py-2 px-4 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-lg hover:shadow-md transition-all duration-300">
+                    Read More
+                  </button>
+                </Link>
               </div>
             </div>
           ))}

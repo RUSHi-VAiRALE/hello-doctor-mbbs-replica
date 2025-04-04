@@ -13,6 +13,8 @@ export default function Navbar() {
   const [selectedCourseType, setSelectedCourseType] = useState('online')
   const [expandedMobileType, setExpandedMobileType] = useState(null)
   const [activeDropdown, setActiveDropdown] = useState(null)
+  const [notifications, setNotifications] = useState([])
+  const [fetchLoading, setFetchLoading] = useState(false)
   const [courseTypes, setCourseTypes] = useState({
     online: {
       label: 'Online Coaching',
@@ -44,7 +46,28 @@ export default function Navbar() {
     }
   })
   const pathname = usePathname()
-
+ // Fetch notifications from Firebase
+ useEffect(() => {
+  const db = getFirestore(app)
+  
+  const fetchNotifications = async () => {
+    setFetchLoading(true);
+    try {
+      const querySnapshot = await getDocs(collection(db, "notifications"));
+      const notificationsData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setNotifications(notificationsData);
+    } catch (error) {
+      console.error("Error fetching notifications:", error);
+    } finally {
+      setFetchLoading(false);
+    }
+  };
+  
+  fetchNotifications();
+}, []);
   // Fetch courses from Firebase
   useEffect(() => {
     const db = getFirestore(app)
@@ -132,15 +155,28 @@ export default function Navbar() {
           {/* Left: Notification Marquee */}
           <div className="w-full lg:w-auto overflow-hidden mb-1 lg:mb-0">
             <marquee className="py-1.5 text-sm">
-              <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2">
-                🔥 New Batches Starting Soon!
-              </span>
-              <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2">
-                🎯 Enroll Now
-              </span>
-              <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold">
-                🏆 Best CLAT Coaching in Patna
-              </span>
+              {notifications && notifications.length > 0 ? (
+                notifications.map((notification) => (
+                  <span 
+                    key={notification.id} 
+                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
+                  >
+                    {notification.icon && notification.icon} {notification.text}
+                  </span>
+                ))
+              ) : (
+                <>
+                  <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2">
+                    🔥 New Batches Starting Soon!
+                  </span>
+                  <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2">
+                    🎯 Enroll Now
+                  </span>
+                  <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold">
+                    🏆 Best CLAT Coaching in Patna
+                  </span>
+                </>
+              )}
             </marquee>
           </div>
 
@@ -491,4 +527,5 @@ export default function Navbar() {
       </nav>
     </>
   )
+
 }

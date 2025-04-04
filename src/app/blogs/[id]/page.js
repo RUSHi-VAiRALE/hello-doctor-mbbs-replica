@@ -1,117 +1,86 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import { getFirestore, doc, getDoc } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function BlogPost() {
-  // Example of JSON formatted blog data
-  const blogData = {
-    title: "5 Tips to Crack CLAT 2025",
-    image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-    date: "March 15, 2024",
-    author: "Legal Expert",
-    readTime: "5 min read",
-    sections: [
-      {
-        type: "paragraph",
-        content: "Preparing for CLAT (Common Law Admission Test) requires a strategic approach and consistent effort. Here are detailed tips to help you crack CLAT 2025 with excellence."
-      },
-      {
-        type: "heading",
-        content: "1. Understanding the Exam Pattern"
-      },
-      {
-        type: "paragraph",
-        content: "The first step towards successful CLAT preparation is understanding the exam pattern thoroughly. CLAT 2025 will test candidates on various sections including:"
-      },
-      {
-        type: "list",
-        items: [
-          "English Language",
-          "Current Affairs",
-          "Legal Reasoning",
-          "Logical Reasoning",
-          "Quantitative Techniques"
-        ]
-      },
-      {
-        type: "heading",
-        content: "2. Develop a Strong Reading Habit"
-      },
-      {
-        type: "paragraph",
-        content: "Reading comprehension plays a crucial role in CLAT. Make it a habit to read:"
-      },
-      {
-        type: "list",
-        items: [
-          "Quality newspapers daily",
-          "Legal magazines",
-          "Current affairs journals",
-          "Legal judgments and case laws"
-        ]
-      },
-      {
-        type: "heading",
-        content: "3. Practice Mock Tests Regularly"
-      },
-      {
-        type: "paragraph",
-        content: "Regular practice with mock tests helps you understand the exam pattern better and improves your time management skills. Analyze your performance after each mock test to identify areas that need improvement."
-      },
-      {
-        type: "heading",
-        content: "4. Focus on Legal Reasoning"
-      },
-      {
-        type: "paragraph",
-        content: "Legal reasoning is one of the most important sections in CLAT. Practice solving legal problems and case studies regularly. Understanding the principles behind legal concepts is crucial for this section."
-      },
-      {
-        type: "heading",
-        content: "5. Time Management"
-      },
-      {
-        type: "paragraph",
-        content: "CLAT is a time-bound exam. Practice solving questions within the stipulated time. Develop strategies to tackle different sections efficiently without compromising on accuracy."
-      },
-      {
-        type: "quote",
-        content: "Success in CLAT comes from consistent practice and the right strategy. Focus on your weaknesses and turn them into your strengths."
+  const [blogData, setBlogData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const params = useParams()
+  
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        setLoading(true)
+        const db = getFirestore(app)
+        const blogId = params.id
+        
+        const blogRef = doc(db, "blogs", blogId)
+        const blogSnap = await getDoc(blogRef)
+        
+        if (blogSnap.exists()) {
+          setBlogData({
+            id: blogSnap.id,
+            ...blogSnap.data()
+          })
+        } else {
+          setError("Blog not found")
+        }
+      } catch (err) {
+        console.error("Error fetching blog:", err)
+        setError("Failed to load blog")
+      } finally {
+        setLoading(false)
       }
-    ]
+    }
+    
+    if (params.id) {
+      fetchBlogData()
+    }
+  }, [params.id])
+
+  // Function to render content from the blog data
+  const renderContent = () => {
+    if (!blogData) return null
+    
+    // Split content by new lines to create paragraphs
+    const paragraphs = blogData.content.split('\n').filter(p => p.trim() !== '')
+    
+    return paragraphs.map((paragraph, index) => (
+      <p key={index} className="mb-6 text-gray-600 leading-relaxed">
+        {paragraph}
+      </p>
+    ))
   }
 
-  // Function to render different content types
-  const renderContent = (section, index) => {
-    switch (section.type) {
-      case 'heading':
-        return (
-          <h2 key={index} className="text-2xl font-bold text-gray-800 mt-8 mb-4">
-            {section.content}
-          </h2>
-        )
-      case 'paragraph':
-        return (
-          <p key={index} className="mb-6 text-gray-600 leading-relaxed">
-            {section.content}
-          </p>
-        )
-      case 'list':
-        return (
-          <ul key={index} className="list-disc pl-6 mb-6 space-y-2 text-gray-600">
-            {section.items.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        )
-      case 'quote':
-        return (
-          <div key={index} className="bg-gray-50 border-l-4 border-red-700 p-4 my-8">
-            <p className="italic text-gray-700">{section.content}</p>
-          </div>
-        )
-      default:
-        return null
-    }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[#fdf6f4]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-700"></div>
+      </div>
+    )
+  }
+
+  if (error || !blogData) {
+    return (
+      <div className="flex flex-col justify-center items-center min-h-screen bg-[#fdf6f4]">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          {error || "Blog not found"}
+        </h1>
+        <Link 
+          href="/blogs" 
+          className="inline-flex items-center text-gray-600 hover:text-red-700"
+        >
+          <i className="bi bi-arrow-left mr-2"></i>
+          Back to Blogs
+        </Link>
+      </div>
+    )
   }
 
   return (
@@ -143,45 +112,40 @@ export default function BlogPost() {
             </div>
             <div className="flex items-center">
               <i className="bi bi-clock mr-2"></i>
-              {blogData.readTime}
+              {blogData.readTime} min read
             </div>
+            {blogData.category && (
+              <div className="flex items-center">
+                <i className="bi bi-tag mr-2"></i>
+                {blogData.category}
+              </div>
+            )}
+            {blogData.frequency && (
+              <div className="flex items-center">
+                <i className="bi bi-calendar-check mr-2"></i>
+                {blogData.frequency}
+              </div>
+            )}
           </div>
         </header>
 
         {/* Featured Image */}
-        <div className="relative h-[200px] md:h-[300px] lg:h-[400px] w-full mb-8 rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src={blogData.image}
-            alt={blogData.title}
-            fill
-            className="object-cover"
-          />
-        </div>
+        {blogData.image && (
+          <div className="relative h-[200px] md:h-[300px] lg:h-[400px] w-full mb-8 rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src={blogData.image}
+              alt={blogData.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
 
         {/* Blog Content */}
         <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg">
-          {blogData.sections.map((section, index) => renderContent(section, index))}
+          {renderContent()}
         </div>
-
-        {/* Share Section */}
-        {/* <div className="mt-12 text-center">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">Share this article</h3>
-          <div className="flex justify-center gap-4">
-            <button className="p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors">
-              <i className="bi bi-facebook"></i>
-            </button>
-            <button className="p-3 rounded-full bg-blue-400 text-white hover:bg-blue-500 transition-colors">
-              <i className="bi bi-twitter-x"></i>
-            </button>
-            <button className="p-3 rounded-full bg-green-600 text-white hover:bg-green-700 transition-colors">
-              <i className="bi bi-whatsapp"></i>
-            </button>
-            <button className="p-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors">
-              <i className="bi bi-linkedin"></i>
-            </button>
-          </div>
-        </div> */}
       </div>
     </article>
   )
-} 
+}

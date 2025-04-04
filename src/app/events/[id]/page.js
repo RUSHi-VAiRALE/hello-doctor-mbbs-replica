@@ -4,124 +4,54 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaYoutube, FaVideo, FaTimes } from 'react-icons/fa'
 import { useParams } from 'next/navigation'
-
-// This is the same events data from the Events.js component
-// In a real application, you would fetch this from an API
-const events = [
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  {
-    date: { day: '01', month: 'Oct' },
-    time: '08:00 AM - 10:00 AM',
-    title: 'Engaging Students in Real-World Problems Finding',
-    location: 'United States',
-    image: 'https://cdn.pixabay.com/photo/2022/06/02/15/01/music-7238254_1280.jpg',
-    description: 'Join us for an interactive session on how to engage students in solving real-world problems. This workshop will provide educators with practical strategies to connect classroom learning with authentic challenges.',
-    youtubeLink: 'https://www.youtube.com/watch?v=example',
-    meetLink: 'https://meet.google.com/example',
-    speaker: 'Dr. Jane Smith',
-    speakerRole: 'Education Consultant'
-  },
-  // ... copy the rest of your events and add the additional fields
-];
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function EventDetail() {
-  // Unwrap params using React.use()
-  
-  const {id} = useParams()
-  const event = events[parseInt(id)];
-  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const { id } = useParams()
+  const [event, setEvent] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phoneNumber: '',
     message: ''
-  });
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  })
+  const [formErrors, setFormErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+
+  // Fetch event data from Firebase
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        setLoading(true)
+        const db = getFirestore(app)
+        const eventDoc = doc(db, "events", id)
+        const eventSnapshot = await getDoc(eventDoc)
+        
+        if (eventSnapshot.exists()) {
+          setEvent({
+            id: eventSnapshot.id,
+            ...eventSnapshot.data()
+          })
+        } else {
+          setError("Event not found")
+        }
+      } catch (err) {
+        console.error("Error fetching event:", err)
+        setError("Failed to load event details")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    if (id) {
+      fetchEvent()
+    }
+  }, [id])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -186,12 +116,36 @@ export default function EventDetail() {
     }, 1500);
   };
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#fdf6f4]">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-orange-500"></div>
+      </div>
+    )
+  }
+
+  // Show error state
+  if (error || !event) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#fdf6f4] p-4">
+        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full text-center">
+          <h1 className="text-2xl font-bold text-red-600 mb-4">Event Not Found</h1>
+          <p className="text-gray-600 mb-6">{error || "The event you're looking for doesn't exist or has been removed."}</p>
+          <Link href="/events" className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
+            Back to Events
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-[#fdf6f4] min-h-screen">
       {/* Hero Section */}
       <div className="relative h-[40vh] md:h-[50vh] w-full">
         <Image
-          src={event.image}
+          src={event.image || '/placeholder-event.jpg'}
           alt={event.title}
           fill
           className="object-cover"
@@ -203,16 +157,16 @@ export default function EventDetail() {
             <div className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 px-4 py-2 rounded-lg mb-4">
               <div className="flex items-center">
                 <FaCalendarAlt className="mr-2" />
-                <span>{event.date.day} {event.date.month}</span>
+                <span>{event.date?.day || '01'} {event.date?.month || 'Jan'}</span>
                 <span className="mx-2">|</span>
                 <FaClock className="mr-2" />
-                <span>{event.time}</span>
+                <span>{event.time || 'TBA'}</span>
               </div>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-4">{event.title}</h1>
             <div className="flex items-center">
               <FaMapMarkerAlt className="mr-2" />
-              <span>{event.location}</span>
+              <span>{event.location || 'Online'}</span>
             </div>
           </div>
         </div>
@@ -224,44 +178,66 @@ export default function EventDetail() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
               <h2 className="text-2xl font-bold mb-6">About This Event</h2>
-              <p className="text-gray-700 mb-8">{event.description}</p>
+              <p className="text-gray-700 mb-8">{event.description || 'No description available.'}</p>
               
-              <h3 className="text-xl font-bold mb-4">Speaker</h3>
-              <div className="flex items-center mb-8">
-                <div className="w-16 h-16 rounded-full bg-gray-200 mr-4"></div>
-                <div>
-                  <h4 className="font-bold">{event.speaker}</h4>
-                  <p className="text-gray-600">{event.speakerRole}</p>
-                </div>
-              </div>
+              {event.speaker && (
+                <>
+                  <h3 className="text-xl font-bold mb-4">Speaker</h3>
+                  <div className="flex items-center mb-8">
+                    <div className="w-16 h-16 rounded-full bg-gray-200 mr-4">
+                      {event.speakerImage && (
+                        <Image 
+                          src={event.speakerImage} 
+                          alt={event.speaker} 
+                          width={64} 
+                          height={64} 
+                          className="rounded-full object-cover"
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <h4 className="font-bold">{event.speaker}</h4>
+                      <p className="text-gray-600">{event.speakerRole || 'Speaker'}</p>
+                    </div>
+                  </div>
+                </>
+              )}
               
               <h3 className="text-xl font-bold mb-4">Join Event</h3>
               <div className="space-y-4">
-                <a 
-                  href={event.youtubeLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
-                >
-                  <FaYoutube className="text-red-600 text-2xl mr-3" />
-                  <div>
-                    <h4 className="font-bold">YouTube Live</h4>
-                    <p className="text-sm text-gray-600">Join our live stream</p>
-                  </div>
-                </a>
+                {event.youtubeLink && (
+                  <a 
+                    href={event.youtubeLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+                  >
+                    <FaYoutube className="text-red-600 text-2xl mr-3" />
+                    <div>
+                      <h4 className="font-bold">YouTube Live</h4>
+                      <p className="text-sm text-gray-600">Join our live stream</p>
+                    </div>
+                  </a>
+                )}
                 
-                <a 
-                  href={event.meetLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
-                >
-                  <FaVideo className="text-blue-600 text-2xl mr-3" />
-                  <div>
-                    <h4 className="font-bold">Google Meet</h4>
-                    <p className="text-sm text-gray-600">Join interactive session</p>
-                  </div>
-                </a>
+                {event.meetLink && (
+                  <a 
+                    href={event.meetLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                  >
+                    <FaVideo className="text-blue-600 text-2xl mr-3" />
+                    <div>
+                      <h4 className="font-bold">Google Meet</h4>
+                      <p className="text-sm text-gray-600">Join interactive session</p>
+                    </div>
+                  </a>
+                )}
+                
+                {!event.youtubeLink && !event.meetLink && (
+                  <p className="text-gray-600 italic">Links to join this event will be available soon.</p>
+                )}
               </div>
             </div>
           </div>
@@ -274,7 +250,7 @@ export default function EventDetail() {
                   <FaCalendarAlt className="text-orange-500 mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Date</h4>
-                    <p className="text-gray-600">{event.date.day} {event.date.month}</p>
+                    <p className="text-gray-600">{event.date?.day || '01'} {event.date?.month || 'Jan'}</p>
                   </div>
                 </div>
                 
@@ -282,7 +258,7 @@ export default function EventDetail() {
                   <FaClock className="text-orange-500 mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Time</h4>
-                    <p className="text-gray-600">{event.time}</p>
+                    <p className="text-gray-600">{event.time || 'TBA'}</p>
                   </div>
                 </div>
                 
@@ -290,7 +266,7 @@ export default function EventDetail() {
                   <FaMapMarkerAlt className="text-orange-500 mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Location</h4>
-                    <p className="text-gray-600">{event.location}</p>
+                    <p className="text-gray-600">{event.location || 'Online'}</p>
                   </div>
                 </div>
               </div>
@@ -308,7 +284,7 @@ export default function EventDetail() {
         </div>
       </div>
 
-      {/* Registration Form Modal */}
+      {/* Registration Form Modal - Remains the same */}
       {showRegistrationForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-md relative max-h-[90vh] overflow-y-auto">

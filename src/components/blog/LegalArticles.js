@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function LegalArticles({ posts, activeTabLegal,selectedMonth, selectedYear, months, years, setSelectedMonth, setSelectedYear,setActiveTabLegal,tabs }) {
   return (
@@ -64,11 +65,16 @@ export default function LegalArticles({ posts, activeTabLegal,selectedMonth, sel
           </div>
           <div className="p-6">
             <h3 className="text-xl font-bold mb-2 text-gray-900">{post.title}</h3>
-            <p className="text-gray-600 mb-4">{post.description}</p>
-            <div className="flex justify-between items-center text-sm text-gray-500">
+            <p className="text-gray-600 mb-4 line-clamp-2">{post.content}</p>
+            <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
               <span>{post.date}</span>
-              <span>{post.readTime}</span>
+              <span>{post.readTime} min read</span>
             </div>
+            <Link href={`/blogs/${post.id}`} className="block w-full">
+              <button className="w-full py-2 px-4 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-lg hover:shadow-md transition-all duration-300">
+                Read More
+              </button>
+            </Link>
           </div>
         </div>
       ))}

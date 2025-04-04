@@ -1,79 +1,95 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function TeacherSection() {
-  // Teacher data
-  const teachers = [
-    {
-      id:1,
-      name: "A. K. Singh",
-      role: "Director CLATians",
-      location: "Patna, India",
-      exp : 15,
-      description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
-      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
-      email: "alexendra@clatwallah.com",
-      phone: "+91-98765-43210"
-    },
-    {
-      id:2,
-      name: "Shweta Singh",
-      role: "English Language",
-      exp:10,
-      location: "Patna, India",
-      description: "Specialized in English Language and Comprehension. Helped hundreds of students improve their reading and comprehension skills for law entrances.",
-      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
-      email: "christopher@clatwallah.com",
-      phone: "+91-98765-43211"
-    },
-    {
-      id:3,
-      name: "R. K. Choudhary",
-      role: "Logical Reasoning",
-      location: "Patna, India",
-      exp:10,
-      description: "Specialized in Logical Reasoning and Analytical Skills. Known for making complex problems simple and approachable.",
-      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
-      email: "john@clatwallah.com",
-      phone: "+91-98765-43213"
-    },
-    {
-      id:4,
-      name: "Hari Bhushan Sir",
-      role: "Quantitative Techniques",
-      location: "Chennai, India",
-      exp : 10,
-      description: "Mathematics and Quantitative Techniques specialist. Helps students overcome their fear of numbers with innovative teaching methods.",
-      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
-      email: "sarah@clatwallah.com",
-      phone: "+91-98765-43214"
-    },
-    {
-      id:5,
-      name: "B. N. Pandey",
-      role: "Legal Reasoning",
-      exp : 5,
-      location: "Kolkata, India",
-      description: "Expert in Legal Reasoning and Legal Awareness. Brings real-world legal insights into classroom teaching.",
-      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
-      email: "michael@clatwallah.com",
-      phone: "+91-98765-43215"
-    }
-    ,{
-      id:6,
-      name: "Yuvraj Singh",
-      role: "Current Affairs",
-      location: "Patna, India",
-      exp : 5,
-      description: "Current Affairs and GK specialist with deep knowledge of national and international affairs relevant to law entrance exams.",
-      image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
-      email: "emma@clatwallah.com",
-      phone: "+91-98765-43212"
-    },
-  ]
+  const [teachers, setTeachers] = useState([])
+  const [selectedTeacher, setSelectedTeacher] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  const [selectedTeacher, setSelectedTeacher] = useState(teachers[0]);
+  // Fetch teachers from Firebase
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        setLoading(true)
+        const db = getFirestore(app)
+        const teachersCollection = collection(db, "teachers")
+        const teachersSnapshot = await getDocs(teachersCollection)
+        const teachersData = teachersSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        
+        if (teachersData.length > 0) {
+          setTeachers(teachersData)
+          setSelectedTeacher(teachersData[0])
+        } else {
+          // Fallback data if no teachers found
+          const fallbackTeachers = [
+            {
+              id: 1,
+              name: "A. K. Singh",
+              role: "Director CLATians",
+              location: "Patna, India",
+              exp: 15,
+              description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
+              image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
+              email: "alexendra@clatwallah.com",
+              phone: "+91-98765-43210"
+            }
+          ]
+          setTeachers(fallbackTeachers)
+          setSelectedTeacher(fallbackTeachers[0])
+        }
+      } catch (error) {
+        console.error("Error fetching teachers:", error)
+        // Fallback data in case of error
+        const fallbackTeachers = [
+          {
+            id: 1,
+            name: "A. K. Singh",
+            role: "Director CLATians",
+            location: "Patna, India",
+            exp: 15,
+            description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
+            image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
+            email: "alexendra@clatwallah.com",
+            phone: "+91-98765-43210"
+          }
+        ]
+        setTeachers(fallbackTeachers)
+        setSelectedTeacher(fallbackTeachers[0])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTeachers()
+  }, [])
+
+  if (loading) {
+    return (
+      <section className="py-8 bg-[#e7edff]">
+        <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-2">
+              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">OUR</span> TEACHERS
+            </h2>
+            <p className="text-gray-600">Learn from the Best in Legal Education</p>
+          </div>
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (!selectedTeacher) {
+    return null
+  }
 
   return (
     <section className="py-8 bg-[#e7edff]">
@@ -93,7 +109,7 @@ export default function TeacherSection() {
               <div className="md:w-5/12">
                 <div className="relative aspect-square">
                   <Image
-                    src="https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg"
+                    src={selectedTeacher.image || "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg"}
                     alt={selectedTeacher.name}
                     fill
                     className="rounded-lg object-cover transition-transform duration-300 hover:scale-105"
@@ -152,7 +168,7 @@ export default function TeacherSection() {
               >
                 <div className="relative aspect-square">
                   <Image
-                    src={teacher.image}
+                    src={teacher.image || "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg"}
                     alt={teacher.name}
                     fill
                     className={`rounded-lg object-cover transition-transform duration-300 group-hover:scale-105 ${
@@ -174,4 +190,4 @@ export default function TeacherSection() {
       </div>
     </section>
   )
-} 
+}

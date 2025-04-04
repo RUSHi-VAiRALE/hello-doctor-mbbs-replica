@@ -1,9 +1,11 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import Link from 'next/link'
+import { collection,getFirestore, getDocs, query, limit } from 'firebase/firestore'
+import { app } from '@/firebase'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -12,7 +14,11 @@ import 'swiper/css/pagination'
 export default function ExploreTopCourses() {
   const [progress, setProgress] = useState(0)
   const [swiper, setSwiper] = useState(null)
-  const courses = [
+  const [courses, setCourses] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // Default fallback courses in case Firebase fetch fails
+  const defaultCourses = [
     {
       image: "https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_640.jpg",
       category: "CLAT",
@@ -22,7 +28,7 @@ export default function ExploreTopCourses() {
       students: 320,
       lessons: 15,
       description: "Comprehensive preparation for CLAT examination with expert guidance and study materials.",
-      link : "courses/online/0"
+      link: "courses/online/0"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
@@ -81,6 +87,107 @@ export default function ExploreTopCourses() {
     }
   ]
 
+  useEffect(() => {
+    const db = getFirestore(app)
+    const fetchCourses = async () => {
+      try {
+        setLoading(true)
+        const coursesQuery = query(collection(db, "courses"), limit(2))
+        const querySnapshot = await getDocs(coursesQuery)
+        
+        if (!querySnapshot.empty) {
+          let allCourses = []
+          
+          // Process each document and fetch its subcollection
+          const fetchPromises = querySnapshot.docs.map(async (doc) => {
+            const data = doc.data()
+            
+            // Fetch the courseItems subcollection for this document
+            const courseItemsRef = collection(db, "courses", doc.id, "courseItems")
+            const courseItemsSnapshot = await getDocs(courseItemsRef)
+            
+            if (!courseItemsSnapshot.empty) {
+              // Map each course item in the subcollection
+              const docCourses = courseItemsSnapshot.docs.map(itemDoc => {
+                const courseData = itemDoc.data()
+                return {
+                  id: itemDoc.id,
+                  parentId: doc.id,
+                  image: courseData.image || "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
+                  category: courseData.tag || data.examName || "Course",
+                  title: courseData.title || "Course Program",
+                  level: courseData.level || "Intermediate",
+                  price: courseData.price || "Contact for Price",
+                  students: courseData.students || Math.floor(Math.random() * 300) + 100,
+                  lessons: courseData.lessons || Math.floor(Math.random() * 20) + 5,
+                  description: data.description || "Comprehensive preparation with expert guidance and study materials.",
+                  link: `courses/${data.batchType}/${doc.id}/courseCard/${itemDoc.id}`,
+                  batchType: data.batchType || 'online'
+                }
+              })
+              
+              return docCourses
+            } else if (data.courses && Array.isArray(data.courses) && data.courses.length > 0) {
+              // Fallback to courses array if subcollection is empty
+              return data.courses.map(course => ({
+                id: doc.id,
+                image: course.image || "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
+                category: course.tag || data.examName || "Course",
+                title: course.title || "Course Program",
+                level: course.level || "Intermediate",
+                price: course.price || "Contact for Price",
+                students: course.students || Math.floor(Math.random() * 300) + 100,
+                lessons: course.lessons || Math.floor(Math.random() * 20) + 5,
+                description: data.description || "Comprehensive preparation with expert guidance and study materials.",
+                link: `courses/${data.batchType || 'online'}/${doc.id}`,
+                batchType: data.batchType || 'online'
+              }))
+            } else {
+              // If no subcollection or courses array, treat the document itself as a course
+              return [{
+                id: doc.id,
+                image: data.image || "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
+                category: data.examName || data.category || "Course",
+                title: data.title || "Course Program",
+                level: data.level || "Intermediate",
+                price: data.price || "Contact for Price",
+                students: data.students || Math.floor(Math.random() * 300) + 100,
+                lessons: data.lessons || Math.floor(Math.random() * 20) + 5,
+                description: data.description || "Comprehensive preparation with expert guidance and study materials.",
+                link: `courses/${data.batchType || 'online'}/${doc.id}`,
+                batchType: data.batchType || 'online'
+              }]
+            }
+          })
+          
+          // Wait for all subcollection fetches to complete
+          const coursesArrays = await Promise.all(fetchPromises)
+          
+          // Flatten the array of arrays into a single array of courses
+          allCourses = coursesArrays.flat()
+          
+          // Limit to 6 courses if we have more
+          if (allCourses.length > 6) {
+            allCourses = allCourses.slice(0, 6)
+          }
+          
+          setCourses(allCourses.length > 0 ? allCourses : defaultCourses)
+        } else {
+          // If no courses found in Firebase, use default courses
+          setCourses(defaultCourses)
+        }
+      } catch (error) {
+        console.error("Error fetching courses:", error)
+        // Use default courses on error
+        setCourses(defaultCourses)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCourses()
+  }, [])
+
   return (
     <section className="py-12 bg-[#e7edff] overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
@@ -90,52 +197,58 @@ export default function ExploreTopCourses() {
           </h3>
         </div>
 
-        <div className="relative">
-          <Swiper
-            onSwiper={setSwiper}
-            modules={[Navigation, Pagination, Autoplay]}
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            }}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            loop={true}
-            spaceBetween={15}
-            breakpoints={{
-              640: {
-                slidesPerView: 1.2,
-                spaceBetween: 10
-              },
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 15
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 15
-              },
-              1280: {
-                slidesPerView: 4,
-                spaceBetween: 15
-              }
-            }}
-            onSlideChange={(swiper) => {
-              const progress = ((swiper.realIndex + 1) / courses.length) * 100;
-              setProgress(progress);
-            }}
-            className="w-full mb-8"
-          >
-            {courses.map((course, index) => (
-              <SwiperSlide key={index}>
-                <CourseCard course={course} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        ) : (
+          <div className="relative">
+            <Swiper
+              onSwiper={setSwiper}
+              modules={[Navigation, Pagination, Autoplay]}
+              navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              loop={true}
+              spaceBetween={15}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1.2,
+                  spaceBetween: 10
+                },
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 15
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 15
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 15
+                }
+              }}
+              onSlideChange={(swiper) => {
+                const progress = ((swiper.realIndex + 1) / courses.length) * 100;
+                setProgress(progress);
+              }}
+              className="w-full mb-8"
+            >
+              {courses.map((course, index) => (
+                <SwiperSlide key={index}>
+                  <CourseCard course={course} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
 
         {/* Navigation and Progress Bar */}
         <div className="md:w-full w-[78%] mx-auto">
@@ -259,7 +372,7 @@ function CourseCard({ course }) {
         {/* Hover Overlay */}
         {isHovered && (
           <div className="course-overlay absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black/90 transition-all duration-300 flex flex-col justify-end p-4 z-20">
-            <p className="text-white mb-4 text-sm">
+            <p className="text-white mb-4 text-sm line-clamp-4">
               {course.description}
             </p>
             <button 
@@ -288,4 +401,4 @@ function CourseCard({ course }) {
       </div>
     </div>
   )
-} 
+}

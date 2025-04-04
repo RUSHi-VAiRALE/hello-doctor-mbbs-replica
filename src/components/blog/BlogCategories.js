@@ -1,9 +1,11 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LegalArticles from './LegalArticles'
 import CurrentAffairs from './CurrentAffairs'
 import ExamUpdates from '@/components/examUpdates/examUpdate'
 import ExamUpdatesTips from './ExamUpdatesTips'
+import { collection, getDocs, query, where, orderBy, limit, getFirestore } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function BlogCategories() {
   const [activeCategory, setActiveCategory] = useState('legal')
@@ -12,6 +14,239 @@ export default function BlogCategories() {
   const [activeTabExam, setActiveTabExam] = useState('clat')
   const [selectedMonth, setSelectedMonth] = useState('all')
   const [selectedYear, setSelectedYear] = useState('2024')
+  const [loading, setLoading] = useState(true)
+  const [blogData, setBlogData] = useState({
+    legal: {
+      recent: [],
+      judiciary: [],
+      parliamentary: []
+    },
+    current: {
+      daily: [],
+      monthly: [],
+    },
+    examUpdates: {
+      clat: [],
+      ailet: [],
+      cetlaw: [],
+      lsat: [],
+      cuet: [],
+      aillet: []
+    }
+  })
+
+  // Fetch blog data from Firestore
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        setLoading(true)
+        const db = getFirestore(app)
+        
+        // Fetch legal articles - simplified query to avoid index requirements
+        const legalQuery = query(
+          collection(db, "blogs"),
+          where("category", "==", "legal"),
+          // Remove orderBy to avoid requiring composite index
+          limit(20)
+        )
+        
+        const legalSnapshot = await getDocs(legalQuery)
+        
+        let legalArticles = legalSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        console.log(legalArticles)
+        // Only sort if there are articles
+        if (legalArticles && legalArticles.length > 0) {
+          // Sort client-side instead of using orderBy in the query
+          legalArticles = legalArticles.sort((a, b) => {
+            if (!a.createdAt || !b.createdAt) return 0;
+            
+            // Handle different formats of createdAt (string or Firestore timestamp)
+            const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+            const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+            
+            return dateB > dateA ? 1 : -1;
+          });
+        }
+        
+        // Fetch current affairs - simplified query
+        const currentQuery = query(
+          collection(db, "blogs"),
+          where("category", "==", "current"),
+          // Remove orderBy to avoid requiring composite index
+          limit(20)
+        )
+        
+        const currentSnapshot = await getDocs(currentQuery)
+        
+        let currentAffairs = currentSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        
+        // Only sort if there are articles
+        if (currentAffairs && currentAffairs.length > 0) {
+          // Sort client-side
+          currentAffairs = currentAffairs.sort((a, b) => {
+            if (!a.createdAt || !b.createdAt) return 0;
+            
+            // Handle different formats of createdAt (string or Firestore timestamp)
+            const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+            const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+            
+            return dateB > dateA ? 1 : -1;
+          });
+        }
+        
+        // Fetch exam updates - simplified query
+        const examUpdatesQuery = query(
+          collection(db, "blogs"),
+          where("category", "==", "examUpdates"),
+          // Remove orderBy to avoid requiring composite index
+          limit(30)
+        )
+        
+        const examUpdatesSnapshot = await getDocs(examUpdatesQuery)
+        let examUpdatesArticles = examUpdatesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        
+        // Only sort if there are articles
+        if (examUpdatesArticles && examUpdatesArticles.length > 0) {
+          // Sort client-side
+          examUpdatesArticles = examUpdatesArticles.sort((a, b) => {
+            if (!a.createdAt || !b.createdAt) return 0;
+            
+            // Handle different formats of createdAt (string or Firestore timestamp)
+            const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+            const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+            
+            return dateB > dateA ? 1 : -1;
+          });
+        }
+        
+        // Initialize subcategory objects with empty arrays
+        const legalBySubcategory = {
+          recent: [],
+          judiciary: [],
+          parliamentary: []
+        }
+        
+        // Only organize if there are legal articles
+        if (legalArticles && legalArticles.length > 0) {
+          // Add recent articles - no need to slice if we want all articles
+          legalBySubcategory.recent = legalArticles;
+          
+          // Add judiciary articles if they exist
+          const judiciaryArticles = legalArticles.filter(article => article.subcategory === "judiciary");
+          if (judiciaryArticles.length > 0) {
+            // Only slice if there are enough articles
+            legalBySubcategory.judiciary = judiciaryArticles;
+          }
+          
+          // Add parliamentary articles if they exist
+          const parliamentaryArticles = legalArticles.filter(article => article.subcategory === "parliamentary");
+          if (parliamentaryArticles.length > 0) {
+            // Only slice if there are enough articles
+            legalBySubcategory.parliamentary = parliamentaryArticles;
+          }
+        }
+        
+        // Initialize frequency objects with empty arrays
+        const currentByFrequency = {
+          daily: [],
+          monthly: []
+        }
+        
+        // Only organize if there are current affairs articles
+        if (currentAffairs && currentAffairs.length > 0) {
+          // Add daily articles if they exist
+          const dailyArticles = currentAffairs.filter(article => article.frequency === "daily");
+          if (dailyArticles.length > 0) {
+            currentByFrequency.daily = dailyArticles;
+          }
+          
+          // Add weekly articles if they exist
+          
+          
+          // Add monthly articles if they exist
+          const monthlyArticles = currentAffairs.filter(article => article.frequency === "monthly");
+          if (monthlyArticles.length > 0) {
+            currentByFrequency.monthly = monthlyArticles;
+          }
+          
+          // Add yearly articles if they exist
+          
+        }
+        
+        // Initialize exam type objects with empty arrays
+        const examUpdatesByType = {
+          clat: [],
+          ailet: [],
+          cetlaw: [],
+          lsat: [],
+          cuet: [],
+          aillet: []
+        }
+        
+        // Only organize if there are exam updates articles
+        if (examUpdatesArticles && examUpdatesArticles.length > 0) {
+          // Add clat articles if they exist
+          const clatArticles = examUpdatesArticles.filter(article => article.examType === "clat");
+          if (clatArticles.length > 0) {
+            examUpdatesByType.clat = clatArticles;
+          }
+          
+          // Add ailet articles if they exist
+          const ailetArticles = examUpdatesArticles.filter(article => article.examType === "ailet");
+          if (ailetArticles.length > 0) {
+            examUpdatesByType.ailet = ailetArticles;
+          }
+          
+          // Add cetlaw articles if they exist
+          const cetlawArticles = examUpdatesArticles.filter(article => article.examType === "cetlaw");
+          if (cetlawArticles.length > 0) {
+            examUpdatesByType.cetlaw = cetlawArticles;
+          }
+          
+          // Add lsat articles if they exist
+          const lsatArticles = examUpdatesArticles.filter(article => article.examType === "lsat");
+          if (lsatArticles.length > 0) {
+            examUpdatesByType.lsat = lsatArticles;
+          }
+          
+          // Add cuet articles if they exist
+          const cuetArticles = examUpdatesArticles.filter(article => article.examType === "cuet");
+          if (cuetArticles.length > 0) {
+            examUpdatesByType.cuet = cuetArticles;
+          }
+          
+          // Add aillet articles if they exist
+          const ailletArticles = examUpdatesArticles.filter(article => article.examType === "aillet");
+          if (ailletArticles.length > 0) {
+            examUpdatesByType.aillet = ailletArticles;
+          }
+        }
+        
+        // Update state with fetched data
+        setBlogData({
+          legal: legalBySubcategory,
+          current: currentByFrequency,
+          examUpdates: examUpdatesByType
+        })
+      } catch (error) {
+        console.error("Error fetching blog data:", error)
+        // Keep using the default data if there's an error
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchBlogData()
+  }, [])
 
   const months = [
     { id: 'all', name: 'All Months' },
@@ -31,41 +266,76 @@ export default function BlogCategories() {
 
   const years = ['2024', '2025', '2026']
 
+  // Update examUpdates to use Firebase data when available
   const examUpdates = {
-    title : "All Law Entrance Exam Updates & Notifications",
-    description : "Get real-time alerts on exam schedules, syllabus updates, and results and updates.",
-    updates : [
-        [
-    { date: 'May 2025', description: 'CLAT 2026 notification expected to be released' },
-    { date: 'Mid-July 2025', description: 'CLAT 2025 final admission lists released by all participating NLUs' },
-    { date: 'January 20, 2025', description: 'Third CLAT 2025 counseling round completed' },
-    { date: 'January 5, 2025', description: 'Second CLAT 2025 counseling round completed' },
-    { date: 'December 28, 2024', description: 'First CLAT 2025 counseling round initiated' },
-    { date: 'December 22, 2024', description: 'CLAT 2025 results declared; cutoffs announced for all NLUs' },
-    { date: 'December 8, 2024', description: 'CLAT 2025 examination successfully conducted' },
-    { date: 'November 30, 2024', description: 'CLAT 2025 admit cards released for download' }
-  ],[
-    { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
-  ],
-  [
-    { "date": "March 8, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
-  ],
-  [
-    { "date": "March 2025", "description": "Digital Testing Format: LSAT-India has fully transitioned to computer-based testing at designated centers." },
-    { "date": "March 2025", "description": "Additional Test Dates: Starting 2025, LSAT-India is offering more flexible testing options throughout the year." },
-    { "date": "March 2025", "description": "Score Validity: LSAT-India scores are now valid for two years from the test date." },
-    { "date": "March 2025", "description": "New Participating Law Schools: Several additional law institutions have begun accepting LSAT-India scores." }
-  ],
-  [
-    { date: 'March 5, 2025', description: 'NTA announces the tentative schedule for CUET Law 2025-26 admissions. Applications expected to open by end of March.' },
-    { date: 'February 28, 2025', description: 'Two new Central Universities added to the list of participating institutions.' },
-    { date: 'February 15, 2025', description: 'Revised syllabus announced for the Legal Reasoning section.' },
-    { date: 'January 30, 2025', description: 'NTA launches new practice portal with free mock tests.' }
-  ],[
-    { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
-  ]
+    title: "All Law Entrance Exam Updates & Notifications",
+    description: "Get real-time alerts on exam schedules, syllabus updates, and results and updates.",
+    updates: [
+      // Map the Firebase data to the format expected by the ExamUpdates component
+      blogData.examUpdates.clat.length > 0 
+        ? blogData.examUpdates.clat.map(item => ({ 
+            date: item.date, 
+            description: item.description || item.title 
+          }))
+        : [
+            { date: 'May 2025', description: 'CLAT 2026 notification expected to be released' },
+            { date: 'Mid-July 2025', description: 'CLAT 2025 final admission lists released by all participating NLUs' },
+            { date: 'January 20, 2025', description: 'Third CLAT 2025 counseling round completed' },
+            { date: 'January 5, 2025', description: 'Second CLAT 2025 counseling round completed' },
+            { date: 'December 28, 2024', description: 'First CLAT 2025 counseling round initiated' },
+            { date: 'December 22, 2024', description: 'CLAT 2025 results declared; cutoffs announced for all NLUs' },
+            { date: 'December 8, 2024', description: 'CLAT 2025 examination successfully conducted' },
+            { date: 'November 30, 2024', description: 'CLAT 2025 admit cards released for download' }
+          ],
+      
+      blogData.examUpdates.ailet.length > 0
+        ? blogData.examUpdates.ailet.map(item => ({ 
+            date: item.date, 
+            description: item.description || item.title 
+          }))
+        : [
+            { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+          ],
+      
+      blogData.examUpdates.cetlaw.length > 0
+        ? blogData.examUpdates.cetlaw.map(item => ({ 
+            date: item.date, 
+            description: item.description || item.title 
+          }))
+        : [
+            { "date": "March 8, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+          ],
+      
+      blogData.examUpdates.lsat.length > 0
+        ? blogData.examUpdates.lsat.map(item => ({ 
+            date: item.date, 
+            description: item.description || item.title 
+          }))
+        : [
+            { "date": "March 2025", "description": "Digital Testing Format: LSAT-India has fully transitioned to computer-based testing at designated centers." },
+            // ... other fallback LSAT updates
+          ],
+      
+      blogData.examUpdates.cuet.length > 0
+        ? blogData.examUpdates.cuet.map(item => ({ 
+            date: item.date, 
+            description: item.description || item.title 
+          }))
+        : [
+            { date: 'March 5, 2025', description: 'NTA announces the tentative schedule for CUET Law 2025-26 admissions. Applications expected to open by end of March.' },
+            // ... other fallback CUET updates
+          ],
+      
+      blogData.examUpdates.aillet.length > 0
+        ? blogData.examUpdates.aillet.map(item => ({ 
+            date: item.date, 
+            description: item.description || item.title 
+          }))
+        : [
+            { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+          ]
     ]
-}
+  }
 
   const categories = [
     { 
@@ -370,7 +640,7 @@ export default function BlogCategories() {
         return (<>
         
         <LegalArticles 
-          posts={blogPosts.legal} 
+          posts={blogData.legal} 
           activeTabLegal={activeTabLegal}
           selectedMonth={selectedMonth}
           selectedYear={selectedYear}
@@ -386,7 +656,7 @@ export default function BlogCategories() {
         return (
           <>
             <CurrentAffairs 
-              posts={blogPosts.current}
+              posts={blogData.current}
               activeTab={activeTab}
               selectedMonth={selectedMonth}
               selectedYear={selectedYear}
@@ -420,7 +690,7 @@ export default function BlogCategories() {
             </div>
         
         {/* Add the new ExamUpdatesTips component */}
-        <ExamUpdatesTips activeTabExam={activeTabExam} />
+        <ExamUpdatesTips activeTabExam={activeTabExam} examTips={blogData.examUpdates} />
         </>
       default:
         return null
@@ -430,7 +700,14 @@ export default function BlogCategories() {
   return (
     <section className="py-16 bg-gradient-to-br from-blue-50 to-red-50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
-        {/* Category Selection - keep existing code */}
+        {/* Loading indicator */}
+        {loading && (
+          <div className="flex justify-center items-center mb-8">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        )}
+        
+        {/* Category Selection */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
           {categories.map((category) => (
             <button
