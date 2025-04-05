@@ -115,7 +115,7 @@ export default function CoursesPage() {
         if (examName) {
           const examsQuery = query(
             collection(db, "exams"),
-            where("examName", "==", examName)
+            where("name", "==", examName)
           );
           
           const examsSnapshot = await getDocs(examsQuery);
