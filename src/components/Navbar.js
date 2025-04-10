@@ -160,19 +160,71 @@ export default function Navbar() {
                   <span 
                     key={notification.id} 
                     className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
+                    onMouseOver={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.stop();
+                    }}
+                    onMouseOut={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.start();
+                    }}
                   >
-                    {notification.icon && notification.icon} {notification.text}
+                    <Link 
+                      href={notification.url || ""}
+                      onMouseOver={(e) => {
+                        const marquee = e.target.closest('marquee');
+                        if (marquee) marquee.stop();
+                        e.stopPropagation();
+                      }}
+                      onMouseOut={(e) => {
+                        const marquee = e.target.closest('marquee');
+                        if (marquee) marquee.start();
+                        e.stopPropagation();
+                      }}
+                    >
+                      {notification.icon && notification.icon} {notification.text}
+                    </Link>
                   </span>
                 ))
               ) : (
                 <>
-                  <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2">
+                  <span 
+                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
+                    onMouseOver={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.stop();
+                    }}
+                    onMouseOut={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.start();
+                    }}
+                  >
                     🔥 New Batches Starting Soon!
                   </span>
-                  <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2">
+                  <span 
+                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
+                    onMouseOver={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.stop();
+                    }}
+                    onMouseOut={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.start();
+                    }}
+                  >
                     🎯 Enroll Now
                   </span>
-                  <span className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold">
+                  <span 
+                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold"
+                    onMouseOver={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.stop();
+                    }}
+                    onMouseOut={(e) => {
+                      const marquee = e.target.closest('marquee');
+                      if (marquee) marquee.start();
+                    }}
+                  >
                     🏆 Best CLAT Coaching in Patna
                   </span>
                 </>
@@ -526,6 +578,4 @@ export default function Navbar() {
         </div>
       </nav>
     </>
-  )
-
-}
+  )}
