@@ -18,9 +18,9 @@ export default function FAQ({faqs}) {
         </h2>
 
         <div className="grid grid-cols-1 gap-5 max-w-6xl mx-auto">
-          {faqs.map((faq) => (
+          {faqs.map((faq,index) => (
             <div 
-              key={faq.index}
+              key={index}
               className={`w-full border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden transition-all duration-300 ${
                 hoveredIndex === faq.index ? 'transform scale-102 shadow-xl' : ''
               }`}

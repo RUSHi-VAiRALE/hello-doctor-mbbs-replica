@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 
-export default function CourseSchedule() {
+export default function CourseSchedule({courseData}) {
   const [showAllSubjects, setShowAllSubjects] = useState(false)
   const [expandedSection, setExpandedSection] = useState(null)
   
@@ -55,10 +55,10 @@ export default function CourseSchedule() {
       bgColor: 'bg-green-50'
     }
   ]
-
+  let len = (courseData.batchStrategy.length < 3)? courseData.batchStrategy.length : 3
   // Original schedule subjects for reference
-  const visibleSubjects = showAllSubjects ? courseSections : 
-  courseSections.slice(0, 3)
+  const visibleSubjects = showAllSubjects ? courseData.batchStrategy : 
+  courseData.batchStrategy.slice(0, len)
 
   // Toggle section expansion
   const toggleSection = (sectionId) => {
