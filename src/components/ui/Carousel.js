@@ -14,7 +14,7 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
   }, [autoPlay, interval, slides.length, setCurrentSlide])
 
   return (
-    <div className={`relative h-[250px] md:h-[${height}] w-full overflow-hidden`}>
+    <div className={`relative h-[250px] sm:h-[135px] md:h-[150px] lg:h-[200px] xl:h-[250px] w-full overflow-hidden`}>
       {slides.map((slide, index) => (
         <div
           key={slide.id}

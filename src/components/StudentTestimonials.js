@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { collection, getDocs, getFirestore, orderBy,query } from 'firebase/firestore'
 import { app } from '@/firebase'
 // Import Swiper styles
 import 'swiper/css'
@@ -23,12 +23,13 @@ export default function StudentTestimonials() {
       try {
         const db = getFirestore(app)
         const testimonialsCollection = collection(db, "testimonials")
-        const testimonialsSnapshot = await getDocs(testimonialsCollection)
+        const q = query(testimonialsCollection, orderBy("createdAt", "asc"));
+        const testimonialsSnapshot = await getDocs(q)
         const testimonialsData = testimonialsSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }))
-        
+        console.log(testimonialsData)
         if (testimonialsData.length > 0) {
           setTestimonials(testimonialsData)
         } else {
@@ -141,7 +142,7 @@ export default function StudentTestimonials() {
               </div>
               <div className="text-center">
                 <p className="font-bold text-base">{mainTestimonial.name}</p>
-                <p className="text-xs text-gray-500">CLAT Student</p>
+                <p className="text-xs text-gray-500">{mainTestimonial.collegeName}</p>
               </div>
             </div>
           </div>
@@ -213,7 +214,7 @@ export default function StudentTestimonials() {
                         </div>
                       </div>
                       <p className="font-bold text-base">{testimonial.name}</p>
-                      <p className="text-xs text-gray-500">CLAT Student</p>
+                      <p className="text-xs text-gray-500">{testimonial.collegeName}</p>
                     </div>
                   </div>
                 </SwiperSlide>

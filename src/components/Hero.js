@@ -71,7 +71,7 @@ export default function Hero({ height }) {
   }, [])
   
   if (loading || slides.length === 0) {
-    return <div className={`h-[${height}] w-full bg-gray-200 animate-pulse`}></div>
+    return <div className={`h-[250px] sm:h-[135px] md:h-[150px] lg:h-[200px] xl:h-[250px] w-full bg-gray-200 animate-pulse`}></div>
   }
 
   return (

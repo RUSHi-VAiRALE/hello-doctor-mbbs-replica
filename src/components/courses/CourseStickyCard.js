@@ -8,7 +8,7 @@ export default function CourseStickyCard({courseData,coursePrice}) {
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
                 <div className="relative h-[200px]">
                   <Image
-                    src="https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"
+                    src={courseData.image}
                     alt="CLAT Achievers 2026 Batch"
                     fill
                     className="object-cover"
