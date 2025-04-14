@@ -12,7 +12,8 @@ import MoreDetails from './MoreDetails'
 
 export default function CourseDetails({courseData,details}) {
   const [activeTab, setActiveTab] = useState('features')
-  const [price , setPrice] = useState('9,999')
+  const [price , setPrice] = useState(courseData?.price)
+  const [selectedPlan, setSelectedPlan] = useState('regular')
 console.log(courseData)
   // Create refs for each section
   const featuresRef = useRef(null)
@@ -98,7 +99,7 @@ console.log(courseData)
               </div>
               
               <div ref={featuresRef} className='mb-5' data-section="features">
-                <CourseFeatures setPriceHook={setPrice} courseData={courseData}/>
+                <CourseFeatures setPriceHook={setPrice} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} courseData={courseData}/>
               </div>
               
               <div ref={aboutRef} className='mb-5' data-section="about">
@@ -120,7 +121,7 @@ console.log(courseData)
             </div>
           </div>
           
-          <CourseStickyCard courseData={courseData} coursePrice={price}/>
+          <CourseStickyCard courseData={courseData} coursePrice={price} plan={selectedPlan}/>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-export default function CourseFeatures({setPriceHook, courseData}) {
-  const [selectedPlan, setSelectedPlan] = useState('pro') // Add this line at the top
+export default function CourseFeatures({setPriceHook,selectedPlan,setSelectedPlan, courseData}) {
+   // Add this line at the top
 
   const features = [
     "Live Lectures and Recorded Lectures",
@@ -43,7 +43,7 @@ export default function CourseFeatures({setPriceHook, courseData}) {
           </div>
           <div className="border border-gray-200 rounded-xl p-4 sm:p-6 bg-gradient-to-r from-amber-50 to-red-50 transition-all duration-300 hover:border-amber-200">
             <div className="flex justify-between items-center mb-4 sm:mb-6">
-              <h3 className="text-lg sm:text-xl font-bold">CLAT Achievers 2026</h3>
+              <h3 className="text-lg sm:text-xl font-bold">{courseData.title}</h3>
               <span className="text-xl sm:text-2xl font-bold text-red-700">{courseData?.price}</span>
             </div>
             <div className="space-y-3 sm:space-y-4">
@@ -80,7 +80,7 @@ export default function CourseFeatures({setPriceHook, courseData}) {
             )}
           </div>
           <div className="flex justify-between items-center mb-4 sm:mb-6">
-            <h3 className="text-lg sm:text-xl font-bold">CLAT PRO 2026 Batch</h3>
+            <h3 className="text-lg sm:text-xl font-bold">{courseData.title} Pro Batch</h3>
             <span className="text-xl sm:text-2xl font-bold">{courseData?.proPrice}</span>
           </div>
           <div className="space-y-3 sm:space-y-4">

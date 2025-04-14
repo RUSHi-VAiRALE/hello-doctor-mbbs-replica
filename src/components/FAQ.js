@@ -22,43 +22,43 @@ export default function FAQ({faqs}) {
             <div 
               key={index}
               className={`w-full border-2 border-transparent rounded-xl bg-white shadow-lg overflow-hidden transition-all duration-300 ${
-                hoveredIndex === faq.index ? 'transform scale-102 shadow-xl' : ''
+                hoveredIndex === index ? 'transform scale-102 shadow-xl' : ''
               }`}
               style={{
                 backgroundImage: `linear-gradient(white, white), ${
-                  hoveredIndex === faq.index 
+                  hoveredIndex === index 
                     ? 'linear-gradient(to right, #f59e0b, #ea580c, #dc2626)' 
                     : 'linear-gradient(to right, #fbbf24, #ea580c, #b91c1c)'
                 }`,
                 backgroundOrigin: 'border-box',
                 backgroundClip: 'content-box, border-box',
               }}
-              onMouseEnter={() => setHoveredIndex(faq.index)}
+              onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
               <button
                 className={`w-full flex justify-between items-center pl-6 text-left min-h-[4rem] transition-colors duration-300 ${
-                  hoveredIndex === faq.index ? 'bg-orange-50' : ''
+                  hoveredIndex === index ? 'bg-orange-50' : ''
                 }`}
-                onClick={() => setActiveIndex(activeIndex === faq.index ? null : faq.index)}
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
               >
                 <span className={`font-semibold flex items-center pr-4 transition-colors duration-300 ${
-                  hoveredIndex === faq.index ? 'text-orange-600' : ''
+                  hoveredIndex === index ? 'text-orange-600' : ''
                 }`}>
                   <i className={`bi bi-question-circle mr-2 flex-shrink-0 transition-colors duration-300 ${
-                    hoveredIndex === faq.index ? 'text-red-500' : 'text-orange-500'
+                    hoveredIndex === index ? 'text-red-500' : 'text-orange-500'
                   }`}></i>
                   {faq.question}
                 </span>
                 <i className={`bi bi-chevron-down transition-all pr-6 duration-300 flex-shrink-0 ${
-                  activeIndex === faq.index ? 'rotate-180' : ''
+                  activeIndex === index ? 'rotate-180' : ''
                 } ${
-                  hoveredIndex === faq.index ? 'text-red-500' : ''
+                  hoveredIndex === index ? 'text-red-500' : ''
                 }`}></i>
               </button>
 
               <div className={`overflow-hidden transition-all duration-300 ${
-                activeIndex === faq.index ? 'max-h-40 md:max-h-96 overflow-y-auto scrollbar-hide' : 'max-h-0'
+                activeIndex === index ? 'max-h-40 md:max-h-96 overflow-y-auto scrollbar-hide' : 'max-h-0'
               }`}>
                 <p className="px-6 pb-6 text-gray-600 pt-4">
                   {faq.answer}

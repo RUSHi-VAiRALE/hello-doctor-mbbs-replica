@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function CourseStickyCard({courseData,coursePrice}) {
+export default function CourseStickyCard({courseData,coursePrice,plan}) {
   return (
     <>
       {/* Desktop sticky card (only visible on lg screens) */}
@@ -29,9 +29,9 @@ export default function CourseStickyCard({courseData,coursePrice}) {
               </div>
 
               <div className="flex items-center gap-2 mb-6">
-                <span className="text-xl sm:text-2xl font-bold text-red-700">&#8377;{coursePrice}</span>
-                <span className="text-gray-500 line-through text-xs sm:text-sm">{courseData.originalPrice}</span>
-                <span className="flex-1 text-green-600 text-xs sm:text-sm">{`Discount of ${courseData.discount} applied`}</span>
+                <span className="text-xl sm:text-2xl font-bold text-red-700">&#8377;{(plan==='regular')?courseData.price:courseData.proPrice}</span>
+                <span className="text-gray-500 line-through text-xs sm:text-sm">{(plan==='regular')?courseData.originalPrice : courseData.proOriginalPrice}</span>
+                <span className="flex-1 text-green-600 text-xs sm:text-sm">{`Discount of ${(plan==='regular')?courseData.discount : courseData.proDiscount} applied`}</span>
               </div>
 
               <button className="w-full py-3 px-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm sm:text-base truncate">
@@ -46,10 +46,10 @@ export default function CourseStickyCard({courseData,coursePrice}) {
       <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.1)] p-3 z-50 lg:hidden">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-red-700">&#8377;{coursePrice}</span>
+            <span className="text-lg font-bold text-red-700">&#8377;{(plan==='regular')?courseData.price:courseData.proPrice}</span>
             <div className="flex items-center gap-1">
-              <span className="text-gray-500 line-through text-xs">{courseData.originalPrice}</span>
-              <span className="text-green-600 text-xs">{courseData.discount}</span>
+              <span className="text-gray-500 line-through text-xs">{(plan==='regular')?courseData.originalPrice : courseData.proOriginalPrice}</span>
+              <span className="text-green-600 text-xs">{(plan==='regular')?courseData.discount : courseData.proDiscount}</span>
             </div>
           </div>
           <button className="py-2 px-4 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm truncate max-w-[200px]">
