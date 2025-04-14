@@ -26,7 +26,7 @@ export default function CourseHeader({courseData}) {
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-2">
             <i className="bi bi-people-fill text-red-700"></i>
-            <span className="text-sm sm:text-base">{courseData.title}</span>
+            <span className="text-sm sm:text-base">{courseData.courseName}</span>
           </div>
           <div className="flex items-center gap-2">
             <i className="bi bi-calendar-event text-red-700"></i>
