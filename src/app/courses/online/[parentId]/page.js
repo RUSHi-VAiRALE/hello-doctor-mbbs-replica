@@ -162,7 +162,7 @@ export default function CoursesPage() {
   return (
     <main className="min-h-screen bg-[#e7edff]">
       <CoursesHero exam={{
-        examName: finalCourseData.examName,
+        examName: finalCourseData.courseName,
         examDescription: finalCourseData.description
       }}/>
       <CourseCategories />

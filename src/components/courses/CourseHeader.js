@@ -11,7 +11,7 @@ export default function CourseHeader({courseData}) {
           <span className="mx-1 sm:mx-2">{'>'}</span>
           <Link href="/courses" className="hover:text-red-700">Courses</Link>
           <span className="mx-1 sm:mx-2">{'>'}</span>
-          <span className="text-gray-900">{courseData.courseName}</span>
+          <span className="text-gray-900">{courseData.title}</span>
         </div>
       </div>
 
@@ -26,7 +26,7 @@ export default function CourseHeader({courseData}) {
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-2">
             <i className="bi bi-people-fill text-red-700"></i>
-            <span className="text-sm sm:text-base">{courseData.courseName}</span>
+            <span className="text-sm sm:text-base">{courseData.title}</span>
           </div>
           <div className="flex items-center gap-2">
             <i className="bi bi-calendar-event text-red-700"></i>
