@@ -11,7 +11,7 @@ export default function CourseHeader({courseData}) {
           <span className="mx-1 sm:mx-2">{'>'}</span>
           <Link href="/courses" className="hover:text-red-700">Courses</Link>
           <span className="mx-1 sm:mx-2">{'>'}</span>
-          <span className="text-gray-900">{courseData.title}</span>
+          <span className="text-gray-900">{courseData.courseName}</span>
         </div>
       </div>
 
