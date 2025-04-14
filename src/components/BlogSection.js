@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { collection, getDocs, getFirestore, query, orderBy, limit } from 'firebase/firestore'
 import { app } from '@/firebase'
+import parse from 'html-react-parser'
 
 export default function BlogSection() {
   const [blogs, setBlogs] = useState([])
@@ -130,7 +131,7 @@ export default function BlogSection() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">{featuredBlog.title}</h3>
                 <p className="text-gray-600 mb-4 text-sm">
-                  {truncateContent(featuredBlog.content)}
+                  {truncateContent(parse(featuredBlog.content))}
                 </p>
                 <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                   <Link href={`/blogs/${featuredBlog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
@@ -171,8 +172,8 @@ export default function BlogSection() {
                         <h5 className="text-xl font-bold mb-3">
                           {blog.title}
                         </h5>
-                        <p className="text-gray-600 mb-4 text-sm">
-                          {truncateContent(blog.content)}
+                        <p className="text-gray-600 mb-4 text-sm line-clamp-6">
+                          {parse(blog.content)}
                         </p>
                         <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                           <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
@@ -200,7 +201,7 @@ export default function BlogSection() {
             <div className="p-4 flex flex-col h-full">
               <h3 className="text-xl font-bold mb-3">Featured News</h3>
               <p className="text-gray-600 mb-4 text-base">
-                {truncateContent(featuredBlog?.content, 80)}
+                {truncateContent(parse(featuredBlog?.content), 80)}
               </p>
               
               <div className="relative flex-grow rounded-xl overflow-hidden">
@@ -208,7 +209,6 @@ export default function BlogSection() {
                   src={featuredBlog?.image || "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"}
                   alt={featuredBlog?.title || "Featured Blog"}
                   fill
-                  className="object-cover"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-6 flex flex-col justify-end">
@@ -243,7 +243,6 @@ export default function BlogSection() {
                           src={blog.image || "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"}
                           alt={blog.title}
                           fill
-                          className="object-cover"
                         />
                       </div>
                       <div className="p-5 flex flex-col flex-grow">
@@ -260,8 +259,8 @@ export default function BlogSection() {
                         <h5 className="font-bold text-base mb-3">
                           {blog.title}
                         </h5>
-                        <p className="text-gray-600 mb-4 text-sm">
-                          {truncateContent(blog.content, 120)}
+                        <p className="text-gray-600 mb-4 text-sm line-clamp-6">
+                          {parse(blog.content)}
                         </p>
                         <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-auto">
                           <span className="transform group-hover:translate-x-2 transition-transform mr-2">→</span>

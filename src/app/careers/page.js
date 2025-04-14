@@ -3,12 +3,12 @@ import { useState, useEffect } from "react"
 import AboutHero from "@/components/AboutHero"
 import Image from "next/image"
 import Link from "next/link"
-import { FaArrowRight, FaBell, FaBriefcase, FaGraduationCap, FaHandshake, FaChevronDown, FaChevronUp, FaCalendarAlt, FaTasks, FaUserTie } from "react-icons/fa"
+import { FaArrowRight, FaBell, FaBriefcase, FaGraduationCap, FaHandshake, FaChevronDown, FaChevronUp, FaCalendarAlt, FaTasks, FaUserTie, FaTimes } from "react-icons/fa"
 import { collection, getDocs, getFirestore } from "firebase/firestore"
 import { app } from "@/firebase"
 
 export default function CareersPage() {
-  const [activeRole, setActiveRole] = useState(null);
+  const [selectedCareer, setSelectedCareer] = useState(null);
   const [email, setEmail] = useState("");
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,10 +34,6 @@ export default function CareersPage() {
     fetchCareers();
   }, []);
 
-  const toggleRole = (id) => {
-    setActiveRole(activeRole === id ? null : id);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Thank you for your interest! We'll notify you at ${email} about future opportunities.`);
@@ -49,8 +45,23 @@ export default function CareersPage() {
     {
       id: "1",
       role: "Legal Studies Faculty",
+      shortDescription: "Join our team as a Legal Studies Faculty member to shape the future of law aspirants.",
       responsibilities: "Lecturing: Delivering lectures on various legal topics (e.g., constitutional law, international law, contracts, etc.). Seminars and Workshops: Facilitating interactive discussions, debates, and workshops. Curriculum Development: Designing course syllabi, creating learning materials, and updating content to reflect current legal developments. Student Advising: Guiding students on academic matters, career paths, and legal internships. Conducting Research: Publishing articles in legal journals, books, and other academic publications. Presenting Papers: Attending and presenting at academic conferences and seminars. Grant Writing: Applying for research grants to fund projects.",
       dayToDay: "Committee Work: Serving on departmental or university committees (e.g., curriculum committees, academic integrity boards). Program Management: Overseeing legal studies programs, managing course schedules, and ensuring accreditation standards are met. Faculty Meetings: Participating in regular faculty meetings to discuss academic policies and departmental issues. Advising Students: Mentoring students on academic performance and career opportunities in law. Supervising Theses: Guiding graduate or undergraduate students in research projects or dissertations."
+    },
+    {
+      id: "2",
+      role: "Content Creator",
+      shortDescription: "Create engaging legal content for our students and online platforms.",
+      responsibilities: "Developing study materials. Creating practice questions. Writing blog articles on legal topics.",
+      dayToDay: "Research on current legal developments. Content writing and editing. Collaborating with faculty members."
+    },
+    {
+      id: "3",
+      role: "Student Counselor",
+      shortDescription: "Guide and support students through their law entrance exam preparation journey.",
+      responsibilities: "Providing academic guidance. Addressing student queries. Conducting orientation sessions.",
+      dayToDay: "One-on-one counseling sessions. Tracking student progress. Coordinating with faculty for student support."
     }
   ];
 
@@ -77,45 +88,74 @@ export default function CareersPage() {
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
             </div>
           ) : (
-            <div className="space-y-8 mb-16">
-              {displayCareers.map((career) => (
-                <div key={career.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <>
+              {/* Career Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                {displayCareers.map((career) => (
                   <div 
-                    className="p-6 cursor-pointer flex justify-between items-center"
-                    onClick={() => toggleRole(career.id)}
+                    key={career.id} 
+                    className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-pointer overflow-hidden"
+                    onClick={() => setSelectedCareer(career)}
                   >
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4">
-                        <FaUserTie className="text-xl" />
+                    <div className="h-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700"></div>
+                    <div className="p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4">
+                          <FaUserTie className="text-xl" />
+                        </div>
+                        <h3 className="text-xl font-bold">{career.role}</h3>
                       </div>
-                      <h3 className="text-xl font-bold">{career.role}</h3>
-                    </div>
-                    <div>
-                      {activeRole === career.id ? (
-                        <FaChevronUp className="text-gray-500" />
-                      ) : (
-                        <FaChevronDown className="text-gray-500" />
-                      )}
+                      <p className="text-gray-600 mb-4">
+                        {career.shortDescription || "Join our team and make a difference in the lives of law aspirants."}
+                      </p>
+                      <div className="flex justify-end">
+                        <button className="text-orange-600 font-medium flex items-center hover:text-orange-700">
+                          View Details <FaArrowRight className="ml-2" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  
-                  {activeRole === career.id && (
-                    <div className="px-6 pb-6 pt-2 border-t border-gray-100">
+                ))}
+              </div>
+
+              {/* Career Detail Modal */}
+              {selectedCareer && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                  <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <div className="sticky top-0 bg-white z-10 p-6 border-b border-gray-100 flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4">
+                          <FaUserTie className="text-xl" />
+                        </div>
+                        <h2 className="text-2xl font-bold">{selectedCareer.role}</h2>
+                      </div>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedCareer(null);
+                        }}
+                        className="text-gray-500 hover:text-gray-700"
+                      >
+                        <FaTimes className="text-xl" />
+                      </button>
+                    </div>
+                    
+                    <div className="p-6">
                       <div className="mb-6">
                         <div className="flex items-center mb-3">
                           <FaTasks className="text-orange-500 mr-2" />
                           <h4 className="font-semibold text-lg">Responsibilities</h4>
                         </div>
                         <ul className="pl-6 text-gray-600 space-y-2 list-disc">
-                          {Array.isArray(career.responsibilities) ? (
-                            career.responsibilities.map((item, index) => (
+                          {Array.isArray(selectedCareer.responsibilities) ? (
+                            selectedCareer.responsibilities.map((item, index) => (
                               <li key={index} className="pl-2 ml-4">
                                 {item}
                               </li>
                             ))
                           ) : (
-                            typeof career.responsibilities === 'string' && 
-                            career.responsibilities.split('. ').filter(item => item.trim() !== '').map((item, index) => (
+                            typeof selectedCareer.responsibilities === 'string' && 
+                            selectedCareer.responsibilities.split('. ').filter(item => item.trim() !== '').map((item, index) => (
                               <li key={index} className="pl-2 ml-4">
                                 {item.trim().replace(/\.$/, '')}
                               </li>
@@ -124,21 +164,21 @@ export default function CareersPage() {
                         </ul>
                       </div>
                       
-                      <div>
+                      <div className="mb-6">
                         <div className="flex items-center mb-3">
                           <FaCalendarAlt className="text-orange-500 mr-2" />
                           <h4 className="font-semibold text-lg">Day-to-Day Tasks</h4>
                         </div>
                         <ul className="pl-6 text-gray-600 space-y-2 list-disc">
-                          {Array.isArray(career.dayToDay) ? (
-                            career.dayToDay.map((item, index) => (
+                          {Array.isArray(selectedCareer.dayToDay) ? (
+                            selectedCareer.dayToDay.map((item, index) => (
                               <li key={index} className="pl-2 ml-4">
                                 {item}
                               </li>
                             ))
                           ) : (
-                            typeof career.dayToDay === 'string' && 
-                            career.dayToDay.split('. ').filter(item => item.trim() !== '').map((item, index) => (
+                            typeof selectedCareer.dayToDay === 'string' && 
+                            selectedCareer.dayToDay.split('. ').filter(item => item.trim() !== '').map((item, index) => (
                               <li key={index} className="pl-2 ml-4">
                                 {item.trim().replace(/\.$/, '')}
                               </li>
@@ -146,79 +186,30 @@ export default function CareersPage() {
                           )}
                         </ul>
                       </div>
+                      
+                      <div className="mt-8 flex justify-center">
+                        <button 
+                          className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                          onClick={() => {
+                            document.getElementById('career-notification-form').scrollIntoView({ 
+                              behavior: 'smooth' 
+                            });
+                            setSelectedCareer(null);
+                          }}
+                        >
+                          Apply for this position
+                        </button>
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
-              ))}
-            </div>
+              )}
+            </>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <FaBriefcase className="text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-center mb-4">Teaching Positions</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Legal Studies Faculty
-                </li>
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Current Affairs Expert
-                </li>
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  English Language Trainer
-                </li>
-              </ul>
-            </div>
+          
 
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <FaGraduationCap className="text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-center mb-4">Content Creation</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Legal Content Writers
-                </li>
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Question Bank Developers
-                </li>
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Video Content Creators
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <FaHandshake className="text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-center mb-4">Support Roles</h3>
-              <ul className="space-y-3 text-gray-600">
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Student Counselors
-                </li>
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Academic Coordinators
-                </li>
-                <li className="flex items-center">
-                  <FaArrowRight className="text-orange-500 mr-2" />
-                  Operations Staff
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
+          <div id="career-notification-form" className="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold mb-4">Get Notified About Job Openings</h2>
               <p className="text-gray-600">

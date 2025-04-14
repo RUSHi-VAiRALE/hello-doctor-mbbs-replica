@@ -12,7 +12,7 @@ export default function MoreDetails({details}) {
       </h2>
       
       <div className="space-y-4 sm:space-y-6">
-        {details.map((detail, index) => (
+       {(details.lenght > 0) && details.map((detail, index) => (
           <div 
             key={index}
             className="flex items-start group gap-1 hover:bg-gray-50 border-b-[1px] pb-2 transition-all duration-300"

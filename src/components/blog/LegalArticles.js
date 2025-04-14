@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
+import parse from 'html-react-parser'
 export default function LegalArticles({ posts, activeTabLegal,selectedMonth, selectedYear, months, years, setSelectedMonth, setSelectedYear,setActiveTabLegal,tabs }) {
   return (
     <>
@@ -65,7 +65,7 @@ export default function LegalArticles({ posts, activeTabLegal,selectedMonth, sel
           </div>
           <div className="p-6">
             <h3 className="text-xl font-bold mb-2 text-gray-900">{post.title}</h3>
-            <p className="text-gray-600 mb-4 line-clamp-2">{post.content}</p>
+            <p className="text-gray-600 mb-4 line-clamp-2">{parse(post.content)}</p>
             <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
               <span>{post.date}</span>
               <span>{post.readTime} min read</span>

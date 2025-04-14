@@ -318,8 +318,6 @@ function CourseCard({ course }) {
           src={course.image}
           alt={course.title}
           fill
-          className="object-cover"
-          sizes="(max-width: 600px) 100vw, 600px"
         />
         <span className="absolute top-0 left-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-r-lg text-sm font-medium">
           {course.category}

@@ -1,88 +1,50 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaLaptop, FaBook, FaArrowRight, FaCheckCircle, FaClock, FaFileAlt } from 'react-icons/fa'
+import { FaLaptop, FaBook, FaArrowRight, FaCheckCircle, FaClock, FaFileAlt, FaBullseye } from 'react-icons/fa'
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function MockTests() {
   const [activeTab, setActiveTab] = useState('online')
+  const [mockTestData, setMockTestData] = useState({
+    online: [],
+    offline: []
+  })
+  const [loading, setLoading] = useState(true)
 
-  const mockTestData = {
-    online: [
-      {
-        id: 0,
-        title: "CLAT Full Mock Test 1",
-        description: "Complete mock test covering all CLAT sections with detailed analysis",
-        duration: "2 hours",
-        questions: 150,
-        difficulty: "Medium",
-        image: "https://cdn.pixabay.com/photo/2018/03/10/12/00/teamwork-3213924_1280.jpg",
-        isPremium: false
-      },
-      {
-        id: 1,
-        title: "Legal Reasoning Test",
-        description: "Focused practice for the legal reasoning section",
-        duration: "45 minutes",
-        questions: 40,
-        difficulty: "Hard",
-        image: "https://cdn.pixabay.com/photo/2015/01/09/11/08/startup-594090_1280.jpg",
-        isPremium: false
-      },
-      {
-        id: 2,
-        title: "Current Affairs Test",
-        description: "Test your knowledge of recent events and developments",
-        duration: "30 minutes",
-        questions: 35,
-        difficulty: "Medium",
-        image: "https://cdn.pixabay.com/photo/2017/07/31/11/21/people-2557396_1280.jpg",
-        isPremium: false
-      },
-      {
-        id: 3,
-        title: "AILET Full Mock Test",
-        description: "Complete mock test for AILET preparation",
-        duration: "1.5 hours",
-        questions: 120,
-        difficulty: "Medium",
-        image: "https://cdn.pixabay.com/photo/2018/01/17/07/06/laptop-3087585_1280.jpg",
-        isPremium: false
+  useEffect(() => {
+    const fetchMockTests = async () => {
+      try {
+        setLoading(true)
+        const db = getFirestore(app)
+        const mockTestsCollection = collection(db, "mockTests")
+        const mockTestsSnapshot = await getDocs(mockTestsCollection)
+        
+        const mockTests = mockTestsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        
+        // Separate online and offline tests
+        const onlineTests = mockTests.filter(test => test.type === "Online")
+        const offlineTests = mockTests.filter(test => test.type === "Offline")
+        
+        setMockTestData({
+          online: onlineTests,
+          offline: offlineTests
+        })
+      } catch (error) {
+        console.error("Error fetching mock tests:", error)
+        // Keep the default data if there's an error
+      } finally {
+        setLoading(false)
       }
-    ],
-    offline: [
-      {
-        id: 4,
-        title: "CLAT Comprehensive Test Series",
-        description: "Set of 10 printable mock tests with answer keys",
-        pages: 250,
-        tests: 10,
-        difficulty: "Mixed",
-        image: "https://cdn.pixabay.com/photo/2015/07/19/10/00/school-work-851328_1280.jpg",
-        isPremium: false
-      },
-      {
-        id: 5,
-        title: "AILET Practice Papers",
-        description: "Collection of previous year papers with solutions",
-        pages: 180,
-        tests: 8,
-        difficulty: "Hard",
-        image: "https://cdn.pixabay.com/photo/2018/03/03/20/02/laptop-3196481_1280.jpg",
-        isPremium: false
-      },
-      {
-        id: 6,
-        title: "Legal Aptitude Workbook",
-        description: "Specialized practice material for legal reasoning",
-        pages: 120,
-        tests: 6,
-        difficulty: "Medium",
-        image: "https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg",
-        isPremium: false
-      }
-    ]
-  }
+    }
+
+    fetchMockTests()
+  }, [])
 
   const features = {
     online: [
@@ -152,156 +114,96 @@ export default function MockTests() {
           </div>
         </div>
 
-        {/* Mock Tests Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {mockTestData[activeTab].map((test) => (
-            <div key={test.id} className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1">
-              <div className="relative h-48">
-                <Image
-                  src={test.image}
-                  alt={test.title}
-                  fill
-                  className="object-cover"
-                />
-                {test.isPremium && (
-                  <div className="absolute top-4 right-4 bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-medium">
-                    Premium
-                  </div>
-                )}
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{test.title}</h3>
-                <p className="text-gray-600 mb-4">{test.description}</p>
-                
-                <div className="flex flex-wrap gap-3 mb-5">
-                  {activeTab === 'online' ? (
-                    <>
-                      <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
-                        <FaClock className="mr-1" /> {test.duration}
-                      </div>
-                      <div className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
-                        <FaFileAlt className="mr-1" /> {test.questions} Questions
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
-                        <FaFileAlt className="mr-1" /> {test.pages} Pages
-                      </div>
-                      <div className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
-                        <FaBook className="mr-1" /> {test.tests} Tests
-                      </div>
-                    </>
-                  )}
-                  <div className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
-                    {test.difficulty}
-                  </div>
-                </div>
-                
-                <Link href="#">
-                  <button 
-                    className={`w-full py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${
-                      test.isPremium 
-                        ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                        : 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white hover:opacity-90'
-                    }`}
-                  >
-                    {test.isPremium ? 'Upgrade to Access' : (activeTab === 'online' ? 'Start Test' : 'Download PDF')}
-                    <FaArrowRight className="ml-2" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Testimonials Section */}
-        {/* <div className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Students Say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
-                <div>
-                  <h4 className="font-bold">Priya Sharma</h4>
-                  <p className="text-sm text-gray-600">CLAT 2023 AIR 42</p>
-                </div>
-              </div>
-              <p className="text-gray-700">
-                "The mock tests were incredibly helpful in my preparation. The detailed analysis helped me identify my weak areas and improve them before the actual exam."
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
-                <div>
-                  <h4 className="font-bold">Rahul Verma</h4>
-                  <p className="text-sm text-gray-600">AILET 2023 AIR 15</p>
-                </div>
-              </div>
-              <p className="text-gray-700">
-                "I practiced with both online and offline tests. The variety of questions and the exam-like environment really prepared me for the pressure of the actual test day."
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
-                <div>
-                  <h4 className="font-bold">Aisha Khan</h4>
-                  <p className="text-sm text-gray-600">CLAT 2023 AIR 78</p>
-                </div>
-              </div>
-              <p className="text-gray-700">
-                "The legal reasoning section was my weakness, but after practicing with these specialized tests, I was able to improve significantly and perform well in the exam."
-              </p>
-            </div>
+        {/* Loading State */}
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
           </div>
-        </div> */}
-
-        {/* FAQ Section */}
-        {/* <div className="mt-16">
-          <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-bold mb-2">How do online mock tests work?</h3>
-                <p className="text-gray-700">
-                  Our online mock tests simulate the actual exam environment. You'll have a timed interface with questions similar to those in the real exam. After completion, you'll receive detailed analysis and performance metrics.
-                </p>
+        ) : (
+          /* Mock Tests Grid */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {mockTestData[activeTab].length > 0 ? (
+              mockTestData[activeTab].map((test) => (
+                <div key={test.id} className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                  <div className="relative h-48">
+                    <Image
+                      src={test.image || "https://cdn.pixabay.com/photo/2018/03/10/12/00/teamwork-3213924_1280.jpg"}
+                      alt={test.title}
+                      fill
+                      className="object-cover"
+                    />
+                    {test.isPremium && (
+                      <div className="absolute top-4 right-4 bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-medium">
+                        Premium
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2">{test.title}</h3>
+                    <p className="text-gray-600 mb-4">{test.description || "Comprehensive test to help you prepare for your exam"}</p>
+                    
+                    <div className="flex flex-wrap gap-3 mb-5">
+                      {activeTab === 'online' ? (
+                        <>
+                          <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                            <FaClock className="mr-1" /> {test.duration || "N/A"} hours
+                          </div>
+                          <div className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                            <FaFileAlt className="mr-1" /> {test.questions || "N/A"} Questions
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                            <FaFileAlt className="mr-1" /> {test.pages || "N/A"} Pages
+                          </div>
+                          <div className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                            <FaBook className="mr-1" /> {test.tests || "N/A"} Tests
+                          </div>
+                        </>
+                      )}
+                      <div className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">
+                        {test.difficulty || "Medium"}
+                      </div>
+                    </div>
+                    
+                    {/* Features Bullet Points */}
+                    {test.features && test.features.length > 0 && (
+                      <div className="mb-5">
+                        <h4 className="text-sm font-semibold mb-2">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {test.features.map((feature, index) => (
+                            <li key={index} className="flex items-start text-sm text-gray-600">
+                              <FaBullseye className="text-orange-500 mt-1 mr-2 flex-shrink-0 text-xs" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    <Link href="#">
+                      <button 
+                        className={`w-full py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${
+                          test.isPremium 
+                            ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                            : 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white hover:opacity-90'
+                        }`}
+                      >
+                        {test.isPremium ? 'Upgrade to Access' : (activeTab === 'online' ? 'Start Test' : 'Download PDF')}
+                        <FaArrowRight className="ml-2" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-10">
+                <p className="text-gray-500">No mock tests available in this category.</p>
               </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-2">Can I access the tests on mobile devices?</h3>
-                <p className="text-gray-700">
-                  Yes, our online tests are fully responsive and can be accessed on any device including smartphones, tablets, and computers.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-2">How do I use the offline test materials?</h3>
-                <p className="text-gray-700">
-                  After purchasing, you can download the PDF files containing the test papers and answer keys. We recommend printing them out for an exam-like experience, but you can also use them digitally.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-2">Are the mock tests updated regularly?</h3>
-                <p className="text-gray-700">
-                  Yes, we regularly update our test bank to reflect the latest exam patterns and include current affairs questions relevant to law entrance exams.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-2">What's the difference between free and premium tests?</h3>
-                <p className="text-gray-700">
-                  Free tests provide basic practice with limited questions and analysis. Premium tests offer comprehensive coverage, detailed performance analytics, comparison with other test-takers, and personalized improvement suggestions.
-                </p>
-              </div>
-            </div>
+            )}
           </div>
-        </div> */}
+        )}
       </div>
     </div>
   )

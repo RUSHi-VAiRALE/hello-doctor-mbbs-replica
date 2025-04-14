@@ -124,15 +124,17 @@ export default function StudentTestimonials() {
                 alt={mainTestimonial.name} 
                 className="w-full h-48 md:h-full object-cover"
               />
-              {/* Rank Badge */}
-              <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center transform rotate-12 shadow-lg">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform -rotate-12">
-                  <div className="text-center">
-                    <div className="text-[8px] font-semibold text-gray-600">RANK</div>
-                    <div className="text-base font-bold text-red-600">{mainTestimonial.rank}</div>
+              {/* Rank Badge - Only show if rank exists and is not empty */}
+              {mainTestimonial.rank && mainTestimonial.rank !== "" && (
+                <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center transform rotate-12 shadow-lg">
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform -rotate-12">
+                    <div className="text-center">
+                      <div className="text-[8px] font-semibold text-gray-600">RANK</div>
+                      <div className="text-base font-bold text-red-600">{mainTestimonial.rank}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
             {/* Content */}
             <div className="p-6 md:w-1/2">
@@ -208,10 +210,12 @@ export default function StudentTestimonials() {
                           alt={testimonial.name} 
                           className="w-10 h-10 rounded-full mx-auto mb-2 object-cover"
                         />
-                        {/* Mini Rank Badge */}
-                        <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center text-[8px] text-white font-bold">
-                          {testimonial.rank}
-                        </div>
+                        {/* Mini Rank Badge - Only show if rank exists and is not empty */}
+                        {testimonial.rank && testimonial.rank !== "" && (
+                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center text-[8px] text-white font-bold">
+                            {testimonial.rank}
+                          </div>
+                        )}
                       </div>
                       <p className="font-bold text-base">{testimonial.name}</p>
                       <p className="text-xs text-gray-500">{testimonial.collegeName}</p>

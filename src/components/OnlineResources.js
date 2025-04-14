@@ -1,162 +1,65 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-
-const resourcesData = {
-  studyMaterials: [
-    {
-      title: "CLAT Study Guide 2024",
-      description: "Comprehensive study material covering all CLAT sections",
-      type: "PDF",
-      size: "25 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/materials/clat-guide-2024.pdf"
-    },
-    {
-      title: "Legal Reasoning Handbook",
-      description: "In-depth guide for legal reasoning preparation",
-      type: "PDF",
-      size: "18 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/materials/legal-reasoning.pdf"
-    },
-    {
-      title: "Current Affairs Digest",
-      description: "Monthly compilation of important current affairs",
-      type: "PDF",
-      size: "12 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/materials/current-affairs.pdf"
-    }
-  ],
-  practicePapers: [
-    {
-      title: "English Language Test",
-      description: "Set of 10 full-length mock tests",
-      type: "ZIP",
-      size: "45 MB",
-      icon: "bi-file-zip",
-      isPremium: false,
-      downloadLink: "/practice/mock-tests.zip"
-    },
-    {
-      title: "Current Affairs",
-      description: "Topic-wise practice questions with solutions",
-      type: "PDF",
-      size: "30 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/practice/section-practice.pdf"
-    },
-    {
-      title: "Legal Resoning",
-      description: "Set of 10 full-length mock tests",
-      type: "PDF",
-      size: "30 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/practice/section-practice.pdf"
-    },
-    {
-      title: "Logical Reasoning",
-      description: "Set of 10 full-length mock tests",
-      type: "PDF",
-      size: "30 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/practice/section-practice.pdf"
-    },
-    {
-      title: "Quantitative Test",
-      description: "Set of 10 full-length mock tests",
-      type: "PDF",
-      size: "30 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/practice/section-practice.pdf"
-    },
-  ],
-  previousYearPapers: [
-    {
-      title: "CLAT Last 10 Years Question Paper",
-      description: "Official question paper with detailed solutions",
-      type: "PDF",
-      size: "8 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/pyq/clat-2023.pdf"
-    },
-    {
-      title: "AILET Last 10 Years Question Paper",
-      description: "Official question paper with detailed solutions",
-      type: "PDF",
-      size: "7 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/pyq/clat-2022.pdf"
-    },
-    {
-      title: "MHCET-LAW Last 10 Years Question Paper",
-      description: "Official question paper with detailed solutions",
-      type: "PDF",
-      size: "7 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/pyq/clat-2021.pdf"
-    },
-    {
-      title: "LSAT Last 10 Years Question Paper",
-      description: "Official question paper with detailed solutions",
-      type: "PDF",
-      size: "7 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/pyq/clat-2021.pdf"
-    },
-    {
-      title: "CUET Last 10 Years Question Paper",
-      description: "Official question paper with detailed solutions",
-      type: "PDF",
-      size: "7 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/pyq/clat-2021.pdf"
-    },
-    {
-      title: "AIL-LET Last 10 Years Question Paper",
-      description: "Official question paper with detailed solutions",
-      type: "PDF",
-      size: "7 MB",
-      icon: "bi-file-pdf",
-      isPremium: false,
-      downloadLink: "/pyq/clat-2021.pdf"
-    }
-  ],
-  referenceBooks: [
-    {
-      title: "The Art of Logical & Critical Reasoning for CLAT",
-      author: "A. K. Singh",
-      description: "Passage Based Logical Reasoning with 500+ Comprehensive Questions",
-      price: "₹599",
-      icon: "bi-book",
-      purchaseLink: "https://www.amazon.in/Logical-Critical-Reasoning-CLAT-Comprehensive/dp/B0CJMCGQ1X/ref=sr_1_19?sr=8-19"
-    },
-    {
-      title: "The Art of Logical & Critical Reasoning for CLAT",
-      author: "A. K. Singh",
-      description: "Passage Based Logical Reasoning with 500+ Comprehensive Questions",
-      price: "₹599",
-      icon: "bi-book",
-      purchaseLink: "https://www.amazon.in/Logical-Critical-Reasoning-CLAT-Comprehensive/dp/B0CJMCGQ1X/ref=sr_1_19?sr=8-19"
-    },
-  ]
-}
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function OnlineResources() {
   const [activeTab, setActiveTab] = useState('studyMaterials')
+  const [resourcesData, setResourcesData] = useState({
+    studyMaterials: [],
+    practicePapers: [],
+    previousYearPapers: [],
+    referenceBooks: []
+  })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchResources = async () => {
+      try {
+        setLoading(true)
+        const db = getFirestore(app)
+        const data = { ...resourcesData }
+
+        // Fetch study materials
+        const studyMaterialsSnapshot = await getDocs(collection(db, "studyMaterials"))
+        data.studyMaterials = studyMaterialsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+
+        // Fetch practice papers
+        const practicePapersSnapshot = await getDocs(collection(db, "practicePapers"))
+        data.practicePapers = practicePapersSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+
+        // Fetch previous year papers
+        const previousYearPapersSnapshot = await getDocs(collection(db, "previousPapers"))
+        data.previousYearPapers = previousYearPapersSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+
+        // Fetch reference books
+        const referenceBooksSnapshot = await getDocs(collection(db, "referenceBooks"))
+        data.referenceBooks = referenceBooksSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+
+        setResourcesData(data)
+      } catch (error) {
+        console.error("Error fetching resources:", error)
+        // Keep the default data if there's an error
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchResources()
+  }, [])
 
   const renderResourceCard = (resource, type) => {
     if (type === 'referenceBooks') {
@@ -164,7 +67,7 @@ export default function OnlineResources() {
         <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
           <div className="relative h-64 w-full flex items-center justify-center bg-gray-50">
             <img
-              src="https://m.media-amazon.com/images/I/81L7+KTgnfL._SY425_.jpg"
+              src={resource.imageUrl || "https://m.media-amazon.com/images/I/81L7+KTgnfL._SY425_.jpg"}
               alt={resource.title}
               className="h-full w-auto object-contain"
             />
@@ -186,11 +89,12 @@ export default function OnlineResources() {
       )
     }
 
+    // In the renderResourceCard function, updating the download link behavior
     return (
       <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
         <div className="flex items-start gap-4">
           <div className="w-12 h-12 flex-shrink-0 rounded-full bg-blue-50 flex items-center justify-center">
-            <i className={`bi ${resource.icon} text-2xl text-blue-600`}></i>
+            <i className={`bi ${resource.icon || "bi-file-pdf"} text-2xl text-blue-600`}></i>
           </div>
           <div className="flex-grow">
             <div className="flex items-start justify-between gap-2">
@@ -203,17 +107,26 @@ export default function OnlineResources() {
             </div>
             <p className="text-sm text-gray-600 mt-1 mb-4">{resource.description}</p>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-500">{resource.type} • {resource.size}</span>
-              <button 
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  resource.isPremium 
-                    ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    : 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white hover:opacity-90'
-                }`}
-              >
-                <i className="bi bi-download mr-2"></i>
-                {resource.isPremium ? 'Upgrade to Download' : 'Download'}
-              </button>
+              <span className="text-sm text-gray-500">{resource.type || "PDF"} • {resource.size || "N/A"}</span>
+              {resource.isPremium ? (
+                <button 
+                  className="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  <i className="bi bi-download mr-2"></i>
+                  Upgrade to Download
+                </button>
+              ) : (
+                <a 
+                  href={resource.downloadLink}
+                  download={resource.title || "download"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white hover:opacity-90 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  <i className="bi bi-download mr-2"></i>
+                  Download
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -250,14 +163,27 @@ export default function OnlineResources() {
           ))}
         </div>
 
-        {/* Resources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {resourcesData[activeTab].map((resource, index) => (
-            <div key={index}>
-              {renderResourceCard(resource, activeTab)}
-            </div>
-          ))}
-        </div>
+        {/* Loading State */}
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        ) : (
+          /* Resources Grid */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {resourcesData[activeTab].length > 0 ? (
+              resourcesData[activeTab].map((resource, index) => (
+                <div key={resource.id || index}>
+                  {renderResourceCard(resource, activeTab)}
+                </div>
+              ))
+            ) : (
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-10">
+                <p className="text-gray-500">No resources available in this category.</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )

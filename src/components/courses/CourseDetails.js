@@ -110,7 +110,7 @@ console.log(courseData)
               </div>
               
               <div ref={moreDetailsRef} className='mb-5' data-section="moreDetails">
-                <MoreDetails details={details}/>
+                <MoreDetails details={courseData.moreDetails}/>
               </div>
 
               {/* <div ref={downloadRef} className='mb-5' data-section="download">

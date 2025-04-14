@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import { app } from '@/firebase'
+import parse from 'html-react-parser'
 
 export default function BlogPost() {
   const [blogData, setBlogData] = useState(null)
@@ -143,7 +144,7 @@ export default function BlogPost() {
 
         {/* Blog Content */}
         <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg">
-          {renderContent()}
+          {parse(blogData.content)}
         </div>
       </div>
     </article>

@@ -52,11 +52,9 @@ const LawEntranceExams = ({ examData }) => {
         <div className="bg-white rounded-xl shadow-md p-6 md:p-8 mb-12">
           <div className="md:flex items-start gap-8">
             <div className="md:w-2/3">
-              {examData.introduction.map((paragraph, index) => (
-                <p key={index} className="text-gray-700 mb-6 leading-relaxed">
-                  {paragraph}
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  {examData.introduction}
                 </p>
-              ))}
             </div>
             <div className="md:w-1/3 mt-6 md:mt-0">
               <div className="bg-orange-100 rounded-lg p-4 border-l-4 border-orange-500">

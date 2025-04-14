@@ -1,8 +1,26 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
-export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = true, interval = 5000 , height}) {
+export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = true, interval = 5000, height }) {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    // Check if we're on the client side
+    if (typeof window !== 'undefined') {
+      // Initial check
+      setIsMobile(window.innerWidth < 768)
+
+      // Add resize listener
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 768)
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   useEffect(() => {
     if (!autoPlay) return
 
@@ -27,7 +45,7 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
           }`}
         >
           <Image
-            src={slide.image}
+            src={isMobile && slide.mobileImage ? slide.mobileImage : slide.image}
             alt={slide.alt}
             fill
             className="object-cover"
@@ -37,4 +55,4 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
       ))}
     </div>
   )
-} 
+}

@@ -28,16 +28,19 @@ export default function Hero({ height }) {
             {
               id: 1,
               image: "https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg",
+              mobileImage: "https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg",
               alt: "Slide 1"
             },
             {
               id: 2, 
               image: "https://cdn.pixabay.com/photo/2014/03/31/17/50/class-302116_1280.jpg",
+              mobileImage: "https://cdn.pixabay.com/photo/2014/03/31/17/50/class-302116_1280.jpg",
               alt: "Slide 2"
             },
             {
               id: 3,
-              image: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg", 
+              image: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg",
+              mobileImage: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg", 
               alt: "Slide 3"
             }
           ])
@@ -49,16 +52,19 @@ export default function Hero({ height }) {
           {
             id: 1,
             image: "https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg",
+            mobileImage: "https://cdn.pixabay.com/photo/2017/02/24/02/37/classroom-2093744_1280.jpg",
             alt: "Slide 1"
           },
           {
             id: 2, 
             image: "https://cdn.pixabay.com/photo/2014/03/31/17/50/class-302116_1280.jpg",
+            mobileImage: "https://cdn.pixabay.com/photo/2014/03/31/17/50/class-302116_1280.jpg",
             alt: "Slide 2"
           },
           {
             id: 3,
-            image: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg", 
+            image: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg",
+            mobileImage: "https://cdn.pixabay.com/photo/2019/05/07/02/23/board-4184870_1280.jpg", 
             alt: "Slide 3"
           }
         ])
