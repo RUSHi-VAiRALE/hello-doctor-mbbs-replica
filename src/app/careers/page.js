@@ -6,12 +6,14 @@ import Link from "next/link"
 import { FaArrowRight, FaBell, FaBriefcase, FaGraduationCap, FaHandshake, FaChevronDown, FaChevronUp, FaCalendarAlt, FaTasks, FaUserTie, FaTimes } from "react-icons/fa"
 import { collection, getDocs, getFirestore } from "firebase/firestore"
 import { app } from "@/firebase"
+import JobApplicationForm from "@/components/careers/JobApplicationForm"
 
 export default function CareersPage() {
   const [selectedCareer, setSelectedCareer] = useState(null);
   const [email, setEmail] = useState("");
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
 
   useEffect(() => {
     const fetchCareers = async () => {
@@ -191,10 +193,7 @@ export default function CareersPage() {
                         <button 
                           className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
                           onClick={() => {
-                            document.getElementById('career-notification-form').scrollIntoView({ 
-                              behavior: 'smooth' 
-                            });
-                            setSelectedCareer(null);
+                            setShowApplicationForm(true);
                           }}
                         >
                           Apply for this position
@@ -202,6 +201,16 @@ export default function CareersPage() {
                       </div>
                     </div>
                   </div>
+                </div>
+              )}
+
+              {/* Job Application Form Modal */}
+              {showApplicationForm && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                  <JobApplicationForm 
+                    jobRole={selectedCareer ? selectedCareer.role : "Selected Position"} 
+                    onClose={() => setShowApplicationForm(false)} 
+                  />
                 </div>
               )}
             </>

@@ -1,7 +1,7 @@
 import { Corben } from 'next/font/google'
 import Link from 'next/link'
 
-export default function CourseHeader({courseData}) {
+export default function CourseHeader({parentId,courseData}) {
   console.log(courseData)
   return (
     <>
@@ -9,7 +9,7 @@ export default function CourseHeader({courseData}) {
         <div className="flex items-center text-xs sm:text-sm text-gray-600 overflow-x-auto whitespace-nowrap">
           <Link href="/" className="hover:text-red-700">Home</Link>
           <span className="mx-1 sm:mx-2">{'>'}</span>
-          <Link href="/courses" className="hover:text-red-700">Courses</Link>
+          <Link href={`/courses/${courseData.batchType}/${parentId}`} className="hover:text-red-700">Courses</Link>
           <span className="mx-1 sm:mx-2">{'>'}</span>
           <span className="text-gray-900">{courseData.title}</span>
         </div>

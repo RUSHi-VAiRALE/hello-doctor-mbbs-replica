@@ -254,6 +254,7 @@ export default function CourseDetailsPage() {
   return (
     <>
       <CourseDetails 
+        parentId={parentId}
         courseData={courseData} 
         details={courseDetails}
       />

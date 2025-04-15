@@ -1,16 +1,21 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { app } from '@/firebase'
 
-const studentZoneData = [
+// Base student zone data with static content
+const baseStudentZoneData = [
   {
+    id: 'discussionForumLink',
     icon: "bi-chat-left-text",
     title: "Discussion Forums",
     description: "Engage in discussions, ask questions, and collaborate with fellow students.",
     buttonText: "Join Forum",
-    link: "/forums"
+    link: "/forums" // Default link if Firebase fetch fails
   },
   {
+    id: 'examUpdates',
     icon: "bi-calendar-event",
     title: "Exam Updates & Notifications",
     description: "Get real-time alerts on exam schedules, syllabus updates, and results and updates.",
@@ -18,22 +23,63 @@ const studentZoneData = [
     link: "/examUpdate"
   },
   {
+    id: 'studentGroupLink',
     icon: "bi-journal-check",
     title: "Study Groups",
     description: "Join study groups, share resources, and prepare together for better results.",
     buttonText: "Join Groups",
-    link: "#"
+    link: "#" // Default link if Firebase fetch fails
   },
   {
+    id: 'quizzes',
     icon: "bi-person-video3",
     title: "Quizzes",
     description: "Participate in live doubt clearing sessions with expert faculty members.",
     buttonText: "Join Quizzes",
-    link: "/quizzes"
+    link: "#"
   }
 ]
 
 export default function StudentZone() {
+  const [studentZoneData, setStudentZoneData] = useState(baseStudentZoneData)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const db = getFirestore(app)
+        const studentZoneCollection = collection(db, 'studentZone')
+        const snapshot = await getDocs(studentZoneCollection)
+        
+        if (!snapshot.empty) {
+          // Get all links from the documents
+          let linksData = {}
+          snapshot.docs.forEach(doc => {
+            // Merge all fields from all documents
+            linksData = { ...linksData, ...doc.data() }
+          })
+          
+          // Update the student zone data with Firebase links
+          const updatedData = baseStudentZoneData.map(item => {
+            if (linksData[item.id]) {
+              return { ...item, link: linksData[item.id] }
+            }
+            return item
+          })
+          
+          setStudentZoneData(updatedData)
+        }
+      } catch (error) {
+        console.error('Error fetching student zone links:', error)
+        // Keep using the default links if there's an error
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchLinks()
+  }, [])
+
   return (
     <section className="bg-gray-50 py-16 sm:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -70,6 +116,7 @@ export default function StudentZone() {
                   </p>
                   <Link
                     href={item.link}
+                    target='_blank'
                     className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity duration-300"
                   >
                     {item.buttonText}
@@ -79,15 +126,7 @@ export default function StudentZone() {
             </div>
           ))}
         </div>
-
-        {/* Additional Features */}
-        {/* <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full text-blue-700">
-            <i className="bi bi-info-circle"></i>
-            <span className="text-sm font-medium">New features coming soon!</span>
-          </div>
-        </div> */}
       </div>
     </section>
   )
-} 
+}

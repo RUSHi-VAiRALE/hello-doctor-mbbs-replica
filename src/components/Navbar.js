@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { collection, getDocs, query, where, getFirestore } from 'firebase/firestore'
+import { collection, getDocs, query, where, getFirestore,orderBy } from 'firebase/firestore'
 import { app } from '@/firebase'
 
 export default function Navbar() {
@@ -77,7 +77,7 @@ export default function Navbar() {
         const updatedCourseTypes = { ...courseTypes };
         
         // Fetch online courses
-        const onlineQuery = query(collection(db, "courses"), where("batchType", "==", "online"));
+        const onlineQuery = query(collection(db, "courses"), where("batchType", "==", "online"),orderBy("createdAt","asc"));
         const onlineSnapshot = await getDocs(onlineQuery);
         
         if (!onlineSnapshot.empty) {
@@ -90,7 +90,7 @@ export default function Navbar() {
         }
         
         // Fetch offline courses
-        const offlineQuery = query(collection(db, "courses"), where("batchType", "==", "offline"));
+        const offlineQuery = query(collection(db, "courses"), where("batchType", "==", "offline"),orderBy("createdAt","asc"));
         const offlineSnapshot = await getDocs(offlineQuery);
         
         if (!offlineSnapshot.empty) {

@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { Carousel } from '@/components/ui/Carousel'
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, getDocs,query,orderBy } from 'firebase/firestore'
 import { app } from '../firebase' // Import the initialized Firebase app
 
 export default function Hero({ height }) {
@@ -13,7 +13,7 @@ export default function Hero({ height }) {
     const fetchCarouselImages = async () => {
       try {
         const db = getFirestore(app)
-        const carouselCollection = collection(db, 'carousel')
+        const carouselCollection = query(collection(db, 'carousel'),orderBy('createdAt','asc'))
         const carouselSnapshot = await getDocs(carouselCollection)
         
         if (!carouselSnapshot.empty) {

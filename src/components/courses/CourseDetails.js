@@ -10,7 +10,7 @@ import AppDownload from '@/components/AppDownload'
 import FAQ from '@/components/FAQ'
 import MoreDetails from './MoreDetails'
 
-export default function CourseDetails({courseData,details}) {
+export default function CourseDetails({parentId,courseData,details}) {
   const [activeTab, setActiveTab] = useState('features')
   const [price , setPrice] = useState(courseData?.price)
   const [selectedPlan, setSelectedPlan] = useState('regular')
@@ -83,7 +83,7 @@ console.log(courseData)
 
   return (
     <div className="min-h-screen bg-[#E7EDFF]">
-      <CourseHeader courseData={courseData}/>
+      <CourseHeader parentId={parentId} courseData={courseData}/>
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px] pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
