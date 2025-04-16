@@ -86,19 +86,56 @@ export default function BlogCategories() {
           ...doc.data()
         }))
         
-        // Only sort if there are articles
-        // if (currentAffairs && currentAffairs.length > 0) {
-        //   // Sort client-side
-        //   currentAffairs = currentAffairs.sort((a, b) => {
-        //     if (!a.createdAt || !b.createdAt) return 0;
+        // Process current affairs for daily and monthly views
+        const currentByFrequency = {
+          daily: [],
+          monthly: []
+        }
+        
+        if (currentAffairs && currentAffairs.length > 0) {
+          // Get current date for comparison
+          const currentDate = new Date()
+          
+          // Process each article
+          currentAffairs.forEach(article => {
+            // Convert createdAt to Date object
+            let createdAtDate
+            if (article.createdAt) {
+              createdAtDate = typeof article.createdAt === 'string' 
+                ? new Date(article.createdAt) 
+                : article.createdAt.toDate 
+                  ? article.createdAt.toDate() 
+                  : new Date(article.createdAt)
+            } else {
+              // If no createdAt, use current date as fallback
+              createdAtDate = new Date()
+            }
             
-        //     // Handle different formats of createdAt (string or Firestore timestamp)
-        //     const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
-        //     const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+            // Add to daily view (all articles)
+            currentByFrequency.daily.push(article)
             
-        //     return dateB > dateA ? 1 : -1;
-        //   });
-        // }
+            // Check if article was created within the last 30 days for monthly view
+            const timeDiff = currentDate.getTime() - createdAtDate.getTime()
+            const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24))
+            
+            if (daysDiff <= 30) {
+              currentByFrequency.monthly.push(article)
+            }
+          })
+          
+          // Sort both arrays by date (newest first)
+          currentByFrequency.daily.sort((a, b) => {
+            const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt)
+            const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt)
+            return dateB - dateA
+          })
+          
+          currentByFrequency.monthly.sort((a, b) => {
+            const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt)
+            const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt)
+            return dateB - dateA
+          })
+        }
         
         // Fetch exam updates - simplified query
         const examUpdatesQuery = query(
@@ -234,7 +271,7 @@ export default function BlogCategories() {
         // Update state with fetched data
         setBlogData({
           legal: legalBySubcategory,
-          current: currentAffairs,
+          current: currentByFrequency, // Use the processed current affairs data
           examUpdates: examUpdatesByType
         })
       } catch (error) {

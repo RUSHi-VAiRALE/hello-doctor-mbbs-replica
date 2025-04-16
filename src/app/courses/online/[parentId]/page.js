@@ -168,7 +168,6 @@ export default function CoursesPage() {
       <CourseCategories />
       <CoursesList courseData={finalCourseData.courses} examName={finalCourseData.examName} batchType={"Online"}/>
       <LawEntranceExams examData={finalExamData}/>
-      <FAQ faqs={faqs}/>
     </main>
   )
 }

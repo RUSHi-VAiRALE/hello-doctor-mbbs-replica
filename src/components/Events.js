@@ -110,7 +110,7 @@ export default function Events() {
                     <div className="bg-white rounded-xl overflow-hidden shadow-lg h-full transition-transform duration-300 hover:-translate-y-1 max-w-[300px] mx-auto">
                       <div className="relative w-full h-[200px]">
                         <Image
-                          src={event.image || '/placeholder-event.jpg'}
+                          src={event.mobileImage || '/placeholder-event.jpg'}
                           alt={event.title}
                           fill
                           className="object-cover"

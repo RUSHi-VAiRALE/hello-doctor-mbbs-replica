@@ -77,7 +77,8 @@ export default function OnlineResources() {
             <p className="text-sm text-gray-500 mb-2">By {resource.author}</p>
             <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
             <div className="flex items-center justify-between">
-              <span className="text-lg font-bold text-gray-900">{resource.price}</span>
+              <span className="text-lg font-bold text-gray-900">₹ {resource.price} 
+              <span className='text-lg font-normal text-green-500 line-through ml-5'>₹ {resource.originalPrice}</span></span>
               <Link href={resource.purchaseLink} target="_blank">
                 <button className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
                   Purchase

@@ -174,7 +174,6 @@ export default function CoursesPage() {
         batchType={displayData.batchType}
       />
       <LawEntranceExams examData={displayExamData}/>
-      <FAQ faqs={faqs}/>
     </main>
   )
 }
