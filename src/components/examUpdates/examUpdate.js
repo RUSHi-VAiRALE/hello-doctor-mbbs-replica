@@ -2,9 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ExamHero from "../exam/ExamHero"
 import ExamTabs from "../exam/ExamTabs"
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 // Create a separate component for displaying individual exam updates
-const ExamUpdateSection = ({ update , examName}) => {
+const ExamUpdateSection = ({ update, examName }) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold mb-4">{examName}</h2>
@@ -30,10 +32,12 @@ const ExamUpdateSection = ({ update , examName}) => {
   );
 };
 
+// Default exam updates as fallback
 const examUpdates = {
     title : "All Law Entrance Exam Updates & Notifications",
     description : "Get real-time alerts on exam schedules, syllabus updates, and results and updates.",
     updates : [
+        // Default updates array
         [
     { date: 'May 2025', description: 'CLAT 2026 notification expected to be released' },
     { date: 'Mid-July 2025', description: 'CLAT 2025 final admission lists released by all participating NLUs' },
@@ -66,11 +70,10 @@ const examUpdates = {
     ]
 }
 
-const ExamUpdates = ({ exam ,isHero}) => {
+const ExamUpdates = ({isHero }) => {
     const [activeTab, setActiveTab] = useState('CLAT')
-    
-    // Use the passed exam prop if available, otherwise use the default examUpdates
-    const examData = exam || examUpdates;
+    const [examData, setExamData] = useState(examUpdates)
+    const [loading, setLoading] = useState(true)
     
     // Create refs for each section
     const sectionRefs = {
@@ -90,6 +93,69 @@ const ExamUpdates = ({ exam ,isHero}) => {
       { id: 'CUET', label: 'CUET' },
       { id: 'AIL-LET', label: 'AIL-LET' },
     ]
+
+    // Fetch exam updates from Firebase
+    useEffect(() => {
+      const fetchExamUpdates = async () => {
+        
+        try {
+          setLoading(true)
+          const db = getFirestore(app)
+          const lawExamsCollection = collection(db, 'lawExams')
+          const snapshot = await getDocs(lawExamsCollection)
+          
+          if (!snapshot.empty) {
+            // Create an array to store updates for each exam
+            const updatesArray = Array(6).fill([])
+            
+            // Process each document
+            snapshot.docs.map((doc)=>{
+              console.log(doc.data().shortTitle,"-",doc.data().updates)
+              const data = doc.data()
+              // If the document has updates field, add it to the appropriate index
+                const examIndex = getExamIndex(doc.data().shortTitle)
+                console.log(examIndex)
+                if (examIndex !== -1) {
+                  updatesArray[examIndex] = data.updates
+                }
+            })
+            // snapshot.(doc => {
+              
+            // })
+            
+            // Create updated exam data
+            const updatedExamData = {
+              ...examUpdates,
+              updates: updatesArray
+            }
+            console.log(updatedExamData)
+            setExamData(updatedExamData)
+          }
+        } catch (error) {
+          console.error('Error fetching exam updates:', error)
+          // Keep using the default data if there's an error
+        } finally {
+          setLoading(false)
+        }
+      }
+      
+      // Helper function to determine the index for each exam
+      const getExamIndex = (examName) => {
+        if (!examName) return -1
+        
+        const name = examName.toUpperCase()
+        if (name.includes('CLAT')) return 0
+        if (name.includes('AILET')|| name.includes('AI-LET') ||name.includes('AI LET') ) return 1
+        if (name.includes('MHCET') || name.includes('MH CET') || name.includes('MH-CET LAW')) return 2
+        if (name.includes('LSAT')) return 3
+        if (name.includes('CUET')) return 4
+        if (name.includes('AIL-LET') || name.includes('AIL LET')) return 5
+        
+        return -1
+      }
+      
+      fetchExamUpdates()
+    }, [])
 
     // Scroll to section when tab is clicked
     const scrollToSection = (tabId) => {
@@ -142,30 +208,38 @@ const ExamUpdates = ({ exam ,isHero}) => {
           />
         </div>
         <div className="container mx-auto max-w-7xl px-4 py-8">
-          {/* Updates Section */}
-            <div ref={sectionRefs.CLAT} className='bg-white mb-4 p-4 rounded-lg' id="CLAT">
-              <ExamUpdateSection update={examData.updates[0]} examName={"CLAT"}/>
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
             </div>
+          ) : (
+            <>
+              {/* Updates Section */}
+              <div ref={sectionRefs.CLAT} className='bg-white mb-4 p-4 rounded-lg' id="CLAT">
+                <ExamUpdateSection update={examData.updates[0]} examName={"CLAT"}/>
+              </div>
 
-            <div ref={sectionRefs.AILET} className='bg-white mb-4 p-4 rounded-lg' id="AILET">
-              <ExamUpdateSection update={examData.updates[1]} examName={"AILET"}/>
-            </div>
+              <div ref={sectionRefs.AILET} className='bg-white mb-4 p-4 rounded-lg' id="AILET">
+                <ExamUpdateSection update={examData.updates[1]} examName={"AILET"}/>
+              </div>
 
-            <div ref={sectionRefs['MHCET-LAW']} className='bg-white mb-4 p-4 rounded-lg' id="MHCET-LAW">
-              <ExamUpdateSection update={examData.updates[2]} examName={"MHCET-LAW"}/>
-            </div>
+              <div ref={sectionRefs['MHCET-LAW']} className='bg-white mb-4 p-4 rounded-lg' id="MHCET-LAW">
+                <ExamUpdateSection update={examData.updates[2]} examName={"MHCET-LAW"}/>
+              </div>
 
-            <div ref={sectionRefs.LSAT} className='bg-white mb-4 p-4 rounded-lg' id="LSAT">
-              <ExamUpdateSection update={examData.updates[3]} examName={"LSAT"}/>
-            </div>
+              <div ref={sectionRefs.LSAT} className='bg-white mb-4 p-4 rounded-lg' id="LSAT">
+                <ExamUpdateSection update={examData.updates[3]} examName={"LSAT"}/>
+              </div>
 
-            <div ref={sectionRefs.CUET} className='bg-white mb-4 p-4 rounded-lg' id="CUET">
-              <ExamUpdateSection update={examData.updates[4]} examName={"CUET"}/>
-            </div>
+              <div ref={sectionRefs.CUET} className='bg-white mb-4 p-4 rounded-lg' id="CUET">
+                <ExamUpdateSection update={examData.updates[4]} examName={"CUET"}/>
+              </div>
 
-            <div ref={sectionRefs['AIL-LET']} className='bg-white mb-4 p-4 rounded-lg' id="AIL-LET">
-              <ExamUpdateSection update={examData.updates[5]} examName={"AIL-LET"}/>
-            </div>
+              <div ref={sectionRefs['AIL-LET']} className='bg-white mb-4 p-4 rounded-lg' id="AIL-LET">
+                <ExamUpdateSection update={examData.updates[5]} examName={"AIL-LET"}/>
+              </div>
+            </>
+          )}
         </div>
       </div>
     )

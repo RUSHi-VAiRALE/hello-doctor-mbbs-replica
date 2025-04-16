@@ -46,7 +46,7 @@ export default function BlogCategories() {
         const legalQuery = query(
           collection(db, "blogs"),
           where("category", "==", "legal"),
-          // Remove orderBy to avoid requiring composite index
+          orderBy("createdAt", "asc"),
           limit(20)
         )
         
@@ -75,7 +75,7 @@ export default function BlogCategories() {
         const currentQuery = query(
           collection(db, "blogs"),
           where("category", "==", "current"),
-          // Remove orderBy to avoid requiring composite index
+          orderBy("createdAt", "asc"),
           limit(20)
         )
         
@@ -87,24 +87,24 @@ export default function BlogCategories() {
         }))
         
         // Only sort if there are articles
-        if (currentAffairs && currentAffairs.length > 0) {
-          // Sort client-side
-          currentAffairs = currentAffairs.sort((a, b) => {
-            if (!a.createdAt || !b.createdAt) return 0;
+        // if (currentAffairs && currentAffairs.length > 0) {
+        //   // Sort client-side
+        //   currentAffairs = currentAffairs.sort((a, b) => {
+        //     if (!a.createdAt || !b.createdAt) return 0;
             
-            // Handle different formats of createdAt (string or Firestore timestamp)
-            const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
-            const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+        //     // Handle different formats of createdAt (string or Firestore timestamp)
+        //     const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+        //     const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
             
-            return dateB > dateA ? 1 : -1;
-          });
-        }
+        //     return dateB > dateA ? 1 : -1;
+        //   });
+        // }
         
         // Fetch exam updates - simplified query
         const examUpdatesQuery = query(
           collection(db, "blogs"),
           where("category", "==", "examUpdates"),
-          // Remove orderBy to avoid requiring composite index
+          orderBy("createdAt", "asc"),
           limit(30)
         )
         
@@ -115,18 +115,18 @@ export default function BlogCategories() {
         }))
         
         // Only sort if there are articles
-        if (examUpdatesArticles && examUpdatesArticles.length > 0) {
-          // Sort client-side
-          examUpdatesArticles = examUpdatesArticles.sort((a, b) => {
-            if (!a.createdAt || !b.createdAt) return 0;
+        // if (examUpdatesArticles && examUpdatesArticles.length > 0) {
+        //   // Sort client-side
+        //   examUpdatesArticles = examUpdatesArticles.sort((a, b) => {
+        //     if (!a.createdAt || !b.createdAt) return 0;
             
-            // Handle different formats of createdAt (string or Firestore timestamp)
-            const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
-            const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+        //     // Handle different formats of createdAt (string or Firestore timestamp)
+        //     const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+        //     const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
             
-            return dateB > dateA ? 1 : -1;
-          });
-        }
+        //     return dateB > dateA ? 1 : -1;
+        //   });
+        // }
         
         // Initialize subcategory objects with empty arrays
         const legalBySubcategory = {
@@ -156,31 +156,31 @@ export default function BlogCategories() {
         }
         
         // Initialize frequency objects with empty arrays
-        const currentByFrequency = {
-          daily: [],
-          monthly: []
-        }
+        // const currentByFrequency = {
+        //   daily: [],
+        //   monthly: []
+        // }
         
         // Only organize if there are current affairs articles
-        if (currentAffairs && currentAffairs.length > 0) {
-          // Add daily articles if they exist
-          const dailyArticles = currentAffairs.filter(article => article.frequency === "daily");
-          if (dailyArticles.length > 0) {
-            currentByFrequency.daily = dailyArticles;
-          }
+        // if (currentAffairs && currentAffairs.length > 0) {
+        //   // Add daily articles if they exist
+        //   const dailyArticles = currentAffairs.filter(article => article.frequency === "daily");
+        //   if (dailyArticles.length > 0) {
+        //     currentByFrequency.daily = dailyArticles;
+        //   }
           
-          // Add weekly articles if they exist
+        //   // Add weekly articles if they exist
           
           
-          // Add monthly articles if they exist
-          const monthlyArticles = currentAffairs.filter(article => article.frequency === "monthly");
-          if (monthlyArticles.length > 0) {
-            currentByFrequency.monthly = monthlyArticles;
-          }
+        //   // Add monthly articles if they exist
+        //   const monthlyArticles = currentAffairs.filter(article => article.frequency === "monthly");
+        //   if (monthlyArticles.length > 0) {
+        //     currentByFrequency.monthly = monthlyArticles;
+        //   }
           
-          // Add yearly articles if they exist
+        //   // Add yearly articles if they exist
           
-        }
+        // }
         
         // Initialize exam type objects with empty arrays
         const examUpdatesByType = {
@@ -195,37 +195,37 @@ export default function BlogCategories() {
         // Only organize if there are exam updates articles
         if (examUpdatesArticles && examUpdatesArticles.length > 0) {
           // Add clat articles if they exist
-          const clatArticles = examUpdatesArticles.filter(article => article.examType === "clat");
+          const clatArticles = examUpdatesArticles.filter(article => article.exam.id === "clat");
           if (clatArticles.length > 0) {
             examUpdatesByType.clat = clatArticles;
           }
           
           // Add ailet articles if they exist
-          const ailetArticles = examUpdatesArticles.filter(article => article.examType === "ailet");
+          const ailetArticles = examUpdatesArticles.filter(article => article.exam.id  === "ailet");
           if (ailetArticles.length > 0) {
             examUpdatesByType.ailet = ailetArticles;
           }
           
           // Add cetlaw articles if they exist
-          const cetlawArticles = examUpdatesArticles.filter(article => article.examType === "cetlaw");
+          const cetlawArticles = examUpdatesArticles.filter(article => article.exam.id  === "cetlaw");
           if (cetlawArticles.length > 0) {
             examUpdatesByType.cetlaw = cetlawArticles;
           }
           
           // Add lsat articles if they exist
-          const lsatArticles = examUpdatesArticles.filter(article => article.examType === "lsat");
+          const lsatArticles = examUpdatesArticles.filter(article => article.exam.id  === "lsat");
           if (lsatArticles.length > 0) {
             examUpdatesByType.lsat = lsatArticles;
           }
           
           // Add cuet articles if they exist
-          const cuetArticles = examUpdatesArticles.filter(article => article.examType === "cuet");
+          const cuetArticles = examUpdatesArticles.filter(article => article.exam.id  === "cuet");
           if (cuetArticles.length > 0) {
             examUpdatesByType.cuet = cuetArticles;
           }
           
           // Add aillet articles if they exist
-          const ailletArticles = examUpdatesArticles.filter(article => article.examType === "aillet");
+          const ailletArticles = examUpdatesArticles.filter(article => article.exam.id  === "aillet");
           if (ailletArticles.length > 0) {
             examUpdatesByType.aillet = ailletArticles;
           }
@@ -234,7 +234,7 @@ export default function BlogCategories() {
         // Update state with fetched data
         setBlogData({
           legal: legalBySubcategory,
-          current: currentByFrequency,
+          current: currentAffairs,
           examUpdates: examUpdatesByType
         })
       } catch (error) {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { collection, getDocs, query, where, getFirestore,orderBy } from 'firebase/firestore'
+import { collection, getDocs, query, where, getFirestore, orderBy } from 'firebase/firestore'
 import { app } from '@/firebase'
 
 export default function Navbar() {
@@ -104,6 +104,17 @@ export default function Navbar() {
         
         // Update state with fetched data
         setCourseTypes(updatedCourseTypes);
+
+        const lawExamsQuery = query(collection(db,"lawExams"),orderBy("createdAt","asc"));
+        const lawExamsSnapshot = await getDocs(lawExamsQuery);
+        if (!lawExamsSnapshot.empty) {
+          const lawExamsData = lawExamsSnapshot.docs.map((doc) => ({
+            name: doc.data().shortTitle || `Exam ${doc.id}`,
+            href: `/lawEntranceExams/${doc.id}`
+          }));
+
+          setLawExams({ exams: lawExamsData });
+        }
       } catch (error) {
         console.error("Error fetching courses:", error);
         // Fallback to default data is already handled since we initialized with default data
@@ -122,7 +133,7 @@ export default function Navbar() {
     setActiveDropdown(null)
   }, [pathname])
 
-  const lawExams = {
+  const [lawExams, setLawExams] = useState({
     exams: [
       { name: 'CLAT', href: '/lawEntranceExams/0' },
       { name: 'AILET', href: '/lawEntranceExams/5' },
@@ -131,7 +142,7 @@ export default function Navbar() {
       { name: 'CUET', href: '/lawEntranceExams/1' },
       { name: 'AIL-LET', href: '/lawEntranceExams/4' },
     ]
-  }
+  })
 
   const navLinks = [
     { href: '/', label: 'Home' },

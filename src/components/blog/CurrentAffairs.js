@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import parse from 'html-react-parser'
 
 export default function CurrentAffairs({ posts, activeTab, selectedMonth, selectedYear, months, years, setSelectedMonth, setSelectedYear,setActiveTab,tabs }) {
   console.log(posts)
@@ -51,7 +52,7 @@ export default function CurrentAffairs({ posts, activeTab, selectedMonth, select
               </div>
             </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts[activeTab].map((post) => (
+        {posts.map((post) => (
             <div 
               key={post.id} 
               className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
@@ -66,7 +67,7 @@ export default function CurrentAffairs({ posts, activeTab, selectedMonth, select
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-gray-900">{post.title}</h3>
-                <p className="text-gray-600 mb-4 line-clamp-2">{post.content}</p>
+                <p className="text-gray-600 mb-4 line-clamp-2">{parse(post.content)}</p>
                 <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
                   <span>{post.date}</span>
                   <span>{post.readTime} min read</span>

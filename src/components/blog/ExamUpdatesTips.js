@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaArrowRight, FaLightbulb, FaBookOpen, FaRegClock, FaRegCalendarAlt } from 'react-icons/fa'
-
+import parse from 'html-react-parser'
 export default function ExamUpdatesTips({ activeTabExam ,examTips }) {
   // Sample exam tips data - replace with your actual data
   console.log(examTips)
@@ -39,7 +39,7 @@ export default function ExamUpdatesTips({ activeTabExam ,examTips }) {
               
               <div className="p-6 flex-grow">
                 <h3 className="text-xl font-bold mb-3">{tip.title}</h3>
-                <p className="text-gray-600 mb-4 line-clamp-2">{tip.content}</p>
+                <p className="text-gray-600 mb-4 line-clamp-2">{parse(tip.content)}</p>
               </div>
               
               <div className="px-6 pb-6">
