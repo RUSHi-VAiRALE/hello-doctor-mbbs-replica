@@ -118,7 +118,6 @@ export default function BlogSection() {
                   src={featuredBlog.image || "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"}
                   alt={featuredBlog.title}
                   fill
-                  className="object-cover"
                   priority
                 />
               </div>
@@ -130,7 +129,7 @@ export default function BlogSection() {
                   {formatDate(featuredBlog.date)}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{featuredBlog.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm">
+                <p className="text-gray-600 mb-4 text-sm line-clamp-6">
                   {truncateContent(parse(featuredBlog.content))}
                 </p>
                 <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
@@ -200,8 +199,8 @@ export default function BlogSection() {
           <div className="lg:col-span-2 bg-white rounded-xl shadow-lg h-[500px]">
             <div className="p-4 flex flex-col h-full">
               <h3 className="text-xl font-bold mb-3">Featured News</h3>
-              <p className="text-gray-600 mb-4 text-base">
-                {truncateContent(parse(featuredBlog?.content), 80)}
+              <p className="text-gray-600 mb-4 text-base line-clamp-2">
+                {parse(featuredBlog?.content)}
               </p>
               
               <div className="relative flex-grow rounded-xl overflow-hidden">
