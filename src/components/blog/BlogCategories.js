@@ -56,7 +56,6 @@ export default function BlogCategories() {
           id: doc.id,
           ...doc.data()
         }))
-        console.log(legalArticles)
         // Only sort if there are articles
         if (legalArticles && legalArticles.length > 0) {
           // Sort client-side instead of using orderBy in the query
@@ -99,6 +98,7 @@ export default function BlogCategories() {
           // Process each article
           currentAffairs.forEach(article => {
             // Convert createdAt to Date object
+            
             let createdAtDate
             if (article.createdAt) {
               createdAtDate = typeof article.createdAt === 'string' 
@@ -112,14 +112,16 @@ export default function BlogCategories() {
             }
             
             // Add to daily view (all articles)
-            currentByFrequency.daily.push(article)
+            
             
             // Check if article was created within the last 30 days for monthly view
             const timeDiff = currentDate.getTime() - createdAtDate.getTime()
-            const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24))
             
-            if (daysDiff <= 30) {
+            const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24))
+            if (daysDiff >= 30) {
               currentByFrequency.monthly.push(article)
+            }else{
+              currentByFrequency.daily.push(article)
             }
           })
           
@@ -416,260 +418,7 @@ export default function BlogCategories() {
   }
 
   // Example blog data
-  const blogPosts = {
-    legal: {
-      "recent": [
-        {
-          id: 1,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-            id: 2,
-            title: "Understanding CLAT Pattern 2025",
-            description: "Key changes and updates in the CLAT examination pattern...",
-            image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-            date: "April 15, 2024",
-            readTime: "5 min read"
-          },{
-            id: 3,
-            title: "Understanding CLAT Pattern 2025",
-            description: "Key changes and updates in the CLAT examination pattern...",
-            image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-            date: "April 15, 2024",
-            readTime: "5 min read"
-          },{
-            id: 4,
-            title: "Understanding CLAT Pattern 2025",
-            description: "Key changes and updates in the CLAT examination pattern...",
-            image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-            date: "April 15, 2024",
-            readTime: "5 min read"
-          },{
-            id: 5,
-            title: "Understanding CLAT Pattern 2025",
-            description: "Key changes and updates in the CLAT examination pattern...",
-            image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-            date: "April 15, 2024",
-            readTime: "5 min read"
-          },{
-            id: 6,
-            title: "Understanding CLAT Pattern 2025",
-            description: "Key changes and updates in the CLAT examination pattern...",
-            image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-            date: "April 15, 2024",
-            readTime: "5 min read"
-          }
-        // Add more posts...
-      ],
-      "judiciary": [{
-        id: 1,
-        title: "Understanding CLAT Pattern 2025",
-        description: "Key changes and updates in the CLAT examination pattern...",
-        image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-        date: "April 15, 2024",
-        readTime: "5 min read"
-      },{
-          id: 2,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 3,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 4,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 5,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },],
-      "parliamentary": [{
-        id: 1,
-        title: "Understanding CLAT Pattern 2025",
-        description: "Key changes and updates in the CLAT examination pattern...",
-        image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-        date: "April 15, 2024",
-        readTime: "5 min read"
-      },{
-          id: 2,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 3,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 4,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },,],
-    },
-    current: {
-      daily: [{
-        id: 1,
-        title: "Understanding CLAT Pattern 2025",
-        description: "Key changes and updates in the CLAT examination pattern...",
-        image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-        date: "April 15, 2024",
-        readTime: "5 min read"
-      },{
-          id: 2,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 3,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 4,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 5,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },],
-      weekly: [{
-        id: 1,
-        title: "Understanding CLAT Pattern 2025",
-        description: "Key changes and updates in the CLAT examination pattern...",
-        image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-        date: "April 15, 2024",
-        readTime: "5 min read"
-      },{
-          id: 2,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 3,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 4,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 5,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },],
-      monthly: [{
-        id: 1,
-        title: "Understanding CLAT Pattern 2025",
-        description: "Key changes and updates in the CLAT examination pattern...",
-        image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-        date: "April 15, 2024",
-        readTime: "5 min read"
-      },{
-          id: 2,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 3,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 4,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 5,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },],
-      yearly: [{
-        id: 1,
-        title: "Understanding CLAT Pattern 2025",
-        description: "Key changes and updates in the CLAT examination pattern...",
-        image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-        date: "April 15, 2024",
-        readTime: "5 min read"
-      },{
-          id: 2,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 3,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },{
-          id: 4,
-          title: "Understanding CLAT Pattern 2025",
-          description: "Key changes and updates in the CLAT examination pattern...",
-          image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
-          date: "April 15, 2024",
-          readTime: "5 min read"
-        },,]
-    }
-  }
+  
 
   const renderContent = () => {
     switch (activeCategory) {
