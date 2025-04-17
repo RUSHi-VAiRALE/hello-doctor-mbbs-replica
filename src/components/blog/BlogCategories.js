@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import LegalArticles from './LegalArticles'
 import CurrentAffairs from './CurrentAffairs'
-import ExamUpdates from '@/components/examUpdates/examUpdate'
 import ExamUpdatesTips from './ExamUpdatesTips'
 import { collection, getDocs, query, where, orderBy, limit, getFirestore } from 'firebase/firestore'
 import { app } from '@/firebase'
