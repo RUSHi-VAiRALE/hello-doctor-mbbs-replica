@@ -182,7 +182,7 @@ export default function MockTests() {
                       </div>
                     )}
                     
-                    <Link href="#">
+                    <Link href={test.purchaseLink} target='_blank'>
                       <button 
                         className={`w-full py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${
                           test.isPremium 

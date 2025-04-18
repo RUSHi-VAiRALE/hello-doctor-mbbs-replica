@@ -51,9 +51,9 @@ export default function CourseSingleCard({ course ,batchType}) {
 
         <div className="flex items-center justify-between mb-4">
           <div>
-            <span className="font-bold text-xl">{course.price}</span>
+            <span className="font-bold text-xl">&#8377;{course.price}</span>
             <span className="text-gray-400 line-through ml-2 text-sm">
-              {course.originalPrice}
+            &#8377;{course.originalPrice}
             </span>
           </div>
           <span className="text-green-600 text-sm font-medium">
