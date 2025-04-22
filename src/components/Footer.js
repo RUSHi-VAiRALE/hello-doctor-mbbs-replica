@@ -32,6 +32,7 @@ const companyLinks = [
   { text: 'Careers', link: '/careers' },
   { text: 'Faculty', link: '/gallery' },
   { text: 'Contact', link: '/contactUs' },
+  { text: 'Privacy policy', link: '/privacy-policy' },
   { text: 'Legal', link: '/legal' }
 ]
 
