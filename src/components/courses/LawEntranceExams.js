@@ -108,15 +108,18 @@ const LawEntranceExams = ({ examData }) => {
               data={examData.examStructure.data}
               cellRenderer={(row) => (
                 <>
-                  {Object.keys(row).map((key, index) => (
-                    <td key={index} className="px-4 py-4 text-sm text-gray-700">
-                      {index === 0 ? (
-                        <span className="font-medium text-gray-900">{row[key]}</span>
-                      ) : (
-                        row[key]
-                      )}
-                    </td>
-                  ))}
+                  <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {row.section}
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-700">
+                    {row.questions}
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-700 whitespace-pre-line">
+                    {row.marks}
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-700 whitespace-pre-line">
+                    {row.duration}
+                  </td>
                 </>
               )}
             />

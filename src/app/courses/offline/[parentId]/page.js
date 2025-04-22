@@ -160,7 +160,7 @@ export default function CoursesPage() {
   const displayData = courseData || data[parseInt(parentId)] || data[0];
   // Use fetched exam data or fallback to static examData
   const displayExamData = examDataFromFirebase || examDataCourse;
-
+  
   return (
     <main className="min-h-screen bg-[#e7edff]">
       <CoursesHero exam={{
