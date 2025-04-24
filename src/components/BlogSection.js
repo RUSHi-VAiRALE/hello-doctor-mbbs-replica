@@ -171,7 +171,7 @@ export default function BlogSection() {
                         <h5 className="text-xl font-bold mb-3">
                           {blog.title}
                         </h5>
-                        <p className="text-gray-600 mb-4 text-sm line-clamp-6">
+                        <p className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
                           {parse(blog.content)}
                         </p>
                         <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
@@ -258,7 +258,7 @@ export default function BlogSection() {
                         <h5 className="font-bold text-base mb-3">
                           {blog.title}
                         </h5>
-                        <p className="text-gray-600 mb-4 text-sm line-clamp-6">
+                        <p className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
                           {parse(blog.content)}
                         </p>
                         <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-auto">

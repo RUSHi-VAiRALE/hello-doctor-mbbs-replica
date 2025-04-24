@@ -140,7 +140,7 @@ export default function StudentTestimonials() {
             <div className="p-6 md:w-1/2">
               <div className="mb-4">
                 <i className="bi bi-quote text-xl text-red-100"></i>
-                <p className="mt-3 text-gray-600 leading-relaxed text-sm">{mainTestimonial.description}</p>
+                <p className="mt-3 text-gray-600 leading-relaxed text-sm text-justify">{mainTestimonial.description}</p>
               </div>
               <div className="text-center">
                 <p className="font-bold text-base">{mainTestimonial.name}</p>
@@ -196,7 +196,7 @@ export default function StudentTestimonials() {
                     {/* Testimonial Content */}
                     <div className="flex-grow">
                       <p 
-                        className="text-gray-600 mb-4 leading-relaxed text-sm h-[120px] overflow-y-auto pr-2 scrollbar-hide"
+                        className="text-gray-600 text-justify mb-4 leading-relaxed text-sm h-[120px] overflow-y-auto pr-2 scrollbar-hide"
                         onScroll={handleScroll}
                       >
                         {testimonial.description}

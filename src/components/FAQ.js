@@ -60,7 +60,7 @@ export default function FAQ({faqs}) {
               <div className={`overflow-hidden transition-all duration-300 ${
                 activeIndex === index ? 'max-h-40 md:max-h-96 overflow-y-auto scrollbar-hide' : 'max-h-0'
               }`}>
-                <p className="px-6 pb-6 text-gray-600 pt-4">
+                <p className="px-6 pb-6 text-gray-600 pt-4 text-justify">
                   {faq.answer}
                 </p>
               </div>

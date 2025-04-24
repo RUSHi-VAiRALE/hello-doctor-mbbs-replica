@@ -5,7 +5,6 @@ import FeaturedBlog from "@/components/blog/FeaturedBlog"
 export default function Blogs() {
     return (
         <>
-            <AboutHero route="Home" page="Blogs" />
             <BlogCategories />
         </>
     )

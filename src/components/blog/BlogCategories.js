@@ -12,7 +12,7 @@ export default function BlogCategories() {
   const [activeTabLegal, setActiveTabLegal] = useState('recent')
   const [activeTabExam, setActiveTabExam] = useState('clat')
   const [selectedMonth, setSelectedMonth] = useState('all')
-  const [selectedYear, setSelectedYear] = useState('2024')
+  const [selectedYear, setSelectedYear] = useState(`${new Date().getFullYear()}`)
   const [loading, setLoading] = useState(true)
   const [blogData, setBlogData] = useState({
     legal: {
@@ -67,7 +67,27 @@ export default function BlogCategories() {
             
             return dateB > dateA ? 1 : -1;
           });
-        }
+        
+        // Add month and year properties to each article for filtering
+        legalArticles = legalArticles.map(article => {
+          let createdAtDate;
+          if (article.createdAt) {
+            createdAtDate = typeof article.createdAt === 'string' 
+              ? new Date(article.createdAt) 
+              : article.createdAt.toDate 
+                ? article.createdAt.toDate() 
+                : new Date(article.createdAt);
+          } else {
+            createdAtDate = new Date();
+          }
+          
+          return {
+            ...article,
+            month: String(createdAtDate.getMonth() + 1).padStart(2, '0'),
+            year: String(createdAtDate.getFullYear())
+          };
+        });
+      }
         
         // Fetch current affairs - simplified query
         const currentQuery = query(
@@ -97,7 +117,6 @@ export default function BlogCategories() {
           // Process each article
           currentAffairs.forEach(article => {
             // Convert createdAt to Date object
-            
             let createdAtDate
             if (article.createdAt) {
               createdAtDate = typeof article.createdAt === 'string' 
@@ -110,8 +129,9 @@ export default function BlogCategories() {
               createdAtDate = new Date()
             }
             
-            // Add to daily view (all articles)
-            
+            // Add month and year properties for filtering
+            article.month = String(createdAtDate.getMonth() + 1).padStart(2, '0');
+            article.year = String(createdAtDate.getFullYear());
             
             // Check if article was created within the last 30 days for monthly view
             const timeDiff = currentDate.getTime() - createdAtDate.getTime()
@@ -119,7 +139,7 @@ export default function BlogCategories() {
             const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24))
             if (daysDiff >= 30) {
               currentByFrequency.monthly.push(article)
-            }else{
+            } else {
               currentByFrequency.daily.push(article)
             }
           })
@@ -152,19 +172,7 @@ export default function BlogCategories() {
           ...doc.data()
         }))
         
-        // Only sort if there are articles
-        // if (examUpdatesArticles && examUpdatesArticles.length > 0) {
-        //   // Sort client-side
-        //   examUpdatesArticles = examUpdatesArticles.sort((a, b) => {
-        //     if (!a.createdAt || !b.createdAt) return 0;
-            
-        //     // Handle different formats of createdAt (string or Firestore timestamp)
-        //     const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
-        //     const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
-            
-        //     return dateB > dateA ? 1 : -1;
-        //   });
-        // }
+        
         
         // Initialize subcategory objects with empty arrays
         const legalBySubcategory = {
@@ -193,34 +201,7 @@ export default function BlogCategories() {
           }
         }
         
-        // Initialize frequency objects with empty arrays
-        // const currentByFrequency = {
-        //   daily: [],
-        //   monthly: []
-        // }
         
-        // Only organize if there are current affairs articles
-        // if (currentAffairs && currentAffairs.length > 0) {
-        //   // Add daily articles if they exist
-        //   const dailyArticles = currentAffairs.filter(article => article.frequency === "daily");
-        //   if (dailyArticles.length > 0) {
-        //     currentByFrequency.daily = dailyArticles;
-        //   }
-          
-        //   // Add weekly articles if they exist
-          
-          
-        //   // Add monthly articles if they exist
-        //   const monthlyArticles = currentAffairs.filter(article => article.frequency === "monthly");
-        //   if (monthlyArticles.length > 0) {
-        //     currentByFrequency.monthly = monthlyArticles;
-        //   }
-          
-        //   // Add yearly articles if they exist
-          
-        // }
-        
-        // Initialize exam type objects with empty arrays
         const examUpdatesByType = {
           clat: [],
           ailet: [],
@@ -419,29 +400,69 @@ export default function BlogCategories() {
   // Example blog data
   
 
+  // Function to filter articles by month and year
+  const filterArticlesByDate = (articles, month, year) => {
+    if (!articles || articles.length === 0) return [];
+    
+    return articles.filter(article => {
+      // If "all" months is selected, only filter by year
+      if (month === 'all') {
+        return article.year === year;
+      }
+      // Otherwise filter by both month and year
+      return article.month === month && article.year === year;
+    });
+  };
+  
+  // Update renderContent to use the filter function
   const renderContent = () => {
     switch (activeCategory) {
       case 'legal':
-        return (<>
+        // Filter legal articles by selected month and year
+        const filteredLegalData = {
+          recent: selectedMonth === 'all' && selectedYear === 'all' 
+            ? blogData.legal.recent 
+            : filterArticlesByDate(blogData.legal.recent, selectedMonth, selectedYear),
+          judiciary: selectedMonth === 'all' && selectedYear === 'all'
+            ? blogData.legal.judiciary
+            : filterArticlesByDate(blogData.legal.judiciary, selectedMonth, selectedYear),
+          parliamentary: selectedMonth === 'all' && selectedYear === 'all'
+            ? blogData.legal.parliamentary
+            : filterArticlesByDate(blogData.legal.parliamentary, selectedMonth, selectedYear)
+        };
         
-        <LegalArticles 
-          posts={blogData.legal} 
-          activeTabLegal={activeTabLegal}
-          selectedMonth={selectedMonth}
-          selectedYear={selectedYear}
-          months={months}
-          years={years}
-          setSelectedMonth={setSelectedMonth}
-          setSelectedYear={setSelectedYear}
-          setActiveTabLegal={setActiveTabLegal}
-          tabs={tabs}
-        />
-        </>)
+        return (
+          <>
+            <LegalArticles 
+              posts={filteredLegalData} 
+              activeTabLegal={activeTabLegal}
+              selectedMonth={selectedMonth}
+              selectedYear={selectedYear}
+              months={months}
+              years={years}
+              setSelectedMonth={setSelectedMonth}
+              setSelectedYear={setSelectedYear}
+              setActiveTabLegal={setActiveTabLegal}
+              tabs={tabs}
+            />
+          </>
+        );
+        
       case 'current':
+        // Filter current affairs by selected month and year
+        const filteredCurrentData = {
+          daily: selectedMonth === 'all' && selectedYear === 'all'
+            ? blogData.current.daily
+            : filterArticlesByDate(blogData.current.daily, selectedMonth, selectedYear),
+          monthly: selectedMonth === 'all' && selectedYear === 'all'
+            ? blogData.current.monthly
+            : filterArticlesByDate(blogData.current.monthly, selectedMonth, selectedYear)
+        };
+        
         return (
           <>
             <CurrentAffairs 
-              posts={blogData.current}
+              posts={filteredCurrentData}
               activeTab={activeTab}
               selectedMonth={selectedMonth}
               selectedYear={selectedYear}
@@ -453,7 +474,8 @@ export default function BlogCategories() {
               tabs={tabs}
             />
           </>
-        )
+        );
+        
       case 'examUpdates':
         return <>
         <div className="bg-white rounded-2xl shadow-lg p-3 max-w-3xl mb-12 mx-auto">
@@ -493,7 +515,7 @@ export default function BlogCategories() {
         )}
         
         {/* Category Selection */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-3 lg:grid-cols-3 gap-3 md:gap-8 mb-12 max-w-6xl mx-auto">
           {categories.map((category) => (
             <button
               key={category.id}
@@ -505,9 +527,9 @@ export default function BlogCategories() {
               }`}
             >
               <div className="p-6 relative z-10">
-                <span className="text-4xl mb-4 block">{category.icon}</span>
-                <h3 className="text-xl font-bold mb-2">{category.name}</h3>
-                <p className="text-sm opacity-80">{category.description}</p>
+                <span className="text-xl md:text-4xl mb-4 block">{category.icon}</span>
+                <h3 className="text-md md:text-xl font-bold mb-2">{category.name}</h3>
+                <p className="hidden md:block text-sm opacity-80">{category.description}</p>
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-orange-500/10 to-red-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>

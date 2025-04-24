@@ -23,7 +23,7 @@ export default function CourseCards() {
     { name: 'CUET-LAW', href: '/courses/offline/2' },
     { name: 'OLET', href: '/courses/offline/3' },
     { name: 'CLAT + OLET', href: '/courses/offline/4' },
-    { name: 'OFFLINE MOCK TEST SERIES', href: '/mock-tests/offline' }
+    { name: 'MOCK TEST SERIES', href: '/mock-tests/offline' }
   ])
   
   const [loading, setLoading] = useState(true)
@@ -68,7 +68,7 @@ export default function CourseCards() {
           
           // Add the mock test series as the last item
           fetchedOfflineCourses.push({
-            name: 'OFFLINE MOCK TEST SERIES',
+            name: 'MOCK TEST SERIES',
             href: '/mock-tests/offline'
           })
           
