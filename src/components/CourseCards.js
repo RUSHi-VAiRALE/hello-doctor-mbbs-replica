@@ -103,7 +103,6 @@ export default function CourseCards() {
                     alt="CLATians Logo"
                     width={140}
                     height={140}
-                    className="w-auto"
                   />
                 </div>
                 <div className="flex flex-wrap justify-center gap-3 px-6 capitalize">
@@ -137,7 +136,7 @@ export default function CourseCards() {
                     alt="CLATians Logo"
                     width={140}
                     height={140}
-                    className="w-auto"
+                    className=""
                   />
                 </div>
                 <div className="flex flex-wrap justify-center gap-3 px-6">
