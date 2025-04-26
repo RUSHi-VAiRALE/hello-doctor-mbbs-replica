@@ -67,7 +67,7 @@ export default function OnlineResources() {
         <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
           <div className="relative h-64 w-full flex items-center justify-center bg-gray-50">
             <img
-              src={resource.imageUrl || "https://m.media-amazon.com/images/I/81L7+KTgnfL._SY425_.jpg"}
+              src={resource.image || "https://m.media-amazon.com/images/I/81L7+KTgnfL._SY425_.jpg"}
               alt={resource.title}
               className="h-full w-auto object-contain"
             />

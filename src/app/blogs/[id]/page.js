@@ -12,9 +12,15 @@ export default function BlogPost() {
   const [blogData, setBlogData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [shareUrl, setShareUrl] = useState('')
   const params = useParams()
   
   useEffect(() => {
+    // Set the share URL when component mounts
+    if (typeof window !== 'undefined') {
+      setShareUrl(window.location.href)
+    }
+    
     const fetchBlogData = async () => {
       try {
         setLoading(true)
@@ -44,6 +50,52 @@ export default function BlogPost() {
       fetchBlogData()
     }
   }, [params.id])
+
+  // Function to handle social media sharing
+  const handleShare = (platform) => {
+    const title = blogData?.title || 'CLATians Blog Post'
+    const url = encodeURIComponent(shareUrl)
+    
+    let shareLink = ''
+    
+    switch (platform) {
+      case 'facebook':
+        shareLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`
+        break
+      case 'twitter':
+        shareLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${url}`
+        break
+      case 'linkedin':
+        shareLink = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+        break
+      case 'whatsapp':
+        shareLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + shareUrl)}`
+        break
+      case 'telegram':
+        shareLink = `https://t.me/share/url?url=${url}&text=${encodeURIComponent(title)}`
+        break
+      case 'email':
+        shareLink = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent('Check out this article: ' + shareUrl)}`
+        break
+      default:
+        break
+    }
+    
+    if (shareLink) {
+      window.open(shareLink, '_blank', 'noopener,noreferrer')
+    }
+  }
+
+  // Function to copy link to clipboard
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shareUrl)
+      .then(() => {
+        alert('Link copied to clipboard!')
+      })
+      .catch((err) => {
+        console.error('Failed to copy link: ', err)
+      })
+  }
 
   // Function to render content from the blog data
   const renderContent = () => {
@@ -145,6 +197,77 @@ export default function BlogPost() {
         {/* Blog Content */}
         <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg">
           {parse(blogData.content)}
+          
+          {/* Social Share Section */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">Share this article</h3>
+            
+            <div className="flex flex-wrap gap-3">
+              {/* Facebook */}
+              <button 
+                onClick={() => handleShare('facebook')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                aria-label="Share on Facebook"
+              >
+                <i className="bi bi-facebook"></i>
+              </button>
+              
+              {/* Twitter/X */}
+              <button 
+                onClick={() => handleShare('twitter')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+                aria-label="Share on Twitter/X"
+              >
+                <i className="bi bi-twitter"></i>
+              </button>
+              
+              {/* LinkedIn */}
+              <button 
+                onClick={() => handleShare('linkedin')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors"
+                aria-label="Share on LinkedIn"
+              >
+                <i className="bi bi-linkedin"></i>
+              </button>
+              
+              {/* WhatsApp */}
+              <button 
+                onClick={() => handleShare('whatsapp')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
+                aria-label="Share on WhatsApp"
+              >
+                <i className="bi bi-whatsapp"></i>
+              </button>
+              
+              {/* Telegram */}
+              <button 
+                onClick={() => handleShare('telegram')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+                aria-label="Share on Telegram"
+              >
+                <i className="bi bi-telegram"></i>
+              </button>
+              
+              {/* Email */}
+              <button 
+                onClick={() => handleShare('email')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-600 text-white hover:bg-gray-700 transition-colors"
+                aria-label="Share via Email"
+              >
+                <i className="bi bi-envelope"></i>
+              </button>
+              
+              {/* Copy Link */}
+              <button 
+                onClick={copyToClipboard}
+                className="flex items-center justify-center px-4 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors"
+                aria-label="Copy Link"
+              >
+                <i className="bi bi-link-45deg mr-1"></i>
+                Copy Link
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </article>

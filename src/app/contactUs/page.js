@@ -1,7 +1,65 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitError(null)
+    
+    try {
+      const db = getFirestore(app)
+      
+      // Add the contact form data to the "contacts" collection
+      await addDoc(collection(db, "contacts"), {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        createdAt: serverTimestamp()
+      })
+      
+      // Reset form and show success message
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+      setSubmitSuccess(true)
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false)
+      }, 5000)
+    } catch (error) {
+      console.error("Error submitting contact form:", error)
+      setSubmitError("Failed to submit form. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section className="bg-[#e7edff] py-20">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
@@ -20,20 +78,73 @@ export default function ContactSection() {
                 Do not hesitate to reach out. Just fill in the contact form here, and we'll be sure to reply as fast as possible.
               </p>
               
-              <form className="contact-form">
+              {submitSuccess && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6 flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Thank you! Your message has been sent successfully.</span>
+                </div>
+              )}
+              
+              {submitError && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                  {submitError}
+                </div>
+              )}
+              
+              <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <input type="text" className="form-control border rounded-lg p-4 w-full" placeholder="Your Name" required />
+                  <input 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="form-control border rounded-lg p-4 w-full" 
+                    placeholder="Your Name" 
+                    required 
+                  />
                 </div>
                 <div className="mb-4">
-                  <input type="email" className="form-control border rounded-lg p-4 w-full" placeholder="Your Email" required />
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="form-control border rounded-lg p-4 w-full" 
+                    placeholder="Your Email" 
+                    required 
+                  />
                 </div>
                 <div className="mb-4">
-                  <input type="number" className="form-control border rounded-lg p-4 w-full" placeholder="Your Phone Number" required />
+                  <input 
+                    type="number" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="form-control border rounded-lg p-4 w-full" 
+                    placeholder="Your Phone Number" 
+                    required 
+                  />
                 </div>
                 <div className="mb-4">
-                  <textarea className="form-control border rounded-lg p-4 w-full" rows="5" placeholder="Your Message" required></textarea>
+                  <textarea 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="form-control border rounded-lg p-4 w-full" 
+                    rows="5" 
+                    placeholder="Your Message" 
+                    required
+                  ></textarea>
                 </div>
-                <button type="submit" className="btn-gradient">Send Message</button>
+                <button 
+                  type="submit" 
+                  className="btn-gradient"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
               </form>
             </div>
           </div>
@@ -83,6 +194,11 @@ export default function ContactSection() {
 
         .btn-gradient:hover {
           opacity: 0.9;
+        }
+
+        .btn-gradient:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
         }
 
         .social-icon {

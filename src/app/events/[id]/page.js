@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaYoutube, FaVideo, FaTimes } from 'react-icons/fa'
 import { useParams } from 'next/navigation'
-import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import { doc, getDoc, getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { app } from '@/firebase'
 
 export default function EventDetail() {
@@ -86,7 +86,7 @@ export default function EventDetail() {
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
@@ -96,9 +96,26 @@ export default function EventDetail() {
     
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
+    try {
+      // Get Firestore instance
+      const db = getFirestore(app);
+      
+      // Prepare data to be saved
+      const registrationData = {
+        eventId: id,
+        eventTitle: event?.title || 'Unknown Event',
+        fullName: formData.fullName,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        message: formData.message || '',
+        registeredAt: serverTimestamp(),
+        status: 'pending' // For tracking registration status
+      };
+      
+      // Add document to "eventRegistrations" collection
+      await addDoc(collection(db, "eventRegistrations"), registrationData);
+      
+      // Show success message
       setIsSubmitting(false);
       setSubmitSuccess(true);
       
@@ -113,7 +130,13 @@ export default function EventDetail() {
           message: ''
         });
       }, 3000);
-    }, 1500);
+      
+    } catch (error) {
+      console.error("Error submitting registration:", error);
+      setIsSubmitting(false);
+      // You could add error handling UI here
+      alert("Failed to submit registration. Please try again.");
+    }
   };
 
   // Show loading state
@@ -178,7 +201,7 @@ export default function EventDetail() {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
               <h2 className="text-2xl font-bold mb-6">About This Event</h2>
-              <p className="text-gray-700 mb-8">{event.description || 'No description available.'}</p>
+              <p className="text-gray-700 mb-8 text-justify">{event.description || 'No description available.'}</p>
               
               {event.speaker && (
                 <>

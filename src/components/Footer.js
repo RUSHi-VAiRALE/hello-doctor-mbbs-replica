@@ -1,6 +1,9 @@
 'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 const socialLinks = [
     { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'bg-[#1877F2]' },
@@ -47,6 +50,62 @@ const courseLinks = [
 ]
 
 export default function Footer() {
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [subscriptionStatus, setSubscriptionStatus] = useState(null)
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault()
+    
+    // Basic email validation
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      setSubscriptionStatus({
+        success: false,
+        message: 'Please enter a valid email address'
+      })
+      return
+    }
+    
+    setIsSubmitting(true)
+    setSubscriptionStatus(null)
+    
+    try {
+      const db = getFirestore(app)
+      
+      // Add to newsletter subscribers collection
+      await addDoc(collection(db, "newsletterSubscribers"), {
+        email: email,
+        subscribedAt: serverTimestamp(),
+        source: 'website_footer'
+      })
+      
+      // Success
+      setSubscriptionStatus({
+        success: true,
+        message: 'Thank you for subscribing!'
+      })
+      setEmail('')
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubscriptionStatus(null)
+      }, 5000)
+      
+    } catch (error) {
+      console.error("Error subscribing to newsletter:", error)
+      setSubscriptionStatus({
+        success: false,
+        message: 'Failed to subscribe. Please try again.'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <footer className="bg-[#2143D4] text-white py-12">
       {/* Newsletter Section */}
@@ -61,16 +120,33 @@ export default function Footer() {
           </p>
 
           {/* Newsletter Form */}
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center max-w-xl mx-auto mb-8">
-            <input
-              type="email"
-              placeholder="Enter Your E-Mail"
-              className="w-full md:w-2/3 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            <button className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300 whitespace-nowrap">
-              Subscribe →
-            </button>
-          </div>
+          <form onSubmit={handleSubscribe} className="mb-4">
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center max-w-xl mx-auto mb-2">
+              <input
+                type="email"
+                placeholder="Enter Your E-Mail"
+                value={email}
+                onChange={handleEmailChange}
+                className="w-full md:w-2/3 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                required
+              />
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300 whitespace-nowrap disabled:opacity-70"
+              >
+                {isSubmitting ? 'Subscribing...' : 'Subscribe →'}
+              </button>
+            </div>
+            
+            {/* Status Message */}
+            {subscriptionStatus && (
+              <div className={`text-sm ${subscriptionStatus.success ? 'text-green-300' : 'text-red-300'} mt-2`}>
+                {subscriptionStatus.message}
+              </div>
+            )}
+          </form>
+          
           <p className="text-sm text-gray-300">No ads, No spam, Unsubscribe anytime.</p>
         </div>
 
