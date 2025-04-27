@@ -1,20 +1,70 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { app } from '@/firebase'
 
 export default function ScholarshipForm() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    fullName: '',
     phone: '',
     email: '',
     city: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
+    
+    // Validate form data
+    if (!formData.fullName || !formData.phone || !formData.email || !formData.city) {
+      setSubmitStatus({
+        success: false,
+        message: 'Please fill in all required fields'
+      })
+      return
+    }
+    
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+    
+    try {
+      const db = getFirestore(app)
+      
+      // Add document to "scholarshipApplications" collection
+      await addDoc(collection(db, "scholarshipApplications"), {
+        fullName: formData.fullName,
+        phone: formData.phone,
+        email: formData.email,
+        city: formData.city,
+        appliedAt: serverTimestamp(),
+        status: 'pending'
+      })
+      
+      // Show success message
+      setSubmitStatus({
+        success: true,
+        message: 'Your application has been submitted successfully!'
+      })
+      
+      // Reset form
+      setFormData({
+        fullName: '',
+        phone: '',
+        email: '',
+        city: ''
+      })
+      
+    } catch (error) {
+      console.error("Error submitting scholarship application:", error)
+      setSubmitStatus({
+        success: false,
+        message: 'Failed to submit application. Please try again.'
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e) => {
@@ -72,7 +122,7 @@ export default function ScholarshipForm() {
             </div>
           </div>
 
-          {/* Form Section - remains unchanged */}
+          {/* Form Section */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-2xl transform rotate-1 blur-sm"></div>
             <form 
@@ -83,16 +133,26 @@ export default function ScholarshipForm() {
                 Scholarship Application
               </h3>
 
+              {submitStatus && (
+                <div className={`p-4 rounded-lg ${
+                  submitStatus.success 
+                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <div className="space-y-6">
-              <input
-                    type="text"
-                    name="FullName"
-                    value={formData.FullName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg outline-none transition-colors duration-300 focus:border-red-500 peer"
-                    placeholder="Full Name"
-                  />
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg outline-none transition-colors duration-300 focus:border-red-500 peer"
+                  placeholder="Full Name"
+                />
                 <input
                   type="tel"
                   name="phone"
@@ -126,9 +186,10 @@ export default function ScholarshipForm() {
 
               <button
                 type="submit"
-                className="w-full py-4 px-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition-opacity transform hover:scale-[0.99] duration-200"
+                disabled={isSubmitting}
+                className="w-full py-4 px-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition-opacity transform hover:scale-[0.99] duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Submit Request
+                {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </button>
             </form>
           </div>
