@@ -75,10 +75,6 @@ export default function BlogSection() {
   }
 
   // Truncate content for preview
-  const truncateContent = (content, maxLength = 100) => {
-    if (!content) return ''
-    return content.length > maxLength ? content.substring(0, maxLength) + '...' : content
-  }
 
   if (loading) {
     return (
@@ -130,7 +126,7 @@ export default function BlogSection() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">{featuredBlog.title}</h3>
                 <p className="text-gray-600 mb-4 text-sm line-clamp-6">
-                  {truncateContent(parse(featuredBlog.content))}
+                  {featuredBlog.content}
                 </p>
                 <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                   <Link href={`/blogs/${featuredBlog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
