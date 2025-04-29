@@ -44,7 +44,7 @@ export default function BlogSection() {
       } catch (error) {
         console.error("Error fetching blogs:", error)
         // Fallback datag
-        //bug fixed
+      
         setFeaturedBlog({
           id: 'featured',
           title: 'The Role Of Online Tutors In Education',
