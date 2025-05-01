@@ -1,43 +1,48 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
+import CLAT from '../../public/CLAT.webp'
+import AILET from '../../public/AILET.webp'
+import MHCET from '../../public/MHCET.webp'
+import CUET from '../../public/CUET.webp'
+import AIL from '../../public/AIL.webp'
+import LSAT from '../../public/LSAT.webp'
 export default function Milestones() {
   const milestones = [
     {
       title: "CLAT",
       description: "Crack CLAT with expert coaching—your gateway to top NLUs!",
-      image: "https://clatwallah.netlify.app/images/milestone2.png",
+      image: CLAT,
       link: "/lawEntranceExams/CKJONOTBolKgUMALgplj"
     },
     {
       title: "AILET",
       description: "Crack AILET with expert coaching—your path to NLU Delhi.",
-      image: "https://clatwallah.netlify.app/images/milestone.png",
+      image: AILET,
       link: "/lawEntranceExams/PBMhB1uEDpTBtD9CBTA1"
     },
     {
       title: "MH-CET LAW",
       description: "Ace MH-CET with expert coaching—your path to top law colleges in Maharashtra.",
-      image: "https://clatwallah.netlify.app/images/milestone4.png",
+      image: MHCET,
       link: "/lawEntranceExams/chuGothq1GP1okYGtL7k"
     },
     {
       title: "CUET",
       description: "Prepare for CUET with expert coaching—your gateway to top universities.",
-      image: "https://clatwallah.netlify.app/images/milestone1.png",
+      image: CUET,
       link: "/lawEntranceExams/F1UhzvikvDCTKuM8NmuG"
     },
     
     {
       title: "AIL-LET",
       description: "Crack AIL-LET with expert coaching—your path to the Army Institute of Law.",
-      image: "https://clatwallah.netlify.app/images/milestone3.png",
+      image: AIL,
       link: "/lawEntranceExams/AKiJXQ4khgnb4qnbMeSZ"
     },
     {
       title: "LSAT",
       description: "Crack LSAT with expert coaching—your gateway to top law schools globally.",
-      image: "https://clatwallah.netlify.app/images/milestone5.png",
+      image: LSAT,
       link: "/lawEntranceExams/0D53yWqCef2zYkcDy7du"
     },
   ]

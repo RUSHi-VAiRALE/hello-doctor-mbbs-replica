@@ -4,7 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { collection, getDocs, query, where, getFirestore, orderBy } from 'firebase/firestore'
-import { app } from '@/firebase'
+import { app } from '@/firebase'  
+import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -269,7 +270,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
               <Image 
-                src="https://clatwallah.netlify.app/images/logo.png" 
+                src={ClatiansLogo} 
                 alt="clatians-Logo" 
                 width={90} 
                 height={42} 

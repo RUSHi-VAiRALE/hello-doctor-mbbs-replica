@@ -1,5 +1,5 @@
 import Image from 'next/image'
-
+import appDownload from '../../public/ClatiansAppDesign.webp'
 export default function AppDownload() {
   return (
     <section className="bg-[#fdf6f4] py-4 sm:py-5 md:py-6">
@@ -9,7 +9,7 @@ export default function AppDownload() {
           <div className="w-full lg:w-5/12 flex items-center justify-center">
             <div className="relative w-[280px] h-[354px] sm:w-[300px] sm:h-[380px] md:w-[350px] md:h-[443px] lg:w-[400px] lg:h-[506px] pt-[100px]">
               <Image
-                src="https://clatwallah.netlify.app/images/appp.png"
+                src={appDownload}
                 alt="Mobile App"
                 width={500}
                 height={633}  
