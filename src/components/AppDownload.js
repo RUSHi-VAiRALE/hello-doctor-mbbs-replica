@@ -4,10 +4,10 @@ export default function AppDownload() {
   return (
     <section className="bg-[#fdf6f4] py-4 sm:py-5 md:py-6">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-6">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-6">
           {/* Left: App Image */}
           <div className="w-full lg:w-5/12 flex items-center justify-center">
-            <div className="relative w-[280px] h-[354px] sm:w-[300px] sm:h-[380px] md:w-[350px] md:h-[443px] lg:w-[400px] lg:h-[506px] pt-[100px]">
+            <div className="relative w-[280px] h-[300px] sm:w-[300px] sm:h-[300px] md:w-[350px] md:h-[443px] lg:w-[400px] lg:h-[506px]">
               <Image
                 src={appDownload}
                 alt="Mobile App"
@@ -20,8 +20,8 @@ export default function AppDownload() {
           </div>
 
           {/* Right: Content */}
-          <div className="w-full lg:w-7/12 text-center lg:text-left flex flex-col justify-center">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-2.5 md:mb-3">
+          <div className="w-full lg:w-7/12 text-center lg:text-left flex flex-col">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 lg:mt-10 sm:mb-2.5 md:mb-3">
               Download For Hassle-Free<br />
               End-To-End <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent">Learning</span>
             </h2>
