@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import appDownload from '../../public/ClatiansAppDesign.webp'
+import appDownload from '../../public/CLATiansAppDesign.webp'
 export default function AppDownload() {
   return (
     <section className="bg-[#fdf6f4] py-4 sm:py-5 md:py-6">
