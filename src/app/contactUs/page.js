@@ -166,10 +166,6 @@ export default function ContactSection() {
 
               {/* Google Map */}
               <div className="map-container mb-4">
-                {/* <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.902621848769!2d85.1375663149814!3d25.594095983711217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed58d578c3f6c7%3A0x6e2e32b2a0f482e9!2sPatna%2C%20Bihar%2C%20India!5e0!3m2!1sen!2s!4v1649360072336!5m2!1sen!2s" 
-                  width="100%" height="300" style={{ border: 0 }} allowFullScreen="" loading="lazy">
-                </iframe> */}
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.7810394534963!2d85.11985489999999!3d25.612191199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed583b9bbaaaab%3A0xc1f3c1f67fa76e14!2sCLATians!5e0!3m2!1sen!2sin!4v1746105817784!5m2!1sen!2sin" 
                     width="100%" height="300" style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
