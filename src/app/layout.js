@@ -18,11 +18,6 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:wght@200..900&display=swap" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet" />
         <link rel="icon" href="https://clatwallah.netlify.app/images/logo.png" type="image/png" />
-        <meta property="og:title" content="Clatians - Best CLAT Coaching Institutes in Patna" />
-        <meta property="og:description" content="Expert guidance for CLAT, AILET, CUET and other law entrance exams" />
-        <meta property="og:image" content="https://www.clatians.in/CLATiansLogo.webp" />
-        <meta property="og:url" content="https://www.clatians.in" />
-        <meta property="og:type" content="website" />
       </head>
       <body suppressHydrationWarning className={inter.className}>
         <Navbar />
