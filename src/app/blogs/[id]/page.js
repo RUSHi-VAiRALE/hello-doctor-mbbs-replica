@@ -147,7 +147,7 @@ export default function BlogPost() {
           content={stripHtml(blogData.content).slice(0, 150)}
         />
         <meta property="og:image" content={blogData.image} />
-        <meta property="og:url" content={`https://www.clatians.in/blogs/${id}`} />
+        <meta property="og:url" content={`https://www.clatians.in/blogs/${params.id}`} />
         <meta property="og:type" content="article" />
       </Head>
     <article className="bg-[#fdf6f4] min-h-screen py-16">
