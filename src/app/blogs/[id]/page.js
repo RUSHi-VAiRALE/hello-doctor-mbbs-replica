@@ -142,9 +142,9 @@ export default function BlogPost() {
     <Head>
     <meta property="og:title" content={blogData.title} />
         <meta property="og:description" content={parse(blogData.content)} />
-        <meta property="og:image" content="https://www.clatians.in/CLATiansLogo.webp" />
-        <meta property="og:url" content="https://www.clatians.in" />
-        <meta property="og:type" content="website" />
+        <meta property="og:image" content= {blogData.image}/>
+        <meta property="og:url" content={`https://www.clatians.in/${params.id}`} />
+        <meta property="og:type" content="article" />
     </Head>
     <article className="bg-[#fdf6f4] min-h-screen py-16">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px]">
