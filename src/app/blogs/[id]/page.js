@@ -136,16 +136,20 @@ export default function BlogPost() {
       </div>
     )
   }
-
+  const stripHtml = (html) => html.replace(/<[^>]*>?/gm, '');
   return (
     <>
     <Head>
-    <meta property="og:title" content={blogData.title} />
-        <meta property="og:description" content={parse(blogData.content)} />
-        <meta property="og:image" content= {blogData.image}/>
-        <meta property="og:url" content={`https://www.clatians.in/${params.id}`} />
+        <title>{blogData.title}</title>
+        <meta property="og:title" content={blogData.title} />
+        <meta
+          property="og:description"
+          content={stripHtml(blogData.content).slice(0, 150)}
+        />
+        <meta property="og:image" content={blogData.image} />
+        <meta property="og:url" content={`https://www.clatians.in/blogs/${id}`} />
         <meta property="og:type" content="article" />
-    </Head>
+      </Head>
     <article className="bg-[#fdf6f4] min-h-screen py-16">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px]">
         {/* Back Button */}
