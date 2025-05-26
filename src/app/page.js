@@ -16,6 +16,7 @@ import TeacherSection from '@/components/TeacherSection'
 import Footer from '@/components/Footer'
 import StudentTestimonials from '@/components/StudentTestimonials'
 import AlternatingCarousel from '@/components/AlternatingCarousel'
+import ChatComponent from "@/components/ChatComponent"
 
 export default function Home() {
   const faqs = [
@@ -65,6 +66,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Hero slides={slides} height={"250px"}/>
       <WhyChooseUs />
+      <ChatComponent />
       <Features />
       <CourseCards />
       <ExploreTopCourses />
