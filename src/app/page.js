@@ -66,7 +66,6 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Hero slides={slides} height={"250px"}/>
       <WhyChooseUs />
-      <ChatComponent />
       <Features />
       <CourseCards />
       <ExploreTopCourses />
