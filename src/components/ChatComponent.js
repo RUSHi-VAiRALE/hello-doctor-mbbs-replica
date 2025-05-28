@@ -53,7 +53,7 @@ const ChatUI = ({
       )}
     </div>
 
-    <div className="border-t border-gray-200 p-4 bg-white">
+    {/* <div className="border-t border-gray-200 p-4 bg-white">
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
           type="text"
@@ -69,7 +69,7 @@ const ChatUI = ({
           <i className="bi bi-send-fill"></i>
         </button>
       </form>
-    </div>
+    </div> */}
   </div>
 )
 
@@ -83,6 +83,8 @@ export default function ChatComponent() {
     { type: "user", text: "Hello! What is CLATians?" },
     { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna..." },
     { type: "user", text: "Hello! What is CLATians?" },
+    { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna..." },
+   
   ]
 
   useEffect(() => {
