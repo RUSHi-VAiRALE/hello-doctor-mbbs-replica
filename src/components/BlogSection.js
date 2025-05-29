@@ -127,7 +127,7 @@ export default function BlogSection() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">{featuredBlog.title}</h3>
                 <p className="text-gray-600 mb-4 text-sm line-clamp-6">
-                  {featuredBlog.content}
+                  {parse(featuredBlog.content)}
                 </p>
                 <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                   <Link href={`/blogs/${featuredBlog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
