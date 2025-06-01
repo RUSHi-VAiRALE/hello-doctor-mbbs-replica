@@ -9,10 +9,6 @@ import { app } from '@/firebase'
 import parse from 'html-react-parser'
 import Head from 'next/head'
 
-export const metadata = {
-  title: 'MBBS Abroad | Adminssion By Choice',
-  description: 'Explore opportunities for MBBS abroad in various countries with Adminssion By Choice.',
-};
 
 export default function BlogPost() {
   const [blogData, setBlogData] = useState(null)
