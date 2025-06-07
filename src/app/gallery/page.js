@@ -5,6 +5,7 @@ import Image from "next/image"
 import { FaSearch, FaTimes } from "react-icons/fa"
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import { app } from '@/firebase'
+import Head from 'next/head'
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null)
@@ -74,8 +75,8 @@ export default function Gallery() {
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category.id
-                    ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
-                    : 'bg-white hover:bg-gray-50 text-gray-700'
+                  ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+                  : 'bg-white hover:bg-gray-50 text-gray-700'
                   }`}
               >
                 {category.name}
