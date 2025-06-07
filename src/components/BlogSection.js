@@ -126,9 +126,9 @@ export default function BlogSection() {
                   {formatDate(featuredBlog.date)}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{featuredBlog.title}</h3>
-                <p className="text-gray-600 mb-4 text-sm line-clamp-6">
+                <div className="text-gray-600 mb-4 text-sm line-clamp-6">
                   {parse(featuredBlog.content)}
-                </p>
+                </div>
                 <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                   <Link href={`/blogs/${featuredBlog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                     <h5 className="font-bold mr-2 text-base">Read More</h5>
@@ -168,9 +168,9 @@ export default function BlogSection() {
                         <h5 className="text-xl font-bold mb-3">
                           {blog.title}
                         </h5>
-                        <p className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
+                        <div className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
                           {parse(blog.content)}
-                        </p>
+                        </div>
                         <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                           <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
                             <h5 className="font-bold mr-2 text-base">Read More</h5>
@@ -196,9 +196,9 @@ export default function BlogSection() {
           <div className="lg:col-span-2 bg-white rounded-xl shadow-lg h-[500px]">
             <div className="p-4 flex flex-col h-full">
               <h3 className="text-xl font-bold mb-3">Featured News</h3>
-              <p className="text-gray-600 mb-4 text-base line-clamp-2">
+              <div className="text-gray-600 mb-4 text-base line-clamp-2">
                 {parse(featuredBlog?.content)}
-              </p>
+              </div>
 
               <div className="relative flex-grow rounded-xl overflow-hidden">
                 <Image
@@ -255,9 +255,9 @@ export default function BlogSection() {
                         <h5 className="font-bold text-base mb-3">
                           {blog.title}
                         </h5>
-                        <p className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
+                        <div className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
                           {parse(blog.content)}
-                        </p>
+                        </div>
                         <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-auto">
                           <span className="transform group-hover:translate-x-2 transition-transform mr-2">→</span>
                           <p className="font-medium text-base">Read More</p>
