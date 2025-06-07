@@ -1,26 +1,8 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
 
-export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = true, interval = 5000, height }) {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    // Check if we're on the client side
-    if (typeof window !== 'undefined') {
-      // Initial check
-      setIsMobile(window.innerWidth < 768)
-
-      // Add resize listener
-      const handleResize = () => {
-        setIsMobile(window.innerWidth < 768)
-      }
-
-      window.addEventListener('resize', handleResize)
-      return () => window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
+export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = true, interval = 5000 }) {
   useEffect(() => {
     if (!autoPlay) return
 
@@ -32,27 +14,54 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
   }, [autoPlay, interval, slides.length, setCurrentSlide])
 
   return (
-    <div className={`relative h-[250px] sm:h-[135px] md:h-[150px] lg:h-[200px] xl:h-[250px] w-full overflow-hidden`}>
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute w-full h-full transition-transform duration-500 ease-in-out ${
-            index === currentSlide 
-              ? 'translate-x-0' 
-              : index < currentSlide 
-                ? '-translate-x-full' 
-                : 'translate-x-full'
-          }`}
-        >
-          <Image
-            src={isMobile && slide.mobileImage ? slide.mobileImage : slide.image}
-            alt={slide.alt}
-            fill
-            className="object-cover"
-            priority={index === 0}
-          />
-        </div>
-      ))}
+    <div className="relative h-[250px] sm:h-[135px] md:h-[150px] lg:h-[200px] xl:h-[250px] w-full overflow-hidden">
+      {slides.map((slide, index) => {
+        const isActive = index === currentSlide
+        const isPrev = index === (currentSlide - 1 + slides.length) % slides.length
+        const isNext = index === (currentSlide + 1) % slides.length
+
+        // Only render current slide and adjacent slides
+        if (!isActive && !isPrev && !isNext) return null
+
+        return (
+          <div
+            key={slide.id}
+            className="absolute w-full h-full transition-transform duration-500 ease-in-out"
+            style={{
+              transform: isActive
+                ? 'translateX(0)'
+                : isPrev
+                  ? 'translateX(-100%)'
+                  : 'translateX(100%)',
+              willChange: 'transform'
+            }}
+          >
+            {/* Desktop Image */}
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              className="object-cover hidden md:block"
+              priority={isActive}
+              sizes="100vw"
+              quality={isActive ? 90 : 75}
+              loading={isActive ? 'eager' : 'lazy'}
+            />
+
+            {/* Mobile Image */}
+            <Image
+              src={slide.mobileImage || slide.image}
+              alt={slide.alt}
+              fill
+              className="object-cover block md:hidden"
+              priority={isActive}
+              sizes="100vw"
+              quality={isActive ? 90 : 75}
+              loading={isActive ? 'eager' : 'lazy'}
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }
