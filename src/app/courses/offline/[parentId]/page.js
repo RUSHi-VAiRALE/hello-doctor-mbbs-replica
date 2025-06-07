@@ -6,9 +6,9 @@ import CourseCategories from '@/components/courses/CourseCategories'
 import CoursesList from '@/components/courses/CoursesList'
 import LawEntranceExams from '@/components/courses/LawEntranceExams'
 import { usePathname } from 'next/navigation'
-import { doc, getDoc, collection,getFirestore, query, where, getDocs } from 'firebase/firestore'
+import { doc, getDoc, collection, getFirestore, query, where, getDocs } from 'firebase/firestore'
 import { app } from '../../../../firebase'
-import {data,faqs,examDataCourse} from '@/data/examData'
+import { data, faqs, examDataCourse } from '@/data/examData'
 
 // Fallback data in case Firebase fetch fails
 
@@ -25,27 +25,27 @@ export default function CoursesPage() {
     const fetchCourseData = async () => {
       try {
         setLoading(true);
-        
+
         // Try to fetch the course document by ID first
         const courseDocRef = doc(db, "courses", parentId);
         const courseDocSnap = await getDoc(courseDocRef);
-        
+
         if (courseDocSnap.exists()) {
           const courseData = courseDocSnap.data();
-          
+
           // Fetch the courseItems subcollection
           const courseItemsRef = collection(db, "courses", parentId, "courseItems");
           //const courseItemsQuery = query(courseItemsRef, where("batchType", "==", "offline"));
           const courseItemsSnapshot = await getDocs(courseItemsRef);
-          
+
           // If we have course items, add them to the course data
           if (!courseItemsSnapshot.empty) {
             const courseItems = courseItemsSnapshot.docs.map(doc => ({
               id: doc.id,
-              link : `/courses/${courseData.batchType}/${parentId}/courseCard/${doc.id}`,
+              link: `/courses/${courseData.batchType}/${parentId}/courseCard/${doc.id}`,
               ...doc.data()
             }));
-            
+
             // Create a complete course object with the main data and course items
             setCourseData({
               ...courseData,
@@ -61,29 +61,29 @@ export default function CoursesPage() {
         } else {
           // If no document with this ID, try to find by parentInd
           const coursesQuery = query(
-            collection(db, "courses"), 
+            collection(db, "courses"),
             where("parentInd", "==", parseInt(parentId)),
             where("batchType", "==", "offline")
           );
-          
+
           const querySnapshot = await getDocs(coursesQuery);
-          
+
           if (!querySnapshot.empty) {
             // Get the first matching document
             const courseDoc = querySnapshot.docs[0];
             const courseData = courseDoc.data();
-            
+
             // Fetch the courseItems subcollection for this document
             const courseItemsRef = collection(db, "courses", courseDoc.id, "courseItems");
             const courseItemsQuery = query(courseItemsRef, where("batchType", "==", "offline"));
             const courseItemsSnapshot = await getDocs(courseItemsQuery);
-            
+
             if (!courseItemsSnapshot.empty) {
               const courseItems = courseItemsSnapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
               }));
-              
+
               setCourseData({
                 ...courseData,
                 courses: courseItems
@@ -116,9 +116,9 @@ export default function CoursesPage() {
             collection(db, "exams"),
             where("name", "==", examName)
           );
-          
+
           const examsSnapshot = await getDocs(examsQuery);
-          
+
           if (!examsSnapshot.empty) {
             // Get the first matching exam document
             const examDoc = examsSnapshot.docs[0];
@@ -128,7 +128,7 @@ export default function CoursesPage() {
             setExamDataFromFirebase(null);
           }
         }
-        
+
       } catch (err) {
         console.error("Error fetching course data:", err);
         setError(err);
@@ -159,20 +159,20 @@ export default function CoursesPage() {
   const displayData = courseData || data[parseInt(parentId)] || data[0];
   // Use fetched exam data or fallback to static examData
   const displayExamData = examDataFromFirebase || examDataCourse;
-  
+
   return (
-    <main className="min-h-screen bg-[#e7edff]">
+    <main className="min-h-screen bg-[#f3f3f3]">
       <CoursesHero exam={{
         examName: displayData.examName,
         examDescription: displayData.description
-      }}/>
+      }} />
       <CourseCategories />
-      <CoursesList 
-        courseData={displayData.courses} 
-        examName={displayData.examName} 
+      <CoursesList
+        courseData={displayData.courses}
+        examName={displayData.examName}
         batchType={displayData.batchType}
       />
-      <LawEntranceExams examData={displayExamData}/>
+      <LawEntranceExams examData={displayExamData} />
     </main>
   )
 }

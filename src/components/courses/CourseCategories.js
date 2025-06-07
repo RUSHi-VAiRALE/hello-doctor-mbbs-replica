@@ -33,12 +33,12 @@ export default function CourseCategories() {
   ]
 
   return (
-    <div className="py-8 bg-[#e7edff]">
+    <div className="py-8 bg-[#f3f3f3]">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {categories.map((category, index) => (
-            <Link 
-              key={index} 
+            <Link
+              key={index}
               href={category.link}
               className={`${category.bgColor} p-6 rounded-xl hover:shadow-lg transition-all duration-300 group`}
             >

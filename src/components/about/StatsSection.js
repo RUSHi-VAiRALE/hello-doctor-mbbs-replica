@@ -33,7 +33,7 @@ export default function StatsSection() {
 
   const startCounting = () => {
     const counters = document.querySelectorAll(".counter")
-    
+
     counters.forEach(counter => {
       let startValue = 0
       const endValue = parseFloat(counter.getAttribute("data-target"))
@@ -64,15 +64,15 @@ export default function StatsSection() {
   ]
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="bg-[#e7edff] py-10 md:py-16"
+      className="bg-[#f3f3f3] py-10 md:py-16"
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="bg-white p-8 rounded-xl shadow-md hover:-translate-y-1 transition-transform duration-300"
             >
               <i className={`bi bi-${stat.icon} text-4xl bg-gradient-to-br from-amber-400 via-orange-500 to-red-700 bg-clip-text text-transparent mb-4 block`}></i>

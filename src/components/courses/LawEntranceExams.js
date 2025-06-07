@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 const LawEntranceExams = ({ examData }) => {
-  
+
   // Table component for responsive tables
   const ResponsiveTable = ({ title, headers, data, cellRenderer }) => (
     <div className="mb-8">
@@ -14,8 +14,8 @@ const LawEntranceExams = ({ examData }) => {
           <thead className="bg-gradient-to-r from-orange-100 to-orange-50">
             <tr>
               {headers.map((header, index) => (
-                <th 
-                  key={index} 
+                <th
+                  key={index}
                   className="px-4 py-3 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider"
                 >
                   {header}
@@ -36,7 +36,7 @@ const LawEntranceExams = ({ examData }) => {
   );
 
   return (
-    <div className="bg-[#E7EDFF] py-12">
+    <div className="bg-[#f3f3f3] py-12">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {/* Hero Section */}
         <div className="mb-12 text-center">
@@ -52,9 +52,9 @@ const LawEntranceExams = ({ examData }) => {
         <div className="bg-white rounded-xl shadow-md p-6 md:p-8 mb-12">
           <div className="md:flex items-start gap-8">
             <div className="md:w-2/3">
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  {examData.introduction}
-                </p>
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                {examData.introduction}
+              </p>
             </div>
             <div className="md:w-1/3 mt-6 md:mt-0">
               <div className="bg-orange-100 rounded-lg p-4 border-l-4 border-orange-500">

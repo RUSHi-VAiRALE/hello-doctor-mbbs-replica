@@ -86,14 +86,14 @@ export default function CourseCards() {
   }, [])
 
   return (
-    <section className="bg-[#f3f3f3] py-12">
+    <section className="bg-[#f3f3f3] py-12 shadow-xl/20">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
           </div>
         ) : (
-          <div className="flex flex-col sm:flex-row gap-8 items-center justify-center">
+          <div className="flex flex-col sm:flex-row gap-8 items-center justify-center shadow-b-lg">
             {/* Online Courses Card */}
             <div className="bg-white w-full gap-y-3 flex-col justify-between rounded-lg shadow-lg">
               <div className="flex flex-col gap-y-3 mb-3 justify-between items-center">

@@ -66,7 +66,7 @@ export default function WhyChooseUs() {
   }
 
   return (
-    <section ref={sectionRef} className="py-16 bg-[#f3f3f3]">
+    <section ref={sectionRef} className="py-16 bg-[#f3f3f3] shadow-lg">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="flex flex-col md:flex-row items-stretch gap-8 md:gap-16 lg:gap-24">
           {/* Text Section */}

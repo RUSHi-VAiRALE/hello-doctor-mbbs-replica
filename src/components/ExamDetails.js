@@ -14,7 +14,7 @@ import ExamPreparation from './exam/ExamPreparation'
 
 const ExamDetails = ({ exam }) => {
   const [activeTab, setActiveTab] = useState('overview')
-  
+
   // Create refs for each section
   const sectionRefs = {
     overview: useRef(null),
@@ -76,62 +76,62 @@ const ExamDetails = ({ exam }) => {
   }, [])
 
   return (
-    <div className="bg-[#E7EDFF] min-h-screen">
+    <div className="bg-[#f3f3f3] min-h-screen">
       <ExamHero exam={exam} />
       <div className="sticky top-14 z-40 bg-white shadow-md">
-        <ExamTabs 
-          tabs={tabs} 
-          activeTab={activeTab} 
+        <ExamTabs
+          tabs={tabs}
+          activeTab={activeTab}
           setActiveTab={(tabId) => {
             setActiveTab(tabId)
             scrollToSection(tabId)
-          }} 
+          }}
         />
       </div>
-      
+
       {/* Content Section */}
       <div className="container mx-auto max-w-7xl px-4 py-8">
-          {/* Overview Section */}
-          <div ref={sectionRefs.overview} className='bg-white mb-4 p-4 rounded-lg' id="overview">
-            <ExamOverview exam={exam} />
-          </div>
-          {/* Updates Section */}
-          <div ref={sectionRefs.updates} className='bg-white mb-4 p-4 rounded-lg' id="updates">
-            <ExamUpdates update={exam.updates} />
-          </div>
-
-          {/* Eligibility Section */}
-          <div ref={sectionRefs.eligibility} className='bg-white mb-4 p-4 rounded-lg' id="eligibility">
-            <ExamEligibility exam={exam} />
-          </div>
-
-          {/* Pattern Section */}
-          <div ref={sectionRefs.pattern} className='bg-white mb-4 p-4 rounded-lg' id="pattern">
-            <ExamPattern exam={exam} />
-          </div>
-
-          {/* Syllabus Section */}
-          <div ref={sectionRefs.syllabus} className='bg-white mb-4 p-4 rounded-lg' id="syllabus">
-            <ExamSyllabus exam={exam} />
-          </div>
-
-          {/* Application Section */}
-          <div ref={sectionRefs.application} className='bg-white mb-4 p-4 rounded-lg' id="application">
-            <ExamApplication exam={exam} />
-          </div>
-
-          {/* Preparation Section */}
-          <div ref={sectionRefs.preparation} className='bg-white mb-4 p-4 rounded-lg' id="preparation">
-            <ExamPreparation exam={exam} />
-          </div>
-
-          {/* Universities Section */}
-          <div ref={sectionRefs.universities} className='bg-white mb-4 p-4 rounded-lg' id="universities">
-            <ExamUniversities exam={exam} />
-          </div>
-
+        {/* Overview Section */}
+        <div ref={sectionRefs.overview} className='bg-white mb-4 p-4 rounded-lg' id="overview">
+          <ExamOverview exam={exam} />
         </div>
+        {/* Updates Section */}
+        <div ref={sectionRefs.updates} className='bg-white mb-4 p-4 rounded-lg' id="updates">
+          <ExamUpdates update={exam.updates} />
+        </div>
+
+        {/* Eligibility Section */}
+        <div ref={sectionRefs.eligibility} className='bg-white mb-4 p-4 rounded-lg' id="eligibility">
+          <ExamEligibility exam={exam} />
+        </div>
+
+        {/* Pattern Section */}
+        <div ref={sectionRefs.pattern} className='bg-white mb-4 p-4 rounded-lg' id="pattern">
+          <ExamPattern exam={exam} />
+        </div>
+
+        {/* Syllabus Section */}
+        <div ref={sectionRefs.syllabus} className='bg-white mb-4 p-4 rounded-lg' id="syllabus">
+          <ExamSyllabus exam={exam} />
+        </div>
+
+        {/* Application Section */}
+        <div ref={sectionRefs.application} className='bg-white mb-4 p-4 rounded-lg' id="application">
+          <ExamApplication exam={exam} />
+        </div>
+
+        {/* Preparation Section */}
+        <div ref={sectionRefs.preparation} className='bg-white mb-4 p-4 rounded-lg' id="preparation">
+          <ExamPreparation exam={exam} />
+        </div>
+
+        {/* Universities Section */}
+        <div ref={sectionRefs.universities} className='bg-white mb-4 p-4 rounded-lg' id="universities">
+          <ExamUniversities exam={exam} />
+        </div>
+
       </div>
+    </div>
   )
 }
 

@@ -53,7 +53,7 @@ export default function Features() {
   ]
 
   return (
-    <section className="py-12 bg-[#f3f3f3]" ref={sectionRef}>
+    <section className="py-12 bg-[#f3f3f3] shadow-lg" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {features.map((feature, index) => (

@@ -11,13 +11,13 @@ export default function Timeline() {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !animationTriggered) {
             setAnimationTriggered(true)
-            
+
             // Animate the path
             const path = entry.target.querySelector('.timeline-path')
             if (path) {
               path.classList.add('animate-draw-path')
             }
-            
+
             // Animate the dots and content with a staggered delay
             const visibleMilestones = Array.from(entry.target.querySelectorAll('.milestone-point'))
             visibleMilestones.forEach((point, index) => {
@@ -130,7 +130,7 @@ export default function Timeline() {
                 <div className={`absolute -left-4 w-8 h-8 bg-gradient-to-br ${milestone.color} rounded-full flex items-center justify-center shadow-md z-10`}>
                   <i className={`bi bi-${milestone.icon} text-white text-sm`}></i>
                 </div>
-                
+
                 {/* Content */}
                 <div className="bg-white p-3 rounded-lg shadow-md border border-gray-100">
                   <h3 className="font-bold text-gray-800">
@@ -148,10 +148,10 @@ export default function Timeline() {
           <div className="relative h-64 mx-auto px-4 py-32">
             {/* SVG for the path */}
             <svg className="absolute top-0 left-0 w-full h-32" viewBox="0 0 1200 100" preserveAspectRatio="none">
-              <path 
-                d="M0,50 C200,0 400,100 600,50 C800,0 1000,100 1200,50" 
-                fill="none" 
-                stroke="url(#gradient)" 
+              <path
+                d="M0,50 C200,0 400,100 600,50 C800,0 1000,100 1200,50"
+                fill="none"
+                stroke="url(#gradient)"
                 strokeWidth="6"
                 strokeDasharray="1200"
                 strokeDashoffset="1200"
@@ -170,18 +170,18 @@ export default function Timeline() {
             {milestones.map((milestone, index) => {
               // Calculate position along the wave
               const xPos = (index / (milestones.length - 1 || 1)) * 100;
-              
+
               // Calculate top position based on sine wave
               // This creates a smoother distribution along the wave
               const waveHeight = 30; // Height of the wave in pixels
               const topPosition = 50 + Math.sin((index / (milestones.length - 1 || 1)) * Math.PI) * waveHeight;
-              
+
               // Alternate content position (above/below)
               const isTop = index % 2 === 0;
-              
+
               return (
-                <div 
-                  key={`desktop-${milestone.year}-${milestone.title}-${index}`} 
+                <div
+                  key={`desktop-${milestone.year}-${milestone.title}-${index}`}
                   className="milestone-point absolute"
                   style={{
                     left: `${xPos}%`,
@@ -190,7 +190,7 @@ export default function Timeline() {
                   }}
                 >
                   {/* The dot marker */}
-                  <div 
+                  <div
                     className={`timeline-dot w-10 h-10 bg-gradient-to-br ${milestone.color} 
                     rounded-full flex items-center justify-center opacity-0 scale-0 shadow-md
                     transition-all duration-500 ease-out z-10`}
@@ -199,7 +199,7 @@ export default function Timeline() {
                   </div>
 
                   {/* Content box with adjustments for top/bottom positioning */}
-                  <div 
+                  <div
                     className={`timeline-content opacity-0 transform ${isTop ? '-translate-y-4' : 'translate-y-4'} 
                     w-32 absolute z-20
                     ${isTop ? '-top-20' : 'top-16'} left-1/2 -translate-x-1/2`}
