@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import BotpressBot from '@/components/BotpressBot'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import ClatiansLogo from "../../public/CLATiansLogo.webp"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:wght@200..900&display=swap" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet" />
-        <link rel="icon" href="https://clatwallah.netlify.app/images/logo.png" type="image/png" />
+        <link rel="icon" href={ClatiansLogo} type="image/png" />
       </head>
       <body suppressHydrationWarning className={inter.className}>
         <Navbar />
