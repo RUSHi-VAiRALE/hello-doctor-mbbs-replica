@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import Link from 'next/link'
-import { collection,getFirestore, getDocs, query, limit } from 'firebase/firestore'
+import { collection, getFirestore, getDocs, query, limit } from 'firebase/firestore'
 import { app } from '@/firebase'
 // Import Swiper styles
 import 'swiper/css'
@@ -39,7 +39,7 @@ export default function ExploreTopCourses() {
       students: 250,
       lessons: 12,
       description: "Intensive preparation program for AILET with mock tests and personalized mentoring.",
-      link : "courses/online/4"
+      link: "courses/online/4"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
@@ -50,10 +50,10 @@ export default function ExploreTopCourses() {
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
-      link : "courses/online/2"
+      link: "courses/online/2"
     },
     {
-      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg", 
+      image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
       category: "CUET(PG)",
       title: "CUET(PG) Complete Course",
       level: "Intermediate",
@@ -61,7 +61,7 @@ export default function ExploreTopCourses() {
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
-      link : "courses/online/3"
+      link: "courses/online/3"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
@@ -72,7 +72,7 @@ export default function ExploreTopCourses() {
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
-      link : "courses/online/5"
+      link: "courses/online/5"
     },
     {
       image: "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg",
@@ -83,7 +83,7 @@ export default function ExploreTopCourses() {
       students: 280,
       lessons: 18,
       description: "Complete preparation package for CUET law entrance examination.",
-      link : "courses/offline/4"
+      link: "courses/offline/4"
     }
   ]
 
@@ -94,18 +94,18 @@ export default function ExploreTopCourses() {
         setLoading(true)
         const coursesQuery = query(collection(db, "courses"), limit(2))
         const querySnapshot = await getDocs(coursesQuery)
-        
+
         if (!querySnapshot.empty) {
           let allCourses = []
-          
+
           // Process each document and fetch its subcollection
           const fetchPromises = querySnapshot.docs.map(async (doc) => {
             const data = doc.data()
-            
+
             // Fetch the courseItems subcollection for this document
             const courseItemsRef = collection(db, "courses", doc.id, "courseItems")
             const courseItemsSnapshot = await getDocs(courseItemsRef)
-            
+
             if (!courseItemsSnapshot.empty) {
               // Map each course item in the subcollection
               const docCourses = courseItemsSnapshot.docs.map(itemDoc => {
@@ -125,7 +125,7 @@ export default function ExploreTopCourses() {
                   batchType: data.batchType || 'online'
                 }
               })
-              
+
               return docCourses
             } else if (data.courses && Array.isArray(data.courses) && data.courses.length > 0) {
               // Fallback to courses array if subcollection is empty
@@ -159,18 +159,18 @@ export default function ExploreTopCourses() {
               }]
             }
           })
-          
+
           // Wait for all subcollection fetches to complete
           const coursesArrays = await Promise.all(fetchPromises)
-          
+
           // Flatten the array of arrays into a single array of courses
           allCourses = coursesArrays.flat()
-          
+
           // Limit to 6 courses if we have more
           if (allCourses.length > 6) {
             allCourses = allCourses.slice(0, 6)
           }
-          
+
           setCourses(allCourses.length > 0 ? allCourses : defaultCourses)
         } else {
           // If no courses found in Firebase, use default courses
@@ -189,7 +189,7 @@ export default function ExploreTopCourses() {
   }, [])
 
   return (
-    <section className="py-12 bg-[#e7edff] overflow-hidden">
+    <section className="py-12 bg-[#f3f3f3] overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold uppercase">
@@ -253,21 +253,21 @@ export default function ExploreTopCourses() {
         {/* Navigation and Progress Bar */}
         <div className="md:w-full w-[78%] mx-auto">
           <div className="flex items-center justify-between gap-4">
-            <button 
+            <button
               onClick={() => swiper?.slidePrev()}
               className="w-10 h-10 bg-white rounded-full flex items-center border-red-600 justify-center shadow-lg hover:bg-blue-50 transition-colors group"
             >
               <i className="bi bi-chevron-left text-red-600 group-hover:text-blue-600"></i>
             </button>
-            
+
             <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transition-all duration-300"
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
-            
-            <button 
+
+            <button
               onClick={() => swiper?.slideNext()}
               className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
             >
@@ -304,12 +304,12 @@ function CourseCard({ course }) {
   }
 
   return (
-    <div 
+    <div
       className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative w-[300px] sm:w-full mx-auto"
       style={{ height: '420px' }}
     >
       {/* Course Image */}
-      <div 
+      <div
         className="relative h-48"
         onMouseOver={handleMouseEnter}
         onMouseOut={handleMouseLeave}
@@ -329,7 +329,7 @@ function CourseCard({ course }) {
         <h5 className="font-bold text-lg mb-3 transition-colors line-clamp-2">
           {course.title}
         </h5>
-        
+
         <div className="flex justify-between items-center mb-3">
           <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
             {course.level}
@@ -351,19 +351,19 @@ function CourseCard({ course }) {
         </div>
 
         {/* View Details Button */}
-        <div 
+        <div
           className="relative z-30"
         >
           <Link href={`${course.link}`}>
-            <button 
-            className={`w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${isHovered  ? 'opacity-0' : 'opacity-100'}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              // Add your view details functionality here
-            }}
-          >
-            View Details
-          </button>
+            <button
+              className={`w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                // Add your view details functionality here
+              }}
+            >
+              View Details
+            </button>
           </Link>
         </div>
 
@@ -373,7 +373,7 @@ function CourseCard({ course }) {
             <p className="text-white mb-4 text-sm line-clamp-4">
               {course.description}
             </p>
-            <button 
+            <button
               className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-transform duration-300 hover:shadow-lg"
               onClick={(e) => {
                 e.stopPropagation();
@@ -386,7 +386,7 @@ function CourseCard({ course }) {
         )}
 
         {/* Quick Actions */}
-        {isHovered &&  (
+        {isHovered && (
           <div className="absolute top-3 right-3 flex flex-col gap-2 transition-opacity duration-300">
             <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors">
               <i className="bi bi-heart text-red-500"></i>

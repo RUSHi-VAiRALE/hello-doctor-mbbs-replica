@@ -53,17 +53,17 @@ export default function Features() {
   ]
 
   return (
-    <section className="py-12 bg-[#e7edff]" ref={sectionRef}>
+    <section className="py-12 bg-[#f3f3f3]" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {features.map((feature, index) => (
-            <div 
+            <div
               key={index}
               className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-lg hover:transform hover:-translate-y-1 transition-transform duration-1000 min-h-[180px] overflow-hidden"
             >
-              <div 
+              <div
                 className={hasAnimated ? 'animate-fade-up' : 'opacity-0 translate-y-8'}
-                style={{ 
+                style={{
                   animationDelay: `${index * 700}ms`,
                   animationFillMode: 'both'
                 }}

@@ -66,7 +66,7 @@ export default function WhyChooseUs() {
   }
 
   return (
-    <section ref={sectionRef} className="py-16 bg-[#e7edff]">
+    <section ref={sectionRef} className="py-16 bg-[#f3f3f3]">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="flex flex-col md:flex-row items-stretch gap-8 md:gap-16 lg:gap-24">
           {/* Text Section */}
@@ -76,7 +76,7 @@ export default function WhyChooseUs() {
             </h2>
             <p className="text-gray-600 text-sm md:text-md lg:text-lg text-justify">
               Crack CLAT with India's affordable and comprehensive law entrance preparation program. From Legal Reasoning to Current Affairs, comprehensive study material to mock tests series, our expert mentors guide you through every section of CLAT to secure your seat in Top National Law Universities (NLUs).
-              <br/><strong className='text-black'>Start your NLU journey today at unmatched Study Environment!</strong>
+              <br /><strong className='text-black'>Start your NLU journey today at unmatched Study Environment!</strong>
 
             </p>
             <div className="flex gap-8 md:gap-12 lg:gap-16">
@@ -94,13 +94,13 @@ export default function WhyChooseUs() {
               </div>
             </div>
             <Link href="/admission" className="flex items-center gap-3 group cursor-pointer">
-  <h5 className="font-bold text-base md:text-2xl lg:text-3xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
-    Get Started
-  </h5>
-  <span className="text-lg md:text-3xl transform group-hover:translate-x-2 transition-transform bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
-    →
-  </span>
-</Link>
+              <h5 className="font-bold text-base md:text-2xl lg:text-3xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
+                Get Started
+              </h5>
+              <span className="text-lg md:text-3xl transform group-hover:translate-x-2 transition-transform bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
+                →
+              </span>
+            </Link>
           </div>
 
           {/* Chat Section */}

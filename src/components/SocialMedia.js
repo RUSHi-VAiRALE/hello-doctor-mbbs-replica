@@ -5,12 +5,12 @@ export default function SocialMedia() {
     { platform: 'https://www.youtube.com/@CLATians', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
     { platform: 'https://t.me/CLATians', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
     { platform: 'https://g.co/kgs/3NcAYmD', icon: 'bi-google', color: 'bg-[#DB4437]' },
-    { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#DB4437]'},
-    { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#DB4437]'},
+    { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#DB4437]' },
+    { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#DB4437]' },
   ]
 
   return (
-    <section className="bg-[#e7edff] py-16">
+    <section className="bg-[#f3f3f3] py-16">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Follow Us on Social Media</h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm md:text-base">

@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-import { collection, getDocs, getFirestore, orderBy,query } from 'firebase/firestore'
+import { collection, getDocs, getFirestore, orderBy, query } from 'firebase/firestore'
 import { app } from '@/firebase'
 // Import Swiper styles
 import 'swiper/css'
@@ -68,12 +68,12 @@ export default function StudentTestimonials() {
   const handleScroll = () => {
     if (swiper) {
       swiper.autoplay.stop();
-      
+
       // Clear any existing timeout
       if (window.scrollTimeout) {
         clearTimeout(window.scrollTimeout);
       }
-      
+
       // Set a timeout to restart autoplay after scrolling stops
       window.scrollTimeout = setTimeout(() => {
         swiper.autoplay.start();
@@ -106,7 +106,7 @@ export default function StudentTestimonials() {
   }
 
   return (
-    <section className="py-12 bg-[#e7edff] overflow-hidden">
+    <section className="py-12 bg-[#f3f3f3] overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold">
@@ -119,9 +119,9 @@ export default function StudentTestimonials() {
           <div className="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
             {/* Image */}
             <div className="relative md:w-1/2">
-              <img 
-                src={mainTestimonial.image} 
-                alt={mainTestimonial.name} 
+              <img
+                src={mainTestimonial.image}
+                alt={mainTestimonial.name}
                 className="w-full h-48 md:h-full object-cover"
               />
               {/* Rank Badge - Only show if rank exists and is not empty */}
@@ -195,7 +195,7 @@ export default function StudentTestimonials() {
                   <div className="bg-white p-4 rounded-lg shadow-lg flex cursor-pointer flex-col h-full">
                     {/* Testimonial Content */}
                     <div className="flex-grow">
-                      <p 
+                      <p
                         className="text-gray-600 text-justify mb-4 leading-relaxed text-sm h-[120px] overflow-y-auto pr-2 scrollbar-hide"
                         onScroll={handleScroll}
                       >
@@ -205,9 +205,9 @@ export default function StudentTestimonials() {
                     {/* User Info */}
                     <div className="text-center mt-auto">
                       <div className="relative inline-block">
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.name} 
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
                           className="w-10 h-10 rounded-full mx-auto mb-2 object-cover"
                         />
                         {/* Mini Rank Badge - Only show if rank exists and is not empty */}
@@ -231,21 +231,21 @@ export default function StudentTestimonials() {
         {testimonials.length > 1 && (
           <div className="md:w-full w-[78%] mx-auto">
             <div className="flex items-center justify-between gap-4">
-              <button 
+              <button
                 onClick={() => swiper?.slidePrev()}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
               >
                 <i className="bi bi-chevron-left text-red-600 group-hover:text-blue-600"></i>
               </button>
-              
+
               <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
-                <div 
+                <div
                   className="h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => swiper?.slideNext()}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
               >

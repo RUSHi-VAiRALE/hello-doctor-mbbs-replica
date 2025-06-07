@@ -18,7 +18,7 @@ export default function Events() {
   const [swiper, setSwiper] = useState(null);
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   // Fetch events from Firebase
   useEffect(() => {
     const fetchEvents = async () => {
@@ -52,7 +52,7 @@ export default function Events() {
   }, []);
 
   return (
-    <section className="bg-[#e7edff] py-12">
+    <section className="bg-[#f3f3f3] py-12">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <span className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -151,21 +151,21 @@ export default function Events() {
               {/* Navigation Buttons and Progress Bar */}
               <div className="md:w-full w-[78%] mx-auto">
                 <div className="flex items-center justify-between gap-4">
-                  <button 
+                  <button
                     onClick={() => swiper?.slidePrev()}
                     className="w-10 h-10 bg-white rounded-full flex items-center border-red-600 justify-center shadow-lg hover:bg-blue-50 transition-colors group"
                   >
                     <i className="bi bi-chevron-left text-red-600 group-hover:text-blue-600"></i>
                   </button>
-                  
+
                   <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
-                    <div 
+                    <div
                       className="h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transition-all duration-300"
                       style={{ width: `${progress}%` }}
                     ></div>
                   </div>
-                  
-                  <button 
+
+                  <button
                     onClick={() => swiper?.slideNext()}
                     className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
                   >

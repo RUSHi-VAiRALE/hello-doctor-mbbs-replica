@@ -4,16 +4,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { app } from '@/firebase'
+import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 const socialLinks = [
-    { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'bg-[#1877F2]' },
-    { platform: 'https://www.instagram.com/clatians/', icon: 'bi-instagram', color: 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500' },
-    { platform: 'https://www.youtube.com/@CLATians', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
-    { platform: 'https://t.me/CLATians', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
-    { platform: 'https://g.co/kgs/3NcAYmD', icon: 'bi-google', color: 'bg-[#DB4437]' },
-    { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#1DA1F2]'},
-    { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#0A66C2]'},
-  ]
+  { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'bg-[#1877F2]' },
+  { platform: 'https://www.instagram.com/clatians/', icon: 'bi-instagram', color: 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500' },
+  { platform: 'https://www.youtube.com/@CLATians', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
+  { platform: 'https://t.me/CLATians', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
+  { platform: 'https://g.co/kgs/3NcAYmD', icon: 'bi-google', color: 'bg-[#DB4437]' },
+  { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#1DA1F2]' },
+  { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#0A66C2]' },
+]
 
 // New arrays with text and link for each footer section
 const quickLinks = [
@@ -60,7 +61,7 @@ export default function Footer() {
 
   const handleSubscribe = async (e) => {
     e.preventDefault()
-    
+
     // Basic email validation
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setSubscriptionStatus({
@@ -69,32 +70,32 @@ export default function Footer() {
       })
       return
     }
-    
+
     setIsSubmitting(true)
     setSubscriptionStatus(null)
-    
+
     try {
       const db = getFirestore(app)
-      
+
       // Add to newsletter subscribers collection
       await addDoc(collection(db, "newsletterSubscribers"), {
         email: email,
         subscribedAt: serverTimestamp(),
         source: 'website_footer'
       })
-      
+
       // Success
       setSubscriptionStatus({
         success: true,
         message: 'Thank you for subscribing!'
       })
       setEmail('')
-      
+
       // Clear success message after 5 seconds
       setTimeout(() => {
         setSubscriptionStatus(null)
       }, 5000)
-      
+
     } catch (error) {
       console.error("Error subscribing to newsletter:", error)
       setSubscriptionStatus({
@@ -130,15 +131,15 @@ export default function Footer() {
                 className="w-full md:w-2/3 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 required
               />
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300 whitespace-nowrap disabled:opacity-70"
               >
                 {isSubmitting ? 'Subscribing...' : 'Subscribe →'}
               </button>
             </div>
-            
+
             {/* Status Message */}
             {subscriptionStatus && (
               <div className={`text-sm ${subscriptionStatus.success ? 'text-green-300' : 'text-red-300'} mt-2`}>
@@ -146,7 +147,7 @@ export default function Footer() {
               </div>
             )}
           </form>
-          
+
           <p className="text-sm text-gray-300">No ads, No spam, Unsubscribe anytime.</p>
         </div>
 
@@ -156,7 +157,7 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <div className="mb-6">
               <Image
-                src="https://clatwallah.netlify.app/images/logo.png"
+                src={ClatiansLogo}
                 alt="Logo"
                 width={150}
                 height={50}
@@ -173,16 +174,16 @@ export default function Footer() {
                 </p>
               </div>
               <div className="flex gap-2 md:gap-1 md:w-[300px]">
-          {socialLinks.map((social) => (
-            <a
-              key={social.platform}
-              href={`${social.platform}`}
-              target='_blank'
-              className={`${social.color} w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white text-lg transform hover:scale-110 transition-transform shadow-lg`}
-            >
-              <i className={`bi ${social.icon}`}></i>
-            </a>
-          ))}
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.platform}
+                    href={`${social.platform}`}
+                    target='_blank'
+                    className={`${social.color} w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white text-lg transform hover:scale-110 transition-transform shadow-lg`}
+                  >
+                    <i className={`bi ${social.icon}`}></i>
+                  </a>
+                ))}
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ export default function CourseCards() {
     { name: 'AIL-LET', href: '/courses/online/4' },
     { name: 'BOOSTER COURSES', href: '/courses/online/5' }
   ])
-  
+
   const [offlineCourses, setOfflineCourses] = useState([
     { name: 'CLAT', href: '/courses/offline/0' },
     { name: 'CLAT + AILET', href: '/courses/offline/1' },
@@ -25,7 +25,7 @@ export default function CourseCards() {
     { name: 'CLAT + OLET', href: '/courses/offline/4' },
     { name: 'MOCK TEST SERIES', href: '/mock-tests/offline' }
   ])
-  
+
   const [loading, setLoading] = useState(true)
 
   // Fetch courses from Firebase
@@ -34,44 +34,44 @@ export default function CourseCards() {
     const fetchCourses = async () => {
       try {
         setLoading(true)
-        
+
         // Fetch online courses
         const onlineQuery = query(
-          collection(db, "courses"), 
+          collection(db, "courses"),
           where("batchType", "==", "online"),
           orderBy("createdAt", "asc")
         )
         const onlineSnapshot = await getDocs(onlineQuery)
-        
+
         if (!onlineSnapshot.empty) {
           const fetchedOnlineCourses = onlineSnapshot.docs.map((doc) => ({
             name: doc.data().examName || `Course ${doc.id}`,
             href: `/courses/online/${doc.id}`
           }))
-          
+
           setOnlineCourses(fetchedOnlineCourses)
         }
-        
+
         // Fetch offline courses
         const offlineQuery = query(
-          collection(db, "courses"), 
+          collection(db, "courses"),
           where("batchType", "==", "offline"),
           orderBy("createdAt", "asc")
         )
         const offlineSnapshot = await getDocs(offlineQuery)
-        
+
         if (!offlineSnapshot.empty) {
           const fetchedOfflineCourses = offlineSnapshot.docs.map((doc) => ({
             name: doc.data().examName || `Course ${doc.id}`,
             href: `/courses/offline/${doc.id}`
           }))
-          
+
           // Add the mock test series as the last item
           fetchedOfflineCourses.push({
             name: 'MOCK TEST SERIES',
             href: '/mock-tests/offline'
           })
-          
+
           setOfflineCourses(fetchedOfflineCourses)
         }
       } catch (error) {
@@ -81,12 +81,12 @@ export default function CourseCards() {
         setLoading(false)
       }
     }
-    
+
     fetchCourses()
   }, [])
 
   return (
-    <section className="bg-[#e7edff] py-12">
+    <section className="bg-[#f3f3f3] py-12">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {loading ? (
           <div className="flex justify-center items-center py-20">
@@ -107,9 +107,9 @@ export default function CourseCards() {
                 </div>
                 <div className="flex flex-wrap justify-center gap-3 px-6 capitalize">
                   {onlineCourses.map((course, index) => (
-                    <Link 
+                    <Link
                       key={course.name}
-                      className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize truncate text-center" 
+                      className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize truncate text-center"
                       href={course.href}>
                       <button>
                         {course.name}
@@ -141,9 +141,9 @@ export default function CourseCards() {
                 </div>
                 <div className="flex flex-wrap justify-center gap-3 px-6">
                   {offlineCourses.map((course, index) => (
-                    <Link 
+                    <Link
                       key={course.name}
-                      className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize truncate text-center" 
+                      className="flex-1 min-w-[150px] px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium transition-colors capitalize truncate text-center"
                       href={course.href}>
                       <button>
                         {course.name}

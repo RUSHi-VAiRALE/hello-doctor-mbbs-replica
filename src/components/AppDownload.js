@@ -2,7 +2,7 @@ import Image from 'next/image'
 import appDownload from '../../public/CLATiansAppDesign.webp'
 export default function AppDownload() {
   return (
-    <section className="bg-[#fdf6f4] py-4 sm:py-5 md:py-6">
+    <section className="bg-[#f3f3f3] py-4 sm:py-5 md:py-6">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl">
         <div className="flex flex-col lg:flex-row items-start justify-between gap-2 sm:gap-3 md:gap-4 lg:gap-6">
           {/* Left: App Image */}
@@ -12,7 +12,7 @@ export default function AppDownload() {
                 src={appDownload}
                 alt="Mobile App"
                 width={500}
-                height={633}  
+                height={633}
                 className="object-contain"
                 priority
               />
@@ -25,7 +25,7 @@ export default function AppDownload() {
               Download For Hassle-Free<br />
               End-To-End <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent">Learning</span>
             </h2>
-            
+
             <p className="text-gray-600 mb-2.5 sm:mb-3 md:mb-4 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg">
               Access all your study materials, attend live classes,<br className="hidden md:block" />
               and track your progress with our easy-to-use mobile app.<br className="hidden md:block" />

@@ -19,12 +19,12 @@ export default function BlogSection() {
         const blogsCollection = collection(db, "blogs")
         const blogsQuery = query(blogsCollection, orderBy("createdAt", "desc"), limit(7))
         const blogsSnapshot = await getDocs(blogsQuery)
-        
+
         const blogsData = blogsSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }))
-        
+
         if (blogsData.length > 0) {
           setFeaturedBlog(blogsData[0])
           setBlogs(blogsData.slice(1))
@@ -44,7 +44,7 @@ export default function BlogSection() {
       } catch (error) {
         console.error("Error fetching blogs:", error)
         // Fallback datag
-      
+
         setFeaturedBlog({
           id: 'featured',
           title: 'The Role Of Online Tutors In Education',
@@ -66,7 +66,7 @@ export default function BlogSection() {
   // Format date to display month and year
   const formatDate = (dateString) => {
     if (!dateString) return 'April 2024'
-    
+
     try {
       const date = new Date(dateString)
       return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
@@ -96,7 +96,7 @@ export default function BlogSection() {
   }
 
   return (
-    <section className="py-8 bg-[#e7edff]">
+    <section className="py-8 bg-[#f3f3f3]">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold mb-2">
@@ -145,9 +145,9 @@ export default function BlogSection() {
               <div className="flex gap-4 px-4 md:px-8 lg:px-16">
                 {blogs.length > 0 ? (
                   blogs.map((blog) => (
-                    <div 
-                      key={blog.id} 
-                      className="bg-white rounded-xl shadow-lg flex-shrink-0 w-[calc(100vw-32px)] md:w-[calc(50vw-48px)] max-w-full" 
+                    <div
+                      key={blog.id}
+                      className="bg-white rounded-xl shadow-lg flex-shrink-0 w-[calc(100vw-32px)] md:w-[calc(50vw-48px)] max-w-full"
                       style={{ scrollSnapAlign: 'start' }}
                     >
                       <div className="relative h-[200px] sm:h-[300px]">
@@ -199,7 +199,7 @@ export default function BlogSection() {
               <p className="text-gray-600 mb-4 text-base line-clamp-2">
                 {parse(featuredBlog?.content)}
               </p>
-              
+
               <div className="relative flex-grow rounded-xl overflow-hidden">
                 <Image
                   src={featuredBlog?.image || "https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg"}
@@ -246,7 +246,7 @@ export default function BlogSection() {
                           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
-                          {formatDate(blog.date)} | 
+                          {formatDate(blog.date)} |
                           <svg className="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                           </svg>
