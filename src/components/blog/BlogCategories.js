@@ -40,17 +40,16 @@ export default function BlogCategories() {
       try {
         setLoading(true)
         const db = getFirestore(app)
-        
+
         // Fetch legal articles - simplified query to avoid index requirements
         const legalQuery = query(
           collection(db, "blogs"),
           where("category", "==", "legal"),
-          orderBy("createdAt", "asc"),
-          limit(20)
+          orderBy("createdAt", "asc")
         )
-        
+
         const legalSnapshot = await getDocs(legalQuery)
-        
+
         let legalArticles = legalSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -60,82 +59,81 @@ export default function BlogCategories() {
           // Sort client-side instead of using orderBy in the query
           legalArticles = legalArticles.sort((a, b) => {
             if (!a.createdAt || !b.createdAt) return 0;
-            
+
             // Handle different formats of createdAt (string or Firestore timestamp)
             const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
             const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
-            
+
             return dateB > dateA ? 1 : -1;
           });
-        
-        // Add month and year properties to each article for filtering
-        legalArticles = legalArticles.map(article => {
-          let createdAtDate;
-          if (article.createdAt) {
-            createdAtDate = typeof article.createdAt === 'string' 
-              ? new Date(article.createdAt) 
-              : article.createdAt.toDate 
-                ? article.createdAt.toDate() 
-                : new Date(article.createdAt);
-          } else {
-            createdAtDate = new Date();
-          }
-          
-          return {
-            ...article,
-            month: String(createdAtDate.getMonth() + 1).padStart(2, '0'),
-            year: String(createdAtDate.getFullYear())
-          };
-        });
-      }
-        
+
+          // Add month and year properties to each article for filtering
+          legalArticles = legalArticles.map(article => {
+            let createdAtDate;
+            if (article.createdAt) {
+              createdAtDate = typeof article.createdAt === 'string'
+                ? new Date(article.createdAt)
+                : article.createdAt.toDate
+                  ? article.createdAt.toDate()
+                  : new Date(article.createdAt);
+            } else {
+              createdAtDate = new Date();
+            }
+
+            return {
+              ...article,
+              month: String(createdAtDate.getMonth() + 1).padStart(2, '0'),
+              year: String(createdAtDate.getFullYear())
+            };
+          });
+        }
+
         // Fetch current affairs - simplified query
         const currentQuery = query(
           collection(db, "blogs"),
           where("category", "==", "current"),
-          orderBy("createdAt", "asc"),
-          limit(20)
+          orderBy("createdAt", "asc")
         )
-        
+
         const currentSnapshot = await getDocs(currentQuery)
-        
+
         let currentAffairs = currentSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }))
-        
+
         // Process current affairs for daily and monthly views
         const currentByFrequency = {
           daily: [],
           monthly: []
         }
-        
+
         if (currentAffairs && currentAffairs.length > 0) {
           // Get current date for comparison
           const currentDate = new Date()
-          
+
           // Process each article
           currentAffairs.forEach(article => {
             // Convert createdAt to Date object
             let createdAtDate
             if (article.createdAt) {
-              createdAtDate = typeof article.createdAt === 'string' 
-                ? new Date(article.createdAt) 
-                : article.createdAt.toDate 
-                  ? article.createdAt.toDate() 
+              createdAtDate = typeof article.createdAt === 'string'
+                ? new Date(article.createdAt)
+                : article.createdAt.toDate
+                  ? article.createdAt.toDate()
                   : new Date(article.createdAt)
             } else {
               // If no createdAt, use current date as fallback
               createdAtDate = new Date()
             }
-            
+
             // Add month and year properties for filtering
             article.month = String(createdAtDate.getMonth() + 1).padStart(2, '0');
             article.year = String(createdAtDate.getFullYear());
-            
+
             // Check if article was created within the last 30 days for monthly view
             const timeDiff = currentDate.getTime() - createdAtDate.getTime()
-            
+
             const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24))
             if (daysDiff >= 30) {
               currentByFrequency.monthly.push(article)
@@ -143,56 +141,55 @@ export default function BlogCategories() {
               currentByFrequency.daily.push(article)
             }
           })
-          
+
           // Sort both arrays by date (newest first)
           currentByFrequency.daily.sort((a, b) => {
             const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt)
             const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt)
             return dateB - dateA
           })
-          
+
           currentByFrequency.monthly.sort((a, b) => {
             const dateA = typeof a.createdAt === 'string' ? new Date(a.createdAt) : a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt)
             const dateB = typeof b.createdAt === 'string' ? new Date(b.createdAt) : b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt)
             return dateB - dateA
           })
         }
-        
+
         // Fetch exam updates - simplified query
         const examUpdatesQuery = query(
           collection(db, "blogs"),
           where("category", "==", "examUpdates"),
-          orderBy("createdAt", "asc"),
-          limit(30)
+          orderBy("createdAt", "asc")
         )
-        
+
         const examUpdatesSnapshot = await getDocs(examUpdatesQuery)
         let examUpdatesArticles = examUpdatesSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }))
-        
-        
-        
+
+
+
         // Initialize subcategory objects with empty arrays
         const legalBySubcategory = {
           recent: [],
           judiciary: [],
           parliamentary: []
         }
-        
+
         // Only organize if there are legal articles
         if (legalArticles && legalArticles.length > 0) {
           // Add recent articles - no need to slice if we want all articles
           legalBySubcategory.recent = legalArticles;
-          
+
           // Add judiciary articles if they exist
           const judiciaryArticles = legalArticles.filter(article => article.subcategory === "judiciary");
           if (judiciaryArticles.length > 0) {
             // Only slice if there are enough articles
             legalBySubcategory.judiciary = judiciaryArticles;
           }
-          
+
           // Add parliamentary articles if they exist
           const parliamentaryArticles = legalArticles.filter(article => article.subcategory === "parliamentary");
           if (parliamentaryArticles.length > 0) {
@@ -200,8 +197,8 @@ export default function BlogCategories() {
             legalBySubcategory.parliamentary = parliamentaryArticles;
           }
         }
-        
-        
+
+
         const examUpdatesByType = {
           clat: [],
           ailet: [],
@@ -210,7 +207,7 @@ export default function BlogCategories() {
           cuet: [],
           aillet: []
         }
-        
+
         // Only organize if there are exam updates articles
         if (examUpdatesArticles && examUpdatesArticles.length > 0) {
           // Add clat articles if they exist
@@ -218,38 +215,38 @@ export default function BlogCategories() {
           if (clatArticles.length > 0) {
             examUpdatesByType.clat = clatArticles;
           }
-          
+
           // Add ailet articles if they exist
-          const ailetArticles = examUpdatesArticles.filter(article => article.exam.id  === "ailet");
+          const ailetArticles = examUpdatesArticles.filter(article => article.exam.id === "ailet");
           if (ailetArticles.length > 0) {
             examUpdatesByType.ailet = ailetArticles;
           }
-          
+
           // Add cetlaw articles if they exist
-          const cetlawArticles = examUpdatesArticles.filter(article => article.exam.id  === "cetlaw");
+          const cetlawArticles = examUpdatesArticles.filter(article => article.exam.id === "cetlaw");
           if (cetlawArticles.length > 0) {
             examUpdatesByType.cetlaw = cetlawArticles;
           }
-          
+
           // Add lsat articles if they exist
-          const lsatArticles = examUpdatesArticles.filter(article => article.exam.id  === "lsat");
+          const lsatArticles = examUpdatesArticles.filter(article => article.exam.id === "lsat");
           if (lsatArticles.length > 0) {
             examUpdatesByType.lsat = lsatArticles;
           }
-          
+
           // Add cuet articles if they exist
-          const cuetArticles = examUpdatesArticles.filter(article => article.exam.id  === "cuet");
+          const cuetArticles = examUpdatesArticles.filter(article => article.exam.id === "cuet");
           if (cuetArticles.length > 0) {
             examUpdatesByType.cuet = cuetArticles;
           }
-          
+
           // Add aillet articles if they exist
-          const ailletArticles = examUpdatesArticles.filter(article => article.exam.id  === "aillet");
+          const ailletArticles = examUpdatesArticles.filter(article => article.exam.id === "aillet");
           if (ailletArticles.length > 0) {
             examUpdatesByType.aillet = ailletArticles;
           }
         }
-        
+
         // Update state with fetched data
         setBlogData({
           legal: legalBySubcategory,
@@ -263,7 +260,7 @@ export default function BlogCategories() {
         setLoading(false)
       }
     }
-    
+
     fetchBlogData()
   }, [])
 
@@ -291,86 +288,86 @@ export default function BlogCategories() {
     description: "Get real-time alerts on exam schedules, syllabus updates, and results and updates.",
     updates: [
       // Map the Firebase data to the format expected by the ExamUpdates component
-      blogData.examUpdates.clat.length > 0 
-        ? blogData.examUpdates.clat.map(item => ({ 
-            date: item.date, 
-            description: item.description || item.title 
-          }))
+      blogData.examUpdates.clat.length > 0
+        ? blogData.examUpdates.clat.map(item => ({
+          date: item.date,
+          description: item.description || item.title
+        }))
         : [
-            { date: 'May 2025', description: 'CLAT 2026 notification expected to be released' },
-            { date: 'Mid-July 2025', description: 'CLAT 2025 final admission lists released by all participating NLUs' },
-            { date: 'January 20, 2025', description: 'Third CLAT 2025 counseling round completed' },
-            { date: 'January 5, 2025', description: 'Second CLAT 2025 counseling round completed' },
-            { date: 'December 28, 2024', description: 'First CLAT 2025 counseling round initiated' },
-            { date: 'December 22, 2024', description: 'CLAT 2025 results declared; cutoffs announced for all NLUs' },
-            { date: 'December 8, 2024', description: 'CLAT 2025 examination successfully conducted' },
-            { date: 'November 30, 2024', description: 'CLAT 2025 admit cards released for download' }
-          ],
-      
+          { date: 'May 2025', description: 'CLAT 2026 notification expected to be released' },
+          { date: 'Mid-July 2025', description: 'CLAT 2025 final admission lists released by all participating NLUs' },
+          { date: 'January 20, 2025', description: 'Third CLAT 2025 counseling round completed' },
+          { date: 'January 5, 2025', description: 'Second CLAT 2025 counseling round completed' },
+          { date: 'December 28, 2024', description: 'First CLAT 2025 counseling round initiated' },
+          { date: 'December 22, 2024', description: 'CLAT 2025 results declared; cutoffs announced for all NLUs' },
+          { date: 'December 8, 2024', description: 'CLAT 2025 examination successfully conducted' },
+          { date: 'November 30, 2024', description: 'CLAT 2025 admit cards released for download' }
+        ],
+
       blogData.examUpdates.ailet.length > 0
-        ? blogData.examUpdates.ailet.map(item => ({ 
-            date: item.date, 
-            description: item.description || item.title 
-          }))
+        ? blogData.examUpdates.ailet.map(item => ({
+          date: item.date,
+          description: item.description || item.title
+        }))
         : [
-            { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
-          ],
-      
+          { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+        ],
+
       blogData.examUpdates.cetlaw.length > 0
-        ? blogData.examUpdates.cetlaw.map(item => ({ 
-            date: item.date, 
-            description: item.description || item.title 
-          }))
+        ? blogData.examUpdates.cetlaw.map(item => ({
+          date: item.date,
+          description: item.description || item.title
+        }))
         : [
-            { "date": "March 8, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
-          ],
-      
+          { "date": "March 8, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+        ],
+
       blogData.examUpdates.lsat.length > 0
-        ? blogData.examUpdates.lsat.map(item => ({ 
-            date: item.date, 
-            description: item.description || item.title 
-          }))
+        ? blogData.examUpdates.lsat.map(item => ({
+          date: item.date,
+          description: item.description || item.title
+        }))
         : [
-            { "date": "March 2025", "description": "Digital Testing Format: LSAT-India has fully transitioned to computer-based testing at designated centers." },
-            // ... other fallback LSAT updates
-          ],
-      
+          { "date": "March 2025", "description": "Digital Testing Format: LSAT-India has fully transitioned to computer-based testing at designated centers." },
+          // ... other fallback LSAT updates
+        ],
+
       blogData.examUpdates.cuet.length > 0
-        ? blogData.examUpdates.cuet.map(item => ({ 
-            date: item.date, 
-            description: item.description || item.title 
-          }))
+        ? blogData.examUpdates.cuet.map(item => ({
+          date: item.date,
+          description: item.description || item.title
+        }))
         : [
-            { date: 'March 5, 2025', description: 'NTA announces the tentative schedule for CUET Law 2025-26 admissions. Applications expected to open by end of March.' },
-            // ... other fallback CUET updates
-          ],
-      
+          { date: 'March 5, 2025', description: 'NTA announces the tentative schedule for CUET Law 2025-26 admissions. Applications expected to open by end of March.' },
+          // ... other fallback CUET updates
+        ],
+
       blogData.examUpdates.aillet.length > 0
-        ? blogData.examUpdates.aillet.map(item => ({ 
-            date: item.date, 
-            description: item.description || item.title 
-          }))
+        ? blogData.examUpdates.aillet.map(item => ({
+          date: item.date,
+          description: item.description || item.title
+        }))
         : [
-            { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
-          ]
+          { "date": "March 10, 2025", "description": "Initial guide published with tentative information based on previous years' patterns." }
+        ]
     ]
   }
 
   const categories = [
-    { 
-      id: 'legal', 
+    {
+      id: 'legal',
       name: 'Legal Articles',
       icon: '⚖️',
       description: 'Latest updates in legal education and law'
     },
-    { 
-      id: 'current', 
+    {
+      id: 'current',
       name: 'Current Affairs',
       icon: '🌏',
       description: 'Stay updated with daily news and events'
     },
-    { 
-      id: 'examUpdates', 
+    {
+      id: 'examUpdates',
       name: 'Law Exam Preparation Tips',
       icon: '📝',
       description: 'Latest updates about law entrance exams'
@@ -378,32 +375,32 @@ export default function BlogCategories() {
   ]
 
   const tabs = {
-    "legal" :[
+    "legal": [
       { id: 'recent', name: 'Recent' },
       { id: 'judiciary', name: 'Judiciary' },
       { id: 'parliamentary', name: 'Parliamentary' },
     ],
-    "currentAffairs" :[
-    { id: 'daily', name: 'Daily' },
-    { id: 'monthly', name: 'Monthly' },
-  ],
-  "exams" :[
-    { id: 'clat', name: 'CLAT' },
-    { id: 'ailet', name: 'AILET' },
-    { id: 'cetlaw', name: 'MH CET-LAW' },
-    { id: 'lsat', name: 'LSAT' },
-    { id: 'cuet', name: 'CUET' },
-    { id: 'aillet', name: 'AIL-LET' },
-  ]
+    "currentAffairs": [
+      { id: 'daily', name: 'Daily' },
+      { id: 'monthly', name: 'Monthly' },
+    ],
+    "exams": [
+      { id: 'clat', name: 'CLAT' },
+      { id: 'ailet', name: 'AILET' },
+      { id: 'cetlaw', name: 'MH CET-LAW' },
+      { id: 'lsat', name: 'LSAT' },
+      { id: 'cuet', name: 'CUET' },
+      { id: 'aillet', name: 'AIL-LET' },
+    ]
   }
 
   // Example blog data
-  
+
 
   // Function to filter articles by month and year
   const filterArticlesByDate = (articles, month, year) => {
     if (!articles || articles.length === 0) return [];
-    
+
     return articles.filter(article => {
       // If "all" months is selected, only filter by year
       if (month === 'all') {
@@ -413,15 +410,15 @@ export default function BlogCategories() {
       return article.month === month && article.year === year;
     });
   };
-  
+
   // Update renderContent to use the filter function
   const renderContent = () => {
     switch (activeCategory) {
       case 'legal':
         // Filter legal articles by selected month and year
         const filteredLegalData = {
-          recent: selectedMonth === 'all' && selectedYear === 'all' 
-            ? blogData.legal.recent 
+          recent: selectedMonth === 'all' && selectedYear === 'all'
+            ? blogData.legal.recent
             : filterArticlesByDate(blogData.legal.recent, selectedMonth, selectedYear),
           judiciary: selectedMonth === 'all' && selectedYear === 'all'
             ? blogData.legal.judiciary
@@ -430,11 +427,11 @@ export default function BlogCategories() {
             ? blogData.legal.parliamentary
             : filterArticlesByDate(blogData.legal.parliamentary, selectedMonth, selectedYear)
         };
-        
+
         return (
           <>
-            <LegalArticles 
-              posts={filteredLegalData} 
+            <LegalArticles
+              posts={filteredLegalData}
               activeTabLegal={activeTabLegal}
               selectedMonth={selectedMonth}
               selectedYear={selectedYear}
@@ -447,7 +444,7 @@ export default function BlogCategories() {
             />
           </>
         );
-        
+
       case 'current':
         // Filter current affairs by selected month and year
         const filteredCurrentData = {
@@ -458,10 +455,10 @@ export default function BlogCategories() {
             ? blogData.current.monthly
             : filterArticlesByDate(blogData.current.monthly, selectedMonth, selectedYear)
         };
-        
+
         return (
           <>
-            <CurrentAffairs 
+            <CurrentAffairs
               posts={filteredCurrentData}
               activeTab={activeTab}
               selectedMonth={selectedMonth}
@@ -475,29 +472,28 @@ export default function BlogCategories() {
             />
           </>
         );
-        
+
       case 'examUpdates':
         return <>
-        <div className="bg-white rounded-2xl shadow-lg p-3 max-w-3xl mb-12 mx-auto">
-              <div className="grid grid-cols-3 md:grid-cols-6">
-                {tabs["exams"].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTabExam(tab.id)}
-                    className={`px-6 py-3 truncate rounded-xl text-sm font-medium transition-all duration-300 ${
-                      activeTabExam === tab.id
+          <div className="bg-white rounded-2xl shadow-lg p-3 max-w-3xl mb-12 mx-auto">
+            <div className="grid grid-cols-3 md:grid-cols-6">
+              {tabs["exams"].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTabExam(tab.id)}
+                  className={`px-6 py-3 truncate rounded-xl text-sm font-medium transition-all duration-300 ${activeTabExam === tab.id
                       ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
                       : 'hover:bg-gray-50 text-gray-600'
                     }`}
-                  >
-                    {tab.name}
-                  </button>
-                ))}
-              </div>
+                >
+                  {tab.name}
+                </button>
+              ))}
             </div>
-        
-        {/* Add the new ExamUpdatesTips component */}
-        <ExamUpdatesTips activeTabExam={activeTabExam} examTips={blogData.examUpdates} />
+          </div>
+
+          {/* Add the new ExamUpdatesTips component */}
+          <ExamUpdatesTips activeTabExam={activeTabExam} examTips={blogData.examUpdates} />
         </>
       default:
         return null
@@ -513,18 +509,17 @@ export default function BlogCategories() {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
           </div>
         )}
-        
+
         {/* Category Selection */}
         <div className="grid grid-cols-3 lg:grid-cols-3 gap-3 md:gap-8 mb-12 max-w-6xl mx-auto">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`group relative overflow-hidden rounded-2xl transition-all duration-300 ${
-                activeCategory === category.id
-                ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-lg scale-105'
-                : 'bg-white text-gray-600 hover:shadow-md'
-              }`}
+              className={`group relative overflow-hidden rounded-2xl transition-all duration-300 ${activeCategory === category.id
+                  ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-lg scale-105'
+                  : 'bg-white text-gray-600 hover:shadow-md'
+                }`}
             >
               <div className="p-6 relative z-10">
                 <span className="text-xl md:text-4xl mb-4 block">{category.icon}</span>
