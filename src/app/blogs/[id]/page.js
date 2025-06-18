@@ -7,8 +7,6 @@ import { useParams } from 'next/navigation'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import { app } from '@/firebase'
 import parse from 'html-react-parser'
-import Head from 'next/head'
-
 
 export default function BlogPost() {
   const [blogData, setBlogData] = useState(null)
@@ -33,10 +31,29 @@ export default function BlogPost() {
         const blogSnap = await getDoc(blogRef)
 
         if (blogSnap.exists()) {
-          setBlogData({
+          const data = {
             id: blogSnap.id,
             ...blogSnap.data()
-          })
+          }
+          setBlogData(data)
+
+          // Update document title and meta tags dynamically
+          if (typeof window !== 'undefined') {
+            document.title = data.title
+
+            // Update Open Graph meta tags
+            updateMetaTag('property', 'og:title', data.title)
+            updateMetaTag('property', 'og:description', stripHtml(data.content).slice(0, 150))
+            updateMetaTag('property', 'og:image', data.image)
+            updateMetaTag('property', 'og:url', `https://www.clatians.in/blogs/${params.id}`)
+            updateMetaTag('property', 'og:type', 'article')
+
+            // Update Twitter Card meta tags
+            updateMetaTag('name', 'twitter:card', 'summary_large_image')
+            updateMetaTag('name', 'twitter:title', data.title)
+            updateMetaTag('name', 'twitter:description', stripHtml(data.content).slice(0, 150))
+            updateMetaTag('name', 'twitter:image', data.image)
+          }
         } else {
           setError("Blog not found")
         }
@@ -52,6 +69,20 @@ export default function BlogPost() {
       fetchBlogData()
     }
   }, [params.id])
+
+  // Helper function to update meta tags
+  const updateMetaTag = (attribute, attributeValue, content) => {
+    let element = document.querySelector(`meta[${attribute}="${attributeValue}"]`)
+    if (!element) {
+      element = document.createElement('meta')
+      element.setAttribute(attribute, attributeValue)
+      document.head.appendChild(element)
+    }
+    element.setAttribute('content', content)
+  }
+
+  // Helper function to strip HTML tags
+  const stripHtml = (html) => html.replace(/<[^>]*>?/gm, '')
 
   // Function to handle social media sharing
   const handleShare = (platform) => {
@@ -99,20 +130,6 @@ export default function BlogPost() {
       })
   }
 
-  // Function to render content from the blog data
-  const renderContent = () => {
-    if (!blogData) return null
-
-    // Split content by new lines to create paragraphs
-    const paragraphs = blogData.content.split('\n').filter(p => p.trim() !== '')
-
-    return paragraphs.map((paragraph, index) => (
-      <p key={index} className="mb-6 text-gray-600 leading-relaxed">
-        {paragraph}
-      </p>
-    ))
-  }
-
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[#fdf6f4]">
@@ -137,154 +154,141 @@ export default function BlogPost() {
       </div>
     )
   }
-  const stripHtml = (html) => html.replace(/<[^>]*>?/gm, '');
+
   return (
-    <>
-      <Head>
-        <title>{blogData.title}</title>
-        <meta property="og:title" content={blogData.title} />
-        <meta
-          property="og:description"
-          content={stripHtml(blogData.content).slice(0, 150)}
-        />
-        <meta property="og:image" content={blogData.image} />
-        <meta property="og:url" content={`https://www.clatians.in/blogs/${params.id}`} />
-        <meta property="og:type" content="article" />
-      </Head>
-      <article className="bg-[#fdf6f4] min-h-screen py-16">
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px]">
-          {/* Back Button */}
-          <Link
-            href="/blogs"
-            className="inline-flex items-center text-gray-600 hover:text-red-700 mb-8 group"
-          >
-            <i className="bi bi-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
-            Back to Blogs
-          </Link>
+    <article className="bg-[#fdf6f4] min-h-screen py-16">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24 max-w-[1400px]">
+        {/* Back Button */}
+        <Link
+          href="/blogs"
+          className="inline-flex items-center text-gray-600 hover:text-red-700 mb-8 group"
+        >
+          <i className="bi bi-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>
+          Back to Blogs
+        </Link>
 
-          {/* Blog Header */}
-          <header className="mb-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              {blogData.title}
-            </h1>
+        {/* Blog Header */}
+        <header className="mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            {blogData.title}
+          </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
-              <div className="flex items-center">
-                <i className="bi bi-person-circle mr-2"></i>
-                {blogData.author}
-              </div>
-              <div className="flex items-center">
-                <i className="bi bi-calendar3 mr-2"></i>
-                {blogData.date}
-              </div>
-              <div className="flex items-center">
-                <i className="bi bi-clock mr-2"></i>
-                {blogData.readTime} min read
-              </div>
-              {blogData.category && (
-                <div className="flex items-center">
-                  <i className="bi bi-tag mr-2"></i>
-                  {blogData.category}
-                </div>
-              )}
-              {blogData.frequency && (
-                <div className="flex items-center">
-                  <i className="bi bi-calendar-check mr-2"></i>
-                  {blogData.frequency}
-                </div>
-              )}
+          <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
+            <div className="flex items-center">
+              <i className="bi bi-person-circle mr-2"></i>
+              {blogData.author}
             </div>
-          </header>
-
-          {/* Featured Image */}
-          {blogData.image && (
-            <div className="relative h-[200px] md:h-[300px] lg:h-[400px] w-full mb-8 rounded-2xl overflow-hidden shadow-lg">
-              <Image
-                src={blogData.image}
-                alt={blogData.title}
-                fill
-                className="object-cover"
-              />
+            <div className="flex items-center">
+              <i className="bi bi-calendar3 mr-2"></i>
+              {blogData.date}
             </div>
-          )}
-
-          {/* Blog Content */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg">
-            {parse(blogData.content)}
-
-            {/* Social Share Section */}
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <h3 className="text-xl font-semibold mb-4 text-gray-800">Share this article</h3>
-
-              <div className="flex flex-wrap gap-3">
-                {/* Facebook */}
-                <button
-                  onClick={() => handleShare('facebook')}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                  aria-label="Share on Facebook"
-                >
-                  <i className="bi bi-facebook"></i>
-                </button>
-
-                {/* Twitter/X */}
-                <button
-                  onClick={() => handleShare('twitter')}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
-                  aria-label="Share on Twitter/X"
-                >
-                  <i className="bi bi-twitter"></i>
-                </button>
-
-                {/* LinkedIn */}
-                <button
-                  onClick={() => handleShare('linkedin')}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors"
-                  aria-label="Share on LinkedIn"
-                >
-                  <i className="bi bi-linkedin"></i>
-                </button>
-
-                {/* WhatsApp */}
-                <button
-                  onClick={() => handleShare('whatsapp')}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
-                  aria-label="Share on WhatsApp"
-                >
-                  <i className="bi bi-whatsapp"></i>
-                </button>
-
-                {/* Telegram */}
-                <button
-                  onClick={() => handleShare('telegram')}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
-                  aria-label="Share on Telegram"
-                >
-                  <i className="bi bi-telegram"></i>
-                </button>
-
-                {/* Email */}
-                <button
-                  onClick={() => handleShare('email')}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-600 text-white hover:bg-gray-700 transition-colors"
-                  aria-label="Share via Email"
-                >
-                  <i className="bi bi-envelope"></i>
-                </button>
-
-                {/* Copy Link */}
-                <button
-                  onClick={copyToClipboard}
-                  className="flex items-center justify-center px-4 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors"
-                  aria-label="Copy Link"
-                >
-                  <i className="bi bi-link-45deg mr-1"></i>
-                  Copy Link
-                </button>
+            <div className="flex items-center">
+              <i className="bi bi-clock mr-2"></i>
+              {blogData.readTime} min read
+            </div>
+            {blogData.category && (
+              <div className="flex items-center">
+                <i className="bi bi-tag mr-2"></i>
+                {blogData.category}
               </div>
+            )}
+            {blogData.frequency && (
+              <div className="flex items-center">
+                <i className="bi bi-calendar-check mr-2"></i>
+                {blogData.frequency}
+              </div>
+            )}
+          </div>
+        </header>
+
+        {/* Featured Image */}
+        {/* {blogData.image && (
+          <div className="relative h-[200px] md:h-[300px] lg:h-[400px] w-full mb-8 rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src={blogData.image}
+              alt={blogData.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )} */}
+
+        {/* Blog Content */}
+        <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg">
+          {parse(blogData.content)}
+
+          {/* Social Share Section */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">Share this article</h3>
+
+            <div className="flex flex-wrap gap-3">
+              {/* Facebook */}
+              <button
+                onClick={() => handleShare('facebook')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                aria-label="Share on Facebook"
+              >
+                <i className="bi bi-facebook"></i>
+              </button>
+
+              {/* Twitter/X */}
+              <button
+                onClick={() => handleShare('twitter')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+                aria-label="Share on Twitter/X"
+              >
+                <i className="bi bi-twitter"></i>
+              </button>
+
+              {/* LinkedIn */}
+              <button
+                onClick={() => handleShare('linkedin')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors"
+                aria-label="Share on LinkedIn"
+              >
+                <i className="bi bi-linkedin"></i>
+              </button>
+
+              {/* WhatsApp */}
+              <button
+                onClick={() => handleShare('whatsapp')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
+                aria-label="Share on WhatsApp"
+              >
+                <i className="bi bi-whatsapp"></i>
+              </button>
+
+              {/* Telegram */}
+              <button
+                onClick={() => handleShare('telegram')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+                aria-label="Share on Telegram"
+              >
+                <i className="bi bi-telegram"></i>
+              </button>
+
+              {/* Email */}
+              <button
+                onClick={() => handleShare('email')}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-600 text-white hover:bg-gray-700 transition-colors"
+                aria-label="Share via Email"
+              >
+                <i className="bi bi-envelope"></i>
+              </button>
+
+              {/* Copy Link */}
+              <button
+                onClick={copyToClipboard}
+                className="flex items-center justify-center px-4 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors"
+                aria-label="Copy Link"
+              >
+                <i className="bi bi-link-45deg mr-1"></i>
+                Copy Link
+              </button>
             </div>
           </div>
         </div>
-      </article>
-    </>
+      </div>
+    </article>
   )
 }
