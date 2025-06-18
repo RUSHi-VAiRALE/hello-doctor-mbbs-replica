@@ -108,15 +108,15 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#2143D4] text-white py-12">
+    <footer className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 text-white py-12">
       {/* Newsletter Section */}
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-16">
-          <span className="inline-block bg-white/20 px-4 py-2 rounded-md text-sm font-medium mb-4">
+          <span className="inline-block bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md text-sm font-medium mb-4">
             GET LATEST UPDATES
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-          <p className="text-gray-200 max-w-2xl mx-auto mb-8 text-base md:text-lg">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-100">Subscribe to Our Newsletter</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto mb-8 text-base md:text-lg">
             Stay updated with the latest news, exam strategies, and special offers! Join our newsletter today.
           </p>
 
@@ -128,13 +128,13 @@ export default function Footer() {
                 placeholder="Enter Your E-Mail"
                 value={email}
                 onChange={handleEmailChange}
-                className="w-full md:w-2/3 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full md:w-2/3 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#ad4a16] border border-gray-300"
                 required
               />
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300 whitespace-nowrap disabled:opacity-70"
+                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300 whitespace-nowrap disabled:opacity-70 text-white"
               >
                 {isSubmitting ? 'Subscribing...' : 'Subscribe →'}
               </button>
@@ -142,13 +142,13 @@ export default function Footer() {
 
             {/* Status Message */}
             {subscriptionStatus && (
-              <div className={`text-sm ${subscriptionStatus.success ? 'text-green-300' : 'text-red-300'} mt-2`}>
+              <div className={`text-sm ${subscriptionStatus.success ? 'text-green-400' : 'text-red-400'} mt-2`}>
                 {subscriptionStatus.message}
               </div>
             )}
           </form>
 
-          <p className="text-sm text-gray-300">No ads, No spam, Unsubscribe anytime.</p>
+          <p className="text-sm text-gray-400">No ads, No spam, Unsubscribe anytime.</p>
         </div>
 
         {/* Footer Content */}
@@ -161,14 +161,14 @@ export default function Footer() {
                 alt="Logo"
                 width={150}
                 height={50}
-                className="mb-4 bg-white"
+                className="mb-4 bg-white rounded-lg p-2"
               />
-              <p className="text-gray-200 mb-4">
+              <p className="text-gray-300 mb-4">
                 Your trusted institute for CLAT, AILET, and other law entrance preparations.
               </p>
               <div className="mb-4">
-                <strong className="block mb-2">Address:</strong>
-                <p className="text-gray-200">
+                <strong className="block mb-2 text-gray-200">Address:</strong>
+                <p className="text-gray-300">
                   2nd Floor, Gangotri Palace, Boring Rd, near Sumati Palace<br />
                   Nageshwar Colony, Kidwaipuri, Patna, Bihar 800001.
                 </p>
@@ -193,11 +193,11 @@ export default function Footer() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {/* Quick Links */}
               <div>
-                <h5 className="font-semibold text-lg mb-4">Quick Links</h5>
+                <h5 className="font-semibold text-lg mb-4 text-gray-100">Quick Links</h5>
                 <ul className="space-y-2">
                   {quickLinks.map((link) => (
                     <li key={link.text}>
-                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
                         {link.text}
                       </Link>
                     </li>
@@ -207,11 +207,11 @@ export default function Footer() {
 
               {/* Resources */}
               <div>
-                <h5 className="font-semibold text-lg mb-4">Resources</h5>
+                <h5 className="font-semibold text-lg mb-4 text-gray-100">Resources</h5>
                 <ul className="space-y-2">
                   {resourceLinks.map((link) => (
                     <li key={link.text}>
-                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
                         {link.text}
                       </Link>
                     </li>
@@ -221,11 +221,11 @@ export default function Footer() {
 
               {/* Company */}
               <div>
-                <h5 className="font-semibold text-lg mb-4">Company</h5>
+                <h5 className="font-semibold text-lg mb-4 text-gray-100">Company</h5>
                 <ul className="space-y-2">
                   {companyLinks.map((link) => (
                     <li key={link.text}>
-                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
                         {link.text}
                       </Link>
                     </li>
@@ -235,11 +235,11 @@ export default function Footer() {
 
               {/* Courses */}
               <div>
-                <h5 className="font-semibold text-lg mb-4">Courses</h5>
+                <h5 className="font-semibold text-lg mb-4 text-gray-100">Courses</h5>
                 <ul className="space-y-2">
                   {courseLinks.map((link) => (
                     <li key={link.text}>
-                      <Link href={link.link} className="text-gray-200 hover:text-yellow-400 transition-colors duration-300">
+                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
                         {link.text}
                       </Link>
                     </li>
@@ -251,8 +251,8 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="text-center pt-8 border-t border-white/20">
-          <p className="text-gray-300 text-sm">
+        <div className="text-center pt-8 border-t border-gray-600">
+          <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} CLATians - All rights reserved.
           </p>
         </div>

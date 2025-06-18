@@ -66,14 +66,19 @@ export default function WhyChooseUs() {
   }
 
   return (
-    <section ref={sectionRef} className="py-16 bg-[#f3f3f3] shadow-lg">
+    <section ref={sectionRef} className="py-16 bg-[#f3f3f3] shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="flex flex-col md:flex-row items-stretch gap-8 md:gap-16 lg:gap-24">
           {/* Text Section */}
           <div className={`md:w-1/2 lg:h-[450px] flex flex-col transition-all justify-between gap-6 md:gap-2 lg:gap-4 duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="md:text-xl text-2xl/10 lg:text-4xl font-bold leading-tight text-justify">
-              CLATians - India's Most Trusted & Best CLAT Coaching Institute
-            </h2>
+            <div>
+              <h2 className="md:text-xl text-2xl/10 lg:text-4xl font-bold leading-tight text-center md:text-left mb-2">
+                CLATians
+              </h2>
+              <p className="md:text-lg text-xl lg:text-2xl font-semibold text-gray-700 text-center md:text-left mb-4">
+                India's Most Trusted & Best CLAT Coaching Institute
+              </p>
+            </div>
             <p className="text-gray-600 text-sm md:text-md lg:text-lg text-justify">
               Crack CLAT with India's affordable and comprehensive law entrance preparation program. From Legal Reasoning to Current Affairs, comprehensive study material to mock tests series, our expert mentors guide you through every section of CLAT to secure your seat in Top National Law Universities (NLUs).
               <br /><strong className='text-black'>Start your NLU journey today at unmatched Study Environment!</strong>
@@ -94,10 +99,10 @@ export default function WhyChooseUs() {
               </div>
             </div>
             <Link href="/admission" className="flex items-center gap-3 group cursor-pointer">
-              <h5 className="font-bold text-base md:text-2xl lg:text-3xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
+              <h5 className="font-bold text-base md:text-2xl lg:text-3xl bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-transparent bg-clip-text">
                 Get Started
               </h5>
-              <span className="text-lg md:text-3xl transform group-hover:translate-x-2 transition-transform bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-transparent bg-clip-text">
+              <span className="text-lg md:text-3xl transform group-hover:translate-x-2 transition-transform bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-transparent bg-clip-text">
                 →
               </span>
             </Link>

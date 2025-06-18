@@ -48,15 +48,15 @@ export default function Milestones() {
   ]
 
   return (
-    <section className="bg-[#f3f3f3] py-12 px-4 md:px-8 lg:px-12">
+    <section className="bg-[#f3f3f3] py-12 px-4 md:px-8 lg:px-12 shadow-lg shadow-gray-300/50">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">
-          <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md inline-block">KNOW</span> YOUR MILESTONE
+          <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md inline-block">KNOW</span> YOUR MILESTONE
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-4 lg:gap-2">
           {milestones.map((milestone, index) => (
             <div className="milestone-step flex flex-col items-center" key={index}>
-              <div className="milestone-circle w-24 h-24 sm:w-28 sm:h-28 rounded-full shadow-lg flex items-center justify-center transition-transform duration-300 hover:scale-110 p-[4px] bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700">
+              <div className="milestone-circle w-24 h-24 sm:w-28 sm:h-28 rounded-full shadow-lg flex items-center justify-center transition-transform duration-300 hover:scale-110 p-[4px] bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518]">
                 <div className="w-full h-full bg-white rounded-full flex items-center justify-center">
                   <Link href={milestone.link}>
                     <Image

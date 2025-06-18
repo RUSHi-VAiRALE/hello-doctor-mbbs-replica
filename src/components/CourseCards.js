@@ -86,7 +86,7 @@ export default function CourseCards() {
   }, [])
 
   return (
-    <section className="bg-[#f3f3f3] py-12 shadow-xl/20">
+    <section className="bg-[#f3f3f3] py-12 shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {loading ? (
           <div className="flex justify-center items-center py-20">
@@ -120,7 +120,7 @@ export default function CourseCards() {
               </div>
               <div className="px-6 py-4 bg-gray-50">
                 <Link href={onlineCourses.length > 0 ? onlineCourses[0].href : "/courses/online/0"}>
-                  <button className="w-full py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
+                  <button className="w-full py-2 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
                     Explore Online Courses
                   </button>
                 </Link>
@@ -154,7 +154,7 @@ export default function CourseCards() {
               </div>
               <div className="px-6 py-4 bg-gray-50">
                 <Link href={offlineCourses.length > 0 ? offlineCourses[0].href : "/courses/offline/0"}>
-                  <button className="w-full py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
+                  <button className="w-full py-2 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white rounded-full font-semibold hover:opacity-90 transition-opacity">
                     Explore Offline Courses
                   </button>
                 </Link>

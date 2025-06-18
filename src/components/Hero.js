@@ -34,7 +34,7 @@ export default function Hero({ height }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   return (
-    <section className="relative w-full h-full overflow-hidden shadow-lg">
+    <section className="relative w-full h-full overflow-hidden shadow-lg shadow-gray-300/50">
       <Carousel
         slides={slides}
         currentSlide={currentSlide}

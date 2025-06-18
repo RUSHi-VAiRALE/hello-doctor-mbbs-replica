@@ -189,11 +189,11 @@ export default function ExploreTopCourses() {
   }, [])
 
   return (
-    <section className="py-12 bg-[#f3f3f3] overflow-hidden">
+    <section className="py-12 bg-[#f3f3f3] overflow-hidden shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold uppercase">
-            Explore Top <span className="text-blue-600">Courses</span>
+            Explore Top <span className="text-[#ad4a16]">Courses</span>
           </h3>
         </div>
 
@@ -262,7 +262,7 @@ export default function ExploreTopCourses() {
 
             <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transition-all duration-300"
+                className="h-full bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] transition-all duration-300"
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
@@ -319,7 +319,7 @@ function CourseCard({ course }) {
           alt={course.title}
           fill
         />
-        <span className="absolute top-0 left-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-r-lg text-sm font-medium">
+        <span className="absolute top-0 left-0 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-3 py-1 rounded-r-lg text-sm font-medium">
           {course.category}
         </span>
       </div>
@@ -356,7 +356,7 @@ function CourseCard({ course }) {
         >
           <Link href={`${course.link}`}>
             <button
-              className={`w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+              className={`w-full bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-all duration-300 hover:shadow-lg ${isHovered ? 'opacity-0' : 'opacity-100'}`}
               onClick={(e) => {
                 e.stopPropagation();
                 // Add your view details functionality here
@@ -374,7 +374,7 @@ function CourseCard({ course }) {
               {course.description}
             </p>
             <button
-              className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-transform duration-300 hover:shadow-lg"
+              className="w-full bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white py-2.5 rounded-full font-semibold text-sm transform hover:scale-[1.02] transition-transform duration-300 hover:shadow-lg"
               onClick={(e) => {
                 e.stopPropagation();
                 // Add your enroll functionality here

@@ -90,7 +90,7 @@ export default function StudentTestimonials() {
         <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
           <div className="text-center mb-8">
             <h3 className="text-3xl font-bold">
-              Student ❤️ <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">CLATians</span>
+              Student ❤️ <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">CLATians</span>
             </h3>
           </div>
           <div className="flex justify-center items-center py-20">
@@ -106,11 +106,11 @@ export default function StudentTestimonials() {
   }
 
   return (
-    <section className="py-12 bg-[#f3f3f3] overflow-hidden">
+    <section className="py-12 bg-[#f3f3f3] overflow-hidden shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold">
-            Student ❤️ <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">CLATians</span>
+            Student ❤️ <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">CLATians</span>
           </h3>
         </div>
 
@@ -126,7 +126,7 @@ export default function StudentTestimonials() {
               />
               {/* Rank Badge - Only show if rank exists and is not empty */}
               {mainTestimonial.rank && mainTestimonial.rank !== "" && (
-                <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center transform rotate-12 shadow-lg">
+                <div className="absolute top-2 right-2 w-12 h-12 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] rounded-full flex items-center justify-center transform rotate-12 shadow-lg">
                   <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform -rotate-12">
                     <div className="text-center">
                       <div className="text-[8px] font-semibold text-gray-600">RANK</div>
@@ -212,7 +212,7 @@ export default function StudentTestimonials() {
                         />
                         {/* Mini Rank Badge - Only show if rank exists and is not empty */}
                         {testimonial.rank && testimonial.rank !== "" && (
-                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-full flex items-center justify-center text-[8px] text-white font-bold">
+                          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] rounded-full flex items-center justify-center text-[8px] text-white font-bold">
                             {testimonial.rank}
                           </div>
                         )}
@@ -240,7 +240,7 @@ export default function StudentTestimonials() {
 
               <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>

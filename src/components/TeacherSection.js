@@ -71,11 +71,11 @@ export default function TeacherSection() {
 
   if (loading) {
     return (
-      <section className="py-8 bg-[#f3f3f3]">
+      <section className="py-8 bg-[#f3f3f3] shadow-lg shadow-gray-300/50">
         <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">OUR</span> TEACHERS
+              <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">OUR</span> TEACHERS
             </h2>
             <p className="text-gray-600">Learn from the Best in Legal Education</p>
           </div>
@@ -92,12 +92,12 @@ export default function TeacherSection() {
   }
 
   return (
-    <section className="py-8 bg-[#f3f3f3]">
+    <section className="py-8 bg-[#f3f3f3] shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-2">
-            <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">OUR</span> TEACHERS
+            <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">OUR</span> TEACHERS
           </h2>
           <p className="text-gray-600">Learn from the Best in Legal Education</p>
         </div>
@@ -118,7 +118,7 @@ export default function TeacherSection() {
               </div>
               <div className="md:w-7/12">
                 <h4 className="text-xl font-bold">{selectedTeacher.name}</h4>
-                <p className="text-orange-500 font-semibold">{selectedTeacher.role}</p>
+                <p className="text-[#ad4a16] font-semibold">{selectedTeacher.role}</p>
                 <p className="text-gray-600 flex items-center gap-1 mt-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -176,7 +176,7 @@ export default function TeacherSection() {
                       : 'hover:ring-2 hover:ring-gray-300 hover:ring-offset-1'
                       }`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/50 via-orange-500/50 to-red-700/50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#ad4a16]/50 via-[#8f3a17]/50 to-[#312518]/50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>

@@ -1,15 +1,15 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-const ChatUI = ({ 
-  messages, 
-  isTyping, 
-  userInput, 
-  handleInputChange, 
-  handleSubmit 
+const ChatUI = ({
+  messages,
+  isTyping,
+  userInput,
+  handleInputChange,
+  handleSubmit
 }) => (
   <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-    <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white p-4 text-center font-bold">
+    <div className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white p-4 text-center font-bold">
       💬 Chat with CLATians
     </div>
 
@@ -17,19 +17,17 @@ const ChatUI = ({
       {messages.map((msg, idx) => (
         <div
           key={idx}
-          className={`flex items-center gap-2 ${
-            msg.type === 'user' ? 'justify-end' : 'justify-start'
-          }`}
+          className={`flex items-center gap-2 ${msg.type === 'user' ? 'justify-end' : 'justify-start'
+            }`}
         >
           {msg.type === 'bot' && (
             <div className="w-8 h-8 rounded-full bg-gray-200" />
           )}
           <div
-            className={`max-w-[70%] p-3 rounded-lg ${
-              msg.type === 'user'
-                ? 'bg-red-700 text-white'
-                : 'bg-gray-100'
-            }`}
+            className={`max-w-[70%] p-3 rounded-lg ${msg.type === 'user'
+              ? 'bg-[#ad4a16] text-white'
+              : 'bg-gray-100'
+              }`}
           >
             {msg.text}
           </div>
@@ -64,7 +62,7 @@ const ChatUI = ({
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+          className="px-4 py-2 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white rounded-full hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
         >
           <i className="bi bi-send-fill"></i>
         </button>
@@ -84,13 +82,13 @@ export default function ChatComponent() {
     { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna..." },
     { type: "user", text: "Hello! What is CLATians?" },
     { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna..." },
-   
+
   ]
 
   useEffect(() => {
     setMounted(true)
     let index = 0
-    
+
     const showNextMessage = () => {
       if (index < initialConversation.length) {
         setIsTyping(true)
@@ -117,14 +115,14 @@ export default function ChatComponent() {
     if (userInput.trim()) {
       setMessages(prev => [...prev, { type: 'user', text: userInput.trim() }])
       setUserInput('')
-      
+
       setIsTyping(true)
-      
+
       setTimeout(() => {
         setIsTyping(false)
-        setMessages(prev => [...prev, { 
-          type: 'bot', 
-          text: "Thank you for your message. How can I help you with CLAT preparation?" 
+        setMessages(prev => [...prev, {
+          type: 'bot',
+          text: "Thank you for your message. How can I help you with CLAT preparation?"
         }])
       }, 2000)
     }
@@ -133,7 +131,7 @@ export default function ChatComponent() {
   if (!mounted) {
     return (
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white p-4 text-center font-bold">
+        <div className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white p-4 text-center font-bold">
           💬 Chat with CLATians
         </div>
         <div className="h-[350px]"></div>

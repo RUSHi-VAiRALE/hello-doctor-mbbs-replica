@@ -53,7 +53,7 @@ export default function Features() {
   ]
 
   return (
-    <section className="py-12 bg-[#f3f3f3] shadow-lg" ref={sectionRef}>
+    <section className="py-12 bg-[#f3f3f3] shadow-lg shadow-gray-300/50" ref={sectionRef}>
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {features.map((feature, index) => (
@@ -68,7 +68,7 @@ export default function Features() {
                   animationFillMode: 'both'
                 }}
               >
-                <i className={`bi ${feature.icon} text-4xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent mb-4 block text-center`}></i>
+                <i className={`bi ${feature.icon} text-4xl bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] bg-clip-text text-transparent mb-4 block text-center`}></i>
                 <h5 className="text-lg font-bold mb-2 text-center">{feature.title}</h5>
                 <p className="text-gray-600 text-center text-sm">{feature.description}</p>
               </div>

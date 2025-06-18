@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { collection, getDocs, query, where, getFirestore, orderBy } from 'firebase/firestore'
-import { app } from '@/firebase'  
+import { app } from '@/firebase'
 import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 export default function Navbar() {
@@ -47,28 +47,28 @@ export default function Navbar() {
     }
   })
   const pathname = usePathname()
- // Fetch notifications from Firebase
- useEffect(() => {
-  const db = getFirestore(app)
-  
-  const fetchNotifications = async () => {
-    setFetchLoading(true);
-    try {
-      const querySnapshot = await getDocs(collection(db, "notifications"));
-      const notificationsData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setNotifications(notificationsData);
-    } catch (error) {
-      console.error("Error fetching notifications:", error);
-    } finally {
-      setFetchLoading(false);
-    }
-  };
-  
-  fetchNotifications();
-}, []);
+  // Fetch notifications from Firebase
+  useEffect(() => {
+    const db = getFirestore(app)
+
+    const fetchNotifications = async () => {
+      setFetchLoading(true);
+      try {
+        const querySnapshot = await getDocs(collection(db, "notifications"));
+        const notificationsData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setNotifications(notificationsData);
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      } finally {
+        setFetchLoading(false);
+      }
+    };
+
+    fetchNotifications();
+  }, []);
   // Fetch courses from Firebase
   useEffect(() => {
     const db = getFirestore(app)
@@ -76,37 +76,37 @@ export default function Navbar() {
       try {
         // Create a copy of the default course types
         const updatedCourseTypes = { ...courseTypes };
-        
+
         // Fetch online courses
-        const onlineQuery = query(collection(db, "courses"), where("batchType", "==", "online"),orderBy("createdAt","asc"));
+        const onlineQuery = query(collection(db, "courses"), where("batchType", "==", "online"), orderBy("createdAt", "asc"));
         const onlineSnapshot = await getDocs(onlineQuery);
-        
+
         if (!onlineSnapshot.empty) {
           const onlineCourses = onlineSnapshot.docs.map((doc, index) => ({
             name: doc.data().examName || `Course ${index + 1}`,
             href: `/courses/online/${doc.id}`
           }));
-          
+
           updatedCourseTypes.online.courses = onlineCourses;
         }
-        
+
         // Fetch offline courses
-        const offlineQuery = query(collection(db, "courses"), where("batchType", "==", "offline"),orderBy("createdAt","asc"));
+        const offlineQuery = query(collection(db, "courses"), where("batchType", "==", "offline"), orderBy("createdAt", "asc"));
         const offlineSnapshot = await getDocs(offlineQuery);
-        
+
         if (!offlineSnapshot.empty) {
           const offlineCourses = offlineSnapshot.docs.map((doc, index) => ({
             name: doc.data().examName || `Course ${index + 1}`,
             href: `/courses/offline/${doc.id}`
           }));
-          
+
           updatedCourseTypes.offline.courses = offlineCourses;
         }
-        
+
         // Update state with fetched data
         setCourseTypes(updatedCourseTypes);
 
-        const lawExamsQuery = query(collection(db,"lawExams"),orderBy("createdAt","asc"));
+        const lawExamsQuery = query(collection(db, "lawExams"), orderBy("createdAt", "asc"));
         const lawExamsSnapshot = await getDocs(lawExamsQuery);
         if (!lawExamsSnapshot.empty) {
           const lawExamsData = lawExamsSnapshot.docs.map((doc) => ({
@@ -121,7 +121,7 @@ export default function Navbar() {
         // Fallback to default data is already handled since we initialized with default data
       }
     };
-    
+
     fetchCourses();
   }, []);
 
@@ -169,8 +169,8 @@ export default function Navbar() {
             <marquee className="py-1.5 text-sm">
               {notifications && notifications.length > 0 ? (
                 notifications.map((notification) => (
-                  <span 
-                    key={notification.id} 
+                  <span
+                    key={notification.id}
                     className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
@@ -181,7 +181,7 @@ export default function Navbar() {
                       if (marquee) marquee.start();
                     }}
                   >
-                    <Link 
+                    <Link
                       href={notification.url || ""}
                       onMouseOver={(e) => {
                         const marquee = e.target.closest('marquee');
@@ -200,7 +200,7 @@ export default function Navbar() {
                 ))
               ) : (
                 <>
-                  <span 
+                  <span
                     className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
@@ -213,7 +213,7 @@ export default function Navbar() {
                   >
                     🔥 New Batches Starting Soon!
                   </span>
-                  <span 
+                  <span
                     className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
@@ -226,7 +226,7 @@ export default function Navbar() {
                   >
                     🎯 Enroll Now
                   </span>
-                  <span 
+                  <span
                     className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
@@ -269,31 +269,31 @@ export default function Navbar() {
           <div className="flex items-center justify-between py-2">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0">
-              <Image 
-                src={ClatiansLogo} 
-                alt="clatians-Logo" 
-                width={90} 
-                height={42} 
+              <Image
+                src={ClatiansLogo}
+                alt="clatians-Logo"
+                width={90}
+                height={42}
                 className="w-auto h-[42px]"
               />
             </Link>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="lg:hidden p-1.5 rounded-lg hover:bg-gray-100 z-50"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              <svg 
+              <svg
                 className={`w-5 h-5 transition-transform duration-200 ${isMobileMenuOpen ? 'transform rotate-90' : ''}`}
-                fill="none" 
-                stroke="currentColor" 
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
@@ -323,16 +323,14 @@ export default function Navbar() {
                           setIsLawExamsOpen(false)
                         }
                       }}
-                      className={`relative font-semibold transition-colors ${
-                        isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)
-                          ? 'text-red-700'
-                          : 'text-gray-700 hover:text-red-700'
-                      }`}
+                      className={`relative font-semibold transition-colors ${isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)
+                        ? 'text-[#ad4a16]'
+                        : 'text-gray-700 hover:text-[#ad4a16]'
+                        }`}
                     >
                       {link.label}
-                      <span className={`ml-1 align-middle inline-block transition-transform ${
-                        (link.isLawExams ? isLawExamsOpen : isCoursesOpen) ? 'rotate-180' : ''
-                      }`}>
+                      <span className={`ml-1 align-middle inline-block transition-transform ${(link.isLawExams ? isLawExamsOpen : isCoursesOpen) ? 'rotate-180' : ''
+                        }`}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
@@ -342,13 +340,12 @@ export default function Navbar() {
                       )}
                     </button>
                   ) : (
-                    <Link 
+                    <Link
                       href={link.href}
-                      className={`relative font-semibold transition-colors ${
-                        isActive(link.href)
-                          ? 'text-red-700'
-                          : 'text-gray-700 hover:text-red-700'
-                      }`}
+                      className={`relative font-semibold transition-colors ${isActive(link.href)
+                        ? 'text-[#ad4a16]'
+                        : 'text-gray-700 hover:text-[#ad4a16]'
+                        }`}
                     >
                       {link.label}
                       {isActive(link.href) && (
@@ -369,19 +366,18 @@ export default function Navbar() {
                           {Object.entries(courseTypes).map(([type, { label }]) => (
                             <button
                               key={type}
-                              className={`w-full flex justify-between text-left py-2 pl-4 mb-2 ${
-                                selectedCourseType === type
-                                  ? 'bg-[#F8F8F8] text-black font-semibold'
-                                  : 'hover:bg-gray-100'
-                              }`}
+                              className={`w-full flex justify-between text-left py-2 pl-4 mb-2 ${selectedCourseType === type
+                                ? 'bg-[#F8F8F8] text-black font-semibold'
+                                : 'hover:bg-gray-100'
+                                }`}
                               onMouseEnter={() => setSelectedCourseType(type)}
                             >
                               {label}
                               <span className={`ml-1 align-middle inline-block`}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
-  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-</svg>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                              </svg>
 
-</span>
+                              </span>
                             </button>
                           ))}
                         </div>
@@ -433,17 +429,16 @@ export default function Navbar() {
               <button className="px-3 py-1.5 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors text-sm">
                 <a href='tel:8507700177'>Call Us</a>
               </button>
-              <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="px-4 py-1.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm">
+              <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="px-4 py-1.5 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm">
                 Download App
               </Link>
             </div>
           </div>
 
           {/* Mobile Menu */}
-          <div 
-            className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-              isMobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
-            }`}
+          <div
+            className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
+              }`}
           >
             <div className="py-4 space-y-4 border-t border-gray-200">
               {navLinks.map((link) => (
@@ -471,16 +466,14 @@ export default function Navbar() {
                           }
                           setExpandedMobileType(null)
                         }}
-                        className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
-                          isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)
-                            ? 'bg-red-50 text-red-700 font-semibold'
-                            : 'text-gray-700 hover:bg-gray-50'
-                        }`}
+                        className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)
+                          ? 'bg-red-50 text-red-700 font-semibold'
+                          : 'text-gray-700 hover:bg-gray-50'
+                          }`}
                       >
                         {link.label}
-                        <span className={`ml-1 inline-block align-middle transition-transform ${
-                          (link.isLawExams ? isLawExamsOpen : isCoursesOpen) ? 'rotate-180' : ''
-                        }`}>
+                        <span className={`ml-1 inline-block align-middle transition-transform ${(link.isLawExams ? isLawExamsOpen : isCoursesOpen) ? 'rotate-180' : ''
+                          }`}>
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                           </svg>
@@ -503,26 +496,23 @@ export default function Navbar() {
                                         setExpandedMobileType(type)
                                       }
                                     }}
-                                    className={`w-full flex justify-between items-center text-left py-3 px-4 ${
-                                      expandedMobileType === type
-                                        ? 'bg-[#F8F8F8] text-black font-semibold'
-                                        : 'hover:bg-gray-50'
-                                    }`}
+                                    className={`w-full flex justify-between items-center text-left py-3 px-4 ${expandedMobileType === type
+                                      ? 'bg-[#F8F8F8] text-black font-semibold'
+                                      : 'hover:bg-gray-50'
+                                      }`}
                                   >
                                     {label}
-                                    <span className={`transition-transform duration-200 ${
-                                      expandedMobileType === type ? 'rotate-180' : ''
-                                    }`}>
+                                    <span className={`transition-transform duration-200 ${expandedMobileType === type ? 'rotate-180' : ''
+                                      }`}>
                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                       </svg>
                                     </span>
                                   </button>
-                                  
+
                                   {/* Courses for each type */}
-                                  <div className={`overflow-hidden transition-all duration-300 bg-[#F8F8F8] ${
-                                    expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                                  }`}>
+                                  <div className={`overflow-hidden transition-all duration-300 bg-[#F8F8F8] ${expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                                    }`}>
                                     <div className="grid grid-cols-2 gap-2 p-4">
                                       {courses.map((course) => (
                                         <Link
@@ -564,24 +554,23 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={link.href}
-                      className={`block px-4 py-2 rounded-lg transition-colors ${
-                        isActive(link.href)
-                          ? 'bg-red-50 text-red-700 font-semibold'
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
+                      className={`block px-4 py-2 rounded-lg transition-colors ${isActive(link.href)
+                        ? 'bg-red-50 text-red-700 font-semibold'
+                        : 'text-gray-700 hover:bg-gray-50'
+                        }`}
                     >
                       {link.label}
                     </Link>
                   )}
                 </div>
               ))}
-              
+
               {/* Mobile Buttons */}
               <div className="px-4 py-2 space-y-3">
                 <button className="w-full px-4 py-2 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors">
                   <a href='tel:8507700177' className='w-full'>Call Us</a>
                 </button>
-                <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full text-center hover:opacity-90 transition-opacity shadow-lg">
+                <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-2 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-full text-center hover:opacity-90 transition-opacity shadow-lg">
                   Download App
                 </Link>
               </div>
@@ -590,4 +579,5 @@ export default function Navbar() {
         </div>
       </nav>
     </>
-  )}
+  )
+}

@@ -8,10 +8,10 @@ export default function FAQ({ faqs }) {
 
 
   return (
-    <section className="bg-[#f3f3f3] py-16">
+    <section className="bg-[#f3f3f3] py-16 shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <h2 className="text-center text-3xl font-bold mb-12">
-          <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md inline-block">
+          <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md inline-block">
             FREQUENTLY
           </span>{' '}
           ASKED QUESTIONS
@@ -25,8 +25,8 @@ export default function FAQ({ faqs }) {
                 }`}
               style={{
                 backgroundImage: `linear-gradient(white, white), ${hoveredIndex === index
-                    ? 'linear-gradient(to right, #f59e0b, #ea580c, #dc2626)'
-                    : 'linear-gradient(to right, #fbbf24, #ea580c, #b91c1c)'
+                  ? 'linear-gradient(to right, #ad4a16, #8f3a17, #312518)'
+                  : 'linear-gradient(to right, #ad4a16, #8f3a17, #312518)'
                   }`,
                 backgroundOrigin: 'border-box',
                 backgroundClip: 'content-box, border-box',

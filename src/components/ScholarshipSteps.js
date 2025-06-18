@@ -43,7 +43,7 @@ export default function ScholarshipSteps() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">
-            How to Take <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">CLATians</span> Scholarship Test
+            How to Take <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">CLATians</span> Scholarship Test
           </h2>
           <p className="text-gray-600">Follow these simple steps to get your scholarship</p>
         </div>
@@ -58,17 +58,16 @@ export default function ScholarshipSteps() {
               onMouseLeave={() => setActiveStep(null)}
             >
               {/* Connector Line */}
-              {/* {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transform -translate-x-1/2" />
-              )} */}
+              {index < steps.length - 1 && (
+                <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] transform -translate-x-1/2" />
+              )}
 
               {/* Step Card */}
-              <div className={`bg-white rounded-xl p-6 shadow-lg transition-all duration-300 ${
-                activeStep === index ? 'transform -translate-y-2 shadow-xl' : ''
-              }`}>
+              <div className={`bg-white rounded-xl p-6 shadow-lg transition-all duration-300 ${activeStep === index ? 'transform -translate-y-2 shadow-xl' : ''
+                }`}>
                 {/* Step Number and Icon */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white rounded-full font-bold">
+                  <span className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white rounded-full font-bold">
                     {step.number}
                   </span>
                   <div className="w-12 h-12 flex items-center justify-center rounded-full bg-orange-50 text-orange-500">
@@ -81,9 +80,8 @@ export default function ScholarshipSteps() {
                 <p className="text-gray-600 text-sm">{step.description}</p>
 
                 {/* Animated Border on Hover */}
-                <div className={`absolute inset-0 rounded-xl transition-opacity duration-300 pointer-events-none ${
-                  activeStep === index ? 'opacity-100' : 'opacity-0'
-                }`}>
+                <div className={`absolute inset-0 rounded-xl transition-opacity duration-300 pointer-events-none ${activeStep === index ? 'opacity-100' : 'opacity-0'
+                  }`}>
                   <div className="absolute inset-0 rounded-xl border-2 border-gradient-animate" />
                 </div>
               </div>

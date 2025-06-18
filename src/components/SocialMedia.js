@@ -10,7 +10,7 @@ export default function SocialMedia() {
   ]
 
   return (
-    <section className="bg-[#f3f3f3] py-16">
+    <section className="bg-[#f3f3f3] py-16 shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Follow Us on Social Media</h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm md:text-base">

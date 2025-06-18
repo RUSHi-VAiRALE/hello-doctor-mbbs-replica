@@ -159,9 +159,9 @@ export default function Timeline() {
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#F59E0B" />
-                  <stop offset="50%" stopColor="#F97316" />
-                  <stop offset="100%" stopColor="#EF4444" />
+                  <stop offset="0%" stopColor="#ad4a16" />
+                  <stop offset="50%" stopColor="#8f3a17" />
+                  <stop offset="100%" stopColor="#312518" />
                 </linearGradient>
               </defs>
             </svg>

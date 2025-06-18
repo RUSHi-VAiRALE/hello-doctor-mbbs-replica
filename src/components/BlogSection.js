@@ -83,7 +83,7 @@ export default function BlogSection() {
         <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
           <div className="text-center mb-6">
             <h2 className="text-3xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">FEATURED</span> NEWS
+              <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">FEATURED</span> NEWS
             </h2>
             <p className="text-gray-600">Explore Latest Blogs From Here</p>
           </div>
@@ -96,11 +96,11 @@ export default function BlogSection() {
   }
 
   return (
-    <section className="py-8 bg-[#f3f3f3]">
+    <section className="py-8 bg-[#f3f3f3] shadow-lg shadow-gray-300/50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold mb-2">
-            <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-md">FEATURED</span> NEWS
+            <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">FEATURED</span> NEWS
           </h2>
           <p className="text-gray-600">Explore Latest Blogs From Here</p>
         </div>
