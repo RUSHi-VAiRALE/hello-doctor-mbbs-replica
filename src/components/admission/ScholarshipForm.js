@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import Link from 'next/link'
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { app } from '@/firebase'
 
@@ -135,8 +134,8 @@ export default function ScholarshipForm() {
 
               {submitStatus && (
                 <div className={`p-4 rounded-lg ${submitStatus.success
-                    ? 'bg-green-50 text-green-800 border border-green-200'
-                    : 'bg-red-50 text-red-800 border border-red-200'
+                  ? 'bg-green-50 text-green-800 border border-green-200'
+                  : 'bg-red-50 text-red-800 border border-red-200'
                   }`}>
                   {submitStatus.message}
                 </div>
