@@ -77,10 +77,10 @@ export default function OnlineResources() {
             <p className="text-sm text-gray-500 mb-2">By {resource.author}</p>
             <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
             <div className="flex items-center justify-between">
-              <span className="text-lg font-bold text-gray-900">₹ {resource.price} 
-              <span className='text-lg font-normal text-green-500 line-through ml-5'>₹ {resource.originalPrice}</span></span>
+              <span className="text-lg font-bold text-gray-900">₹ {resource.price}
+                <span className='text-lg font-normal text-green-500 line-through ml-5'>₹ {resource.originalPrice}</span></span>
               <Link href={resource.purchaseLink} target="_blank">
-                <button className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
+                <button className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
                   Purchase
                 </button>
               </Link>
@@ -110,19 +110,19 @@ export default function OnlineResources() {
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-500">{resource.type || "PDF"} • {resource.size || "N/A"}</span>
               {resource.isPremium ? (
-                <button 
+                <button
                   className="bg-gray-100 text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                   <i className="bi bi-download mr-2"></i>
                   Upgrade to Download
                 </button>
               ) : (
-                <a 
+                <a
                   href={resource.downloadLink}
                   download={resource.title || "download"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white hover:opacity-90 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white hover:opacity-90 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                   <i className="bi bi-download mr-2"></i>
                   Download
@@ -153,11 +153,10 @@ export default function OnlineResources() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white'
+              className={`px-6 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === tab.id
+                  ? 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white'
                   : 'bg-white text-gray-600 hover:bg-gray-100'
-              }`}
+                }`}
             >
               {tab.label}
             </button>

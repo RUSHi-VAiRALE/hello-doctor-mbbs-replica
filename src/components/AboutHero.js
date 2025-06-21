@@ -13,7 +13,7 @@ export default function AboutHero({ route, page }) {
               {page}
             </h1>
             <nav className="text-base md:text-lg font-medium">
-              <a href="/" className="text-amber-400 hover:text-orange-600 transition-colors font-bold">
+              <a href="/" className="text-[#ad4a16] hover:text-[#8f3a17] transition-colors font-bold">
                 {route}
               </a>
               <span className="text-white mx-2 font-bold">»</span>

@@ -21,16 +21,16 @@ export default function MockTests() {
         const db = getFirestore(app)
         const mockTestsCollection = collection(db, "mockTests")
         const mockTestsSnapshot = await getDocs(mockTestsCollection)
-        
+
         const mockTests = mockTestsSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }))
-        
+
         // Separate online and offline tests
         const onlineTests = mockTests.filter(test => test.type === "Online")
         const offlineTests = mockTests.filter(test => test.type === "Offline")
-        
+
         setMockTestData({
           online: onlineTests,
           offline: offlineTests
@@ -76,22 +76,20 @@ export default function MockTests() {
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => setActiveTab('online')}
-              className={`px-6 py-4 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center ${
-                activeTab === 'online'
-                ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+              className={`px-6 py-4 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center ${activeTab === 'online'
+                ? 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white shadow-md'
                 : 'hover:bg-gray-50 text-gray-600'
-              }`}
+                }`}
             >
               <FaLaptop className="mr-2" />
               Online Tests
             </button>
             <button
               onClick={() => setActiveTab('offline')}
-              className={`px-6 py-4 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center ${
-                activeTab === 'offline'
-                ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+              className={`px-6 py-4 rounded-xl text-sm font-medium transition-all duration-300 flex items-center justify-center ${activeTab === 'offline'
+                ? 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white shadow-md'
                 : 'hover:bg-gray-50 text-gray-600'
-              }`}
+                }`}
             >
               <FaBook className="mr-2" />
               Offline Tests
@@ -141,7 +139,7 @@ export default function MockTests() {
                   <div className="p-6">
                     <h3 className="text-xl font-bold mb-2">{test.title}</h3>
                     <p className="text-gray-600 mb-4">{test.description || "Comprehensive test to help you prepare for your exam"}</p>
-                    
+
                     <div className="flex flex-wrap gap-3 mb-5">
                       {test.type === 'Online' ? (
                         <>
@@ -166,7 +164,7 @@ export default function MockTests() {
                         {test.difficulty || "Medium"}
                       </div>
                     </div>
-                    
+
                     {/* Features Bullet Points */}
                     {test.features && test.features.length > 0 && (
                       <div className="mb-5">
@@ -174,21 +172,20 @@ export default function MockTests() {
                         <ul className="space-y-1">
                           {test.features.map((feature, index) => (
                             <li key={index} className="flex items-start text-sm text-gray-600">
-                              <FaBullseye className="text-orange-500 mt-1 mr-2 flex-shrink-0 text-xs" />
+                              <FaBullseye className="text-[#ad4a16] mt-1 mr-2 flex-shrink-0 text-xs" />
                               <span>{feature}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                     )}
-                    
+
                     <Link href={test.purchaseLink} target='_blank'>
-                      <button 
-                        className={`w-full py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${
-                          test.isPremium 
-                            ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                            : 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white hover:opacity-90'
-                        }`}
+                      <button
+                        className={`w-full py-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-center ${test.isPremium
+                          ? 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white hover:opacity-90'
+                          : 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white hover:opacity-90'
+                          }`}
                       >
                         {test.isPremium ? 'Upgrade to Access' : (test.type === 'Online' ? 'Start Test' : 'Download PDF')}
                         <FaArrowRight className="ml-2" />

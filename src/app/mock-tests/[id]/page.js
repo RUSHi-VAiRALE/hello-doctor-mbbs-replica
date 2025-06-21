@@ -106,7 +106,7 @@ const mockTests = [
 ];
 
 export default function MockTestDetail() {
-  const {id} = useParams()
+  const { id } = useParams()
   const mockTest = mockTests[parseInt(id)];
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const [formData, setFormData] = useState({
@@ -159,15 +159,15 @@ export default function MockTestDetail() {
       setFormErrors(errors);
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       console.log('Form submitted:', formData);
       setIsSubmitting(false);
       setSubmitSuccess(true);
-      
+
       // Reset form after 3 seconds
       setTimeout(() => {
         setShowRegistrationForm(false);
@@ -196,7 +196,7 @@ export default function MockTestDetail() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 text-white">
           <div className="max-w-7xl mx-auto">
-            <div className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 px-4 py-2 rounded-lg mb-4">
+            <div className="inline-block bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] px-4 py-2 rounded-lg mb-4">
               <div className="flex items-center">
                 <FaCalendarAlt className="mr-2" />
                 <span>Available from {mockTest.date.day} {mockTest.date.month}</span>
@@ -225,7 +225,7 @@ export default function MockTestDetail() {
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
               <h2 className="text-2xl font-bold mb-6">About This Mock Test</h2>
               <p className="text-gray-700 mb-8">{mockTest.description}</p>
-              
+
               <h3 className="text-xl font-bold mb-4">Prepared By</h3>
               <div className="flex items-center mb-8">
                 <div className="w-16 h-16 rounded-full bg-gray-200 mr-4"></div>
@@ -234,7 +234,7 @@ export default function MockTestDetail() {
                   <p className="text-gray-600">{mockTest.instructorRole}</p>
                 </div>
               </div>
-              
+
               <h3 className="text-xl font-bold mb-4">Test Features</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 <div className="bg-blue-50 p-4 rounded-lg">
@@ -244,7 +244,7 @@ export default function MockTestDetail() {
                   </div>
                   <p>{mockTest.questions}</p>
                 </div>
-                
+
                 <div className="bg-purple-50 p-4 rounded-lg">
                   <div className="flex items-center mb-2">
                     <FaClock className="text-purple-600 mr-2" />
@@ -252,7 +252,7 @@ export default function MockTestDetail() {
                   </div>
                   <p>{mockTest.time}</p>
                 </div>
-                
+
                 <div className="bg-green-50 p-4 rounded-lg">
                   <div className="flex items-center mb-2">
                     <FaMapMarkerAlt className="text-green-600 mr-2" />
@@ -260,7 +260,7 @@ export default function MockTestDetail() {
                   </div>
                   <p>{mockTest.difficulty}</p>
                 </div>
-                
+
                 <div className="bg-amber-50 p-4 rounded-lg">
                   <div className="flex items-center mb-2">
                     {mockTest.mode === 'Online' ? (
@@ -273,7 +273,7 @@ export default function MockTestDetail() {
                   <p>{mockTest.mode}</p>
                 </div>
               </div>
-              
+
               {mockTest.mode === 'Online' ? (
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-bold mb-4">How to Take This Test</h3>
@@ -299,40 +299,40 @@ export default function MockTestDetail() {
               )}
             </div>
           </div>
-          
+
           <div>
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
               <h3 className="text-xl font-bold mb-4">Test Details</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <FaCalendarAlt className="text-orange-500 mt-1 mr-3" />
+                  <FaCalendarAlt className="text-[#ad4a16] mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Available From</h4>
                     <p className="text-gray-600">{mockTest.date.day} {mockTest.date.month}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
-                  <FaClock className="text-orange-500 mt-1 mr-3" />
+                  <FaClock className="text-[#ad4a16] mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Duration/Size</h4>
                     <p className="text-gray-600">{mockTest.time}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
-                  <FaFileAlt className="text-orange-500 mt-1 mr-3" />
+                  <FaFileAlt className="text-[#ad4a16] mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Questions/Tests</h4>
                     <p className="text-gray-600">{mockTest.questions}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   {mockTest.mode === 'Online' ? (
-                    <FaLaptop className="text-orange-500 mt-1 mr-3" />
+                    <FaLaptop className="text-[#ad4a16] mt-1 mr-3" />
                   ) : (
-                    <FaBook className="text-orange-500 mt-1 mr-3" />
+                    <FaBook className="text-[#ad4a16] mt-1 mr-3" />
                   )}
                   <div>
                     <h4 className="font-bold">Mode</h4>
@@ -340,11 +340,11 @@ export default function MockTestDetail() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <button 
+                <button
                   onClick={() => setShowRegistrationForm(true)}
-                  className="w-full py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                  className="w-full py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
                 >
                   {mockTest.mode === 'Online' ? 'Start Test Now' : 'Download PDF'}
                 </button>
@@ -358,7 +358,7 @@ export default function MockTestDetail() {
       <div className="bg-[#e7edff] py-12">
         <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
           <h2 className="text-3xl font-bold text-center mb-12">More Mock Tests</h2>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {mockTests.map((otherTest, index) => (
               parseInt(id) !== index && index < 4 && (
@@ -376,24 +376,23 @@ export default function MockTestDetail() {
                         <small className="text-gray-600 text-sm">{otherTest.date.month}</small>
                       </div>
                     </div>
-                    <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-3 py-1 rounded-bl-xl text-sm">
+                    <div className="absolute top-0 right-0 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-3 py-1 rounded-bl-xl text-sm">
                       {otherTest.mode}
                     </div>
                   </div>
 
                   <div className="p-5">
                     <div className="flex items-center mb-3">
-                      <FaClock className="text-orange-500 mr-2 text-base" />
-                      <span className="text-sm text-gray-600">{otherTest.time}</span>
+                      <FaClock className="text-[#ad4a16] mr-2 text-base" />
+                      <span className="text-[#ad4a16] font-medium">View Details</span>
                     </div>
 
                     <h3 className="text-xl font-bold mb-2 line-clamp-2">{otherTest.title}</h3>
                     <p className="text-gray-600 mb-4 text-sm line-clamp-3">{otherTest.description}</p>
-                    
+
                     <Link href={`/mock-tests/${index}`}>
                       <div className="flex justify-between items-center pt-3 border-t border-gray-100">
-                        <span className="text-orange-500 font-medium">View Details</span>
-                        <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded-full">
+                        <span className="bg-[#ad4a16]/10 text-[#ad4a16] text-xs px-2 py-1 rounded-full">
                           {otherTest.difficulty}
                         </span>
                       </div>
@@ -410,19 +409,19 @@ export default function MockTestDetail() {
       {showRegistrationForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-md relative max-h-[90vh] overflow-y-auto">
-            <button 
+            <button
               onClick={() => setShowRegistrationForm(false)}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
               aria-label="Close registration form"
             >
               <FaTimes size={24} />
             </button>
-            
+
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-6 text-center">
                 {mockTest.mode === 'Online' ? 'Register for Online Test' : 'Download Test Materials'}
               </h2>
-              
+
               {submitSuccess ? (
                 <div className="text-center py-8">
                   <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -452,7 +451,7 @@ export default function MockTestDetail() {
                     />
                     {formErrors.fullName && <p className="mt-1 text-sm text-red-600">{formErrors.fullName}</p>}
                   </div>
-                  
+
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                     <input
@@ -466,7 +465,7 @@ export default function MockTestDetail() {
                     />
                     {formErrors.email && <p className="mt-1 text-sm text-red-600">{formErrors.email}</p>}
                   </div>
-                  
+
                   <div>
                     <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                     <input
@@ -480,7 +479,7 @@ export default function MockTestDetail() {
                     />
                     {formErrors.phoneNumber && <p className="mt-1 text-sm text-red-600">{formErrors.phoneNumber}</p>}
                   </div>
-                  
+
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
                     <textarea
@@ -493,11 +492,11 @@ export default function MockTestDetail() {
                       placeholder="Any questions or comments?"
                     ></textarea>
                   </div>
-                  
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70"
+                    className="w-full py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center">

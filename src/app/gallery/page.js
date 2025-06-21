@@ -75,7 +75,7 @@ export default function Gallery() {
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === category.id
-                  ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
+                  ? 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white shadow-md'
                   : 'bg-white hover:bg-gray-50 text-gray-700'
                   }`}
               >
@@ -135,7 +135,7 @@ export default function Gallery() {
           <div className="relative w-full max-w-5xl">
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute -top-6 right-0 text-white hover:text-orange-400 transition-colors"
+              className="absolute -top-6 right-0 text-white hover:text-[#ad4a16] transition-colors"
               aria-label="Close lightbox"
             >
               <FaTimes size={24} />

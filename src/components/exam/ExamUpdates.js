@@ -4,7 +4,7 @@ export default function ExamUpdates({ update }) {
       <h2 className="text-2xl font-bold mb-4">Latest Updates</h2>
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white">
+          <thead className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white">
             <tr>
               <th className="px-4 py-3 text-left font-bold text-white">Timeline</th>
               <th className="px-4 py-3 text-left font-bold text-white">Update</th>

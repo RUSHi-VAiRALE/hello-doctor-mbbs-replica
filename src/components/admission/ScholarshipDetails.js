@@ -42,7 +42,7 @@ export default function ScholarshipDetails() {
         "Timing = Online Test (24×7) & Offline Test 10:00am to 06:00pm",
         "Mode of Test = Online and Offline"
       ]
-    },{
+    }, {
       id: 5,
       title: "Eligibility",
       icon: <FaRegCalendarAlt className="text-2xl text-amber-600" />,
@@ -104,7 +104,7 @@ export default function ScholarshipDetails() {
 
         {/* Action Button */}
         <div className="text-center mt-10">
-          <button className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity transform hover:scale-[0.99] duration-200 shadow-lg">
+          <button className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity transform hover:scale-[0.99] duration-200 shadow-lg">
             Register Now
           </button>
         </div>

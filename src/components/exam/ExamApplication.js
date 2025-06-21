@@ -2,7 +2,7 @@ export default function ExamApplication({ exam }) {
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-bold mb-4">Application Process</h2>
-      
+
       {/* Application Steps */}
       <div className="space-y-6">
         <h3 className="text-xl font-semibold">Steps to Apply</h3>
@@ -26,7 +26,7 @@ export default function ExamApplication({ exam }) {
         <h3 className="text-xl font-semibold">Key Dates</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white">
+            <thead className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white">
               <tr>
                 <th className="px-4 py-3 text-left">Event</th>
                 <th className="px-4 py-3 text-left">Date</th>

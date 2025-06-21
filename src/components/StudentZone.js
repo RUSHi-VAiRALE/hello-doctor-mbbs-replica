@@ -50,7 +50,7 @@ export default function StudentZone() {
         const db = getFirestore(app)
         const studentZoneCollection = collection(db, 'studentZone')
         const snapshot = await getDocs(studentZoneCollection)
-        
+
         if (!snapshot.empty) {
           // Get all links from the documents
           let linksData = {}
@@ -58,7 +58,7 @@ export default function StudentZone() {
             // Merge all fields from all documents
             linksData = { ...linksData, ...doc.data() }
           })
-          
+
           // Update the student zone data with Firebase links
           const updatedData = baseStudentZoneData.map(item => {
             if (linksData[item.id]) {
@@ -66,7 +66,7 @@ export default function StudentZone() {
             }
             return item
           })
-          
+
           setStudentZoneData(updatedData)
         }
       } catch (error) {
@@ -96,13 +96,13 @@ export default function StudentZone() {
         {/* Info Boxes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {studentZoneData.map((item, index) => (
-            <div 
+            <div
               key={index}
               className="bg-white rounded-xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1"
             >
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                 {/* Icon */}
-                <div className="w-16 h-16 flex-shrink-0 rounded-xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 flex items-center justify-center text-white">
+                <div className="w-16 h-16 flex-shrink-0 rounded-xl bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] flex items-center justify-center text-white">
                   <i className={`bi ${item.icon} text-3xl`}></i>
                 </div>
 
@@ -115,9 +115,8 @@ export default function StudentZone() {
                     {item.description}
                   </p>
                   <Link
-                    href={item.link}
-                    target='_blank'
-                    className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity duration-300"
+                    href="/studentZone"
+                    className="inline-block px-6 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity duration-300"
                   >
                     {item.buttonText}
                   </Link>

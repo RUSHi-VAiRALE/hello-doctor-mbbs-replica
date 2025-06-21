@@ -126,14 +126,14 @@ export default function Events() {
 
                       <div className="p-5">
                         <div className="flex items-center mb-3">
-                          <i className="bi bi-clock text-orange-500 mr-2 text-base"></i>
+                          <i className="bi bi-clock text-[#ad4a16] mr-2 text-base"></i>
                           <span className="text-sm text-gray-600">{event.time || 'TBA'}</span>
                         </div>
 
                         <h5 className="font-bold text-lg mb-3">{event.title}</h5>
 
                         <div className="flex items-center mb-4">
-                          <i className="bi bi-geo-alt text-orange-500 mr-2 text-base"></i>
+                          <i className="bi bi-geo-alt text-[#ad4a16] mr-2 text-base"></i>
                           <span className="text-sm text-gray-600">{event.location || 'Online'}</span>
                         </div>
 

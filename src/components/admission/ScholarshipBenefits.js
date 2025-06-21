@@ -32,7 +32,7 @@ export default function ScholarshipBenefits() {
           {Array.from({ length: Math.ceil(scholarshipTiers.length / 2) }, (_, i) => (
             <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {scholarshipTiers.slice(i * 2, i * 2 + 2).map((tier, index) => (
-                <div 
+                <div
                   key={index}
                   className="bg-white relative rounded-t-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
@@ -41,7 +41,7 @@ export default function ScholarshipBenefits() {
                       <div className="transform group-hover:scale-110 transition-transform duration-300">
                         {tier.icon}
                       </div>
-                      
+
                     </div>
                     <div className="text-center w-1/3">
                       <p className="font-semibold text-gray-900">{tier.marks}</p>
@@ -54,7 +54,7 @@ export default function ScholarshipBenefits() {
                       <p className="text-sm text-gray-600">Scholarship</p>
                     </div>
                   </div>
-                  <div className="h-1 absolute w-full bottom-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700"></div>
+                  <div className="h-1 absolute w-full bottom-0 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518]"></div>
                 </div>
               ))}
             </div>

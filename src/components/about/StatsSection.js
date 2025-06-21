@@ -75,8 +75,8 @@ export default function StatsSection() {
               key={index}
               className="bg-white p-8 rounded-xl shadow-md hover:-translate-y-1 transition-transform duration-300"
             >
-              <i className={`bi bi-${stat.icon} text-4xl bg-gradient-to-br from-amber-400 via-orange-500 to-red-700 bg-clip-text text-transparent mb-4 block`}></i>
-              <h3 className="text-3xl font-bold bg-gradient-to-br from-amber-400 via-orange-500 to-red-700 bg-clip-text text-transparent mb-2">
+              <i className={`bi bi-${stat.icon} text-4xl bg-gradient-to-br from-[#ad4a16] via-[#8f3a17] to-[#312518] bg-clip-text text-transparent mb-4 block`}></i>
+              <h3 className="text-3xl font-bold bg-gradient-to-br from-[#ad4a16] via-[#8f3a17] to-[#312518] bg-clip-text text-transparent mb-2">
                 <span className="counter" data-target={stat.value}>0</span>
                 {stat.suffix || "+"}
               </h3>

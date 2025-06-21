@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaArrowRight, FaLightbulb, FaBookOpen, FaRegClock, FaRegCalendarAlt } from 'react-icons/fa'
 import parse from 'html-react-parser'
-export default function ExamUpdatesTips({ activeTabExam ,examTips }) {
+export default function ExamUpdatesTips({ activeTabExam, examTips }) {
   // Sample exam tips data - replace with your actual data
   console.log(examTips)
 
@@ -36,15 +36,15 @@ export default function ExamUpdatesTips({ activeTabExam ,examTips }) {
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-6 flex-grow">
                 <h3 className="text-xl font-bold mb-3">{tip.title}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-2">{parse(tip.content)}</p>
               </div>
-              
+
               <div className="px-6 pb-6">
-                <Link 
-                  href={`/blogs/${tip.id}`} 
+                <Link
+                  href={`/blogs/${tip.id}`}
                   className="inline-flex items-center text-orange-600 font-medium hover:text-orange-700 transition-colors"
                 >
                   Read full strategy <FaArrowRight className="ml-2" />
@@ -55,7 +55,7 @@ export default function ExamUpdatesTips({ activeTabExam ,examTips }) {
         </div>
       ) : (
         <div className="text-center py-12 bg-white rounded-xl shadow-md">
-          <FaLightbulb className="text-orange-400 text-4xl mx-auto mb-4" />
+          <FaLightbulb className="text-[#ad4a16] text-4xl mx-auto mb-4" />
           <h3 className="text-xl font-bold mb-2">Tips Coming Soon</h3>
           <p className="text-gray-600">
             We're preparing expert tips for {activeTabExam.toUpperCase()}. Check back soon!

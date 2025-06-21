@@ -70,7 +70,7 @@ export default function ScholarshipSteps() {
                   <span className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white rounded-full font-bold">
                     {step.number}
                   </span>
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-orange-50 text-orange-500">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#ad4a16]/10 text-[#ad4a16]">
                     {step.icon}
                   </div>
                 </div>

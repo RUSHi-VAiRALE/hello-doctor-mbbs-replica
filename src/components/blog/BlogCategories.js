@@ -482,8 +482,8 @@ export default function BlogCategories() {
                   key={tab.id}
                   onClick={() => setActiveTabExam(tab.id)}
                   className={`px-6 py-3 truncate rounded-xl text-sm font-medium transition-all duration-300 ${activeTabExam === tab.id
-                      ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-md'
-                      : 'hover:bg-gray-50 text-gray-600'
+                    ? 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white shadow-md'
+                    : 'hover:bg-gray-50 text-gray-600'
                     }`}
                 >
                   {tab.name}
@@ -517,8 +517,8 @@ export default function BlogCategories() {
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
               className={`group relative overflow-hidden rounded-2xl transition-all duration-300 ${activeCategory === category.id
-                  ? 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white shadow-lg scale-105'
-                  : 'bg-white text-gray-600 hover:shadow-md'
+                ? 'bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white shadow-lg scale-105'
+                : 'bg-white text-gray-600 hover:shadow-md'
                 }`}
             >
               <div className="p-6 relative z-10">
@@ -526,7 +526,7 @@ export default function BlogCategories() {
                 <h3 className="text-md md:text-xl font-bold mb-2">{category.name}</h3>
                 <p className="hidden md:block text-sm opacity-80">{category.description}</p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-orange-500/10 to-red-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#ad4a16]/10 via-[#8f3a17]/10 to-[#312518]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
           ))}
         </div>

@@ -13,16 +13,16 @@ export default function BlogCard({ image, title, description }) {
         />
         <div className="absolute bottom-0 w-full h-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700"></div>
       </div>
-      
+
       <div className="p-6 flex flex-col flex-grow">
         <div className="flex-grow">
           <h3 className="text-xl font-bold text-gray-800 mb-3">{title}</h3>
           <p className="text-gray-600 line-clamp-3">{description}</p>
         </div>
-        
+
         <div className="text-center mt-6">
-          <Link 
-            href="/blogs/1" 
+          <Link
+            href="/blogs/1"
             className="inline-block px-6 py-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg"
           >
             Read More

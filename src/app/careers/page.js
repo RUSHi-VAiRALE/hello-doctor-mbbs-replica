@@ -72,7 +72,7 @@ export default function CareersPage() {
   return (
     <>
       <AboutHero route="Home" page="Careers" />
-      
+
       <section className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-red-50">
         <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
           <div className="text-center mb-16">
@@ -94,12 +94,12 @@ export default function CareersPage() {
               {/* Career Cards Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                 {displayCareers.map((career) => (
-                  <div 
-                    key={career.id} 
+                  <div
+                    key={career.id}
                     className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-pointer overflow-hidden"
                     onClick={() => setSelectedCareer(career)}
                   >
-                    <div className="h-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700"></div>
+                    <div className="h-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518]"></div>
                     <div className="p-6">
                       <div className="flex items-center mb-4">
                         <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4">
@@ -131,7 +131,7 @@ export default function CareersPage() {
                         </div>
                         <h2 className="text-2xl font-bold">{selectedCareer.role}</h2>
                       </div>
-                      <button 
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
                           setSelectedCareer(null);
@@ -141,7 +141,7 @@ export default function CareersPage() {
                         <FaTimes className="text-xl" />
                       </button>
                     </div>
-                    
+
                     <div className="p-6">
                       <div className="mb-6">
                         <div className="flex items-center mb-3">
@@ -156,7 +156,7 @@ export default function CareersPage() {
                               </li>
                             ))
                           ) : (
-                            typeof selectedCareer.responsibilities === 'string' && 
+                            typeof selectedCareer.responsibilities === 'string' &&
                             selectedCareer.responsibilities.split('. ').filter(item => item.trim() !== '').map((item, index) => (
                               <li key={index} className="pl-2 ml-4">
                                 {item.trim().replace(/\.$/, '')}
@@ -165,7 +165,7 @@ export default function CareersPage() {
                           )}
                         </ul>
                       </div>
-                      
+
                       <div className="mb-6">
                         <div className="flex items-center mb-3">
                           <FaCalendarAlt className="text-orange-500 mr-2" />
@@ -179,7 +179,7 @@ export default function CareersPage() {
                               </li>
                             ))
                           ) : (
-                            typeof selectedCareer.dayToDay === 'string' && 
+                            typeof selectedCareer.dayToDay === 'string' &&
                             selectedCareer.dayToDay.split('. ').filter(item => item.trim() !== '').map((item, index) => (
                               <li key={index} className="pl-2 ml-4">
                                 {item.trim().replace(/\.$/, '')}
@@ -188,10 +188,10 @@ export default function CareersPage() {
                           )}
                         </ul>
                       </div>
-                      
+
                       <div className="mt-8 flex justify-center">
-                        <button 
-                          className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                        <button
+                          className="px-6 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
                           onClick={() => {
                             setShowApplicationForm(true);
                           }}
@@ -207,16 +207,16 @@ export default function CareersPage() {
               {/* Job Application Form Modal */}
               {showApplicationForm && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-                  <JobApplicationForm 
-                    jobRole={selectedCareer ? selectedCareer.role : "Selected Position"} 
-                    onClose={() => setShowApplicationForm(false)} 
+                  <JobApplicationForm
+                    jobRole={selectedCareer ? selectedCareer.role : "Selected Position"}
+                    onClose={() => setShowApplicationForm(false)}
                   />
                 </div>
               )}
             </>
           )}
 
-          
+
 
           <div id="career-notification-form" className="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
             <div className="text-center mb-8">
@@ -225,32 +225,32 @@ export default function CareersPage() {
                 Be the first to know when we start hiring. We'll notify you as soon as positions become available.
               </p>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 mb-6">
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
+              <input
+                type="email"
+                placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button 
+              <button
                 type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center whitespace-nowrap"
+                className="px-6 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center whitespace-nowrap"
               >
                 Join Talent Pool <FaBell className="ml-2" />
               </button>
             </form>
-            
+
             <p className="text-sm text-gray-500 text-center">
               By joining our talent pool, you'll receive updates about job openings and career opportunities.
             </p>
           </div>
 
           <div className="mt-16 text-center">
-            <Link 
-              href="/contactUs" 
+            <Link
+              href="/contactUs"
               className="inline-flex items-center text-orange-600 font-medium hover:text-orange-700 transition-colors"
             >
               Have questions? Contact us <FaArrowRight className="ml-2" />

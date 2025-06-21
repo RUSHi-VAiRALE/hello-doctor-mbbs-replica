@@ -26,10 +26,10 @@ export default function ContactSection() {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitError(null)
-    
+
     try {
       const db = getFirestore(app)
-      
+
       // Add the contact form data to the "contacts" collection
       await addDoc(collection(db, "contacts"), {
         name: formData.name,
@@ -38,7 +38,7 @@ export default function ContactSection() {
         message: formData.message,
         createdAt: serverTimestamp()
       })
-      
+
       // Reset form and show success message
       setFormData({
         name: '',
@@ -47,7 +47,7 @@ export default function ContactSection() {
         message: ''
       })
       setSubmitSuccess(true)
-      
+
       // Hide success message after 5 seconds
       setTimeout(() => {
         setSubmitSuccess(false)
@@ -77,7 +77,7 @@ export default function ContactSection() {
               <p className="text-gray-600 mb-6">
                 Do not hesitate to reach out. Just fill in the contact form here, and we'll be sure to reply as fast as possible.
               </p>
-              
+
               {submitSuccess && (
                 <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6 flex items-center">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -86,60 +86,60 @@ export default function ContactSection() {
                   <span>Thank you! Your message has been sent successfully.</span>
                 </div>
               )}
-              
+
               {submitError && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
                   {submitError}
                 </div>
               )}
-              
+
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="form-control border rounded-lg p-4 w-full" 
-                    placeholder="Your Name" 
-                    required 
+                    className="form-control border rounded-lg p-4 w-full"
+                    placeholder="Your Name"
+                    required
                   />
                 </div>
                 <div className="mb-4">
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="form-control border rounded-lg p-4 w-full" 
-                    placeholder="Your Email" 
-                    required 
+                    className="form-control border rounded-lg p-4 w-full"
+                    placeholder="Your Email"
+                    required
                   />
                 </div>
                 <div className="mb-4">
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="form-control border rounded-lg p-4 w-full" 
-                    placeholder="Your Phone Number" 
-                    required 
+                    className="form-control border rounded-lg p-4 w-full"
+                    placeholder="Your Phone Number"
+                    required
                   />
                 </div>
                 <div className="mb-4">
-                  <textarea 
+                  <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="form-control border rounded-lg p-4 w-full" 
-                    rows="5" 
-                    placeholder="Your Message" 
+                    className="form-control border rounded-lg p-4 w-full"
+                    rows="5"
+                    placeholder="Your Message"
                     required
                   ></textarea>
                 </div>
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="btn-gradient"
                   disabled={isSubmitting}
                 >
@@ -166,8 +166,8 @@ export default function ContactSection() {
 
               {/* Google Map */}
               <div className="map-container mb-4">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.7810394534963!2d85.11985489999999!3d25.612191199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed583b9bbaaaab%3A0xc1f3c1f67fa76e14!2sCLATians!5e0!3m2!1sen!2sin!4v1746105817784!5m2!1sen!2sin" 
-                    width="100%" height="300" style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.7810394534963!2d85.11985489999999!3d25.612191199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed583b9bbaaaab%3A0xc1f3c1f67fa76e14!2sCLATians!5e0!3m2!1sen!2sin!4v1746105817784!5m2!1sen!2sin"
+                  width="100%" height="300" style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
               </div>
             </div>

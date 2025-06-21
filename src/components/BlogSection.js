@@ -129,8 +129,8 @@ export default function BlogSection() {
                 <div className="text-gray-600 mb-4 text-sm line-clamp-6">
                   {parse(featuredBlog.content)}
                 </div>
-                <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
-                  <Link href={`/blogs/${featuredBlog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
+                <div className="group inline-flex items-center cursor-pointer text-[#ad4a16] hover:text-[#8f3a17]">
+                  <Link href={`/blogs/${featuredBlog.id}`} className="group inline-flex items-center cursor-pointer text-[#ad4a16] hover:text-[#8f3a17]">
                     <h5 className="font-bold mr-2 text-base">Read More</h5>
                     <span className="transform group-hover:translate-x-2 transition-transform">→</span>
                   </Link>
@@ -171,8 +171,8 @@ export default function BlogSection() {
                         <div className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
                           {parse(blog.content)}
                         </div>
-                        <div className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
-                          <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600">
+                        <div className="group inline-flex items-center cursor-pointer text-[#ad4a16] hover:text-[#8f3a17]">
+                          <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-[#ad4a16] hover:text-[#8f3a17]">
                             <h5 className="font-bold mr-2 text-base">Read More</h5>
                             <span className="transform group-hover:translate-x-2 transition-transform">→</span>
                           </Link>
@@ -220,7 +220,7 @@ export default function BlogSection() {
                 </div>
               </div>
 
-              <Link href={featuredBlog ? `/blogs/${featuredBlog.id}` : "/blogs"} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-2">
+              <Link href={featuredBlog ? `/blogs/${featuredBlog.id}` : "/blogs"} className="group inline-flex items-center cursor-pointer text-[#ad4a16] hover:text-[#8f3a17] mt-2">
                 <h5 className="font-bold mr-2 text-base">Read More</h5>
                 <span className="transform group-hover:translate-x-2 transition-transform">→</span>
               </Link>
@@ -258,7 +258,7 @@ export default function BlogSection() {
                         <div className="text-gray-600 mb-4 text-sm line-clamp-6 text-justify">
                           {parse(blog.content)}
                         </div>
-                        <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-orange-500 hover:text-orange-600 mt-auto">
+                        <Link href={`/blogs/${blog.id}`} className="group inline-flex items-center cursor-pointer text-[#ad4a16] hover:text-[#8f3a17] mt-auto">
                           <span className="transform group-hover:translate-x-2 transition-transform mr-2">→</span>
                           <p className="font-medium text-base">Read More</p>
                         </Link>

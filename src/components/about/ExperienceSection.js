@@ -7,7 +7,7 @@ export default function ExperienceSection() {
           {/* Left Content */}
           <div className="lg:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              We're <span className="text-primary">Experienced</span> in Online Education
+              We're <span className="text-[#ad4a16]">Experienced</span> in Online Education
             </h2>
             <p className="text-gray-600 mb-4">
               With years of expertise in providing world-class education, we have helped thousands of students
@@ -18,10 +18,10 @@ export default function ExperienceSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/onlineResources" className="inline-block px-6 py-3 bg-gradient-to-r from-amber-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:from-red-700 hover:via-orange-500 hover:to-amber-400 transition-all duration-300">
+              <Link href="/onlineResources" className="inline-block px-6 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-all duration-300">
                 Learn More →
               </Link>
-              <Link href="/admission" className="inline-block px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all duration-300">
+              <Link href="/admission" className="inline-block px-6 py-3 border-2 border-[#ad4a16] text-[#ad4a16] font-semibold rounded-lg hover:bg-[#ad4a16] hover:text-white transition-all duration-300">
                 How it Works →
               </Link>
             </div>

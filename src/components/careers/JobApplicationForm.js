@@ -43,14 +43,14 @@ export default function JobApplicationForm({ jobRole, onClose }) {
         setFileName('')
         return
       }
-      
+
       if (!validateFileType(file)) {
         setError('Only PDF and Word documents are allowed')
         setResumeFile(null)
         setFileName('')
         return
       }
-      
+
       setResumeFile(file)
       setFileName(file.name)
       setError('')
@@ -60,48 +60,48 @@ export default function JobApplicationForm({ jobRole, onClose }) {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Generate a CSRF token (in a real app, this would be from the server)
     const csrfToken = Math.random().toString(36).substring(2)
-    
+
     // Sanitize inputs
     const sanitizedName = sanitizeInput(fullName.trim())
     const sanitizedContact = sanitizeInput(contactNo.trim())
-    
+
     // Validate inputs
     if (!sanitizedName || !sanitizedContact) {
       setError('Full name and contact number are required')
       return
     }
-    
+
     if (!validatePhoneNumber(sanitizedContact)) {
       setError('Please enter a valid 10-digit phone number')
       return
     }
-    
+
     if (resumeFile && !validateFileType(resumeFile)) {
       setError('Only PDF and Word documents are allowed')
       return
     }
-    
+
     try {
       setLoading(true)
       setError('')
-      
+
       const db = getFirestore(app)
       const storage = getStorage(app)
-      
+
       let resumeUrl = null
-      
+
       // Upload resume if provided
       if (resumeFile) {
         const fileExtension = resumeFile.name.split('.').pop()
         const storageRef = ref(storage, `resumes/${Date.now()}_${sanitizedName.replace(/\s+/g, '_')}.${fileExtension}`)
-        
+
         await uploadBytes(storageRef, resumeFile)
         resumeUrl = await getDownloadURL(storageRef)
       }
-      
+
       // Add application to Firestore
       await addDoc(collection(db, 'jobApplications'), {
         fullName: sanitizedName,
@@ -111,19 +111,19 @@ export default function JobApplicationForm({ jobRole, onClose }) {
         appliedAt: serverTimestamp(),
         csrfToken // Store the token for verification
       })
-      
+
       // Reset form
       setFullName('')
       setContactNo('')
       setResumeFile(null)
       setFileName('')
       setSuccess(true)
-      
+
       // Close form after 3 seconds on success
       setTimeout(() => {
         if (onClose) onClose()
       }, 3000)
-      
+
     } catch (err) {
       console.error('Error submitting application:', err)
       setError('Failed to submit application. Please try again.')
@@ -154,21 +154,21 @@ export default function JobApplicationForm({ jobRole, onClose }) {
         <>
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-bold">Apply for {jobRole}</h3>
-            <button 
+            <button
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700"
             >
               <FaTimes />
             </button>
           </div>
-          
+
           {error && (
             <div className="mb-6 p-3 bg-red-50 text-red-700 rounded-md flex items-center">
               <FaExclamationTriangle className="mr-2 flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-gray-700 mb-2" htmlFor="fullName">
@@ -186,7 +186,7 @@ export default function JobApplicationForm({ jobRole, onClose }) {
                 title="Please enter a valid name (letters and spaces only)"
               />
             </div>
-            
+
             <div>
               <label className="block text-gray-700 mb-2" htmlFor="contactNo">
                 Contact Number <span className="text-red-500">*</span>
@@ -203,7 +203,7 @@ export default function JobApplicationForm({ jobRole, onClose }) {
                 placeholder="10-digit mobile number"
               />
             </div>
-            
+
             <div>
               <label className="block text-gray-700 mb-2">
                 Resume (Optional)
@@ -244,12 +244,12 @@ export default function JobApplicationForm({ jobRole, onClose }) {
                 Accepted formats: PDF, DOC, DOCX (Max size: 5MB)
               </p>
             </div>
-            
+
             <div className="pt-4">
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center"
+                className="w-full px-6 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center"
               >
                 {loading ? (
                   <>

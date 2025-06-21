@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 export default function StudentSection() {
   const [progress, setProgress] = useState(0);
   const [swiper, setSwiper] = useState(null);
-  
+
   // Main featured testimonial data
   const mainTestimonial = {
     name: "Tathagat Awatar",
@@ -75,9 +75,9 @@ export default function StudentSection() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
               {/* Image */}
               <div className="md:w-1/2">
-                <img 
-                  src={mainTestimonial.image} 
-                  alt="Main Testimonial" 
+                <img
+                  src={mainTestimonial.image}
+                  alt="Main Testimonial"
                   className="w-full h-48 md:h-full object-cover"
                 />
               </div>
@@ -144,9 +144,9 @@ export default function StudentSection() {
                     </div>
                     {/* User Info */}
                     <div className="text-center mt-auto">
-                      <img 
-                        src={testimonial.avatar} 
-                        alt={testimonial.name} 
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
                         className="w-10 h-10 rounded-full mx-auto mb-2"
                       />
                       <p className="font-bold text-base">{testimonial.name}</p>
@@ -161,21 +161,21 @@ export default function StudentSection() {
           {/* Navigation and Progress Bar */}
           <div className="md:w-full w-[78%] mx-auto">
             <div className="flex items-center justify-between gap-4">
-              <button 
+              <button
                 onClick={() => swiper?.slidePrev()}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
               >
                 <i className="bi bi-chevron-left text-red-600 group-hover:text-blue-600"></i>
               </button>
-              
+
               <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 transition-all duration-300"
+                <div
+                  className="h-full bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] transition-all duration-300"
                   style={{ width: `${progress}%` }}
                 ></div>
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => swiper?.slideNext()}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
               >

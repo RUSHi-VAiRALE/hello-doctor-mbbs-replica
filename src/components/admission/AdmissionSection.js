@@ -132,9 +132,9 @@ export default function AdmissionSection() {
 
         {/* CTA Button */}
         <div className="text-center mt-12">
-          <a 
-            href="#" 
-            className="inline-block px-8 py-4 text-lg font-semibold text-white rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 hover:opacity-90 transition-opacity shadow-lg"
+          <a
+            href="#"
+            className="inline-block px-8 py-4 text-lg font-semibold text-white rounded-full bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] hover:opacity-90 transition-opacity shadow-lg"
           >
             Apply for Admission
           </a>

@@ -31,7 +31,7 @@ export default function EventDetail() {
         const db = getFirestore(app)
         const eventDoc = doc(db, "events", id)
         const eventSnapshot = await getDoc(eventDoc)
-        
+
         if (eventSnapshot.exists()) {
           setEvent({
             id: eventSnapshot.id,
@@ -93,13 +93,13 @@ export default function EventDetail() {
       setFormErrors(errors);
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       // Get Firestore instance
       const db = getFirestore(app);
-      
+
       // Prepare data to be saved
       const registrationData = {
         eventId: id,
@@ -111,14 +111,14 @@ export default function EventDetail() {
         registeredAt: serverTimestamp(),
         status: 'pending' // For tracking registration status
       };
-      
+
       // Add document to "eventRegistrations" collection
       await addDoc(collection(db, "eventRegistrations"), registrationData);
-      
+
       // Show success message
       setIsSubmitting(false);
       setSubmitSuccess(true);
-      
+
       // Reset form after 3 seconds
       setTimeout(() => {
         setShowRegistrationForm(false);
@@ -130,7 +130,7 @@ export default function EventDetail() {
           message: ''
         });
       }, 3000);
-      
+
     } catch (error) {
       console.error("Error submitting registration:", error);
       setIsSubmitting(false);
@@ -155,7 +155,7 @@ export default function EventDetail() {
         <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full text-center">
           <h1 className="text-2xl font-bold text-red-600 mb-4">Event Not Found</h1>
           <p className="text-gray-600 mb-6">{error || "The event you're looking for doesn't exist or has been removed."}</p>
-          <Link href="/events" className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
+          <Link href="/events" className="inline-block px-6 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity">
             Back to Events
           </Link>
         </div>
@@ -177,7 +177,7 @@ export default function EventDetail() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 text-white">
           <div className="max-w-7xl mx-auto">
-            <div className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 px-4 py-2 rounded-lg mb-4">
+            <div className="inline-block bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] px-4 py-2 rounded-lg mb-4">
               <div className="flex items-center">
                 <FaCalendarAlt className="mr-2" />
                 <span>{event.date?.day || '01'} {event.date?.month || 'Jan'}</span>
@@ -202,18 +202,18 @@ export default function EventDetail() {
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
               <h2 className="text-2xl font-bold mb-6">About This Event</h2>
               <p className="text-gray-700 mb-8 text-justify">{event.description || 'No description available.'}</p>
-              
+
               {event.speaker && (
                 <>
                   <h3 className="text-xl font-bold mb-4">Speaker</h3>
                   <div className="flex items-center mb-8">
                     <div className="w-16 h-16 rounded-full bg-gray-200 mr-4">
                       {event.speakerImage && (
-                        <Image 
-                          src={event.speakerImage} 
-                          alt={event.speaker} 
-                          width={64} 
-                          height={64} 
+                        <Image
+                          src={event.speakerImage}
+                          alt={event.speaker}
+                          width={64}
+                          height={64}
                           className="rounded-full object-cover"
                         />
                       )}
@@ -225,13 +225,13 @@ export default function EventDetail() {
                   </div>
                 </>
               )}
-              
+
               <h3 className="text-xl font-bold mb-4">Join Event</h3>
               <div className="space-y-4">
                 {event.youtubeLink && (
-                  <a 
-                    href={event.youtubeLink} 
-                    target="_blank" 
+                  <a
+                    href={event.youtubeLink}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
                   >
@@ -242,11 +242,11 @@ export default function EventDetail() {
                     </div>
                   </a>
                 )}
-                
+
                 {event.meetLink && (
-                  <a 
-                    href={event.meetLink} 
-                    target="_blank" 
+                  <a
+                    href={event.meetLink}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                   >
@@ -257,47 +257,47 @@ export default function EventDetail() {
                     </div>
                   </a>
                 )}
-                
+
                 {!event.youtubeLink && !event.meetLink && (
                   <p className="text-gray-600 italic">Links to join this event will be available soon.</p>
                 )}
               </div>
             </div>
           </div>
-          
+
           <div>
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
               <h3 className="text-xl font-bold mb-4">Event Details</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <FaCalendarAlt className="text-orange-500 mt-1 mr-3" />
+                  <FaCalendarAlt className="text-[#ad4a16] mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Date</h4>
                     <p className="text-gray-600">{event.date?.day || '01'} {event.date?.month || 'Jan'}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
-                  <FaClock className="text-orange-500 mt-1 mr-3" />
+                  <FaClock className="text-[#ad4a16] mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Time</h4>
                     <p className="text-gray-600">{event.time || 'TBA'}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
-                  <FaMapMarkerAlt className="text-orange-500 mt-1 mr-3" />
+                  <FaMapMarkerAlt className="text-[#ad4a16] mt-1 mr-3" />
                   <div>
                     <h4 className="font-bold">Location</h4>
                     <p className="text-gray-600">{event.location || 'Online'}</p>
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <button 
+                <button
                   onClick={() => setShowRegistrationForm(true)}
-                  className="w-full py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                  className="w-full py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
                 >
                   Register Now
                 </button>
@@ -311,17 +311,17 @@ export default function EventDetail() {
       {showRegistrationForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-md relative max-h-[90vh] overflow-y-auto">
-            <button 
+            <button
               onClick={() => setShowRegistrationForm(false)}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
               aria-label="Close registration form"
             >
               <FaTimes size={24} />
             </button>
-            
+
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-6 text-center">Register for Event</h2>
-              
+
               {submitSuccess ? (
                 <div className="text-center py-8">
                   <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -347,7 +347,7 @@ export default function EventDetail() {
                     />
                     {formErrors.fullName && <p className="mt-1 text-sm text-red-600">{formErrors.fullName}</p>}
                   </div>
-                  
+
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                     <input
@@ -361,7 +361,7 @@ export default function EventDetail() {
                     />
                     {formErrors.email && <p className="mt-1 text-sm text-red-600">{formErrors.email}</p>}
                   </div>
-                  
+
                   <div>
                     <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                     <input
@@ -375,7 +375,7 @@ export default function EventDetail() {
                     />
                     {formErrors.phoneNumber && <p className="mt-1 text-sm text-red-600">{formErrors.phoneNumber}</p>}
                   </div>
-                  
+
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
                     <textarea
@@ -388,11 +388,11 @@ export default function EventDetail() {
                       placeholder="Any questions or comments?"
                     ></textarea>
                   </div>
-                  
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70"
+                    className="w-full py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center">

@@ -56,7 +56,7 @@ export default function BlogSection() {
                 className="object-cover"
               />
             </div>
-            
+
             <div className="lg:w-1/2 p-6 md:p-8 lg:p-12">
               <div className="animate-fade-in-up">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
@@ -65,9 +65,9 @@ export default function BlogSection() {
                 <p className="text-gray-600 mb-6">
                   The legal entrance exam pattern has been updated for 2025. Students are advised to check the latest guidelines and syllabus updates to stay ahead in their preparation.
                 </p>
-                <Link 
-                  href="/blogs/1" 
-                  className="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg"
+                <Link
+                  href="/blogs/1"
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg"
                 >
                   Read More
                 </Link>
@@ -81,7 +81,7 @@ export default function BlogSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Latest Blogs & Updates
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -97,9 +97,9 @@ export default function BlogSection() {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <Link 
-            href="#" 
-            className="inline-block px-8 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg"
+          <Link
+            href="#"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg"
           >
             View All Posts
           </Link>

@@ -16,7 +16,7 @@ export default function ScholarshipForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Validate form data
     if (!formData.fullName || !formData.phone || !formData.email || !formData.city) {
       setSubmitStatus({
@@ -25,13 +25,13 @@ export default function ScholarshipForm() {
       })
       return
     }
-    
+
     setIsSubmitting(true)
     setSubmitStatus(null)
-    
+
     try {
       const db = getFirestore(app)
-      
+
       // Add document to "scholarshipApplications" collection
       await addDoc(collection(db, "scholarshipApplications"), {
         fullName: formData.fullName,
@@ -41,13 +41,13 @@ export default function ScholarshipForm() {
         appliedAt: serverTimestamp(),
         status: 'pending'
       })
-      
+
       // Show success message
       setSubmitStatus({
         success: true,
         message: 'Your application has been submitted successfully!'
       })
-      
+
       // Reset form
       setFormData({
         fullName: '',
@@ -55,7 +55,7 @@ export default function ScholarshipForm() {
         email: '',
         city: ''
       })
-      
+
     } catch (error) {
       console.error("Error submitting scholarship application:", error)
       setSubmitStatus({
@@ -83,19 +83,19 @@ export default function ScholarshipForm() {
             {/* Animated Text Section */}
             <div className="text-center lg:text-left w-full">
               <div className="relative inline-block mb-6">
-                <span className="absolute -inset-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-lg blur opacity-25 animate-pulse"></span>
+                <span className="absolute -inset-1 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] rounded-lg blur opacity-25 animate-pulse"></span>
                 <span className="relative inline-block px-4 py-2 bg-white rounded-lg shadow-lg">
-                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 bg-clip-text text-transparent">
+                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] bg-clip-text text-transparent">
                     Admissions Open
                   </h2>
                 </span>
               </div>
-              
+
               <div className="space-y-6 animate-fade-in-up">
                 <p className="text-xl text-gray-700 leading-relaxed">
                   Take the first step towards your legal career. Apply now for scholarships and secure your future with us.
                 </p>
-                
+
                 <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                   <div className="flex items-center space-x-2 text-gray-600">
                     <i className="bi bi-check-circle-fill text-green-500"></i>
@@ -115,17 +115,17 @@ export default function ScholarshipForm() {
               <img src="https://placehold.co/150x150" className="absolute top-1/2 right-0 -translate-y-1/2 w-[100px] md:w-[120px] h-[100px] md:h-[120px] rounded-full object-cover shadow-lg transform hover:scale-105 transition-transform" alt="Student 2" />
               <img src="https://placehold.co/150x150" className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100px] md:w-[120px] h-[100px] md:h-[120px] rounded-full object-cover shadow-lg transform hover:scale-105 transition-transform" alt="Student 3" />
               <img src="https://placehold.co/150x150" className="absolute top-1/2 left-0 -translate-y-1/2 w-[100px] md:w-[120px] h-[100px] md:h-[120px] rounded-full object-cover shadow-lg transform hover:scale-105 transition-transform" alt="Student 4" />
-              
+
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130px] md:w-[160px] h-[130px] md:h-[160px] rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-center text-white font-bold text-lg md:text-xl shadow-xl">
-                <span>25 <br/> Years Of <br/> Experience</span>
+                <span>25 <br /> Years Of <br /> Experience</span>
               </div>
             </div>
           </div>
 
           {/* Form Section */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 rounded-2xl transform rotate-1 blur-sm"></div>
-            <form 
+            <div className="absolute inset-0 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] rounded-2xl transform rotate-1 blur-sm"></div>
+            <form
               onSubmit={handleSubmit}
               className="relative bg-white p-6 md:p-8 rounded-2xl shadow-xl space-y-6 animate-fade-in-up"
             >
@@ -134,11 +134,10 @@ export default function ScholarshipForm() {
               </h3>
 
               {submitStatus && (
-                <div className={`p-4 rounded-lg ${
-                  submitStatus.success 
-                    ? 'bg-green-50 text-green-800 border border-green-200' 
+                <div className={`p-4 rounded-lg ${submitStatus.success
+                    ? 'bg-green-50 text-green-800 border border-green-200'
                     : 'bg-red-50 text-red-800 border border-red-200'
-                }`}>
+                  }`}>
                   {submitStatus.message}
                 </div>
               )}
@@ -187,13 +186,13 @@ export default function ScholarshipForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-700 text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition-opacity transform hover:scale-[0.99] duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-4 px-6 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition-opacity transform hover:scale-[0.99] duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </button>
             </form>
           </div>
-          
+
         </div>
       </div>
     </section>

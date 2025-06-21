@@ -134,7 +134,7 @@ export default function Timeline() {
                 {/* Content */}
                 <div className="bg-white p-3 rounded-lg shadow-md border border-gray-100">
                   <h3 className="font-bold text-gray-800">
-                    <span className="text-orange-500">{milestone.year}</span> - {milestone.title}
+                    <span className="text-[#ad4a16]">{milestone.year}</span> - {milestone.title}
                   </h3>
                 </div>
               </div>
@@ -206,7 +206,7 @@ export default function Timeline() {
                   >
                     <div className="bg-white p-3 rounded-lg shadow-md hover:-translate-y-1 transition-transform duration-300 border border-gray-100">
                       <h3 className="text-sm font-bold text-gray-800 text-center">
-                        <span className="text-orange-500">{milestone.year}</span>
+                        <span className="text-[#ad4a16]">{milestone.year}</span>
                         <br />
                         {milestone.title}
                       </h3>
