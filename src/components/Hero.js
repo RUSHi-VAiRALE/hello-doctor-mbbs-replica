@@ -1,12 +1,14 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { Carousel } from '@/components/ui/Carousel'
-import Desk1 from '../../public/Desk1.webp'
-import Desk2 from '../../public/Desk2.webp'
-import Desk3 from '../../public/Desk3.webp'
-import Mob1 from '../../public/Mob1.webp'
-import Mob2 from '../../public/Mob2.webp'
-import Mob3 from '../../public/Mob3.webp'
+import Desk1 from '../../public/Desk1.png'
+import Desk2 from '../../public/Desk2.png'
+import Desk3 from '../../public/Desk3.png'
+import Desk4 from '../../public/Desk4.png'
+import Mob1 from '../../public/Mob1.png'
+import Mob2 from '../../public/Mob2.png'
+import Mob3 from '../../public/Mob3.png'
+import Mob4 from '../../public/Mob4.png'
 
 const slides =
   [
@@ -27,6 +29,12 @@ const slides =
       image: Desk3,
       mobileImage: Mob3,
       alt: "Slide 3"
+    },
+    {
+      id: 4,
+      image: Desk4,
+      mobileImage: Mob4,
+      alt: "Slide 4"
     }
   ]
 
