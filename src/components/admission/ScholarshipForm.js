@@ -115,7 +115,7 @@ export default function ScholarshipForm() {
               <img src="https://placehold.co/150x150" className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100px] md:w-[120px] h-[100px] md:h-[120px] rounded-full object-cover shadow-lg transform hover:scale-105 transition-transform" alt="Student 3" />
               <img src="https://placehold.co/150x150" className="absolute top-1/2 left-0 -translate-y-1/2 w-[100px] md:w-[120px] h-[100px] md:h-[120px] rounded-full object-cover shadow-lg transform hover:scale-105 transition-transform" alt="Student 4" />
 
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130px] md:w-[160px] h-[130px] md:h-[160px] rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-center text-white font-bold text-lg md:text-xl shadow-xl">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130px] md:w-[160px] h-[130px] md:h-[160px] rounded-full  bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] flex items-center justify-center text-center text-white font-bold text-lg md:text-xl shadow-xl">
                 <span>25 <br /> Years Of <br /> Experience</span>
               </div>
             </div>
