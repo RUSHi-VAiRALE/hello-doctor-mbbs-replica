@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Carousel } from '@/components/ui/Carousel'
 import Desk1 from '../../public/Desk1.webp'
 import Desk2 from '../../public/Desk2.webp'
