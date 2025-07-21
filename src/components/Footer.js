@@ -307,7 +307,7 @@ export default function Footer() {
           <div className="container mx-auto px-6 py-6 max-w-7xl">
             <div className="text-center">
               <p className="text-blue-200/80 text-sm">
-                © {new Date().getFullYear()} CLATians - All rights reserved.
+                © {new Date().getFullYear()} Consultancy - All rights reserved.
               </p>
             </div>
           </div>
