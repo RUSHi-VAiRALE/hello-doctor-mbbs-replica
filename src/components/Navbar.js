@@ -9,44 +9,56 @@ import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isCoursesOpen, setIsCoursesOpen] = useState(false)
-  const [isLawExamsOpen, setIsLawExamsOpen] = useState(false)
-  const [selectedCourseType, setSelectedCourseType] = useState('online')
+  const [isStudyIndiaOpen, setIsStudyIndiaOpen] = useState(false)
+  const [isMbbsAbroadOpen, setIsMbbsAbroadOpen] = useState(false)
+  const [isStudyAbroadOpen, setIsStudyAbroadOpen] = useState(false)
+  const [isAboutOpen, setIsAboutOpen] = useState(false)
+  const [selectedStudyType, setSelectedStudyType] = useState('medical')
   const [expandedMobileType, setExpandedMobileType] = useState(null)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [notifications, setNotifications] = useState([])
   const [fetchLoading, setFetchLoading] = useState(false)
-  const [courseTypes, setCourseTypes] = useState({
-    online: {
-      label: 'Online Coaching',
+
+  const studyIndiaTypes = {
+    medical: {
+      label: 'Medical',
       courses: [
-        { name: 'CLAT', href: '/courses/online/0' },
-        { name: 'CLAT+AILET', href: '/courses/online/1' },
-        { name: 'CUET-Law (UG)', href: '/courses/online/2' },
-        { name: 'CUET-Law (PG)', href: '/courses/online/3' },
-        { name: 'AIL-LET', href: '/courses/online/4' },
-        { name: 'Booster Courses', href: '/courses/online/5' },
+        {
+          name: 'MBBS',
+          href: '/study-india/medical/mbbs',
+          subcourses: [
+            { name: 'MBBS in Rajasthan', href: '/study-india/medical/mbbs/rajasthan' },
+            { name: 'MBBS in Maharashtra', href: '/study-india/medical/mbbs/maharashtra' }
+          ]
+        },
+        { name: 'BAMS', href: '/study-india/medical/bams' }
       ]
     },
-    offline: {
-      label: 'Offline Coaching',
+    engineering: {
+      label: 'Engineering',
       courses: [
-        { name: 'CLAT', href: '/courses/offline/0' },
-        { name: 'CLAT+AILET', href: '/courses/offline/1' },
-        { name: 'CUET-Law', href: '/courses/offline/2' },
-        { name: 'CLAT + OLET', href: '/courses/offline/3' },
-        { name: 'OLET (Other Law Entrance Test)', href: '/courses/offline/4' },
-      ]
-    },
-    mock: {
-      label: 'Mock Test',
-      courses: [
-        { name: 'Online Mock Test', href: '/mock-tests/online' },
-        { name: 'Offline Mock Test', href: '/mock-tests/offline' },
+        { name: 'Biotechnology Engineering', href: '/study-india/engineering/biotechnology' },
+        { name: 'Aerospace Engineering', href: '/study-india/engineering/aerospace' }
       ]
     }
-  })
+  }
+
+  const mbbsAbroadCourses = [
+    { name: 'MBBS in Nepal', href: '/mbbs-abroad/nepal' },
+    { name: 'MBBS in Russia', href: '/mbbs-abroad/russia' }
+  ]
+
+  const studyAbroadCourses = [
+    { name: 'Study in US', href: '/study-abroad/us' },
+    { name: 'Study in UK', href: '/study-abroad/uk' }
+  ]
+
+  const aboutSubmenus = [
+    { name: 'Photo Gallery', href: '/about/gallery' }
+  ]
+
   const pathname = usePathname()
+
   // Fetch notifications from Firebase
   useEffect(() => {
     const db = getFirestore(app)
@@ -69,89 +81,27 @@ export default function Navbar() {
 
     fetchNotifications();
   }, []);
-  // Fetch courses from Firebase
-  useEffect(() => {
-    const db = getFirestore(app)
-    const fetchCourses = async () => {
-      try {
-        // Create a copy of the default course types
-        const updatedCourseTypes = { ...courseTypes };
-
-        // Fetch online courses
-        const onlineQuery = query(collection(db, "courses"), where("batchType", "==", "online"), orderBy("createdAt", "asc"));
-        const onlineSnapshot = await getDocs(onlineQuery);
-
-        if (!onlineSnapshot.empty) {
-          const onlineCourses = onlineSnapshot.docs.map((doc, index) => ({
-            name: doc.data().examName || `Course ${index + 1}`,
-            href: `/courses/online/${doc.id}`
-          }));
-
-          updatedCourseTypes.online.courses = onlineCourses;
-        }
-
-        // Fetch offline courses
-        const offlineQuery = query(collection(db, "courses"), where("batchType", "==", "offline"), orderBy("createdAt", "asc"));
-        const offlineSnapshot = await getDocs(offlineQuery);
-
-        if (!offlineSnapshot.empty) {
-          const offlineCourses = offlineSnapshot.docs.map((doc, index) => ({
-            name: doc.data().examName || `Course ${index + 1}`,
-            href: `/courses/offline/${doc.id}`
-          }));
-
-          updatedCourseTypes.offline.courses = offlineCourses;
-        }
-
-        // Update state with fetched data
-        setCourseTypes(updatedCourseTypes);
-
-        const lawExamsQuery = query(collection(db, "lawExams"), orderBy("createdAt", "asc"));
-        const lawExamsSnapshot = await getDocs(lawExamsQuery);
-        if (!lawExamsSnapshot.empty) {
-          const lawExamsData = lawExamsSnapshot.docs.map((doc) => ({
-            name: doc.data().shortTitle || `Exam ${doc.id}`,
-            href: `/lawEntranceExams/${doc.id}`
-          }));
-
-          setLawExams({ exams: lawExamsData });
-        }
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-        // Fallback to default data is already handled since we initialized with default data
-      }
-    };
-
-    fetchCourses();
-  }, []);
 
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false)
-    setIsCoursesOpen(false)
-    setIsLawExamsOpen(false)
+    setIsStudyIndiaOpen(false)
+    setIsMbbsAbroadOpen(false)
+    setIsStudyAbroadOpen(false)
+    setIsAboutOpen(false)
     setExpandedMobileType(null)
     setActiveDropdown(null)
   }, [pathname])
 
-  const [lawExams, setLawExams] = useState({
-    exams: [
-      { name: 'CLAT', href: '/lawEntranceExams/0' },
-      { name: 'AILET', href: '/lawEntranceExams/5' },
-      { name: 'MH CET-LAW', href: '/lawEntranceExams/3' },
-      { name: 'LSAT', href: '/lawEntranceExams/2' },
-      { name: 'CUET', href: '/lawEntranceExams/1' },
-      { name: 'AIL-LET', href: '/lawEntranceExams/4' },
-    ]
-  })
-
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/courses', label: 'Courses', hasDropdown: true },
-    { href: '/admission', label: 'Admission' },
-    { href: '/lawEntranceExams', label: 'Law Entrance Exams', hasDropdown: true, isLawExams: true },
-    { href: '/onlineResources', label: 'Online Resources' }
+    { href: '/about', label: 'About Us', hasDropdown: true, isAbout: true },
+    { href: '/study-india', label: 'Study in India', hasDropdown: true, isStudyIndia: true },
+    { href: '/mbbs-abroad', label: 'MBBS Abroad', hasDropdown: true, isMbbsAbroad: true },
+    { href: '/study-abroad', label: 'Study Abroad', hasDropdown: true, isStudyAbroad: true },
+    { href: '/blogs', label: 'Blog' },
+    { href: '/careers', label: 'Careers' },
+    { href: '/contactUs', label: 'Contact Us' }
   ]
 
   const isActive = (path) => {
@@ -162,16 +112,16 @@ export default function Navbar() {
   return (
     <>
       {/* Top Navbar */}
-      <div className="container mx-auto px-4 bg-white">
-        <div className="flex flex-col lg:flex-row justify-between items-center py-1 border-b border-gray-200">
+      <div className="container mx-auto px-4 bg-gradient-to-r from-blue-50 to-blue-100">
+        <div className="flex flex-col lg:flex-row justify-between items-center py-2 border-b border-blue-200">
           {/* Left: Notification Marquee */}
-          <div className="w-full lg:w-auto overflow-hidden mb-1 lg:mb-0">
+          <div className="w-full lg:w-auto overflow-hidden mb-2 lg:mb-0">
             <marquee className="py-1.5 text-sm">
               {notifications && notifications.length > 0 ? (
                 notifications.map((notification) => (
                   <span
                     key={notification.id}
-                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
+                    className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
                       if (marquee) marquee.stop();
@@ -201,7 +151,7 @@ export default function Navbar() {
               ) : (
                 <>
                   <span
-                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
+                    className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
                       if (marquee) marquee.stop();
@@ -211,10 +161,10 @@ export default function Navbar() {
                       if (marquee) marquee.start();
                     }}
                   >
-                    🔥 New Batches Starting Soon!
+                    🎓 New Admissions Open!
                   </span>
                   <span
-                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold mr-2"
+                    className="bg-blue-700 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
                       if (marquee) marquee.stop();
@@ -224,10 +174,10 @@ export default function Navbar() {
                       if (marquee) marquee.start();
                     }}
                   >
-                    🎯 Enroll Now
+                    🌟 Apply Now
                   </span>
                   <span
-                    className="bg-gray-600 text-white px-2 py-0.5 rounded-full text-sm font-semibold"
+                    className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm font-semibold"
                     onMouseOver={(e) => {
                       const marquee = e.target.closest('marquee');
                       if (marquee) marquee.stop();
@@ -237,55 +187,79 @@ export default function Navbar() {
                       if (marquee) marquee.start();
                     }}
                   >
-                    🏆 Best CLAT Coaching in Patna
+                    🏆 Best Education Consultancy
                   </span>
                 </>
               )}
             </marquee>
           </div>
 
-          {/* Right: Menu Buttons */}
-          <div className="flex flex-wrap justify-center gap-1.5">
-            <Link href="/studentZone" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
-              Student Zone
-            </Link>
-            {/* <Link href="/clat/student-section.html" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
-              Student Zone
-            </Link> */}
-            <Link href="/blogs" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50">
-              Blogs
-            </Link>
-            <Link href="/contactUs" className="px-3 py-1 text-sm border border-gray-300 rounded-full hover:bg-gray-50 relative">
-              Contact
-              {/* <span className="absolute -top-1 -right-1 h-1.5 w-1.5 bg-red-500 rounded-full animate-ping"></span> */}
-            </Link>
+          {/* Right: Contact Information */}
+          <div className="flex flex-wrap items-center gap-6">
+            {/* Study Abroad */}
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.525 3.687" />
+                </svg>
+                <div className="text-sm">
+                  <div className="font-semibold text-blue-800">Study Abroad</div>
+                  <div className="text-blue-600">+91-8507700177</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Study in India */}
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.525 3.687" />
+                </svg>
+                <div className="text-sm">
+                  <div className="font-semibold text-blue-800">Study in India</div>
+                  <div className="text-blue-600">+91-8507700188</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <div className="text-sm">
+                  <div className="text-blue-600">info@educationhub.com</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main Navbar */}
-      <nav className="sticky top-0 bg-white shadow-md z-50">
+      <nav className="sticky top-0 bg-white shadow-lg z-50 border-t-2 border-blue-500">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
-          <div className="flex items-center justify-between py-2">
+          <div className="flex items-center justify-between py-3">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0">
+            {/* <Link href="/" className="flex-shrink-0">
               <Image
                 src={ClatiansLogo}
-                alt="clatians-Logo"
+                alt="Education-Hub-Logo"
                 width={90}
                 height={42}
                 className="w-auto h-[42px]"
               />
-            </Link>
+            </Link> */}
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-1.5 rounded-lg hover:bg-gray-100 z-50"
+              className="lg:hidden p-2 rounded-lg hover:bg-blue-50 z-50 text-blue-700"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
               <svg
-                className={`w-5 h-5 transition-transform duration-200 ${isMobileMenuOpen ? 'transform rotate-90' : ''}`}
+                className={`w-6 h-6 transition-transform duration-200 ${isMobileMenuOpen ? 'transform rotate-90' : ''}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -300,98 +274,171 @@ export default function Navbar() {
             </button>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <div key={link.href} className="relative">
                   {link.hasDropdown ? (
                     <button
                       onClick={() => {
-                        if (link.isLawExams) {
-                          setIsLawExamsOpen(!isLawExamsOpen)
-                          setIsCoursesOpen(false)
-                        } else {
-                          setIsCoursesOpen(!isCoursesOpen)
-                          setIsLawExamsOpen(false)
+                        if (link.isAbout) {
+                          setIsAboutOpen(!isAboutOpen)
+                          setIsStudyIndiaOpen(false)
+                          setIsMbbsAbroadOpen(false)
+                          setIsStudyAbroadOpen(false)
+                        } else if (link.isStudyIndia) {
+                          setIsStudyIndiaOpen(!isStudyIndiaOpen)
+                          setIsAboutOpen(false)
+                          setIsMbbsAbroadOpen(false)
+                          setIsStudyAbroadOpen(false)
+                        } else if (link.isMbbsAbroad) {
+                          setIsMbbsAbroadOpen(!isMbbsAbroadOpen)
+                          setIsAboutOpen(false)
+                          setIsStudyIndiaOpen(false)
+                          setIsStudyAbroadOpen(false)
+                        } else if (link.isStudyAbroad) {
+                          setIsStudyAbroadOpen(!isStudyAbroadOpen)
+                          setIsAboutOpen(false)
+                          setIsStudyIndiaOpen(false)
+                          setIsMbbsAbroadOpen(false)
                         }
                       }}
                       onMouseEnter={() => {
-                        if (link.isLawExams) {
-                          setIsLawExamsOpen(true)
-                          setIsCoursesOpen(false)
-                        } else {
-                          setIsCoursesOpen(true)
-                          setIsLawExamsOpen(false)
+                        if (link.isAbout) {
+                          setIsAboutOpen(true)
+                          setIsStudyIndiaOpen(false)
+                          setIsMbbsAbroadOpen(false)
+                          setIsStudyAbroadOpen(false)
+                        } else if (link.isStudyIndia) {
+                          setIsStudyIndiaOpen(true)
+                          setIsAboutOpen(false)
+                          setIsMbbsAbroadOpen(false)
+                          setIsStudyAbroadOpen(false)
+                        } else if (link.isMbbsAbroad) {
+                          setIsMbbsAbroadOpen(true)
+                          setIsAboutOpen(false)
+                          setIsStudyIndiaOpen(false)
+                          setIsStudyAbroadOpen(false)
+                        } else if (link.isStudyAbroad) {
+                          setIsStudyAbroadOpen(true)
+                          setIsAboutOpen(false)
+                          setIsStudyIndiaOpen(false)
+                          setIsMbbsAbroadOpen(false)
                         }
                       }}
-                      className={`relative font-semibold transition-colors ${isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)
-                        ? 'text-[#ad4a16]'
-                        : 'text-gray-700 hover:text-[#ad4a16]'
+                      className={`relative font-semibold transition-colors ${isActive(link.href) ||
+                        (link.isAbout ? isAboutOpen :
+                          link.isStudyIndia ? isStudyIndiaOpen :
+                            link.isMbbsAbroad ? isMbbsAbroadOpen :
+                              link.isStudyAbroad ? isStudyAbroadOpen : false)
+                        ? 'text-blue-700'
+                        : 'text-gray-700 hover:text-blue-700'
                         }`}
                     >
                       {link.label}
-                      <span className={`ml-1 align-middle inline-block transition-transform ${(link.isLawExams ? isLawExamsOpen : isCoursesOpen) ? 'rotate-180' : ''
+                      <span className={`ml-1 align-middle inline-block transition-transform ${(link.isAbout ? isAboutOpen :
+                        link.isStudyIndia ? isStudyIndiaOpen :
+                          link.isMbbsAbroad ? isMbbsAbroadOpen :
+                            link.isStudyAbroad ? isStudyAbroadOpen : false) ? 'rotate-180' : ''
                         }`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
                           <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
                       </span>
-                      {(isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)) && (
-                        <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-red-700 rounded-full"></span>
-                      )}
+                      {(isActive(link.href) ||
+                        (link.isAbout ? isAboutOpen :
+                          link.isStudyIndia ? isStudyIndiaOpen :
+                            link.isMbbsAbroad ? isMbbsAbroadOpen :
+                              link.isStudyAbroad ? isStudyAbroadOpen : false)) && (
+                          <span className="absolute -bottom-3 left-0 w-full h-0.5 bg-blue-500 rounded-full"></span>
+                        )}
                     </button>
                   ) : (
                     <Link
                       href={link.href}
                       className={`relative font-semibold transition-colors ${isActive(link.href)
-                        ? 'text-[#ad4a16]'
-                        : 'text-gray-700 hover:text-[#ad4a16]'
+                        ? 'text-blue-700'
+                        : 'text-gray-700 hover:text-blue-700'
                         }`}
                     >
                       {link.label}
                       {isActive(link.href) && (
-                        <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-red-700 rounded-full"></span>
+                        <span className="absolute -bottom-3 left-0 w-full h-0.5 bg-blue-500 rounded-full"></span>
                       )}
                     </Link>
                   )}
 
-                  {/* Courses Dropdown */}
-                  {link.hasDropdown && !link.isLawExams && isCoursesOpen && (
+                  {/* About Us Dropdown */}
+                  {link.hasDropdown && link.isAbout && isAboutOpen && (
                     <div
-                      className="absolute top-full left-0 mt-2 w-[650px] bg-white shadow-xl rounded-lg overflow-hidden"
-                      onMouseLeave={() => setIsCoursesOpen(false)}
+                      className="absolute top-full left-0 mt-3 w-64 bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      onMouseLeave={() => setIsAboutOpen(false)}
+                    >
+                      <div className="p-4">
+                        {aboutSubmenus.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Study in India Dropdown */}
+                  {link.hasDropdown && link.isStudyIndia && isStudyIndiaOpen && (
+                    <div
+                      className="absolute top-full left-0 mt-3 w-[700px] bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      onMouseLeave={() => setIsStudyIndiaOpen(false)}
                     >
                       <div className="flex">
-                        {/* Course Types */}
-                        <div className="w-1/2 bg-white">
-                          {Object.entries(courseTypes).map(([type, { label }]) => (
+                        {/* Study Types */}
+                        <div className="w-1/3 bg-blue-50 border-r border-blue-100">
+                          {Object.entries(studyIndiaTypes).map(([type, { label }]) => (
                             <button
                               key={type}
-                              className={`w-full flex justify-between text-left py-2 pl-4 mb-2 ${selectedCourseType === type
-                                ? 'bg-[#F8F8F8] text-black font-semibold'
-                                : 'hover:bg-gray-100'
+                              className={`w-full flex justify-between text-left py-4 px-4 ${selectedStudyType === type
+                                ? 'bg-blue-100 text-blue-800 font-semibold border-r-2 border-blue-500'
+                                : 'hover:bg-blue-100 text-gray-700'
                                 }`}
-                              onMouseEnter={() => setSelectedCourseType(type)}
+                              onMouseEnter={() => setSelectedStudyType(type)}
                             >
                               {label}
-                              <span className={`ml-1 align-middle inline-block`}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                              </svg>
-
+                              <span className="ml-1 align-middle inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                </svg>
                               </span>
                             </button>
                           ))}
                         </div>
                         {/* Course List */}
-                        <div className="w-2/3 p-4 bg-[#F8F8F8]">
-                          <div className="grid grid-cols-2 gap-4 bg-[#F8F8F8]">
-                            {courseTypes[selectedCourseType].courses.map((course) => (
-                              <Link
-                                key={course.href}
-                                href={course.href}
-                                className="px-3 py-[14px] md:h-12 shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center uppercase"
-                              >
-                                {course.name}
-                              </Link>
+                        <div className="w-2/3 p-4">
+                          <div className="space-y-3">
+                            {studyIndiaTypes[selectedStudyType].courses.map((course) => (
+                              <div key={course.href}>
+                                <Link
+                                  href={course.href}
+                                  className="block px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all shadow-md font-medium"
+                                >
+                                  {course.name}
+                                </Link>
+                                {course.subcourses && (
+                                  <div className="ml-4 mt-2 space-y-1">
+                                    {course.subcourses.map((subcourse) => (
+                                      <Link
+                                        key={subcourse.href}
+                                        href={subcourse.href}
+                                        className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
+                                      >
+                                        • {subcourse.name}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
                             ))}
                           </div>
                         </div>
@@ -399,21 +446,43 @@ export default function Navbar() {
                     </div>
                   )}
 
-                  {/* Law Exams Dropdown */}
-                  {link.hasDropdown && link.isLawExams && isLawExamsOpen && (
+                  {/* MBBS Abroad Dropdown */}
+                  {link.hasDropdown && link.isMbbsAbroad && isMbbsAbroadOpen && (
                     <div
-                      className="absolute top-full left-0 mt-2 w-[650px] bg-white shadow-xl rounded-lg overflow-hidden"
-                      onMouseLeave={() => setIsLawExamsOpen(false)}
+                      className="absolute top-full left-0 mt-3 w-80 bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      onMouseLeave={() => setIsMbbsAbroadOpen(false)}
                     >
-                      <div className="p-4 bg-[#F8F8F8]">
-                        <div className="grid grid-cols-3 gap-4 bg-[#F8F8F8]">
-                          {lawExams.exams.map((exam) => (
+                      <div className="p-4">
+                        <div className="space-y-2">
+                          {mbbsAbroadCourses.map((course) => (
                             <Link
-                              key={exam.href}
-                              href={exam.href}
-                              className="px-3 py-[14px] md:h-12 shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center uppercase"
+                              key={course.href}
+                              href={course.href}
+                              className="block px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md font-medium"
                             >
-                              {exam.name}
+                              {course.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Study Abroad Dropdown */}
+                  {link.hasDropdown && link.isStudyAbroad && isStudyAbroadOpen && (
+                    <div
+                      className="absolute top-full left-0 mt-3 w-80 bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      onMouseLeave={() => setIsStudyAbroadOpen(false)}
+                    >
+                      <div className="p-4">
+                        <div className="space-y-2">
+                          {studyAbroadCourses.map((course) => (
+                            <Link
+                              key={course.href}
+                              href={course.href}
+                              className="block px-4 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all shadow-md font-medium"
+                            >
+                              {course.name}
                             </Link>
                           ))}
                         </div>
@@ -425,11 +494,11 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Right Buttons */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <button className="px-3 py-1.5 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors text-sm">
+            <div className="hidden lg:flex items-center space-x-4">
+              <button className="px-4 py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 text-sm">
                 <a href='tel:8507700177'>Call Us</a>
               </button>
-              <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="px-4 py-1.5 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm">
+              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-5 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 hover:shadow-lg transition-all duration-300 shadow-md text-sm">
                 Download App
               </Link>
             </div>
@@ -437,116 +506,177 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <div
-            className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
+            className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
               }`}
           >
-            <div className="py-4 space-y-4 border-t border-gray-200">
+            <div className="py-4 space-y-4 border-t border-blue-200">
               {navLinks.map((link) => (
                 <div key={link.href}>
                   {link.hasDropdown ? (
                     <>
                       <button
                         onClick={() => {
-                          if (link.isLawExams) {
-                            if (activeDropdown === 'lawExams') {
+                          if (link.isAbout) {
+                            if (activeDropdown === 'about') {
                               setActiveDropdown(null)
                             } else {
-                              setActiveDropdown('lawExams')
+                              setActiveDropdown('about')
                             }
-                            setIsLawExamsOpen(!isLawExamsOpen)
-                            setIsCoursesOpen(false)
-                          } else {
-                            if (activeDropdown === 'courses') {
+                            setIsAboutOpen(!isAboutOpen)
+                          } else if (link.isStudyIndia) {
+                            if (activeDropdown === 'studyIndia') {
                               setActiveDropdown(null)
                             } else {
-                              setActiveDropdown('courses')
+                              setActiveDropdown('studyIndia')
                             }
-                            setIsCoursesOpen(!isCoursesOpen)
-                            setIsLawExamsOpen(false)
+                            setIsStudyIndiaOpen(!isStudyIndiaOpen)
+                          } else if (link.isMbbsAbroad) {
+                            if (activeDropdown === 'mbbsAbroad') {
+                              setActiveDropdown(null)
+                            } else {
+                              setActiveDropdown('mbbsAbroad')
+                            }
+                            setIsMbbsAbroadOpen(!isMbbsAbroadOpen)
+                          } else if (link.isStudyAbroad) {
+                            if (activeDropdown === 'studyAbroad') {
+                              setActiveDropdown(null)
+                            } else {
+                              setActiveDropdown('studyAbroad')
+                            }
+                            setIsStudyAbroadOpen(!isStudyAbroadOpen)
                           }
                           setExpandedMobileType(null)
                         }}
-                        className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${isActive(link.href) || (link.isLawExams ? isLawExamsOpen : isCoursesOpen)
-                          ? 'bg-red-50 text-red-700 font-semibold'
-                          : 'text-gray-700 hover:bg-gray-50'
+                        className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${isActive(link.href) ||
+                          (link.isAbout ? isAboutOpen :
+                            link.isStudyIndia ? isStudyIndiaOpen :
+                              link.isMbbsAbroad ? isMbbsAbroadOpen :
+                                link.isStudyAbroad ? isStudyAbroadOpen : false)
+                          ? 'bg-blue-50 text-blue-700 font-semibold'
+                          : 'text-gray-700 hover:bg-blue-50'
                           }`}
                       >
                         {link.label}
-                        <span className={`ml-1 inline-block align-middle transition-transform ${(link.isLawExams ? isLawExamsOpen : isCoursesOpen) ? 'rotate-180' : ''
+                        <span className={`ml-2 inline-block align-middle transition-transform ${(link.isAbout ? isAboutOpen :
+                          link.isStudyIndia ? isStudyIndiaOpen :
+                            link.isMbbsAbroad ? isMbbsAbroadOpen :
+                              link.isStudyAbroad ? isStudyAbroadOpen : false) ? 'rotate-180' : ''
                           }`}>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                           </svg>
                         </span>
                       </button>
 
-                      {/* Courses Dropdown Mobile */}
-                      {!link.isLawExams && isCoursesOpen && (
+                      {/* About Mobile Dropdown */}
+                      {link.isAbout && isAboutOpen && (
                         <div className="mt-2 mx-2">
-                          <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-                            <div className="flex flex-col">
-                              {/* Course Types with nested courses */}
-                              {Object.entries(courseTypes).map(([type, { label, courses }]) => (
-                                <div key={type} className="border-b last:border-b-0">
-                                  <button
-                                    onClick={() => {
-                                      if (expandedMobileType === type) {
-                                        setExpandedMobileType(null)
-                                      } else {
-                                        setExpandedMobileType(type)
-                                      }
-                                    }}
-                                    className={`w-full flex justify-between items-center text-left py-3 px-4 ${expandedMobileType === type
-                                      ? 'bg-[#F8F8F8] text-black font-semibold'
-                                      : 'hover:bg-gray-50'
-                                      }`}
-                                  >
-                                    {label}
-                                    <span className={`transition-transform duration-200 ${expandedMobileType === type ? 'rotate-180' : ''
-                                      }`}>
-                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                      </svg>
-                                    </span>
-                                  </button>
-
-                                  {/* Courses for each type */}
-                                  <div className={`overflow-hidden transition-all duration-300 bg-[#F8F8F8] ${expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                                    }`}>
-                                    <div className="grid grid-cols-2 gap-2 p-4">
-                                      {courses.map((course) => (
-                                        <Link
-                                          key={course.href}
-                                          href={course.href}
-                                          className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors text-center capitalize"
-                                        >
-                                          {course.name}
-                                        </Link>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
+                          <div className="bg-blue-50 rounded-lg shadow-lg p-3">
+                            {aboutSubmenus.map((item) => (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                className="block px-3 py-2 text-gray-700 hover:text-blue-700 hover:bg-white rounded transition-colors"
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
                           </div>
                         </div>
                       )}
 
-                      {/* Law Exams Dropdown Mobile */}
-                      {link.isLawExams && isLawExamsOpen && (
+                      {/* Study in India Mobile Dropdown */}
+                      {link.isStudyIndia && isStudyIndiaOpen && (
                         <div className="mt-2 mx-2">
-                          <div className="bg-[#F8F8F8] rounded-lg shadow-xl p-4">
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                              {lawExams.exams.map((exam) => (
-                                <Link
-                                  key={exam.href}
-                                  href={exam.href}
-                                  className="px-3 py-[14px] shadow-xl rounded-[4px] bg-[#FFFFFF] text-sm truncate hover:text-black hover:border-[1px] hover:border-black transition-colors capitalize"
+                          <div className="bg-blue-50 rounded-lg shadow-lg overflow-hidden">
+                            {Object.entries(studyIndiaTypes).map(([type, { label, courses }]) => (
+                              <div key={type} className="border-b last:border-b-0 border-blue-200">
+                                <button
+                                  onClick={() => {
+                                    if (expandedMobileType === type) {
+                                      setExpandedMobileType(null)
+                                    } else {
+                                      setExpandedMobileType(type)
+                                    }
+                                  }}
+                                  className={`w-full flex justify-between items-center text-left py-3 px-4 ${expandedMobileType === type
+                                    ? 'bg-blue-100 text-blue-800 font-semibold'
+                                    : 'hover:bg-blue-100 text-gray-700'
+                                    }`}
                                 >
-                                  {exam.name}
-                                </Link>
-                              ))}
-                            </div>
+                                  {label}
+                                  <span className={`transition-transform duration-200 ${expandedMobileType === type ? 'rotate-180' : ''
+                                    }`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                  </span>
+                                </button>
+
+                                <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                                  }`}>
+                                  <div className="p-4 space-y-3">
+                                    {courses.map((course) => (
+                                      <div key={course.href}>
+                                        <Link
+                                          href={course.href}
+                                          className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-center font-medium"
+                                        >
+                                          {course.name}
+                                        </Link>
+                                        {course.subcourses && (
+                                          <div className="ml-2 mt-2 space-y-1">
+                                            {course.subcourses.map((subcourse) => (
+                                              <Link
+                                                key={subcourse.href}
+                                                href={subcourse.href}
+                                                className="block px-2 py-1 text-sm text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
+                                              >
+                                                • {subcourse.name}
+                                              </Link>
+                                            ))}
+                                          </div>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* MBBS Abroad Mobile Dropdown */}
+                      {link.isMbbsAbroad && isMbbsAbroadOpen && (
+                        <div className="mt-2 mx-2">
+                          <div className="bg-blue-50 rounded-lg shadow-lg p-3 space-y-2">
+                            {mbbsAbroadCourses.map((course) => (
+                              <Link
+                                key={course.href}
+                                href={course.href}
+                                className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-center font-medium"
+                              >
+                                {course.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Study Abroad Mobile Dropdown */}
+                      {link.isStudyAbroad && isStudyAbroadOpen && (
+                        <div className="mt-2 mx-2">
+                          <div className="bg-blue-50 rounded-lg shadow-lg p-3 space-y-2">
+                            {studyAbroadCourses.map((course) => (
+                              <Link
+                                key={course.href}
+                                href={course.href}
+                                className="block px-3 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all text-center font-medium"
+                              >
+                                {course.name}
+                              </Link>
+                            ))}
                           </div>
                         </div>
                       )}
@@ -554,9 +684,9 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={link.href}
-                      className={`block px-4 py-2 rounded-lg transition-colors ${isActive(link.href)
-                        ? 'bg-red-50 text-red-700 font-semibold'
-                        : 'text-gray-700 hover:bg-gray-50'
+                      className={`block px-4 py-3 rounded-lg transition-colors ${isActive(link.href)
+                        ? 'bg-blue-50 text-blue-700 font-semibold'
+                        : 'text-gray-700 hover:bg-blue-50'
                         }`}
                     >
                       {link.label}
@@ -566,11 +696,11 @@ export default function Navbar() {
               ))}
 
               {/* Mobile Buttons */}
-              <div className="px-4 py-2 space-y-3">
-                <button className="w-full px-4 py-2 border-2 border-gray-600 text-gray-600 font-semibold rounded-full hover:bg-gray-600 hover:text-white transition-colors">
+              <div className="px-4 py-3 space-y-3">
+                <button className="w-full px-4 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white transition-colors">
                   <a href='tel:8507700177' className='w-full'>Call Us</a>
                 </button>
-                <Link href="https://play.google.com/store/apps/details?id=com.clatians&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-2 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-full text-center hover:opacity-90 transition-opacity shadow-lg">
+                <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-full text-center hover:bg-blue-700 transition-all shadow-md">
                   Download App
                 </Link>
               </div>

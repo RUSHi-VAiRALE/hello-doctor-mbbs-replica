@@ -14,26 +14,26 @@ const slides =
   [
     {
       id: 1,
-      image: Desk1,
-      mobileImage: Mob1,
+      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
       alt: "Slide 1"
     },
     {
       id: 2,
-      image: Desk2,
-      mobileImage: Mob2,
+      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
       alt: "Slide 2"
     },
     {
       id: 3,
-      image: Desk3,
-      mobileImage: Mob3,
+      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
       alt: "Slide 3"
     },
     {
       id: 4,
-      image: Desk4,
-      mobileImage: Mob4,
+      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
       alt: "Slide 4"
     }
   ]

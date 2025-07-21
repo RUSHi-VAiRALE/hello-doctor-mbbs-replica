@@ -7,47 +7,47 @@ import { app } from '@/firebase'
 import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 const socialLinks = [
-  { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'bg-[#1877F2]' },
-  { platform: 'https://www.instagram.com/clatians/', icon: 'bi-instagram', color: 'bg-gradient-to-tr from-[#ad4a16] via-[#8f3a17] to-[#312518]' },
-  { platform: 'https://www.youtube.com/@CLATians', icon: 'bi-youtube', color: 'bg-[#FF0000]' },
-  { platform: 'https://t.me/CLATians', icon: 'bi-telegram', color: 'bg-[#0088CC]' },
-  { platform: 'https://g.co/kgs/3NcAYmD', icon: 'bi-google', color: 'bg-[#DB4437]' },
-  { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter', color: 'bg-[#1DA1F2]' },
-  { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'bg-[#0A66C2]' },
+  { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'text-[#1877F2] hover:bg-[#1877F2]' },
+  { platform: 'https://www.instagram.com/clatians/', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
+  { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'text-[#0A66C2] hover:bg-[#0A66C2]' },
+  { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter-x', color: 'text-[#000000] hover:bg-[#000000]' },
 ]
 
-// New arrays with text and link for each footer section
 const quickLinks = [
-  { text: 'Admission', link: '/admission' },
-  { text: 'Student Zone', link: '/studentZone' },
-  { text: 'Gallery', link: '/gallery' },
-  { text: 'Test Series', link: '/mock-tests/online' },
-]
-
-const resourceLinks = [
-  { text: 'Previous Year Papers', link: '/onlineResources' },
-  { text: 'Current Affairs', link: '/blogs' },
-  { text: 'Quizzes', link: '/quizzes' },
-  { text: 'Online Resources', link: '/onlieResources' }
-]
-
-const companyLinks = [
+  { text: 'Home', link: '/' },
   { text: 'About Us', link: '/about' },
+  { text: 'Photo Gallery', link: '/gallery' },
+  { text: 'Study in India', link: '/courses' },
+  { text: 'MBBS Abroad', link: '/courses' },
+  { text: 'Study Abroad', link: '/courses' },
+  { text: 'Blog', link: '/blogs' },
   { text: 'Careers', link: '/careers' },
-  { text: 'Faculty', link: '/gallery' },
-  { text: 'Contact', link: '/contactUs' },
-  { text: 'Privacy policy', link: '/privacy-policy' },
-  { text: 'Legal', link: '/legal' }
+  { text: 'Contact us', link: '/contactUs' },
+  { text: 'Enquire Now', link: '/contactUs' }
 ]
 
-const courseLinks = [
-  { text: 'CLAT', link: '/courses/online/0' },
-  { text: 'CLAT+AILET', link: '/courses/online/1' },
-  { text: 'CUET(UG)', link: '/courses/online/2' },
-  { text: 'CUET(PG)', link: '/courses/online/3' },
-  { text: 'OLET', link: '/courses/offline/4' },
-  { text: 'CLAT+OLET', link: '/courses/offline/3' },
-  { text: 'Booster Course', link: '/courses/online/5' }
+const studyMBBSIndia = [
+  { text: 'MBBS in Rajasthan', link: '/courses' },
+  { text: 'MBBS in Maharashtra', link: '/courses' },
+  { text: 'MBBS in Gujarat', link: '/courses' },
+  { text: 'MBBS in Madhya Pradesh', link: '/courses' },
+  { text: 'MBBS in Uttar Pradesh', link: '/courses' },
+  { text: 'MBBS in Bihar', link: '/courses' },
+  { text: 'MBBS in Haryana', link: '/courses' },
+  { text: 'MBBS in Delhi', link: '/courses' },
+  { text: 'MBBS in Karnataka', link: '/courses' },
+  { text: 'Deemed Colleges UG', link: '/courses' }
+]
+
+const studyAbroad = [
+  { text: 'Study in USA', link: '/courses' },
+  { text: 'Study in Canada', link: '/courses' },
+  { text: 'Study in UK', link: '/courses' },
+  { text: 'Study in Australia', link: '/courses' },
+  { text: 'MBBS in Nepal', link: '/courses' },
+  { text: 'MBBS in Russia', link: '/courses' },
+  { text: 'MBBS in Georgia', link: '/courses' },
+  { text: 'MBBS in Kyrgyzstan', link: '/courses' }
 ]
 
 export default function Footer() {
@@ -77,21 +77,18 @@ export default function Footer() {
     try {
       const db = getFirestore(app)
 
-      // Add to newsletter subscribers collection
       await addDoc(collection(db, "newsletterSubscribers"), {
         email: email,
         subscribedAt: serverTimestamp(),
         source: 'website_footer'
       })
 
-      // Success
       setSubscriptionStatus({
         success: true,
         message: 'Thank you for subscribing!'
       })
       setEmail('')
 
-      // Clear success message after 5 seconds
       setTimeout(() => {
         setSubscriptionStatus(null)
       }, 5000)
@@ -108,96 +105,94 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 text-white py-12">
-      {/* Newsletter Section */}
-      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
-        <div className="text-center mb-16">
-          <span className="inline-block bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md text-sm font-medium mb-4">
-            GET LATEST UPDATES
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-100">Subscribe to Our Newsletter</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto mb-8 text-base md:text-lg">
-            Stay updated with the latest news, exam strategies, and special offers! Join our newsletter today.
-          </p>
+    <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+      <div className="absolute inset-0" style={{
+        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                         radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                         radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%)`
+      }}></div>
 
-          {/* Newsletter Form */}
-          <form onSubmit={handleSubscribe} className="mb-4">
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center max-w-xl mx-auto mb-2">
-              <input
-                type="email"
-                placeholder="Enter Your E-Mail"
-                value={email}
-                onChange={handleEmailChange}
-                className="w-full md:w-2/3 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#ad4a16] border border-gray-300"
-                required
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300 whitespace-nowrap disabled:opacity-70 text-white"
-              >
-                {isSubmitting ? 'Subscribing...' : 'Subscribe →'}
-              </button>
+      <div className="relative z-10">
+        {/* Newsletter Section */}
+        <div className="container mx-auto px-6 py-16 max-w-7xl">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+              <i className="bi bi-envelope-heart mr-2"></i>
+              GET LATEST UPDATES
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+              Subscribe to Our Newsletter
+            </h2>
+            <p className="text-blue-100 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
+              Stay updated with the latest news, exam strategies, and special offers! Join our newsletter today.
+            </p>
 
-            {/* Status Message */}
-            {subscriptionStatus && (
-              <div className={`text-sm ${subscriptionStatus.success ? 'text-green-400' : 'text-red-400'} mt-2`}>
-                {subscriptionStatus.message}
+            <form onSubmit={handleSubscribe} className="mb-6">
+              <div className="flex flex-col md:flex-row gap-4 justify-center items-center max-w-xl mx-auto mb-4">
+                <div className="relative w-full md:w-2/3">
+                  <input
+                    type="email"
+                    placeholder="Enter Your E-Mail"
+                    value={email}
+                    onChange={handleEmailChange}
+                    className="w-full px-6 py-4 rounded-xl text-gray-900 bg-white/95 backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-blue-400/50 border border-white/20 shadow-lg placeholder-gray-500"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap disabled:opacity-70 text-white shadow-lg"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center">
+                      <i className="bi bi-arrow-clockwise animate-spin mr-2"></i>
+                      Subscribing...
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      Subscribe
+                      <i className="bi bi-arrow-right ml-2"></i>
+                    </span>
+                  )}
+                </button>
               </div>
-            )}
-          </form>
 
-          <p className="text-sm text-gray-400">No ads, No spam, Unsubscribe anytime.</p>
+              {subscriptionStatus && (
+                <div className={`text-sm ${subscriptionStatus.success ? 'text-green-300' : 'text-red-300'} mt-3 font-medium`}>
+                  {subscriptionStatus.message}
+                </div>
+              )}
+            </form>
+
+            <p className="text-sm text-blue-200/80 flex items-center justify-center">
+              <i className="bi bi-shield-check mr-2"></i>
+              No ads, No spam, Unsubscribe anytime.
+            </p>
+          </div>
         </div>
 
-        {/* Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-8">
-          {/* Logo & Address Section */}
-          <div className="lg:col-span-3">
-            <div className="mb-6">
-              <Image
-                src={ClatiansLogo}
-                alt="Logo"
-                width={150}
-                height={50}
-                className="mb-4 bg-white rounded-lg p-2"
-              />
-              <p className="text-gray-300 mb-4">
-                Your trusted institute for CLAT, AILET, and other law entrance preparations.
-              </p>
-              <div className="mb-4">
-                <strong className="block mb-2 text-gray-200">Address:</strong>
-                <p className="text-gray-300">
-                  2nd Floor, Gangotri Palace, Boring Rd, near Sumati Palace<br />
-                  Nageshwar Colony, Kidwaipuri, Patna, Bihar 800001.
-                </p>
-              </div>
-              <div className="flex gap-2 md:gap-1 md:w-[300px]">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.platform}
-                    href={`${social.platform}`}
-                    target='_blank'
-                    className={`${social.color} w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white text-lg transform hover:scale-110 transition-transform shadow-lg`}
-                  >
-                    <i className={`bi ${social.icon}`}></i>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* Main Footer Content */}
+        <div className="bg-gradient-to-r from-slate-800/50 to-blue-800/50 backdrop-blur-sm border-t border-white/10">
+          <div className="container mx-auto px-6 py-12 max-w-7xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
-          {/* Quick Links Section */}
-          <div className="lg:col-span-9">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {/* Quick Links */}
-              <div>
-                <h5 className="font-semibold text-lg mb-4 text-gray-100">Quick Links</h5>
-                <ul className="space-y-2">
-                  {quickLinks.map((link) => (
-                    <li key={link.text}>
-                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full mr-3"></div>
+                  Quick Links
+                </h3>
+                <ul className="space-y-3">
+                  {quickLinks.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={link.link}
+                        className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300 flex items-center group"
+                      >
+                        <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>
                         {link.text}
                       </Link>
                     </li>
@@ -205,13 +200,20 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Resources */}
-              <div>
-                <h5 className="font-semibold text-lg mb-4 text-gray-100">Resources</h5>
-                <ul className="space-y-2">
-                  {resourceLinks.map((link) => (
-                    <li key={link.text}>
-                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
+              {/* Study MBBS In India */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-green-400 to-blue-500 rounded-full mr-3"></div>
+                  Study MBBS In India
+                </h3>
+                <ul className="space-y-3">
+                  {studyMBBSIndia.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={link.link}
+                        className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300 flex items-center group"
+                      >
+                        <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-green-400"></i>
                         {link.text}
                       </Link>
                     </li>
@@ -219,13 +221,20 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Company */}
-              <div>
-                <h5 className="font-semibold text-lg mb-4 text-gray-100">Company</h5>
-                <ul className="space-y-2">
-                  {companyLinks.map((link) => (
-                    <li key={link.text}>
-                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
+              {/* Study Abroad */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-purple-400 to-pink-500 rounded-full mr-3"></div>
+                  Study Abroad
+                </h3>
+                <ul className="space-y-3">
+                  {studyAbroad.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={link.link}
+                        className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300 flex items-center group"
+                      >
+                        <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-purple-400"></i>
                         {link.text}
                       </Link>
                     </li>
@@ -233,28 +242,75 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Courses */}
-              <div>
-                <h5 className="font-semibold text-lg mb-4 text-gray-100">Courses</h5>
-                <ul className="space-y-2">
-                  {courseLinks.map((link) => (
-                    <li key={link.text}>
-                      <Link href={link.link} className="text-gray-300 hover:text-[#ad4a16] transition-colors duration-300">
-                        {link.text}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              {/* Get in Touch */}
+              <div className="space-y-6">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-orange-400 to-red-500 rounded-full mr-3"></div>
+                  Get in Touch
+                </h3>
+
+                {/* Address */}
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <i className="bi bi-geo-alt-fill text-orange-400 text-lg mt-1"></i>
+                    <p className="text-blue-100 leading-relaxed">
+                      405, RBS Complex, OLD Natraj Cinema, Opp Chinubhai Tower, Ashram Road, Ahmedabad-380009. Gujarat, INDIA
+                    </p>
+                  </div>
+
+                  <div className="flex items-center space-x-3">
+                    <i className="bi bi-telephone-fill text-green-400"></i>
+                    <div>
+                      <p className="text-blue-100">India : +91 94270 77337</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-3">
+                    <i className="bi bi-telephone-fill text-blue-400"></i>
+                    <p className="text-blue-100">Overseas : +91 91739 13939</p>
+                  </div>
+
+                  <div className="flex items-center space-x-3">
+                    <i className="bi bi-headset text-purple-400"></i>
+                    <p className="text-blue-100">General Inquiry : +91 79 4002 0909</p>
+                  </div>
+
+                  <div className="flex items-center space-x-3">
+                    <i className="bi bi-envelope-fill text-red-400"></i>
+                    <p className="text-blue-100">Email : info@dishaconsultancy.org</p>
+                  </div>
+                </div>
+
+                {/* Social Media */}
+                <div className="pt-4">
+                  <div className="flex space-x-3">
+                    {socialLinks.map((social, index) => (
+                      <a
+                        key={index}
+                        href={social.platform}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center ${social.color} hover:text-white hover:scale-110 hover:shadow-lg transition-all duration-300`}
+                      >
+                        <i className={`bi ${social.icon} text-lg`}></i>
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="text-center pt-8 border-t border-gray-600">
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} CLATians - All rights reserved.
-          </p>
+        <div className="bg-slate-900/80 backdrop-blur-sm border-t border-white/10">
+          <div className="container mx-auto px-6 py-6 max-w-7xl">
+            <div className="text-center">
+              <p className="text-blue-200/80 text-sm">
+                © {new Date().getFullYear()} CLATians - All rights reserved.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

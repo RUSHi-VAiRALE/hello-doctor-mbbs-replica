@@ -4,52 +4,17 @@ import Hero from '@/components/Hero'
 import WhyChooseUs from '@/components/WhyChooseUs'
 import Features from '@/components/Features'
 import CourseCards from '@/components/CourseCards'
-import dynamic from 'next/dynamic'
+import ExploreTopCourses from '@/components/ExploreTopCourses'
 import Milestones from '@/components/Milestones'
 import AppDownload from '@/components/AppDownload'
 import FAQ from '@/components/FAQ'
 import SocialMedia from '@/components/SocialMedia'
 import LearningResources from '@/components/LearningResources'
-
-// Lazy load components that are below the fold
-const ExploreTopCourses = dynamic(() => import('@/components/ExploreTopCourses'), {
-  loading: () => <div className="py-12 flex justify-center items-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
-  </div>,
-  ssr: false
-})
-
-const StudentTestimonials = dynamic(() => import('@/components/StudentTestimonials'), {
-  loading: () => <div className="py-12 bg-[#e7edff] flex justify-center items-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
-  </div>,
-  ssr: false
-})
-
-const TeacherSection = dynamic(() => import('@/components/TeacherSection'), {
-  loading: () => <div className="py-12 bg-[#e7edff] flex justify-center items-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
-  </div>,
-  ssr: false
-})
-
-const BlogSection = dynamic(() => import('@/components/BlogSection'), {
-  loading: () => <div className="py-12 bg-[#e7edff] flex justify-center items-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
-  </div>,
-  ssr: false
-})
-
-const Events = dynamic(() => import('@/components/Events'), {
-  loading: () => <div className="py-12 bg-[#e7edff] flex justify-center items-center">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
-  </div>,
-  ssr: false
-})
-
-const AlternatingCarousel = dynamic(() => import('@/components/AlternatingCarousel'), {
-  ssr: false
-})
+import StudentTestimonials from '@/components/StudentTestimonials'
+import TeacherSection from '@/components/TeacherSection'
+import BlogSection from '@/components/BlogSection'
+import Events from '@/components/Events'
+import AlternatingCarousel from '@/components/AlternatingCarousel'
 
 export default function Home() {
   const faqs = [
@@ -102,16 +67,16 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Hero slides={slides} height={"250px"} />
-      <WhyChooseUs />
+      {/* <WhyChooseUs /> */}
       <Features />
-      <CourseCards />
-      <ExploreTopCourses />
-      <Milestones />
-      <LearningResources />
+      {/* <CourseCards /> */}
+      {/* <ExploreTopCourses /> */}
+      {/* <Milestones /> */}
+      {/* <LearningResources /> */}
       <StudentTestimonials />
-      <TeacherSection />
-      <BlogSection />
-      <AppDownload />
+      {/* <TeacherSection /> */}
+      {/* <BlogSection /> */}
+      {/* <AppDownload /> */}
       <Events />
       <FAQ faqs={faqs} />
       <SocialMedia />

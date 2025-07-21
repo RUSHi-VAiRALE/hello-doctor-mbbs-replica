@@ -1,46 +1,97 @@
 'use client'
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import { app } from '@/firebase';
-//import image from '../../public/400x300.png'
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 export default function Events() {
-  const [progress, setProgress] = useState(0);
-  const [swiper, setSwiper] = useState(null);
-  const [events, setEvents] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef(null);
 
-  // Fetch events from Firebase
+  // Fetch countries from Firebase
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchCountries = async () => {
       try {
         const db = getFirestore(app);
-        const eventsCollection = collection(db, "events");
-        const eventsSnapshot = await getDocs(eventsCollection);
-        const eventsData = eventsSnapshot.docs.map(doc => ({
+        const countriesCollection = collection(db, "countries");
+        const countriesSnapshot = await getDocs(countriesCollection);
+        const countriesData = countriesSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
-        setEvents(eventsData);
+
+        if (countriesData.length > 0) {
+          setCountries(countriesData);
+        } else {
+          // Fallback data if no countries found
+          setCountries([
+            {
+              id: "1",
+              name: "Russia",
+              image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop"
+            },
+            {
+              id: "2",
+              name: "Georgia",
+              image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop"
+            },
+            {
+              id: "3",
+              name: "Kyrgyzstan",
+              image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop"
+            },
+            {
+              id: "4",
+              name: "USA",
+              image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=400&h=300&fit=crop"
+            },
+            {
+              id: "5",
+              name: "Canada",
+              image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=400&h=300&fit=crop"
+            },
+            {
+              id: "6",
+              name: "UK",
+              image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=300&fit=crop"
+            },
+            {
+              id: "7",
+              name: "Australia",
+              image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=300&fit=crop"
+            },
+            {
+              id: "8",
+              name: "Germany",
+              image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&h=300&fit=crop"
+            }
+          ]);
+        }
       } catch (error) {
-        console.error("Error fetching events:", error);
+        console.error("Error fetching countries:", error);
         // Fallback data in case of error
-        setEvents([
+        setCountries([
           {
-            date: { day: '01', month: 'Oct' },
-            time: '08:00 AM - 10:00 AM',
-            title: 'Engaging Students in Real-World Problems Finding',
-            location: 'United States',
-            image: 'https://cdn.pixabay.com/photo/2021/04/24/15/37/online-6204349_640.jpg'
+            id: "1",
+            name: "Russia",
+            image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop"
+          },
+          {
+            id: "2",
+            name: "Georgia",
+            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop"
+          },
+          {
+            id: "3",
+            name: "Kyrgyzstan",
+            image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop"
+          },
+          {
+            id: "4",
+            name: "USA",
+            image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=400&h=300&fit=crop"
           }
         ]);
       } finally {
@@ -48,137 +99,159 @@ export default function Events() {
       }
     };
 
-    fetchEvents();
+    fetchCountries();
   }, []);
 
+  // Auto-scroll functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === countries.length - 1 ? 0 : prevIndex + 1
+      )
+    }, 4000) // Change slide every 4 seconds
+
+    return () => clearInterval(interval)
+  }, [countries.length])
+
+  // Scroll to current index
+  useEffect(() => {
+    if (carouselRef.current) {
+      const cardWidth = 320 // Card width + gap
+      carouselRef.current.scrollTo({
+        left: currentIndex * cardWidth,
+        behavior: 'smooth'
+      })
+    }
+  }, [currentIndex])
+
+  const scrollToIndex = (index) => {
+    setCurrentIndex(index)
+  }
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === countries.length - 1 ? 0 : prevIndex + 1
+    )
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? countries.length - 1 : prevIndex - 1
+    )
+  }
+
+  if (loading) {
+    return (
+      <section className="py-16 bg-white overflow-hidden">
+        <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Study Destinations
+            </h2>
+            <div className="w-24 h-1 bg-red-500 mx-auto"></div>
+          </div>
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
-    <section className="bg-[#f3f3f3] py-12 shadow-lg shadow-gray-300/50">
+    <section className="py-16 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
-        <div className="text-center mb-8">
-          <span className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            Our Upcoming Events
-          </span>
-          <h2 className="text-3xl font-bold">Upcoming Events & Webinars</h2>
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Study Destinations
+          </h2>
+          <div className="w-24 h-1 bg-red-500 mx-auto"></div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto">
-          {loading ? (
-            <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
-            </div>
-          ) : events.length > 0 ? (
-            <>
-              <Swiper
-                onSwiper={setSwiper}
-                modules={[Navigation, Pagination, Autoplay]}
-                navigation={{
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-                }}
-                autoplay={{
-                  delay: 3000,
-                  disableOnInteraction: false,
-                }}
-                loop={true}
-                spaceBetween={15}
-                breakpoints={{
-                  640: {
-                    slidesPerView: 1,
-                    spaceBetween: 10
-                  },
-                  768: {
-                    slidesPerView: 2,
-                    spaceBetween: 15
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 20
-                  },
-                  1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 24
-                  }
-                }}
-                onSlideChange={(swiper) => {
-                  const progress = ((swiper.realIndex + 1) / events.length) * 100;
-                  setProgress(progress);
-                }}
-                className="w-full mb-8"
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110"
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110"
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Carousel */}
+          <div
+            ref={carouselRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide px-12"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {countries.map((country, index) => (
+              <div
+                key={country.id || index}
+                className="flex-none w-72 group cursor-pointer"
+                style={{ scrollSnapAlign: 'start' }}
+                onClick={() => scrollToIndex(index)}
               >
-                {events.map((event, index) => (
-                  <SwiperSlide key={event.id || index} className="py-2">
-                    <div className="bg-white rounded-xl overflow-hidden shadow-lg h-full transition-transform duration-300 hover:-translate-y-1 max-w-[300px] mx-auto">
-                      <div className="relative w-full h-[200px]">
-                        <Image
-                          src={event.mobileImage || '/placeholder-event.jpg'}
-                          alt={event.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 300px) 100vw, 300px"
-                        />
-                        <div className="absolute top-0 left-0 bg-[#E3D7B8] px-5 py-2 rounded-br-xl">
-                          <div className="text-center">
-                            <h5 className="text-2xl font-bold text-gray-800">{event.date?.day || '01'}</h5>
-                            <small className="text-gray-600 text-sm">{event.date?.month || 'Jan'}</small>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="p-5">
-                        <div className="flex items-center mb-3">
-                          <i className="bi bi-clock text-[#ad4a16] mr-2 text-base"></i>
-                          <span className="text-sm text-gray-600">{event.time || 'TBA'}</span>
-                        </div>
-
-                        <h5 className="font-bold text-lg mb-3">{event.title}</h5>
-
-                        <div className="flex items-center mb-4">
-                          <i className="bi bi-geo-alt text-[#ad4a16] mr-2 text-base"></i>
-                          <span className="text-sm text-gray-600">{event.location || 'Online'}</span>
-                        </div>
-
-                        <Link href={`/events/${event.id || index}`}>
-                          <button className="px-6 py-2.5 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg text-sm">
-                            View Details
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              {/* Navigation Buttons and Progress Bar */}
-              <div className="md:w-full w-[78%] mx-auto">
-                <div className="flex items-center justify-between gap-4">
-                  <button
-                    onClick={() => swiper?.slidePrev()}
-                    className="w-10 h-10 bg-white rounded-full flex items-center border-red-600 justify-center shadow-lg hover:bg-blue-50 transition-colors group"
+                <div className="relative overflow-hidden rounded-3xl shadow-lg h-80 transform transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl">
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
+                    style={{
+                      backgroundImage: `url(${country.image})`
+                    }}
                   >
-                    <i className="bi bi-chevron-left text-red-600 group-hover:text-blue-600"></i>
-                  </button>
-
-                  <div className="flex-grow bg-gray-200 h-2 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] transition-all duration-300"
-                      style={{ width: `${progress}%` }}
-                    ></div>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                   </div>
 
-                  <button
-                    onClick={() => swiper?.slideNext()}
-                    className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-50 transition-colors group"
-                  >
-                    <i className="bi bi-chevron-right text-red-600 group-hover:text-blue-600"></i>
-                  </button>
+                  {/* Content */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-6">
+                    {/* Country Label */}
+                    <div className="bg-white/95 backdrop-blur-sm rounded-full px-8 py-4 text-center transform transition-all duration-300 group-hover:bg-white group-hover:shadow-xl">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        {country.name}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Hover Border Effect */}
+                  <div className="absolute inset-0 border-4 border-transparent group-hover:border-blue-500/50 rounded-3xl transition-all duration-300"></div>
                 </div>
               </div>
-            </>
-          ) : (
-            <div className="text-center py-10">
-              <p className="text-gray-600">No upcoming events at the moment. Check back soon!</p>
-            </div>
-          )}
+            ))}
+          </div>
+        </div>
+
+        {/* Dots Indicator */}
+        <div className="flex justify-center mt-8 gap-2">
+          {countries.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                  ? 'bg-blue-600 scale-125'
+                  : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+            />
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            Explore All Destinations
+          </button>
         </div>
       </div>
     </section>
