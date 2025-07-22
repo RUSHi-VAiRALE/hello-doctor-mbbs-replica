@@ -32,25 +32,25 @@ export default function Features() {
   const features = [
     {
       icon: "bi-camera-video-fill",
-      title: "Daily Live",
-      description: "Interactive classes",
+      title: "15000 +",
+      description: "Students",
       color: "from-blue-500 to-purple-600"
     },
     {
       icon: "bi-journal-text",
-      title: "10 Million +",
-      description: "Question Bank",
+      title: "85 +",
+      description: "Universities",
       color: "from-green-500 to-teal-600"
     },
     {
       icon: "bi-chat-dots-fill",
-      title: "24 x 7",
-      description: "Doubt solving sessions",
+      title: "400 +",
+      description: "Colleges",
       color: "from-orange-500 to-red-600"
     },
     {
       icon: "bi-building",
-      title: "10 +",
+      title: "20 +",
       description: "Year Teaching Experience",
       color: "from-purple-500 to-indigo-600"
     }

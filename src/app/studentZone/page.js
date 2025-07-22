@@ -1,9 +1,9 @@
-import StudentZone from "@/components/StudentZone";
+// import StudentZone from "@/components/StudentZone";
 
-export default function StudentZonePage() {
-    return (
-        <>
-            <StudentZone />
-        </>
-    )
-}
+// export default function StudentZonePage() {
+//     return (
+//         <>
+//             <StudentZone />
+//         </>
+//     )
+// }

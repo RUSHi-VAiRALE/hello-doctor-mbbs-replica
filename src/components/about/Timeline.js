@@ -47,95 +47,118 @@ export default function Timeline() {
     {
       year: "2015",
       title: "Foundation Year",
-      icon: "flag-fill",
-      color: "from-blue-400 to-blue-600"
+      description: "Started our journey with a vision to transform legal education",
+      icon: "bi-flag-fill",
+      color: "from-blue-500 to-blue-600"
     },
     {
       year: "2016",
       title: "First Campus Established",
-      icon: "building",
-      color: "from-indigo-400 to-indigo-600"
+      description: "Opened our flagship center in Patna with state-of-the-art facilities",
+      icon: "bi-building-fill",
+      color: "from-indigo-500 to-indigo-600"
     },
     {
       year: "2017",
       title: "First Batch Success",
-      icon: "award-fill",
-      color: "from-amber-400 to-orange-500"
+      description: "Achieved remarkable results with 95% success rate in CLAT",
+      icon: "bi-award-fill",
+      color: "from-amber-500 to-orange-500"
     },
     {
       year: "2018",
       title: "Expanded to 3 Cities",
-      icon: "geo-alt-fill",
-      color: "from-teal-400 to-teal-600"
+      description: "Extended our reach to Delhi and Mumbai with new centers",
+      icon: "bi-geo-alt-fill",
+      color: "from-teal-500 to-teal-600"
     },
     {
       year: "2019",
       title: "Online Learning Launched",
-      icon: "laptop",
-      color: "from-green-400 to-green-600"
+      description: "Pioneered digital education platform for law aspirants",
+      icon: "bi-laptop",
+      color: "from-green-500 to-green-600"
     },
     {
       year: "2020",
       title: "Virtual Classrooms",
-      icon: "camera-video-fill",
-      color: "from-cyan-400 to-cyan-600"
+      description: "Adapted to pandemic with seamless virtual learning experience",
+      icon: "bi-camera-video-fill",
+      color: "from-cyan-500 to-cyan-600"
     },
     {
       year: "2021",
       title: "Highest Success Rate",
-      icon: "bar-chart-line-fill",
-      color: "from-purple-400 to-purple-600"
+      description: "Achieved industry-leading 98% success rate across all programs",
+      icon: "bi-graph-up-arrow",
+      color: "from-purple-500 to-purple-600"
     },
     {
       year: "2022",
       title: "10,000+ Students Milestone",
-      icon: "people-fill",
-      color: "from-pink-400 to-pink-600"
+      description: "Crossed the milestone of training 10,000+ successful candidates",
+      icon: "bi-people-fill",
+      color: "from-pink-500 to-pink-600"
     },
     {
       year: "2023",
       title: "Nationwide Recognition",
-      icon: "globe",
-      color: "from-red-400 to-red-600"
+      description: "Received national awards for excellence in legal education",
+      icon: "bi-trophy-fill",
+      color: "from-red-500 to-red-600"
     },
     {
       year: "2024",
       title: "AI-Enhanced Learning",
-      icon: "cpu-fill",
-      color: "from-emerald-400 to-emerald-600"
+      description: "Integrated cutting-edge AI technology for personalized learning",
+      icon: "bi-robot",
+      color: "from-emerald-500 to-emerald-600"
     },
   ]
 
   return (
-    <section className="bg-[#f7f9fc] py-20 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 uppercase mb-2">Our Journey</h2>
-          <p className="text-gray-600 text-lg">Tracing Clatians' success step by step.</p>
-        </div>
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+      <div className="absolute inset-0" style={{
+        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                         radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                         radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%)`
+      }}></div>
 
-        {/* Timeline period indicator */}
-        {/* <div className="text-center mb-10">
-          <span className="inline-block bg-gradient-to-r from-orange-400 to-red-500 text-white px-4 py-2 rounded-full text-sm font-medium">
-            {milestones[0]?.year} - {milestones[milestones.length - 1]?.year}
-          </span>
-        </div> */}
+      <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+            <i className="bi bi-clock-history mr-2"></i>
+            OUR JOURNEY
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+            Our Success Story
+          </h2>
+          <p className="text-blue-100 max-w-2xl mx-auto text-lg">
+            Tracing CLATians' remarkable journey from inception to becoming India's leading legal education institute
+          </p>
+        </div>
 
         {/* Mobile view - vertical timeline */}
         <div className="md:hidden">
-          <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-orange-400 before:to-red-500 before:left-4">
+          <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-400 before:to-purple-500 before:left-4">
             {milestones.map((milestone, index) => (
               <div key={`mobile-${milestone.year}-${index}`} className="relative">
                 {/* Dot */}
-                <div className={`absolute -left-4 w-8 h-8 bg-gradient-to-br ${milestone.color} rounded-full flex items-center justify-center shadow-md z-10`}>
-                  <i className={`bi bi-${milestone.icon} text-white text-sm`}></i>
+                <div className={`absolute -left-4 w-8 h-8 bg-gradient-to-br ${milestone.color} rounded-full flex items-center justify-center shadow-lg z-10`}>
+                  <i className={`bi ${milestone.icon} text-white text-sm`}></i>
                 </div>
 
                 {/* Content */}
-                <div className="bg-white p-3 rounded-lg shadow-md border border-gray-100">
-                  <h3 className="font-bold text-gray-800">
-                    <span className="text-[#ad4a16]">{milestone.year}</span> - {milestone.title}
-                  </h3>
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-lg font-bold text-blue-300">{milestone.year}</span>
+                    <div className="h-px bg-gradient-to-r from-blue-400 to-transparent flex-1"></div>
+                  </div>
+                  <h3 className="font-bold text-white mb-2">{milestone.title}</h3>
+                  <p className="text-blue-200 text-sm">{milestone.description}</p>
                 </div>
               </div>
             ))}
@@ -145,7 +168,7 @@ export default function Timeline() {
         {/* Desktop view - horizontal timeline */}
         <div ref={timelineRef} className="relative mx-auto hidden md:block">
           {/* Container for the timeline with padding for content overflow */}
-          <div className="relative h-64 mx-auto px-4 py-32">
+          <div className="relative h-80 mx-auto px-4 py-32">
             {/* SVG for the path */}
             <svg className="absolute top-0 left-0 w-full h-32" viewBox="0 0 1200 100" preserveAspectRatio="none">
               <path
@@ -159,9 +182,9 @@ export default function Timeline() {
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#ad4a16" />
-                  <stop offset="50%" stopColor="#8f3a17" />
-                  <stop offset="100%" stopColor="#312518" />
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="50%" stopColor="#8b5cf6" />
+                  <stop offset="100%" stopColor="#06b6d4" />
                 </linearGradient>
               </defs>
             </svg>
@@ -172,8 +195,7 @@ export default function Timeline() {
               const xPos = (index / (milestones.length - 1 || 1)) * 100;
 
               // Calculate top position based on sine wave
-              // This creates a smoother distribution along the wave
-              const waveHeight = 30; // Height of the wave in pixels
+              const waveHeight = 30;
               const topPosition = 50 + Math.sin((index / (milestones.length - 1 || 1)) * Math.PI) * waveHeight;
 
               // Alternate content position (above/below)
@@ -186,35 +208,58 @@ export default function Timeline() {
                   style={{
                     left: `${xPos}%`,
                     top: topPosition,
-                    transform: 'translate(-50%, -50%)' // Center both horizontally and vertically
+                    transform: 'translate(-50%, -50%)'
                   }}
                 >
                   {/* The dot marker */}
                   <div
-                    className={`timeline-dot w-10 h-10 bg-gradient-to-br ${milestone.color} 
-                    rounded-full flex items-center justify-center opacity-0 scale-0 shadow-md
-                    transition-all duration-500 ease-out z-10`}
+                    className={`timeline-dot w-12 h-12 bg-gradient-to-br ${milestone.color} 
+                    rounded-full flex items-center justify-center opacity-0 scale-0 shadow-xl
+                    transition-all duration-500 ease-out z-10 border-2 border-white`}
                   >
-                    <i className={`bi bi-${milestone.icon} text-white text-lg`}></i>
+                    <i className={`bi ${milestone.icon} text-white text-lg`}></i>
                   </div>
 
                   {/* Content box with adjustments for top/bottom positioning */}
                   <div
                     className={`timeline-content opacity-0 transform ${isTop ? '-translate-y-4' : 'translate-y-4'} 
-                    w-32 absolute z-20
-                    ${isTop ? '-top-20' : 'top-16'} left-1/2 -translate-x-1/2`}
+                    w-40 absolute z-20
+                    ${isTop ? '-top-24' : 'top-20'} left-1/2 -translate-x-1/2`}
                   >
-                    <div className="bg-white p-3 rounded-lg shadow-md hover:-translate-y-1 transition-transform duration-300 border border-gray-100">
-                      <h3 className="text-sm font-bold text-gray-800 text-center">
-                        <span className="text-[#ad4a16]">{milestone.year}</span>
-                        <br />
+                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-xl hover:-translate-y-1 transition-transform duration-300">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-sm font-bold text-blue-300">{milestone.year}</span>
+                        <div className="h-px bg-gradient-to-r from-blue-400 to-transparent flex-1"></div>
+                      </div>
+                      <h3 className="text-sm font-bold text-white mb-2 leading-tight">
                         {milestone.title}
                       </h3>
+                      <p className="text-xs text-blue-200 leading-relaxed">
+                        {milestone.description}
+                      </p>
                     </div>
                   </div>
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Bottom Stats */}
+        <div className="mt-16 text-center">
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">25+</div>
+              <div className="text-blue-200 text-sm">Years Journey</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">10K+</div>
+              <div className="text-blue-200 text-sm">Success Stories</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white mb-2">98%</div>
+              <div className="text-blue-200 text-sm">Success Rate</div>
+            </div>
           </div>
         </div>
       </div>

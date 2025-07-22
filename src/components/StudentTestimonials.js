@@ -189,15 +189,15 @@ export default function StudentTestimonials() {
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
                   {/* Label */}
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl px-6 py-4 text-center transform transition-all duration-300 group-hover:bg-white group-hover:shadow-xl group-hover:scale-105">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl px-2 py-1 text-center transform transition-all duration-300 group-hover:bg-white group-hover:shadow-xl group-hover:scale-105">
                     <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
                       {item.name}
                     </h3>
-                    {item.description && (
+                    {/* {item.description && (
                       <p className="text-sm text-gray-600">
                         {item.description}
                       </p>
-                    )}
+                    )} */}
                   </div>
                 </div>
 

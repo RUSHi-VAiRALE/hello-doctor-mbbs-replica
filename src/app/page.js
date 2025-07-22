@@ -1,49 +1,54 @@
 'use client'
 
 import Hero from '@/components/Hero'
-import WhyChooseUs from '@/components/WhyChooseUs'
 import Features from '@/components/Features'
-import CourseCards from '@/components/CourseCards'
-import ExploreTopCourses from '@/components/ExploreTopCourses'
-import Milestones from '@/components/Milestones'
-import AppDownload from '@/components/AppDownload'
+import StudentTestimonials from '@/components/StudentTestimonials'
+import Events from '@/components/Events'
 import FAQ from '@/components/FAQ'
 import SocialMedia from '@/components/SocialMedia'
-import LearningResources from '@/components/LearningResources'
-import StudentTestimonials from '@/components/StudentTestimonials'
-import TeacherSection from '@/components/TeacherSection'
-import BlogSection from '@/components/BlogSection'
-import Events from '@/components/Events'
-import AlternatingCarousel from '@/components/AlternatingCarousel'
 
 export default function Home() {
   const faqs = [
     {
       index: 0,
-      question: "What is the CLAT exam pattern for 2025?",
-      answer: "CLAT 2025 follows a 2-hour computer-based test format with 150 questions across five sections: English Language, Current Affairs & GK, Legal Reasoning, Logical Reasoning, and Quantitative Techniques. Each question carries 1 mark with a 0.25 negative marking for incorrect answers. Our coaching methodology is specifically designed to align with this latest pattern."
+      question: "What are the eligibility criteria for MBBS abroad?",
+      answer: "To pursue MBBS abroad, students must have completed 10+2 with Physics, Chemistry, and Biology with a minimum of 50% marks (45% for reserved categories). Additionally, qualifying NEET is mandatory for Indian students. Age requirements vary by country but generally range from 17-25 years at the time of admission."
     },
     {
       index: 1,
-      question: "When is CLAT 2025 scheduled and what are the important dates?",
-      answer: "CLAT 2025 is tentatively scheduled for May 2025. The application process typically begins in January, with the exact exam date announced by the Consortium of NLUs. Our coaching institute provides timely updates on application deadlines, admit card release dates, and result announcements to ensure you never miss critical milestones."
+      question: "Which countries offer the best MBBS programs for Indian students?",
+      answer: "Popular destinations for MBBS abroad include Russia, Ukraine, Kazakhstan, Kyrgyzstan, Georgia, Philippines, China, and Bangladesh. These countries offer quality medical education at affordable costs, with degrees recognized by MCI/NMC and WHO. Our consultancy helps you choose the best country based on your budget, preferences, and career goals."
     },
     {
       index: 2,
-      question: "What is CLAT and how can I prepare effectively for it?",
-      answer: "The Common Law Admission Test (CLAT) is the premier national-level entrance examination for admission to 22+ National Law Universities (NLUs) across India. Effective preparation includes mastering logical reasoning, legal reasoning, English comprehension, general knowledge, and quantitative techniques. Our specialized coaching program offers comprehensive coverage of all CLAT sections with expert guidance from top NLU alumni and legal educators."
+      question: "What is the total cost of studying MBBS abroad?",
+      answer: "The total cost varies by country and university. Generally, it ranges from ₹15-50 lakhs for the entire course including tuition fees, accommodation, food, and other expenses. Countries like Russia, Ukraine, and Kazakhstan offer more affordable options, while countries like the Philippines and China may cost slightly more but offer English-medium instruction."
     },
     {
       index: 3,
-      question: "What exactly is the CLAT exam and why is it important for law aspirants?",
-      answer: "The Common Law Admission Test (CLAT) is the unified national entrance examination for admissions to 22+ National Law Universities (NLUs) across India. It serves as the gateway to India's premier legal education institutions, testing candidates on five key areas: English Language, Current Affairs, Legal Reasoning, Logical Reasoning, and Quantitative Techniques."
+      question: "Is NEET mandatory for studying MBBS abroad?",
+      answer: "Yes, NEET qualification is mandatory for Indian students planning to study MBBS abroad. This requirement was implemented to ensure that students meet the minimum eligibility standards. Students must clear NEET to be eligible for admission to foreign medical universities and to practice medicine in India after graduation."
     },
     {
       index: 4,
-      question: "What are the basic eligibility criteria for appearing in the CLAT exam?",
-      answer: "For CLAT UG (undergraduate), candidates must have completed or be appearing for their 10+2 examination with a minimum of 45% marks (40% for SC/ST/OBC/PWD categories). For CLAT PG (postgraduate), candidates must have completed or be in the final year of their LLB degree with at least 50% marks (45% for reserved categories)."
+      question: "What is the duration of MBBS abroad and what about internship?",
+      answer: "MBBS abroad typically takes 5-6 years to complete, depending on the country and university. This includes 4-5 years of academic study and 1 year of mandatory internship. Some countries offer the option to complete internship in India, while others require it to be completed in the same country where you studied."
     },
-    // Add more FAQs...
+    {
+      index: 5,
+      question: "How do I get admission to MBBS colleges in India?",
+      answer: "Admission to MBBS colleges in India is through NEET (National Eligibility cum Entrance Test). Based on NEET scores and state/category quotas, students are allocated seats through centralized counseling processes like NEET UG counseling. We provide guidance on college selection, counseling procedures, and documentation required for smooth admission."
+    },
+    {
+      index: 6,
+      question: "What are the career prospects after completing MBBS abroad?",
+      answer: "After completing MBBS abroad, graduates can practice in India by clearing the FMGE (Foreign Medical Graduate Examination) or NEXT exam. Career options include clinical practice, pursuing PG medical courses (MD/MS), working in hospitals, healthcare management, medical research, or even practicing in the country where they studied if they meet local licensing requirements."
+    },
+    {
+      index: 7,
+      question: "Do foreign MBBS degrees have the same value as Indian MBBS degrees?",
+      answer: "Yes, MBBS degrees from MCI/NMC and WHO recognized universities abroad hold the same value as Indian MBBS degrees. However, graduates must clear the licensing examination (FMGE/NEXT) to practice in India. Our consultancy ensures you choose only from recognized universities to avoid any future complications."
+    }
   ]
 
   const slides = [

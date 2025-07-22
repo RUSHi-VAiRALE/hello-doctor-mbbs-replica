@@ -35,9 +35,31 @@ export default function TeacherSection() {
               location: "Patna, India",
               exp: 15,
               description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
-              image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
+              image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
               email: "alexendra@clatwallah.com",
               phone: "+91-98765-43210"
+            },
+            {
+              id: 2,
+              name: "Dr. Priya Sharma",
+              role: "Senior Faculty",
+              location: "Delhi, India",
+              exp: 12,
+              description: "Specialist in Constitutional Law and Current Affairs with extensive teaching experience.",
+              image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+              email: "priya.sharma@clatwallah.com",
+              phone: "+91-98765-43211"
+            },
+            {
+              id: 3,
+              name: "Prof. Rajesh Kumar",
+              role: "Legal Reasoning Expert",
+              location: "Mumbai, India",
+              exp: 18,
+              description: "Renowned expert in Logical Reasoning and Critical Thinking for law entrance examinations.",
+              image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+              email: "rajesh.kumar@clatwallah.com",
+              phone: "+91-98765-43212"
             }
           ]
           setTeachers(fallbackTeachers)
@@ -54,7 +76,7 @@ export default function TeacherSection() {
             location: "Patna, India",
             exp: 15,
             description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
-            image: "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg",
+            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
             email: "alexendra@clatwallah.com",
             phone: "+91-98765-43210"
           }
@@ -71,16 +93,22 @@ export default function TeacherSection() {
 
   if (loading) {
     return (
-      <section className="py-8 bg-[#f3f3f3] shadow-lg shadow-gray-300/50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">OUR</span> TEACHERS
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-gradient-to-r from-[#ad4a16] to-[#8f3a17] text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+              <i className="bi bi-people-fill mr-2"></i>
+              OUR TEACHERS
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] bg-clip-text text-transparent">
+              Learn from the Best
             </h2>
-            <p className="text-gray-600">Learn from the Best in Legal Education</p>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Meet our expert faculty members who are dedicated to your success
+            </p>
           </div>
           <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#ad4a16]"></div>
           </div>
         </div>
       </section>
@@ -92,98 +120,148 @@ export default function TeacherSection() {
   }
 
   return (
-    <section className="py-8 bg-[#f3f3f3] shadow-lg shadow-gray-300/50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {/* Section Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-2">
-            <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">OUR</span> TEACHERS
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center bg-gradient-to-r from-[#ad4a16] to-[#8f3a17] text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+            <i className="bi bi-people-fill mr-2"></i>
+            OUR TEACHERS
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] bg-clip-text text-transparent">
+            Learn from the Best
           </h2>
-          <p className="text-gray-600">Learn from the Best in Legal Education</p>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            Meet our expert faculty members who are dedicated to your success in legal education
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Selected Teacher Information */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-5/12">
-                <div className="relative aspect-square">
-                  <Image
-                    src={selectedTeacher.image || "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg"}
-                    alt={selectedTeacher.name}
-                    fill
-                    className="rounded-lg object-cover transition-transform duration-300 hover:scale-105"
-                  />
+          <div className="order-2 lg:order-1">
+            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl p-8 border border-gray-100">
+              <div className="flex flex-col md:flex-row gap-8">
+                <div className="md:w-5/12">
+                  <div className="relative aspect-square group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
+                    <Image
+                      src={selectedTeacher.image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"}
+                      alt={selectedTeacher.name}
+                      fill
+                      className="relative rounded-2xl object-cover transition-transform duration-300 group-hover:scale-105 z-10"
+                    />
+                    <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-3 shadow-lg z-20">
+                      <i className="bi bi-award-fill text-2xl text-[#ad4a16]"></i>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="md:w-7/12">
-                <h4 className="text-xl font-bold">{selectedTeacher.name}</h4>
-                <p className="text-[#ad4a16] font-semibold">{selectedTeacher.role}</p>
-                <p className="text-gray-600 flex items-center gap-1 mt-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  {selectedTeacher.location}
-                </p>
-                <p className="my-4 text-gray-600 text-justify">{selectedTeacher.description} Over <strong className='text-black'>{selectedTeacher.exp}+ years</strong> of experience in guiding students for top NLUs.</p>
-                <div className="flex gap-4 mb-4">
-                  <a href="#" className="text-gray-400 hover:text-[#ad4a16] transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" /></svg>
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-[#ad4a16] transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-[#ad4a16] transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-                  </a>
-                </div>
-                <div className="text-gray-600 text-sm space-y-2">
-                  <p className="flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    {selectedTeacher.phone}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    {selectedTeacher.email}
-                  </p>
+
+                <div className="md:w-7/12 space-y-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-1">{selectedTeacher.name}</h3>
+                    <p className="text-[#ad4a16] font-semibold text-lg">{selectedTeacher.role}</p>
+                    <p className="text-gray-600 flex items-center gap-2 mt-2">
+                      <i className="bi bi-geo-alt-fill text-[#ad4a16]"></i>
+                      {selectedTeacher.location}
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-[#ad4a16]/10 to-[#8f3a17]/10 rounded-lg p-4">
+                    <p className="text-gray-700 text-justify leading-relaxed">
+                      {selectedTeacher.description} Over <strong className='text-[#ad4a16]'>{selectedTeacher.exp}+ years</strong> of experience in guiding students for top NLUs.
+                    </p>
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="flex gap-3">
+                    {[
+                      { icon: 'bi-facebook', color: 'from-blue-500 to-blue-600' },
+                      { icon: 'bi-twitter-x', color: 'from-gray-700 to-gray-800' },
+                      { icon: 'bi-linkedin', color: 'from-blue-600 to-blue-700' },
+                      { icon: 'bi-instagram', color: 'from-pink-500 to-purple-600' }
+                    ].map((social, index) => (
+                      <a key={index} href="#" className={`w-10 h-10 rounded-full bg-gradient-to-r ${social.color} flex items-center justify-center text-white hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        <i className={`bi ${social.icon}`}></i>
+                      </a>
+                    ))}
+                  </div>
+
+                  {/* Contact Info */}
+                  <div className="space-y-3 pt-4 border-t border-gray-200">
+                    <div className="flex items-center gap-3 text-gray-600">
+                      <div className="w-8 h-8 rounded-full bg-[#ad4a16]/10 flex items-center justify-center">
+                        <i className="bi bi-telephone-fill text-[#ad4a16]"></i>
+                      </div>
+                      <span className="font-medium">{selectedTeacher.phone}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-600">
+                      <div className="w-8 h-8 rounded-full bg-[#ad4a16]/10 flex items-center justify-center">
+                        <i className="bi bi-envelope-fill text-[#ad4a16]"></i>
+                      </div>
+                      <span className="font-medium">{selectedTeacher.email}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Teacher Grid */}
-          <div className="grid grid-cols-3 gap-3 md:gap-4">
-            {teachers.map((teacher) => (
-              <div
-                key={teacher.id}
-                className={`relative group cursor-pointer rounded-lg`}
-                onClick={() => {
-                  setSelectedTeacher(teacher)
-                }}
-              >
-                <div className="relative aspect-square">
-                  <Image
-                    src={teacher.image || "https://cdn.pixabay.com/photo/2018/01/09/08/31/wisdom-3071110_640.jpg"}
-                    alt={teacher.name}
-                    fill
-                    className={`rounded-lg object-cover transition-transform duration-300 group-hover:scale-105 ${selectedTeacher.id === teacher.id
-                      ? 'scale-105'
-                      : 'hover:ring-2 hover:ring-gray-300 hover:ring-offset-1'
-                      }`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#ad4a16]/50 via-[#8f3a17]/50 to-[#312518]/50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+          <div className="order-1 lg:order-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+              {teachers.map((teacher) => (
+                <div
+                  key={teacher.id}
+                  className={`group cursor-pointer transition-all duration-300 ${selectedTeacher.id === teacher.id
+                      ? 'transform scale-105'
+                      : 'hover:scale-105'
+                    }`}
+                  onClick={() => setSelectedTeacher(teacher)}
+                >
+                  <div className="relative aspect-square overflow-hidden rounded-2xl">
+                    <Image
+                      src={teacher.image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"}
+                      alt={teacher.name}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+
+                    {/* Overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 ${selectedTeacher.id === teacher.id
+                        ? 'opacity-100'
+                        : 'opacity-0 group-hover:opacity-100'
+                      }`}>
+                      <div className="absolute bottom-4 left-4 right-4 text-white">
+                        <h4 className="font-bold text-sm mb-1 truncate">{teacher.name}</h4>
+                        <p className="text-xs opacity-90 truncate">{teacher.role}</p>
+                      </div>
+                    </div>
+
+                    {/* Selected indicator */}
+                    {selectedTeacher.id === teacher.id && (
+                      <div className="absolute top-3 right-3 w-6 h-6 bg-[#ad4a16] rounded-full flex items-center justify-center">
+                        <i className="bi bi-check text-white text-sm"></i>
+                      </div>
+                    )}
+
+                    {/* Hover indicator */}
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#ad4a16]/50 rounded-2xl transition-all duration-300"></div>
                   </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Additional info */}
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 text-sm mb-4">
+                Click on any teacher to learn more about their expertise
+              </p>
+              <div className="flex justify-center space-x-2">
+                <div className="w-2 h-2 bg-[#ad4a16] rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-[#8f3a17] rounded-full animate-pulse delay-75"></div>
+                <div className="w-2 h-2 bg-[#312518] rounded-full animate-pulse delay-150"></div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { collection, getDocs, query, where, getFirestore, orderBy } from 'firebase/firestore'
 import { app } from '@/firebase'
 import ClatiansLogo from '../../public/CLATiansLogo.webp'
+import mbbslogo from '../../public/mbbslogo.png'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -25,32 +26,32 @@ export default function Navbar() {
       courses: [
         {
           name: 'MBBS',
-          href: '/study-india/medical/mbbs',
+          href: '/mbbs-rajasthan',
           subcourses: [
-            { name: 'MBBS in Rajasthan', href: '/study-india/medical/mbbs/rajasthan' },
-            { name: 'MBBS in Maharashtra', href: '/study-india/medical/mbbs/maharashtra' }
+            { name: 'MBBS in Rajasthan', href: '/mbbs-rajasthan' },
+            { name: 'MBBS in Maharashtra', href: '/mbbs-maharashtra' }
           ]
         },
-        { name: 'BAMS', href: '/study-india/medical/bams' }
+        { name: 'BAMS', href: '/bams-rajasthan' }
       ]
     },
     engineering: {
       label: 'Engineering',
       courses: [
-        { name: 'Biotechnology Engineering', href: '/study-india/engineering/biotechnology' },
-        { name: 'Aerospace Engineering', href: '/study-india/engineering/aerospace' }
+        { name: 'Biotechnology Engineering', href: '/biotechnology-engineering' },
+        { name: 'Aerospace Engineering', href: '/aerospace-engineering' }
       ]
     }
   }
 
   const mbbsAbroadCourses = [
-    { name: 'MBBS in Nepal', href: '/mbbs-abroad/nepal' },
-    { name: 'MBBS in Russia', href: '/mbbs-abroad/russia' }
+    { name: 'MBBS in Nepal', href: '/mbbs-nepal' },
+    { name: 'MBBS in Russia', href: '/mbbs-russia' }
   ]
 
   const studyAbroadCourses = [
-    { name: 'Study in US', href: '/study-abroad/us' },
-    { name: 'Study in UK', href: '/study-abroad/uk' }
+    { name: 'Study in US', href: '/study-usa' },
+    { name: 'Study in UK', href: '/study-uk' }
   ]
 
   const aboutSubmenus = [
@@ -95,13 +96,13 @@ export default function Navbar() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/about', label: 'About Us', hasDropdown: true, isAbout: true },
+    { href: '/about', label: 'About Us', hasDropdown: false, isAbout: true },
     { href: '/study-india', label: 'Study in India', hasDropdown: true, isStudyIndia: true },
     { href: '/mbbs-abroad', label: 'MBBS Abroad', hasDropdown: true, isMbbsAbroad: true },
     { href: '/study-abroad', label: 'Study Abroad', hasDropdown: true, isStudyAbroad: true },
     { href: '/blog', label: 'Blog' },
     { href: '/career', label: 'Careers' },
-    { href: '/contact', label: 'Contact Us' }
+    { href: '/contactUs', label: 'Contact Us' }
   ]
 
   const isActive = (path) => {
@@ -204,7 +205,7 @@ export default function Navbar() {
                 </svg>
                 <div className="text-sm">
                   <div className="font-semibold text-blue-800">Study Abroad</div>
-                  <div className="text-blue-600">+91-8507700177</div>
+                  <div className="text-blue-600">+91-7898025252</div>
                 </div>
               </div>
             </div>
@@ -217,7 +218,7 @@ export default function Navbar() {
                 </svg>
                 <div className="text-sm">
                   <div className="font-semibold text-blue-800">Study in India</div>
-                  <div className="text-blue-600">+91-8507700188</div>
+                  <div className="text-blue-600">+91-9039038655</div>
                 </div>
               </div>
             </div>
@@ -229,7 +230,7 @@ export default function Navbar() {
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
                 <div className="text-sm">
-                  <div className="text-blue-600">info@educationhub.com</div>
+                  <div className="text-blue-600">mbbsyaatra@gmail.com</div>
                 </div>
               </div>
             </div>
@@ -242,15 +243,15 @@ export default function Navbar() {
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
           <div className="flex items-center justify-between py-3">
             {/* Logo */}
-            {/* <Link href="/" className="flex-shrink-0">
+            <Link href="/" className="flex-shrink-0">
               <Image
-                src={ClatiansLogo}
+                src={mbbslogo}
                 alt="Education-Hub-Logo"
-                width={90}
-                height={42}
-                className="w-auto h-[42px]"
+                width={120}
+                height={62}
+                className="w-auto h-[62px]"
               />
-            </Link> */}
+            </Link>
 
             {/* Mobile Menu Button */}
             <button

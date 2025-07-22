@@ -7,10 +7,10 @@ import { app } from '@/firebase'
 import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 const socialLinks = [
-  { platform: 'https://www.facebook.com/IEECLATians', icon: 'bi-facebook', color: 'text-[#1877F2] hover:bg-[#1877F2]' },
-  { platform: 'https://www.instagram.com/clatians/', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
-  { platform: 'https://www.linkedin.com/in/clatians/', icon: 'bi-linkedin', color: 'text-[#0A66C2] hover:bg-[#0A66C2]' },
-  { platform: 'https://twitter.com/CLATians', icon: 'bi-twitter-x', color: 'text-[#000000] hover:bg-[#000000]' },
+  { platform: 'https://www.facebook.com/mbbsyaatra', icon: 'bi-facebook', color: 'text-[#1877F2] hover:bg-[#1877F2]' },
+  { platform: 'https://www.instagram.com/mbbsyaatra/', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
+  { platform: 'https://www.linkedin.com/in/mbbsyaatra/', icon: 'bi-linkedin', color: 'text-[#0A66C2] hover:bg-[#0A66C2]' },
+  { platform: 'https://twitter.com/mbbsyaatra', icon: 'bi-twitter-x', color: 'text-[#000000] hover:bg-[#000000]' },
 ]
 
 const quickLinks = [
@@ -254,30 +254,30 @@ export default function Footer() {
                   <div className="flex items-start space-x-3">
                     <i className="bi bi-geo-alt-fill text-orange-400 text-lg mt-1"></i>
                     <p className="text-blue-100 leading-relaxed">
-                      405, RBS Complex, OLD Natraj Cinema, Opp Chinubhai Tower, Ashram Road, Ahmedabad-380009. Gujarat, INDIA
+                      MBBS YAATRA, 11/5, Nath Mandir Rd, in front of Arora Bhawan, South Tukoganj, Indore, Madhya Pradesh 452001
                     </p>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-telephone-fill text-green-400"></i>
                     <div>
-                      <p className="text-blue-100">India : +91 94270 77337</p>
+                      <p className="text-blue-100">India : +91 7898025252</p>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-telephone-fill text-blue-400"></i>
-                    <p className="text-blue-100">Overseas : +91 91739 13939</p>
+                    <p className="text-blue-100">Overseas : +91 9039038655</p>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-headset text-purple-400"></i>
-                    <p className="text-blue-100">General Inquiry : +91 79 4002 0909</p>
+                    <p className="text-blue-100">General Inquiry : +91 9039038655</p>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-envelope-fill text-red-400"></i>
-                    <p className="text-blue-100">Email : info@dishaconsultancy.org</p>
+                    <p className="text-blue-100">Email : mbbsyaatra@gmail.com</p>
                   </div>
                 </div>
 
@@ -307,7 +307,7 @@ export default function Footer() {
           <div className="container mx-auto px-6 py-6 max-w-7xl">
             <div className="text-center">
               <p className="text-blue-200/80 text-sm">
-                © {new Date().getFullYear()} Consultancy - All rights reserved.
+                © {new Date().getFullYear()} MBBS YAATRA - All rights reserved.
               </p>
             </div>
           </div>

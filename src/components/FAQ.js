@@ -5,6 +5,10 @@ export default function FAQ({ faqs }) {
   const [activeIndex, setActiveIndex] = useState(null)
   const [hoveredIndex, setHoveredIndex] = useState(null)
 
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index)
+  }
+
   return (
     <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -26,14 +30,14 @@ export default function FAQ({ faqs }) {
             Frequently Asked Questions
           </h2>
           <p className="text-blue-100 max-w-2xl mx-auto text-lg">
-            Find answers to common questions about our courses, admissions, and services
+            Find answers to common questions about MBBS abroad, medical education, and our consultation services
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
           {faqs.map((faq, index) => (
             <div
-              key={index}
+              key={faq.index || index}
               className={`group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-white/20 ${activeIndex === index ? 'bg-white/20 shadow-2xl' : 'hover:shadow-xl'
                 }`}
               onMouseEnter={() => setHoveredIndex(index)}
@@ -41,17 +45,15 @@ export default function FAQ({ faqs }) {
             >
               {/* Question Button */}
               <button
-                className={`w-full flex justify-between items-center p-6 text-left transition-all duration-300 ${activeIndex === index ? 'pb-4' : ''
-                  }`}
-                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                className="w-full flex justify-between items-center p-6 text-left transition-all duration-300"
+                onClick={() => toggleFAQ(index)}
               >
                 <div className="flex items-start">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 transition-all duration-300 ${hoveredIndex === index || activeIndex === index
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg'
                       : 'bg-white/20'
                     }`}>
-                    <i className={`bi bi-question-circle text-white transition-all duration-300 ${activeIndex === index ? 'rotate-180' : ''
-                      }`}></i>
+                    <i className="bi bi-question-circle text-white"></i>
                   </div>
                   <span className={`font-semibold text-lg leading-relaxed transition-colors duration-300 ${hoveredIndex === index || activeIndex === index ? 'text-white' : 'text-blue-100'
                     }`}>
@@ -69,20 +71,19 @@ export default function FAQ({ faqs }) {
               </button>
 
               {/* Answer Content */}
-              <div className={`overflow-hidden transition-all duration-500 ${activeIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}>
-                <div className="px-6 pb-6">
+              {activeIndex === index && (
+                <div className="px-6 pb-6 animate-fade-in">
                   <div className="pl-14 pr-12">
                     <div className="h-px bg-gradient-to-r from-blue-400/50 via-purple-400/50 to-transparent mb-4"></div>
-                    <p className="text-blue-100 leading-relaxed">
+                    <p className="text-blue-100 leading-relaxed text-base">
                       {faq.answer}
                     </p>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Hover Border Effect */}
-              <div className={`absolute inset-0 border-2 rounded-2xl transition-all duration-300 ${hoveredIndex === index || activeIndex === index
+              <div className={`absolute inset-0 border-2 rounded-2xl transition-all duration-300 pointer-events-none ${hoveredIndex === index || activeIndex === index
                   ? 'border-blue-400/50'
                   : 'border-transparent'
                 }`}></div>
@@ -100,21 +101,38 @@ export default function FAQ({ faqs }) {
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold mb-4 text-white">Still have questions?</h3>
             <p className="text-blue-100 mb-6">
-              Can't find the answer you're looking for? Our support team is here to help you.
+              Can't find the answer you're looking for? Our medical education consultants are here to help you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <a href="/contactUs" className="bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center">
                 <i className="bi bi-chat-dots-fill mr-2"></i>
-                Live Chat
-              </button>
-              <button className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/50">
-                <i className="bi bi-envelope-fill mr-2"></i>
-                Email Support
-              </button>
+                Contact Us
+              </a>
+              <a href="tel:+917898025252" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/50 inline-block text-center">
+                <i className="bi bi-telephone-fill mr-2"></i>
+                Call Now
+              </a>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out forwards;
+        }
+      `}</style>
     </section>
   )
 }
