@@ -275,7 +275,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-6">
               {navLinks.map((link) => (
                 <div key={link.href} className="relative">
                   {link.hasDropdown ? (
@@ -326,7 +326,7 @@ export default function Navbar() {
                           setIsMbbsAbroadOpen(false)
                         }
                       }}
-                      className={`relative font-semibold transition-colors ${isActive(link.href) ||
+                      className={`relative font-medium text-sm transition-colors flex items-center gap-1 whitespace-nowrap ${isActive(link.href) ||
                         (link.isAbout ? isAboutOpen :
                           link.isStudyIndia ? isStudyIndiaOpen :
                             link.isMbbsAbroad ? isMbbsAbroadOpen :
@@ -335,16 +335,21 @@ export default function Navbar() {
                         : 'text-gray-700 hover:text-blue-700'
                         }`}
                     >
-                      {link.label}
-                      <span className={`ml-1 align-middle inline-block transition-transform ${(link.isAbout ? isAboutOpen :
-                        link.isStudyIndia ? isStudyIndiaOpen :
-                          link.isMbbsAbroad ? isMbbsAbroadOpen :
-                            link.isStudyAbroad ? isStudyAbroadOpen : false) ? 'rotate-180' : ''
-                        }`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                        </svg>
-                      </span>
+                      <span>{link.label}</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className={`w-3 h-3 transition-transform duration-200 ${(link.isAbout ? isAboutOpen :
+                          link.isStudyIndia ? isStudyIndiaOpen :
+                            link.isMbbsAbroad ? isMbbsAbroadOpen :
+                              link.isStudyAbroad ? isStudyAbroadOpen : false) ? 'rotate-180' : ''
+                          }`}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
                       {(isActive(link.href) ||
                         (link.isAbout ? isAboutOpen :
                           link.isStudyIndia ? isStudyIndiaOpen :
@@ -356,7 +361,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={link.href}
-                      className={`relative font-semibold transition-colors ${isActive(link.href)
+                      className={`relative font-medium text-sm transition-colors whitespace-nowrap ${isActive(link.href)
                         ? 'text-blue-700'
                         : 'text-gray-700 hover:text-blue-700'
                         }`}
@@ -400,18 +405,16 @@ export default function Navbar() {
                           {Object.entries(studyIndiaTypes).map(([type, { label }]) => (
                             <button
                               key={type}
-                              className={`w-full flex justify-between text-left py-4 px-4 ${selectedStudyType === type
+                              className={`w-full flex justify-between items-center text-left py-4 px-4 ${selectedStudyType === type
                                 ? 'bg-blue-100 text-blue-800 font-semibold border-r-2 border-blue-500'
                                 : 'hover:bg-blue-100 text-gray-700'
                                 }`}
                               onMouseEnter={() => setSelectedStudyType(type)}
                             >
-                              {label}
-                              <span className="ml-1 align-middle inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                                </svg>
-                              </span>
+                              <span>{label}</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                              </svg>
                             </button>
                           ))}
                         </div>
@@ -495,11 +498,11 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Right Buttons */}
-            <div className="hidden lg:flex items-center space-x-4">
-              <button className="px-4 py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 text-sm">
+            <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
+              <button className="px-3 py-2 border-2 border-blue-600 text-blue-600 font-medium rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 text-xs whitespace-nowrap">
                 <a href='tel:8507700177'>Call Us</a>
               </button>
-              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-5 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 hover:shadow-lg transition-all duration-300 shadow-md text-sm">
+              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-3 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 hover:shadow-lg transition-all duration-300 shadow-md text-xs whitespace-nowrap">
                 Download App
               </Link>
             </div>
@@ -548,7 +551,7 @@ export default function Navbar() {
                           }
                           setExpandedMobileType(null)
                         }}
-                        className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${isActive(link.href) ||
+                        className={`w-full flex justify-between items-center text-left px-4 py-3 rounded-lg transition-colors ${isActive(link.href) ||
                           (link.isAbout ? isAboutOpen :
                             link.isStudyIndia ? isStudyIndiaOpen :
                               link.isMbbsAbroad ? isMbbsAbroadOpen :
@@ -557,16 +560,21 @@ export default function Navbar() {
                           : 'text-gray-700 hover:bg-blue-50'
                           }`}
                       >
-                        {link.label}
-                        <span className={`ml-2 inline-block align-middle transition-transform ${(link.isAbout ? isAboutOpen :
-                          link.isStudyIndia ? isStudyIndiaOpen :
-                            link.isMbbsAbroad ? isMbbsAbroadOpen :
-                              link.isStudyAbroad ? isStudyAbroadOpen : false) ? 'rotate-180' : ''
-                          }`}>
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                          </svg>
-                        </span>
+                        <span>{link.label}</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={2}
+                          stroke="currentColor"
+                          className={`w-4 h-4 transition-transform duration-200 ${(link.isAbout ? isAboutOpen :
+                            link.isStudyIndia ? isStudyIndiaOpen :
+                              link.isMbbsAbroad ? isMbbsAbroadOpen :
+                                link.isStudyAbroad ? isStudyAbroadOpen : false) ? 'rotate-180' : ''
+                            }`}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
                       </button>
 
                       {/* About Mobile Dropdown */}
@@ -605,13 +613,17 @@ export default function Navbar() {
                                     : 'hover:bg-blue-100 text-gray-700'
                                     }`}
                                 >
-                                  {label}
-                                  <span className={`transition-transform duration-200 ${expandedMobileType === type ? 'rotate-180' : ''
-                                    }`}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-4">
-                                      <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                    </svg>
-                                  </span>
+                                  <span>{label}</span>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={2}
+                                    stroke="currentColor"
+                                    className={`w-4 h-4 transition-transform duration-200 ${expandedMobileType === type ? 'rotate-180' : ''}`}
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                  </svg>
                                 </button>
 
                                 <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
