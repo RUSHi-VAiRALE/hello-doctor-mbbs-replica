@@ -270,11 +270,6 @@ export default function Footer() {
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <i className="bi bi-headset text-purple-400"></i>
-                    <p className="text-blue-100">+91 9039038655</p>
-                  </div>
-
-                  <div className="flex items-center space-x-3">
                     <i className="bi bi-envelope-fill text-red-400"></i>
                     <p className="text-blue-100">Email : mbbsyaatra@gmail.com</p>
                   </div>

@@ -499,10 +499,10 @@ export default function Navbar() {
 
             {/* Desktop Right Buttons */}
             <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
-              <button className="px-3 py-2 border-2 border-blue-600 text-blue-600 font-medium rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 text-xs whitespace-nowrap">
-                <a href='tel:8507700177'>Call Us</a>
+              <button className="px-5 py-2 border-2 border-blue-600 text-blue-600 font-medium text-md rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 whitespace-nowrap">
+                <a href='tel:9039038655'>Call Us</a>
               </button>
-              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-3 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 hover:shadow-lg transition-all duration-300 shadow-md text-xs whitespace-nowrap">
+              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-5 py-2 bg-blue-600 text-white font-medium text-md rounded-full hover:bg-blue-700 hover:shadow-lg transition-all duration-300 shadow-md whitespace-nowrap">
                 Download App
               </Link>
             </div>
@@ -711,7 +711,7 @@ export default function Navbar() {
               {/* Mobile Buttons */}
               <div className="px-4 py-3 space-y-3">
                 <button className="w-full px-4 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white transition-colors">
-                  <a href='tel:8507700177' className='w-full'>Call Us</a>
+                  <a href='tel:9039038655' className='w-full'>Call Us</a>
                 </button>
                 <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-full text-center hover:bg-blue-700 transition-all shadow-md">
                   Download App
