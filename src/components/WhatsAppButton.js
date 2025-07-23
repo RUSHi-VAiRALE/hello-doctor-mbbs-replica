@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 export default function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false);
-  
+
   // Show button after scrolling down a bit
   useEffect(() => {
     const toggleVisibility = () => {
@@ -13,32 +13,32 @@ export default function WhatsAppButton() {
         setIsVisible(false);
       }
     };
-    
+
     window.addEventListener('scroll', toggleVisibility);
-    
+
     // Make button visible by default after a short delay
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 2000);
-    
+
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
       clearTimeout(timer);
     };
   }, []);
-  
+
   const openWhatsApp = () => {
     // Replace with your actual WhatsApp number
-    const phoneNumber = '918507700177';
-    const message = 'Hello! I would like to know more about CLATians courses.';
-    
+    const phoneNumber = '9039038655';
+    const message = 'Hello! I would like to know more about MBBSYAATRA.';
+
     // Create WhatsApp URL with pre-filled message
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    
+
     // Open in new tab
     window.open(whatsappUrl, '_blank');
   };
-  
+
   return (
     <>
       {isVisible && (

@@ -10,44 +10,43 @@ const socialLinks = [
   { platform: 'https://www.facebook.com/mbbsyaatra', icon: 'bi-facebook', color: 'text-[#1877F2] hover:bg-[#1877F2]' },
   { platform: 'https://www.instagram.com/mbbsyaatra/', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
   { platform: 'https://www.linkedin.com/in/mbbsyaatra/', icon: 'bi-linkedin', color: 'text-[#0A66C2] hover:bg-[#0A66C2]' },
-  { platform: 'https://twitter.com/mbbsyaatra', icon: 'bi-twitter-x', color: 'text-[#000000] hover:bg-[#000000]' },
 ]
 
 const quickLinks = [
   { text: 'Home', link: '/' },
   { text: 'About Us', link: '/about' },
   { text: 'Photo Gallery', link: '/gallery' },
-  { text: 'Study in India', link: '/courses' },
-  { text: 'MBBS Abroad', link: '/courses' },
-  { text: 'Study Abroad', link: '/courses' },
-  { text: 'Blog', link: '/blogs' },
-  { text: 'Careers', link: '/careers' },
+  { text: 'Study in India', link: '/mbbs-rajasthan' },
+  { text: 'MBBS Abroad', link: '/mbbs-rajasthan' },
+  { text: 'Study Abroad', link: '/mbbs-rajasthan' },
+  { text: 'Blog', link: '/blog' },
+  { text: 'Careers', link: '/career' },
   { text: 'Contact us', link: '/contactUs' },
   { text: 'Enquire Now', link: '/contactUs' }
 ]
 
 const studyMBBSIndia = [
-  { text: 'MBBS in Rajasthan', link: '/courses' },
-  { text: 'MBBS in Maharashtra', link: '/courses' },
-  { text: 'MBBS in Gujarat', link: '/courses' },
-  { text: 'MBBS in Madhya Pradesh', link: '/courses' },
-  { text: 'MBBS in Uttar Pradesh', link: '/courses' },
-  { text: 'MBBS in Bihar', link: '/courses' },
-  { text: 'MBBS in Haryana', link: '/courses' },
-  { text: 'MBBS in Delhi', link: '/courses' },
-  { text: 'MBBS in Karnataka', link: '/courses' },
-  { text: 'Deemed Colleges UG', link: '/courses' }
+  { text: 'MBBS in Rajasthan', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Maharashtra', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Gujarat', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Madhya Pradesh', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Uttar Pradesh', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Bihar', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Haryana', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Delhi', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Karnataka', link: '/mbbs-rajasthan' },
+  { text: 'Deemed Colleges UG', link: '/mbbs-rajasthan' }
 ]
 
 const studyAbroad = [
-  { text: 'Study in USA', link: '/courses' },
-  { text: 'Study in Canada', link: '/courses' },
-  { text: 'Study in UK', link: '/courses' },
-  { text: 'Study in Australia', link: '/courses' },
-  { text: 'MBBS in Nepal', link: '/courses' },
-  { text: 'MBBS in Russia', link: '/courses' },
-  { text: 'MBBS in Georgia', link: '/courses' },
-  { text: 'MBBS in Kyrgyzstan', link: '/courses' }
+  { text: 'Study in USA', link: '/mbbs-rajasthan' },
+  { text: 'Study in Canada', link: '/mbbs-rajasthan' },
+  { text: 'Study in UK', link: '/mbbs-rajasthan' },
+  { text: 'Study in Australia', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Nepal', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Russia', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Georgia', link: '/mbbs-rajasthan' },
+  { text: 'MBBS in Kyrgyzstan', link: '/mbbs-rajasthan' }
 ]
 
 export default function Footer() {
@@ -261,18 +260,18 @@ export default function Footer() {
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-telephone-fill text-green-400"></i>
                     <div>
-                      <p className="text-blue-100">India : +91 7898025252</p>
+                      <p className="text-blue-100">+91 7898025252</p>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-telephone-fill text-blue-400"></i>
-                    <p className="text-blue-100">Overseas : +91 9039038655</p>
+                    <p className="text-blue-100">+91 9039038655</p>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-headset text-purple-400"></i>
-                    <p className="text-blue-100">General Inquiry : +91 9039038655</p>
+                    <p className="text-blue-100">+91 9039038655</p>
                   </div>
 
                   <div className="flex items-center space-x-3">
