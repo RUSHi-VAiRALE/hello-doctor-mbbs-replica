@@ -1,43 +1,37 @@
 export default function SocialMedia() {
   const socialLinks = [
     {
-      platform: 'https://www.facebook.com/IEECLATians',
+      platform: 'https://www.facebook.com/mbbsyaatra',
       icon: 'bi-facebook',
       color: 'from-blue-600 to-blue-700',
       name: 'Facebook'
     },
     {
-      platform: 'https://www.instagram.com/clatians/',
+      platform: 'https://www.instagram.com/mbbsyaatra/',
       icon: 'bi-instagram',
       color: 'from-pink-500 to-purple-600',
       name: 'Instagram'
     },
     {
-      platform: 'https://www.youtube.com/@CLATians',
+      platform: 'https://www.youtube.com/@mbbsyaatra',
       icon: 'bi-youtube',
       color: 'from-red-500 to-red-600',
       name: 'YouTube'
     },
     {
-      platform: 'https://t.me/CLATians',
+      platform: 'https://t.me/mbbsyaatra',
       icon: 'bi-telegram',
       color: 'from-blue-400 to-blue-500',
       name: 'Telegram'
     },
     {
-      platform: 'https://g.co/kgs/3NcAYmD',
+      platform: '',
       icon: 'bi-google',
       color: 'from-red-500 to-orange-500',
       name: 'Google'
     },
     {
-      platform: 'https://twitter.com/CLATians',
-      icon: 'bi-twitter-x',
-      color: 'from-gray-800 to-black',
-      name: 'Twitter'
-    },
-    {
-      platform: 'https://www.linkedin.com/in/clatians/',
+      platform: 'https://www.linkedin.com/in/mbbsyaatra/',
       icon: 'bi-linkedin',
       color: 'from-blue-600 to-blue-700',
       name: 'LinkedIn'
@@ -73,7 +67,7 @@ export default function SocialMedia() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 mb-12">
           {socialLinks.map((social, index) => (
             <a
-              key={social.platform}
+              key={social.name}
               href={social.platform}
               target="_blank"
               rel="noopener noreferrer"
