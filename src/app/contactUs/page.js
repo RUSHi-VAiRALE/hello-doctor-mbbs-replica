@@ -246,11 +246,10 @@ export default function ContactSection() {
 
                 <div className="flex gap-4">
                   {[
-                    { href: "https://www.facebook.com/IEECLATians", icon: "bi-facebook", color: "from-blue-500 to-blue-600" },
-                    { href: "https://www.instagram.com/clatians/", icon: "bi-instagram", color: "from-pink-500 to-purple-600" },
-                    { href: "https://twitter.com/CLATians", icon: "bi-twitter-x", color: "from-gray-700 to-gray-800" },
-                    { href: "https://www.linkedin.com/in/clatians/", icon: "bi-linkedin", color: "from-blue-600 to-blue-700" },
-                    { href: "https://www.youtube.com/@CLATians", icon: "bi-youtube", color: "from-red-500 to-red-600" }
+                    { href: "https://www.facebook.com/mbbsyaatra", icon: "bi-facebook", color: "from-blue-500 to-blue-600" },
+                    { href: "https://www.instagram.com/mbbsyaatra/", icon: "bi-instagram", color: "from-pink-500 to-purple-600" },
+                    { href: "https://www.linkedin.com/in/mbbsyaatra/", icon: "bi-linkedin", color: "from-blue-600 to-blue-700" },
+                    { href: "https://www.youtube.com/@mbbsyaatra", icon: "bi-youtube", color: "from-red-500 to-red-600" }
                   ].map((social, index) => (
                     <a
                       key={index}
