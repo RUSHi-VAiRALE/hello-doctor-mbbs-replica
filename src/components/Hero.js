@@ -1,39 +1,35 @@
 'use client'
 import { useState } from 'react'
 import { Carousel } from '@/components/ui/Carousel'
-import Desk1 from '../../public/Desk1.webp'
-import Desk2 from '../../public/Desk2.webp'
-import Desk3 from '../../public/Desk3.webp'
-import Desk4 from '../../public/Desk4.webp'
-import Mob1 from '../../public/Mob1.webp'
-import Mob2 from '../../public/Mob2.webp'
-import Mob3 from '../../public/Mob3.webp'
-import Mob4 from '../../public/Mob4.webp'
+import Pic1 from '../../public/pic1.png'
+import Pic2 from '../../public/pic2.png'
+import Pic3 from '../../public/pic3.png'
+import Pic4 from '../../public/pic4.png'
 
 const slides =
   [
     {
       id: 1,
-      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
-      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      image: Pic1,
+      mobileImage: Pic1,
       alt: "Slide 1"
     },
     {
       id: 2,
-      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
-      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      image: Pic2,
+      mobileImage: Pic2,
       alt: "Slide 2"
     },
     {
       id: 3,
-      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
-      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      image: Pic3,
+      mobileImage: Pic3,
       alt: "Slide 3"
     },
     {
       id: 4,
-      image: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
-      mobileImage: "https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg",
+      image: Pic4,
+      mobileImage: Pic4,
       alt: "Slide 4"
     }
   ]
