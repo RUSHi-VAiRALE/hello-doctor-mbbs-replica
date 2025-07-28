@@ -53,7 +53,7 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
               src={slide.mobileImage || slide.image}
               alt={slide.alt}
               fill
-              className="object-contain block md:hidden"
+              className="object-contain md:hidden"
               priority={isActive}
               sizes="100vw"
               quality={isActive ? 90 : 75}
