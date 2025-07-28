@@ -5,31 +5,34 @@ import Pic1 from '../../public/pic1.png'
 import Pic2 from '../../public/pic2.png'
 import Pic3 from '../../public/pic3.png'
 import Pic4 from '../../public/pic4.png'
+import Mob1 from '../../public/mob1.png'
+import Mob2 from '../../public/mob2.png'
+import Mob3 from '../../public/mob3.png'
 
 const slides =
   [
     {
       id: 1,
       image: Pic1,
-      mobileImage: Pic1,
+      mobileImage: Mob1,
       alt: "Slide 1"
     },
     {
       id: 2,
       image: Pic2,
-      mobileImage: Pic2,
+      mobileImage: Mob2,
       alt: "Slide 2"
     },
     {
       id: 3,
       image: Pic3,
-      mobileImage: Pic3,
+      mobileImage: Mob3,
       alt: "Slide 3"
     },
     {
       id: 4,
       image: Pic4,
-      mobileImage: Pic4,
+      mobileImage: Mob3,
       alt: "Slide 4"
     }
   ]
@@ -38,7 +41,7 @@ export default function Hero({ height }) {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   return (
-    <section className="relative w-full h-96 md:h-[400px] lg:h-[500px] overflow-hidden shadow-lg shadow-gray-300/50">
+    <section className="relative w-full h-[400px] lg:h-[500px] overflow-hidden shadow-lg shadow-gray-300/50">
       <Carousel
         slides={slides}
         currentSlide={currentSlide}

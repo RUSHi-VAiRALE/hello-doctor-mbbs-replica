@@ -421,8 +421,8 @@ export default function Navbar() {
                         {/* Course List */}
                         <div className="w-2/3 p-4">
                           <div className="space-y-3">
-                            {studyIndiaTypes[selectedStudyType].courses.map((course) => (
-                              <div key={course.href}>
+                            {studyIndiaTypes[selectedStudyType].courses.map((course, index) => (
+                              <div key={index}>
                                 <Link
                                   href={course.href}
                                   className="block px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all shadow-md font-medium"
@@ -431,9 +431,9 @@ export default function Navbar() {
                                 </Link>
                                 {course.subcourses && (
                                   <div className="ml-4 mt-2 space-y-1">
-                                    {course.subcourses.map((subcourse) => (
+                                    {course.subcourses.map((subcourse, index) => (
                                       <Link
-                                        key={subcourse.href}
+                                        key={index}
                                         href={subcourse.href}
                                         className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
                                       >
@@ -458,9 +458,9 @@ export default function Navbar() {
                     >
                       <div className="p-4">
                         <div className="space-y-2">
-                          {mbbsAbroadCourses.map((course) => (
+                          {mbbsAbroadCourses.map((course, index) => (
                             <Link
-                              key={course.href}
+                              key={index}
                               href={course.href}
                               className="block px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md font-medium"
                             >
@@ -480,9 +480,9 @@ export default function Navbar() {
                     >
                       <div className="p-4">
                         <div className="space-y-2">
-                          {studyAbroadCourses.map((course) => (
+                          {studyAbroadCourses.map((course, index) => (
                             <Link
-                              key={course.href}
+                              key={index}
                               href={course.href}
                               className="block px-4 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all shadow-md font-medium"
                             >
@@ -629,8 +629,8 @@ export default function Navbar() {
                                 <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                                   }`}>
                                   <div className="p-4 space-y-3">
-                                    {courses.map((course) => (
-                                      <div key={course.href}>
+                                    {courses.map((course, index) => (
+                                      <div key={index}>
                                         <Link
                                           href={course.href}
                                           className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-center font-medium"
@@ -639,9 +639,9 @@ export default function Navbar() {
                                         </Link>
                                         {course.subcourses && (
                                           <div className="ml-2 mt-2 space-y-1">
-                                            {course.subcourses.map((subcourse) => (
+                                            {course.subcourses.map((subcourse, index) => (
                                               <Link
-                                                key={subcourse.href}
+                                                key={index}
                                                 href={subcourse.href}
                                                 className="block px-2 py-1 text-sm text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
                                               >
@@ -664,9 +664,9 @@ export default function Navbar() {
                       {link.isMbbsAbroad && isMbbsAbroadOpen && (
                         <div className="mt-2 mx-2">
                           <div className="bg-blue-50 rounded-lg shadow-lg p-3 space-y-2">
-                            {mbbsAbroadCourses.map((course) => (
+                            {mbbsAbroadCourses.map((course, index) => (
                               <Link
-                                key={course.href}
+                                key={index}
                                 href={course.href}
                                 className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-center font-medium"
                               >
@@ -681,9 +681,9 @@ export default function Navbar() {
                       {link.isStudyAbroad && isStudyAbroadOpen && (
                         <div className="mt-2 mx-2">
                           <div className="bg-blue-50 rounded-lg shadow-lg p-3 space-y-2">
-                            {studyAbroadCourses.map((course) => (
+                            {studyAbroadCourses.map((course, index) => (
                               <Link
-                                key={course.href}
+                                key={index}
                                 href={course.href}
                                 className="block px-3 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all text-center font-medium"
                               >

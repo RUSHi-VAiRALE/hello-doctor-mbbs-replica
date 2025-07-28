@@ -50,10 +50,9 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
 
             {/* Mobile Image */}
             <Image
-              src={slide.mobileImage || slide.image}
+              src={slide.mobileImage}
               alt={slide.alt}
-              fill
-              className="object-contain md:hidden"
+              className="object-cover aspect-square md:hidden"
               priority={isActive}
               sizes="100vw"
               quality={isActive ? 90 : 75}

@@ -331,7 +331,7 @@ export default function MBBSRajasthanPage() {
                                 </div>
                                 <div className="flex items-center">
                                     <FaEnvelope className="mr-3 text-yellow-300" />
-                                    <span className="text-sm">info@dishaconsultancy.org</span>
+                                    <span className="text-sm">info@mbbsyaatra.com</span>
                                 </div>
                             </div>
                             <button className="w-full bg-white text-blue-600 py-2 px-4 rounded-lg font-semibold mt-4 hover:bg-blue-50 transition-colors">
