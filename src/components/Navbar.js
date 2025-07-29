@@ -100,8 +100,8 @@ export default function Navbar() {
     { href: '/study-india', label: 'Study in India', hasDropdown: true, isStudyIndia: true },
     { href: '/mbbs-abroad', label: 'MBBS Abroad', hasDropdown: true, isMbbsAbroad: true },
     { href: '/study-abroad', label: 'Study Abroad', hasDropdown: true, isStudyAbroad: true },
-    { href: '/blog', label: 'Blog' },
-    { href: '/career', label: 'Careers' },
+    { href: '/blogs', label: 'Blog' },
+    { href: '/careers', label: 'Careers' },
     { href: '/contactUs', label: 'Contact Us' }
   ]
 
