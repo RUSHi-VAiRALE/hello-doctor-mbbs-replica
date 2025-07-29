@@ -9,7 +9,11 @@ export default function MBBSUploadPage() {
     const [message, setMessage] = useState({ type: '', text: '' })
 
     const [formData, setFormData] = useState({
+        category: '',
+        subcategory: '',
+        customField: '',
         title: '',
+        slug: '',
         subtitle: '',
         description: '',
         heroImage: '',
@@ -28,12 +32,59 @@ export default function MBBSUploadPage() {
         documents: ['']
     })
 
+    // Category options
+    const categoryOptions = {
+        'study-in-india': {
+            label: 'Study in India',
+            subcategories: {
+                'mbbs': 'MBBS',
+                'engineering': 'Engineering'
+            }
+        },
+        'study-abroad': {
+            label: 'Study Abroad',
+            subcategories: {}
+        },
+        'mbbs-abroad': {
+            label: 'MBBS Abroad',
+            subcategories: {}
+        }
+    }
+
+    // Generate slug from title
+    const generateSlug = (title) => {
+        return title
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '') // Remove special characters
+            .replace(/[\s_-]+/g, '-') // Replace spaces and underscores with hyphens
+            .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+    }
+
     const handleInputChange = (e) => {
         const { name, value } = e.target
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }))
+
+        // Auto-generate slug when title changes
+        if (name === 'title') {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value,
+                slug: generateSlug(value)
+            }))
+        } else if (name === 'category') {
+            // Reset subcategory and customField when category changes
+            setFormData(prev => ({
+                ...prev,
+                [name]: value,
+                subcategory: '',
+                customField: ''
+            }))
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        }
     }
 
     const handleCollegeChange = (index, field, value) => {
@@ -98,6 +149,13 @@ export default function MBBSUploadPage() {
     const validateForm = () => {
         const errors = []
 
+        if (!formData.category.trim()) errors.push('Category is required')
+        if (formData.category === 'study-in-india' && !formData.subcategory.trim()) {
+            errors.push('Subcategory is required for Study in India')
+        }
+        if (formData.category === 'study-in-india' && !formData.customField.trim()) {
+            errors.push('Custom field is required for Study in India')
+        }
         if (!formData.title.trim()) errors.push('Title is required')
         if (!formData.subtitle.trim()) errors.push('Subtitle is required')
         if (!formData.description.trim()) errors.push('Description is required')
@@ -165,7 +223,11 @@ export default function MBBSUploadPage() {
 
             // Reset form
             setFormData({
+                category: '',
+                subcategory: '',
+                customField: '',
                 title: '',
+                slug: '',
                 subtitle: '',
                 description: '',
                 heroImage: '',
@@ -231,6 +293,65 @@ export default function MBBSUploadPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Category *
+                                </label>
+                                <select
+                                    name="category"
+                                    value={formData.category}
+                                    onChange={handleInputChange}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    required
+                                >
+                                    <option value="">Select Category</option>
+                                    {Object.entries(categoryOptions).map(([key, option]) => (
+                                        <option key={key} value={key}>
+                                            {option.label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            {formData.category === 'study-in-india' && (
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Subcategory *
+                                    </label>
+                                    <select
+                                        name="subcategory"
+                                        value={formData.subcategory}
+                                        onChange={handleInputChange}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        required
+                                    >
+                                        <option value="">Select Subcategory</option>
+                                        {Object.entries(categoryOptions['study-in-india'].subcategories).map(([key, label]) => (
+                                            <option key={key} value={key}>
+                                                {label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
+
+                            {formData.category === 'study-in-india' && formData.subcategory && (
+                                <div className={formData.category === 'study-in-india' ? 'md:col-span-2' : ''}>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Custom Field *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="customField"
+                                        value={formData.customField}
+                                        onChange={handleInputChange}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        placeholder="Enter custom field value"
+                                        required
+                                    />
+                                </div>
+                            )}
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Title *
                                 </label>
                                 <input
@@ -241,6 +362,21 @@ export default function MBBSUploadPage() {
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                     placeholder="e.g., STUDY MBBS IN RAJASTHAN"
                                     required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Slug (Auto-generated)
+                                </label>
+                                <input
+                                    type="text"
+                                    name="slug"
+                                    value={formData.slug}
+                                    onChange={handleInputChange}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50"
+                                    placeholder="auto-generated-from-title"
+                                    readOnly
                                 />
                             </div>
 

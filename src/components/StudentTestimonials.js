@@ -5,113 +5,59 @@ import { collection, getDocs, getFirestore, orderBy, query } from 'firebase/fire
 import { app } from '@/firebase'
 
 export default function StudentTestimonials() {
-  const [testimonials, setTestimonials] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  // Fetch testimonials from Firebase
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const db = getFirestore(app)
-        const testimonialsCollection = collection(db, "testimonials")
-        const q = query(testimonialsCollection, orderBy("createdAt", "asc"));
-        const testimonialsSnapshot = await getDocs(q)
-        const testimonialsData = testimonialsSnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-
-        if (testimonialsData.length > 0) {
-          setTestimonials(testimonialsData)
-        } else {
-          // Fallback data if no testimonials found
-          setTestimonials([
-            {
-              id: "1",
-              name: "Rajasthan",
-              image: "https://cdn.pixabay.com/photo/2016/06/14/17/03/india-1457055_1280.jpg",
-              description: "Top MBBS colleges with excellent infrastructure"
-            },
-            {
-              id: "2",
-              name: "Maharashtra",
-              image: "https://cdn.pixabay.com/photo/2018/08/13/18/40/gateway-3603678_1280.jpg",
-              description: "Premier medical education destination"
-            },
-            {
-              id: "3",
-              name: "Gujarat",
-              image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&h=300&fit=crop",
-              description: "Quality medical colleges with modern facilities"
-            },
-            {
-              id: "4",
-              name: "Madhya Pradesh",
-              image: "https://cdn.pixabay.com/photo/2018/12/17/15/04/mahadev-3880558_1280.jpg",
-              description: "Affordable medical education options"
-            },
-            {
-              id: "5",
-              name: "Uttar Pradesh",
-              image: "https://cdn.pixabay.com/photo/2014/06/30/08/09/taj-mahal-380045_1280.jpg",
-              description: "Renowned medical institutions"
-            },
-            {
-              id: "6",
-              name: "Bihar",
-              image: "https://cdn.pixabay.com/photo/2022/03/11/15/46/mausoleum-7062519_1280.jpg",
-              description: "Growing medical education hub"
-            },
-            {
-              id: "7",
-              name: "Delhi",
-              image: "https://cdn.pixabay.com/photo/2022/04/13/13/55/india-7130382_1280.jpg",
-              description: "Capital's premier medical colleges"
-            },
-            {
-              id: "8",
-              name: "Karnataka",
-              image: "https://cdn.pixabay.com/photo/2019/12/20/11/03/pettadkal-4708204_1280.jpg",
-              description: "South India's medical education center"
-            }
-          ])
-        }
-      } catch (error) {
-        console.error("Error fetching testimonials:", error)
-        // Fallback data in case of error
-        setTestimonials([
-          {
-            id: "1",
-            name: "Rajasthan",
-            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=300&fit=crop",
-            description: "Top MBBS colleges with excellent infrastructure"
-          },
-          {
-            id: "2",
-            name: "Maharashtra",
-            image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=500&h=300&fit=crop",
-            description: "Premier medical education destination"
-          },
-          {
-            id: "3",
-            name: "Gujarat",
-            image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&h=300&fit=crop",
-            description: "Quality medical colleges with modern facilities"
-          },
-          {
-            id: "4",
-            name: "Madhya Pradesh",
-            image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=500&h=300&fit=crop",
-            description: "Affordable medical education options"
-          }
-        ])
-      } finally {
-        setLoading(false)
-      }
+  const [testimonials, setTestimonials] = useState([
+    {
+      id: "1",
+      name: "Rajasthan",
+      image: "https://cdn.pixabay.com/photo/2016/06/14/17/03/india-1457055_1280.jpg",
+      description: "Top MBBS colleges with excellent infrastructure"
+    },
+    {
+      id: "2",
+      name: "Maharashtra",
+      image: "https://cdn.pixabay.com/photo/2018/08/13/18/40/gateway-3603678_1280.jpg",
+      description: "Premier medical education destination"
+    },
+    {
+      id: "3",
+      name: "Gujarat",
+      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&h=300&fit=crop",
+      description: "Quality medical colleges with modern facilities"
+    },
+    {
+      id: "4",
+      name: "Madhya Pradesh",
+      image: "https://cdn.pixabay.com/photo/2018/12/17/15/04/mahadev-3880558_1280.jpg",
+      description: "Affordable medical education options"
+    },
+    {
+      id: "5",
+      name: "Uttar Pradesh",
+      image: "https://cdn.pixabay.com/photo/2014/06/30/08/09/taj-mahal-380045_1280.jpg",
+      description: "Renowned medical institutions"
+    },
+    {
+      id: "6",
+      name: "Bihar",
+      image: "https://cdn.pixabay.com/photo/2022/03/11/15/46/mausoleum-7062519_1280.jpg",
+      description: "Growing medical education hub"
+    },
+    {
+      id: "7",
+      name: "Delhi",
+      image: "https://cdn.pixabay.com/photo/2022/04/13/13/55/india-7130382_1280.jpg",
+      description: "Capital's premier medical colleges"
+    },
+    {
+      id: "8",
+      name: "Karnataka",
+      image: "https://cdn.pixabay.com/photo/2019/12/20/11/03/pettadkal-4708204_1280.jpg",
+      description: "South India's medical education center"
     }
+  ])
+  const [loading, setLoading] = useState(false)
 
-    fetchTestimonials()
-  }, [])
+
 
   if (loading) {
     return (
