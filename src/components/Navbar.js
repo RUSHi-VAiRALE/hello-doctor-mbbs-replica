@@ -118,80 +118,47 @@ export default function Navbar() {
           {/* Left: Notification Marquee */}
           <div className="w-full lg:w-auto overflow-hidden mb-2 lg:mb-0">
             <marquee className="py-1.5 text-sm">
-              {notifications && notifications.length > 0 ? (
-                notifications.map((notification) => (
-                  <span
-                    key={notification.id}
-                    className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
-                    onMouseOver={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.stop();
-                    }}
-                    onMouseOut={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.start();
-                    }}
-                  >
-                    <Link
-                      href={notification.url || ""}
-                      onMouseOver={(e) => {
-                        const marquee = e.target.closest('marquee');
-                        if (marquee) marquee.stop();
-                        e.stopPropagation();
-                      }}
-                      onMouseOut={(e) => {
-                        const marquee = e.target.closest('marquee');
-                        if (marquee) marquee.start();
-                        e.stopPropagation();
-                      }}
-                    >
-                      {notification.icon && notification.icon} {notification.text}
-                    </Link>
-                  </span>
-                ))
-              ) : (
-                <>
-                  <span
-                    className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
-                    onMouseOver={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.stop();
-                    }}
-                    onMouseOut={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.start();
-                    }}
-                  >
-                    🎓 New Admissions Open!
-                  </span>
-                  <span
-                    className="bg-red-700 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
-                    onMouseOver={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.stop();
-                    }}
-                    onMouseOut={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.start();
-                    }}
-                  >
-                    🌟 Apply Now
-                  </span>
-                  <span
-                    className="bg-red-800 text-white px-3 py-1 rounded-full text-sm font-semibold"
-                    onMouseOver={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.stop();
-                    }}
-                    onMouseOut={(e) => {
-                      const marquee = e.target.closest('marquee');
-                      if (marquee) marquee.start();
-                    }}
-                  >
-                    🏆 Best Education Consultancy
-                  </span>
-                </>
-              )}
+              <>
+                <span
+                  className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
+                  onMouseOver={(e) => {
+                    const marquee = e.target.closest('marquee');
+                    if (marquee) marquee.stop();
+                  }}
+                  onMouseOut={(e) => {
+                    const marquee = e.target.closest('marquee');
+                    if (marquee) marquee.start();
+                  }}
+                >
+                  🎓 New Admissions Open!
+                </span>
+                <span
+                  className="bg-red-700 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
+                  onMouseOver={(e) => {
+                    const marquee = e.target.closest('marquee');
+                    if (marquee) marquee.stop();
+                  }}
+                  onMouseOut={(e) => {
+                    const marquee = e.target.closest('marquee');
+                    if (marquee) marquee.start();
+                  }}
+                >
+                  🌟 Apply Now
+                </span>
+                <span
+                  className="bg-red-800 text-white px-3 py-1 rounded-full text-sm font-semibold"
+                  onMouseOver={(e) => {
+                    const marquee = e.target.closest('marquee');
+                    if (marquee) marquee.stop();
+                  }}
+                  onMouseOut={(e) => {
+                    const marquee = e.target.closest('marquee');
+                    if (marquee) marquee.start();
+                  }}
+                >
+                  🏆 Best Education Consultancy
+                </span>
+              </>
             </marquee>
           </div>
 
