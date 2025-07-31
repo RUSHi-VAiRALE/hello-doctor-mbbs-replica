@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { FaArrowLeft, FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp, FaTelegram, FaEnvelope, FaLink } from 'react-icons/fa'
-
+import parse from 'html-react-parser'
 export default function BlogPost() {
     const [blogData, setBlogData] = useState(null)
     const [loading, setLoading] = useState(true)
