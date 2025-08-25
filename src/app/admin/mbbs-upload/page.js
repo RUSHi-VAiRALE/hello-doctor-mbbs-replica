@@ -1,16 +1,19 @@
 'use client'
 import { useState } from 'react'
-import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { getFirestore, collection, addDoc, serverTimestamp, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import { app } from '@/firebase'
-import { FaPlus, FaTrash, FaUniversity, FaGraduationCap, FaFileAlt, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa'
+import { FaPlus, FaTrash, FaUniversity, FaGraduationCap, FaFileAlt, FaCheckCircle, FaExclamationTriangle, FaEdit, FaEye } from 'react-icons/fa'
 
 export default function MBBSUploadPage() {
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState({ type: '', text: '' })
+    const [existingPrograms, setExistingPrograms] = useState([])
+    const [showExistingPrograms, setShowExistingPrograms] = useState(false)
 
     const [formData, setFormData] = useState({
         category: '',
         subcategory: '',
+        subSubcategory: '',
         customField: '',
         title: '',
         slug: '',
@@ -37,8 +40,25 @@ export default function MBBSUploadPage() {
         'study-in-india': {
             label: 'Study in India',
             subcategories: {
-                'mbbs': 'MBBS',
-                'engineering': 'Engineering'
+                'mbbs': {
+                    label: 'Medical',
+                    subSubcategories: {
+                        'mbbs': 'MBBS',
+                        'bds': 'BDS',
+                        'bams': 'BAMS',
+                        'bpharm': 'BPharm',
+                        'bpt': 'BPT',
+                        'bscn': 'BSc Nursing'
+                    }
+                },
+                'engineering': {
+                    label: 'Engineering',
+                    subSubcategories: {
+                        'computer': 'Computer Engineering',
+                        'mechanical': 'Mechanical Engineering',
+                        'electrical': 'Electrical Engineering'
+                    }
+                }
             }
         },
         'study-abroad': {
@@ -72,12 +92,20 @@ export default function MBBSUploadPage() {
                 slug: generateSlug(value)
             }))
         } else if (name === 'category') {
-            // Reset subcategory and customField when category changes
+            // Reset subcategory, subSubcategory and customField when category changes
             setFormData(prev => ({
                 ...prev,
                 [name]: value,
                 subcategory: '',
+                subSubcategory: '',
                 customField: ''
+            }))
+        } else if (name === 'subcategory') {
+            // Reset subSubcategory when subcategory changes
+            setFormData(prev => ({
+                ...prev,
+                [name]: value,
+                subSubcategory: ''
             }))
         } else {
             setFormData(prev => ({
@@ -153,6 +181,9 @@ export default function MBBSUploadPage() {
         if (formData.category === 'study-in-india' && !formData.subcategory.trim()) {
             errors.push('Subcategory is required for Study in India')
         }
+        if (formData.category === 'study-in-india' && !formData.subSubcategory.trim()) {
+            errors.push('Sub-subcategory is required for Study in India')
+        }
         if (formData.category === 'study-in-india' && !formData.customField.trim()) {
             errors.push('Custom field is required for Study in India')
         }
@@ -225,6 +256,7 @@ export default function MBBSUploadPage() {
             setFormData({
                 category: '',
                 subcategory: '',
+                subSubcategory: '',
                 customField: '',
                 title: '',
                 slug: '',
@@ -255,6 +287,69 @@ export default function MBBSUploadPage() {
         }
     }
 
+    // Fetch existing programs
+    const fetchExistingPrograms = async () => {
+        try {
+            const db = getFirestore(app, 'mbbsyatradb')
+            const querySnapshot = await getDocs(collection(db, "mbbsPrograms"))
+            const programs = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setExistingPrograms(programs)
+        } catch (error) {
+            console.error("Error fetching programs:", error)
+        }
+    }
+
+    // Delete program
+    const deleteProgram = async (programId) => {
+        if (window.confirm('Are you sure you want to delete this program?')) {
+            try {
+                const db = getFirestore(app, 'mbbsyatradb')
+                await deleteDoc(doc(db, "mbbsPrograms", programId))
+                setMessage({
+                    type: 'success',
+                    text: 'Program deleted successfully!'
+                })
+                fetchExistingPrograms()
+            } catch (error) {
+                console.error("Error deleting program:", error)
+                setMessage({
+                    type: 'error',
+                    text: 'Failed to delete program. Please try again.'
+                })
+            }
+        }
+    }
+
+    // Edit program
+    const editProgram = (program) => {
+        setFormData({
+            category: program.category || '',
+            subcategory: program.subcategory || '',
+            subSubcategory: program.subSubcategory || '',
+            customField: program.customField || '',
+            title: program.title || '',
+            slug: program.slug || '',
+            subtitle: program.subtitle || '',
+            description: program.description || '',
+            heroImage: program.heroImage || '',
+            state: program.state || '',
+            colleges: program.colleges || [{
+                name: '',
+                location: '',
+                fees: '',
+                seats: '',
+                ranking: '',
+                established: ''
+            }],
+            eligibility: program.eligibility || [''],
+            documents: program.documents || ['']
+        })
+        setShowExistingPrograms(false)
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="container mx-auto px-4 max-w-4xl">
@@ -281,6 +376,75 @@ export default function MBBSUploadPage() {
                         {message.text}
                     </div>
                 )}
+
+                {/* Existing Programs Section */}
+                <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-xl font-semibold text-gray-800 flex items-center">
+                            <FaEye className="mr-2 text-blue-600" />
+                            Existing Programs
+                        </h2>
+                        <div className="flex gap-2">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    if (showExistingPrograms) {
+                                        setShowExistingPrograms(false)
+                                    } else {
+                                        fetchExistingPrograms()
+                                        setShowExistingPrograms(true)
+                                    }
+                                }}
+                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                            >
+                                {showExistingPrograms ? 'Hide Programs' : 'View Programs'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {showExistingPrograms && (
+                        <div className="space-y-4">
+                            {existingPrograms.length === 0 ? (
+                                <p className="text-gray-500 text-center py-4">No programs found.</p>
+                            ) : (
+                                existingPrograms.map((program) => (
+                                    <div key={program.id} className="border border-gray-200 rounded-lg p-4">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex-1">
+                                                <h3 className="font-semibold text-gray-800">{program.title}</h3>
+                                                <p className="text-sm text-gray-600">{program.subtitle}</p>
+                                                <div className="flex gap-4 mt-2 text-xs text-gray-500">
+                                                    <span>Category: {program.category}</span>
+                                                    {program.subcategory && <span>Subcategory: {program.subcategory}</span>}
+                                                    {program.subSubcategory && <span>Sub-subcategory: {program.subSubcategory}</span>}
+                                                    <span>State: {program.state}</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => editProgram(program)}
+                                                    className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                                    title="Edit Program"
+                                                >
+                                                    <FaEdit className="w-4 h-4" />
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => deleteProgram(program.id)}
+                                                    className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                                                    title="Delete Program"
+                                                >
+                                                    <FaTrash className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    )}
+                </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
                     {/* Basic Information */}
@@ -324,7 +488,29 @@ export default function MBBSUploadPage() {
                                         required
                                     >
                                         <option value="">Select Subcategory</option>
-                                        {Object.entries(categoryOptions['study-in-india'].subcategories).map(([key, label]) => (
+                                        {Object.entries(categoryOptions['study-in-india'].subcategories).map(([key, subcategory]) => (
+                                            <option key={key} value={key}>
+                                                {subcategory.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
+
+                            {formData.category === 'study-in-india' && formData.subcategory && (
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Sub-subcategory *
+                                    </label>
+                                    <select
+                                        name="subSubcategory"
+                                        value={formData.subSubcategory}
+                                        onChange={handleInputChange}
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        required
+                                    >
+                                        <option value="">Select Sub-subcategory</option>
+                                        {Object.entries(categoryOptions['study-in-india'].subcategories[formData.subcategory].subSubcategories).map(([key, label]) => (
                                             <option key={key} value={key}>
                                                 {label}
                                             </option>
@@ -333,7 +519,7 @@ export default function MBBSUploadPage() {
                                 </div>
                             )}
 
-                            {formData.category === 'study-in-india' && formData.subcategory && (
+                            {formData.category === 'study-in-india' && formData.subcategory && formData.subSubcategory && (
                                 <div className={formData.category === 'study-in-india' ? 'md:col-span-2' : ''}>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
                                         Custom Field *

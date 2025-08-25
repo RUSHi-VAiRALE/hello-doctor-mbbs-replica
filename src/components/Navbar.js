@@ -19,10 +19,46 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [notifications, setNotifications] = useState([])
   const [fetchLoading, setFetchLoading] = useState(false)
+  const [mbbsPrograms, setMbbsPrograms] = useState([])
+  const [studyAbroadPrograms, setStudyAbroadPrograms] = useState([])
+  const [mbbsAbroadPrograms, setMbbsAbroadPrograms] = useState([])
 
-  const studyIndiaTypes = {
+  // Generate study types from fetched data
+  const generateStudyIndiaTypes = () => {
+    const types = {};
+
+    mbbsPrograms.forEach(program => {
+      if (program.subcategory && !types[program.subcategory]) {
+        types[program.subcategory] = {
+          label: program.subcategory.toUpperCase(),
+          courses: []
+        };
+      }
+    });
+
+    // Group programs by subcategory
+    mbbsPrograms.forEach(program => {
+      if (program.subcategory && types[program.subcategory]) {
+        const course = {
+          name: program.title,
+          href: `/courses/offline/${program.subcategory}/${program.slug}`,
+          subcourses: []
+        };
+
+        // Check if course already exists
+        const existingCourse = types[program.subcategory].courses.find(c => c.name === program.title);
+        if (!existingCourse) {
+          types[program.subcategory].courses.push(course);
+        }
+      }
+    });
+
+    return types;
+  };
+
+  const studyIndiaTypes = Object.keys(generateStudyIndiaTypes()).length > 0 ? generateStudyIndiaTypes() : {
     medical: {
-      label: 'Medical',
+      label: 'MEDICAL',
       courses: [
         {
           name: 'MBBS',
@@ -36,23 +72,31 @@ export default function Navbar() {
       ]
     },
     engineering: {
-      label: 'Engineering',
+      label: 'ENGINEERING',
       courses: [
         { name: 'Biotechnology Engineering', href: '/mbbs-rajasthan' },
         { name: 'Aerospace Engineering', href: '/mbbs-rajasthan' }
       ]
     }
-  }
+  };
 
-  const mbbsAbroadCourses = [
+  // Generate MBBS Abroad courses from fetched data
+  const mbbsAbroadCourses = mbbsAbroadPrograms.length > 0 ? mbbsAbroadPrograms.map(program => ({
+    name: program.title,
+    href: `/courses/offline/${program.category}/${program.slug}`
+  })) : [
     { name: 'MBBS in Nepal', href: '/mbbs-rajasthan' },
     { name: 'MBBS in Russia', href: '/mbbs-rajasthan' }
-  ]
+  ];
 
-  const studyAbroadCourses = [
+  // Generate Study Abroad courses from fetched data
+  const studyAbroadCourses = studyAbroadPrograms.length > 0 ? studyAbroadPrograms.map(program => ({
+    name: program.title,
+    href: `/courses/offline/${program.category}/${program.slug}`
+  })) : [
     { name: 'Study in US', href: '/mbbs-rajasthan' },
     { name: 'Study in UK', href: '/mbbs-rajasthan' }
-  ]
+  ];
 
   const aboutSubmenus = [
     { name: 'Photo Gallery', href: '/about/gallery' }
@@ -60,27 +104,54 @@ export default function Navbar() {
 
   const pathname = usePathname()
 
-  // Fetch notifications from Firebase
+  // Fetch data from Firebase
   useEffect(() => {
-    const db = getFirestore(app)
+    const db = getFirestore(app, 'mbbsyatradb')
 
-    const fetchNotifications = async () => {
+    const fetchData = async () => {
       setFetchLoading(true);
       try {
-        const querySnapshot = await getDocs(collection(db, "notifications"));
-        const notificationsData = querySnapshot.docs.map(doc => ({
+        // Fetch notifications
+        const notificationsSnapshot = await getDocs(collection(db, "notifications"));
+        const notificationsData = notificationsSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
         setNotifications(notificationsData);
+
+        // Fetch MBBS programs
+        const mbbsProgramsSnapshot = await getDocs(collection(db, "mbbsPrograms"));
+        const mbbsProgramsData = mbbsProgramsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        console.log('Fetched programs:', mbbsProgramsData);
+        setMbbsPrograms(mbbsProgramsData);
+
+        // Filter programs by category
+        const studyInIndia = mbbsProgramsData.filter(program => program.category === 'study-in-india');
+        const mbbsAbroad = mbbsProgramsData.filter(program => program.category === 'mbbs-abroad');
+        const studyAbroad = mbbsProgramsData.filter(program => program.category === 'study-abroad');
+
+        console.log('Fetched programs:', {
+          total: mbbsProgramsData.length,
+          studyInIndia: studyInIndia.length,
+          mbbsAbroad: mbbsAbroad.length,
+          studyAbroad: studyAbroad.length
+        });
+
+        setMbbsPrograms(studyInIndia);
+        setMbbsAbroadPrograms(mbbsAbroad);
+        setStudyAbroadPrograms(studyAbroad);
+
       } catch (error) {
-        console.error("Error fetching notifications:", error);
+        console.error("Error fetching data:", error);
       } finally {
         setFetchLoading(false);
       }
     };
 
-    fetchNotifications();
+    fetchData();
   }, []);
 
   // Close mobile menu when route changes
@@ -388,7 +459,7 @@ export default function Navbar() {
                         {/* Course List */}
                         <div className="w-2/3 p-4">
                           <div className="space-y-3">
-                            {studyIndiaTypes[selectedStudyType].courses.map((course, index) => (
+                            {studyIndiaTypes[selectedStudyType] && studyIndiaTypes[selectedStudyType].courses.map((course, index) => (
                               <div key={index}>
                                 <Link
                                   href={course.href}
@@ -396,7 +467,7 @@ export default function Navbar() {
                                 >
                                   {course.name}
                                 </Link>
-                                {course.subcourses && (
+                                {course.subcourses && course.subcourses.length > 0 && (
                                   <div className="ml-4 mt-2 space-y-1">
                                     {course.subcourses.map((subcourse, index) => (
                                       <Link
@@ -596,7 +667,7 @@ export default function Navbar() {
                                 <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                                   }`}>
                                   <div className="p-4 space-y-3">
-                                    {courses.map((course, index) => (
+                                    {courses && courses.map((course, index) => (
                                       <div key={index}>
                                         <Link
                                           href={course.href}
@@ -604,7 +675,7 @@ export default function Navbar() {
                                         >
                                           {course.name}
                                         </Link>
-                                        {course.subcourses && (
+                                        {course.subcourses && course.subcourses.length > 0 && (
                                           <div className="ml-2 mt-2 space-y-1">
                                             {course.subcourses.map((subcourse, index) => (
                                               <Link
