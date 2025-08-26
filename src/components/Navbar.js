@@ -15,6 +15,7 @@ export default function Navbar() {
   const [isStudyAbroadOpen, setIsStudyAbroadOpen] = useState(false)
   const [isAboutOpen, setIsAboutOpen] = useState(false)
   const [selectedStudyType, setSelectedStudyType] = useState('medical')
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null)
   const [expandedMobileType, setExpandedMobileType] = useState(null)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [notifications, setNotifications] = useState([])
@@ -27,63 +28,111 @@ export default function Navbar() {
   const generateStudyIndiaTypes = () => {
     const types = {};
 
+    console.log('Generating study types from programs:', mbbsPrograms);
+
+    // First, group by subcategory
     mbbsPrograms.forEach(program => {
       if (program.subcategory && !types[program.subcategory]) {
         types[program.subcategory] = {
           label: program.subcategory.toUpperCase(),
-          courses: []
+          subcategories: {}
         };
       }
     });
 
-    // Group programs by subcategory
+    // Then, group by subsubcategory within each subcategory
     mbbsPrograms.forEach(program => {
       if (program.subcategory && types[program.subcategory]) {
-        const course = {
+        // Use consistent field name - check both possible field names
+        const subSubcategoryValue = program.subSubcategory || program.subsubcategory || 'general';
+        const subcategoryKey = subSubcategoryValue.toLowerCase().replace(/\s+/g, '-');
+
+        console.log('Processing program:', {
+          title: program.title,
+          subcategory: program.subcategory,
+          subSubcategory: program.subSubcategory,
+          subsubcategory: program.subsubcategory,
+          subSubcategoryValue,
+          subcategoryKey
+        });
+
+        if (!types[program.subcategory].subcategories[subcategoryKey]) {
+          types[program.subcategory].subcategories[subcategoryKey] = {
+            name: subSubcategoryValue,
+            programs: []
+          };
+        }
+
+        // Add the program to the appropriate subsubcategory
+        const programData = {
           name: program.title,
-          href: `/courses/offline/${program.subcategory}/${program.slug}`,
-          subcourses: []
+          href: `/mbbs-india/${program.slug}`,
+          slug: program.slug
         };
 
-        // Check if course already exists
-        const existingCourse = types[program.subcategory].courses.find(c => c.name === program.title);
-        if (!existingCourse) {
-          types[program.subcategory].courses.push(course);
+        // Check if program already exists
+        const existingProgram = types[program.subcategory].subcategories[subcategoryKey].programs.find(p => p.name === program.title);
+        if (!existingProgram) {
+          types[program.subcategory].subcategories[subcategoryKey].programs.push(programData);
         }
       }
     });
 
+    console.log('Final generated types:', types);
     return types;
   };
 
   const studyIndiaTypes = Object.keys(generateStudyIndiaTypes()).length > 0 ? generateStudyIndiaTypes() : {
     medical: {
       label: 'MEDICAL',
-      courses: [
-        {
+      subcategories: {
+        mbbs: {
           name: 'MBBS',
-          href: '/mbbs-rajasthan',
-          subcourses: [
-            { name: 'MBBS in Rajasthan', href: '/mbbs-rajasthan' },
-            { name: 'MBBS in Maharashtra', href: '/mbbs-rajasthan' }
+          programs: [
+            { name: 'MBBS in Rajasthan', href: '/mbbs-india/mbbs-rajasthan', slug: 'mbbs-rajasthan' },
+            { name: 'MBBS in Maharashtra', href: '/mbbs-india/mbbs-maharashtra', slug: 'mbbs-maharashtra' },
+            { name: 'MBBS in Bihar', href: '/mbbs-india/mbbs-bihar', slug: 'mbbs-bihar' }
           ]
         },
-        { name: 'BAMS', href: '/bams-rajasthan' }
-      ]
+        bds: {
+          name: 'BDS',
+          programs: [
+            { name: 'BDS in Rajasthan', href: '/mbbs-india/bds-rajasthan', slug: 'bds-rajasthan' },
+            { name: 'BDS in Maharashtra', href: '/mbbs-india/bds-maharashtra', slug: 'bds-maharashtra' },
+            { name: 'BDS in Bihar', href: '/mbbs-india/bds-bihar', slug: 'bds-bihar' }
+          ]
+        },
+        bams: {
+          name: 'BAMS',
+          programs: [
+            { name: 'BAMS in Rajasthan', href: '/mbbs-india/bams-rajasthan', slug: 'bams-rajasthan' }
+          ]
+        }
+      }
     },
     engineering: {
       label: 'ENGINEERING',
-      courses: [
-        { name: 'Biotechnology Engineering', href: '/mbbs-rajasthan' },
-        { name: 'Aerospace Engineering', href: '/mbbs-rajasthan' }
-      ]
+      subcategories: {
+        biotechnology: {
+          name: 'Biotechnology Engineering',
+          programs: [
+            { name: 'Biotechnology Engineering', href: '/mbbs-india/biotechnology-engineering', slug: 'biotechnology-engineering' }
+          ]
+        },
+        aerospace: {
+          name: 'Aerospace Engineering',
+          programs: [
+            { name: 'Aerospace Engineering', href: '/mbbs-india/aerospace-engineering', slug: 'aerospace-engineering' }
+          ]
+        }
+      }
     }
   };
 
   // Generate MBBS Abroad courses from fetched data
   const mbbsAbroadCourses = mbbsAbroadPrograms.length > 0 ? mbbsAbroadPrograms.map(program => ({
     name: program.title,
-    href: `/courses/offline/${program.category}/${program.slug}`
+    href: `/mbbs-india/${program.slug}`
   })) : [
     { name: 'MBBS in Nepal', href: '/mbbs-rajasthan' },
     { name: 'MBBS in Russia', href: '/mbbs-rajasthan' }
@@ -92,7 +141,7 @@ export default function Navbar() {
   // Generate Study Abroad courses from fetched data
   const studyAbroadCourses = studyAbroadPrograms.length > 0 ? studyAbroadPrograms.map(program => ({
     name: program.title,
-    href: `/courses/offline/${program.category}/${program.slug}`
+    href: `/mbbs-india/${program.slug}`
   })) : [
     { name: 'Study in US', href: '/mbbs-rajasthan' },
     { name: 'Study in UK', href: '/mbbs-rajasthan' }
@@ -163,6 +212,7 @@ export default function Navbar() {
     setIsAboutOpen(false)
     setExpandedMobileType(null)
     setActiveDropdown(null)
+    setSelectedSubcategory(null)
   }, [pathname])
 
   const navLinks = [
@@ -324,21 +374,25 @@ export default function Navbar() {
                           setIsStudyIndiaOpen(false)
                           setIsMbbsAbroadOpen(false)
                           setIsStudyAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         } else if (link.isStudyIndia) {
                           setIsStudyIndiaOpen(!isStudyIndiaOpen)
                           setIsAboutOpen(false)
                           setIsMbbsAbroadOpen(false)
                           setIsStudyAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         } else if (link.isMbbsAbroad) {
                           setIsMbbsAbroadOpen(!isMbbsAbroadOpen)
                           setIsAboutOpen(false)
                           setIsStudyIndiaOpen(false)
                           setIsStudyAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         } else if (link.isStudyAbroad) {
                           setIsStudyAbroadOpen(!isStudyAbroadOpen)
                           setIsAboutOpen(false)
                           setIsStudyIndiaOpen(false)
                           setIsMbbsAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         }
                       }}
                       onMouseEnter={() => {
@@ -347,21 +401,25 @@ export default function Navbar() {
                           setIsStudyIndiaOpen(false)
                           setIsMbbsAbroadOpen(false)
                           setIsStudyAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         } else if (link.isStudyIndia) {
                           setIsStudyIndiaOpen(true)
                           setIsAboutOpen(false)
                           setIsMbbsAbroadOpen(false)
                           setIsStudyAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         } else if (link.isMbbsAbroad) {
                           setIsMbbsAbroadOpen(true)
                           setIsAboutOpen(false)
                           setIsStudyIndiaOpen(false)
                           setIsStudyAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         } else if (link.isStudyAbroad) {
                           setIsStudyAbroadOpen(true)
                           setIsAboutOpen(false)
                           setIsStudyIndiaOpen(false)
                           setIsMbbsAbroadOpen(false)
+                          setSelectedSubcategory(null)
                         }
                       }}
                       className={`relative font-medium text-md transition-colors flex items-center gap-1 whitespace-nowrap ${isActive(link.href) ||
@@ -434,11 +492,14 @@ export default function Navbar() {
                   {/* Study in India Dropdown */}
                   {link.hasDropdown && link.isStudyIndia && isStudyIndiaOpen && (
                     <div
-                      className="absolute top-full left-0 mt-3 w-[700px] bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
-                      onMouseLeave={() => setIsStudyIndiaOpen(false)}
+                      className="absolute top-full left-0 mt-3 w-[800px] bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      onMouseLeave={() => {
+                        setIsStudyIndiaOpen(false)
+                        setSelectedSubcategory(null)
+                      }}
                     >
                       <div className="flex">
-                        {/* Study Types */}
+                        {/* Study Types (Subcategories) */}
                         <div className="w-1/3 bg-blue-50 border-r border-blue-100">
                           {Object.entries(studyIndiaTypes).map(([type, { label }]) => (
                             <button
@@ -447,7 +508,10 @@ export default function Navbar() {
                                 ? 'bg-blue-100 text-blue-800 font-semibold border-r-2 border-blue-500'
                                 : 'hover:bg-blue-100 text-gray-700'
                                 }`}
-                              onMouseEnter={() => setSelectedStudyType(type)}
+                              onMouseEnter={() => {
+                                setSelectedStudyType(type)
+                                setSelectedSubcategory(null)
+                              }}
                             >
                               <span>{label}</span>
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
@@ -456,31 +520,35 @@ export default function Navbar() {
                             </button>
                           ))}
                         </div>
-                        {/* Course List */}
-                        <div className="w-2/3 p-4">
-                          <div className="space-y-3">
-                            {studyIndiaTypes[selectedStudyType] && studyIndiaTypes[selectedStudyType].courses.map((course, index) => (
-                              <div key={index}>
-                                <Link
-                                  href={course.href}
-                                  className="block px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all shadow-md font-medium"
-                                >
-                                  {course.name}
-                                </Link>
-                                {course.subcourses && course.subcourses.length > 0 && (
-                                  <div className="ml-4 mt-2 space-y-1">
-                                    {course.subcourses.map((subcourse, index) => (
-                                      <Link
-                                        key={index}
-                                        href={subcourse.href}
-                                        className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
-                                      >
-                                        • {subcourse.name}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
+                        {/* Subsubcategories */}
+                        <div className="w-1/3 bg-gray-50 border-r border-gray-200">
+                          {studyIndiaTypes[selectedStudyType] && studyIndiaTypes[selectedStudyType].subcategories && Object.entries(studyIndiaTypes[selectedStudyType].subcategories).map(([subcategoryKey, { name }]) => (
+                            <button
+                              key={subcategoryKey}
+                              className={`w-full flex justify-between items-center text-left py-3 px-4 ${selectedSubcategory === subcategoryKey
+                                ? 'bg-gray-100 text-gray-800 font-semibold border-r-2 border-gray-400'
+                                : 'hover:bg-gray-100 text-gray-700'
+                                }`}
+                              onMouseEnter={() => setSelectedSubcategory(subcategoryKey)}
+                            >
+                              <span className='uppercase'>{name}</span>
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                              </svg>
+                            </button>
+                          ))}
+                        </div>
+                        {/* Programs List */}
+                        <div className="w-1/3 p-4">
+                          <div className="space-y-2">
+                            {selectedSubcategory && studyIndiaTypes[selectedStudyType] && studyIndiaTypes[selectedStudyType].subcategories[selectedSubcategory] && studyIndiaTypes[selectedStudyType].subcategories[selectedSubcategory].programs.map((program, index) => (
+                              <Link
+                                key={index}
+                                href={program.href}
+                                className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all shadow-md font-medium text-sm"
+                              >
+                                {program.name}
+                              </Link>
                             ))}
                           </div>
                         </div>
@@ -588,6 +656,7 @@ export default function Navbar() {
                             setIsStudyAbroadOpen(!isStudyAbroadOpen)
                           }
                           setExpandedMobileType(null)
+                          setSelectedSubcategory(null)
                         }}
                         className={`w-full flex justify-between items-center text-left px-4 py-3 rounded-lg transition-colors ${isActive(link.href) ||
                           (link.isAbout ? isAboutOpen :
@@ -636,7 +705,7 @@ export default function Navbar() {
                       {link.isStudyIndia && isStudyIndiaOpen && (
                         <div className="mt-2 mx-2">
                           <div className="bg-blue-50 rounded-lg shadow-lg overflow-hidden">
-                            {Object.entries(studyIndiaTypes).map(([type, { label, courses }]) => (
+                            {Object.entries(studyIndiaTypes).map(([type, { label, subcategories }]) => (
                               <div key={type} className="border-b last:border-b-0 border-blue-200">
                                 <button
                                   onClick={() => {
@@ -664,30 +733,23 @@ export default function Navbar() {
                                   </svg>
                                 </button>
 
-                                <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                                <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
                                   }`}>
-                                  <div className="p-4 space-y-3">
-                                    {courses && courses.map((course, index) => (
-                                      <div key={index}>
-                                        <Link
-                                          href={course.href}
-                                          className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-center font-medium"
-                                        >
-                                          {course.name}
-                                        </Link>
-                                        {course.subcourses && course.subcourses.length > 0 && (
-                                          <div className="ml-2 mt-2 space-y-1">
-                                            {course.subcourses.map((subcourse, index) => (
-                                              <Link
-                                                key={index}
-                                                href={subcourse.href}
-                                                className="block px-2 py-1 text-sm text-gray-600 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
-                                              >
-                                                • {subcourse.name}
-                                              </Link>
-                                            ))}
-                                          </div>
-                                        )}
+                                  <div className="p-4 space-y-4">
+                                    {subcategories && Object.entries(subcategories).map(([subcategoryKey, { name, programs }]) => (
+                                      <div key={subcategoryKey} className="border-b last:border-b-0 border-blue-200 pb-3">
+                                        <div className="font-semibold text-lg mb-3 text-blue-800">{name}</div>
+                                        <div className="space-y-2">
+                                          {programs.map((program, index) => (
+                                            <Link
+                                              key={index}
+                                              href={program.href}
+                                              className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-center font-medium text-sm"
+                                            >
+                                              {program.name}
+                                            </Link>
+                                          ))}
+                                        </div>
                                       </div>
                                     ))}
                                   </div>

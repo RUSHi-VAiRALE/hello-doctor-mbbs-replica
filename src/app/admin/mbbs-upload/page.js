@@ -40,7 +40,7 @@ export default function MBBSUploadPage() {
         'study-in-india': {
             label: 'Study in India',
             subcategories: {
-                'mbbs': {
+                'Medical': {
                     label: 'Medical',
                     subSubcategories: {
                         'mbbs': 'MBBS',
@@ -51,7 +51,7 @@ export default function MBBSUploadPage() {
                         'bscn': 'BSc Nursing'
                     }
                 },
-                'engineering': {
+                'Engineering': {
                     label: 'Engineering',
                     subSubcategories: {
                         'computer': 'Computer Engineering',
