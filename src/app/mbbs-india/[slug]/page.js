@@ -31,6 +31,7 @@ export default function MBBSIndiaPage() {
                     // Transform the data to match the expected structure
                     const transformedData = {
                         title: data.title || `STUDY MBBS IN ${data.subcategory?.toUpperCase() || 'INDIA'}`,
+                        customField: data.customField || "",
                         subtitle: data.subtitle || `MBBS admission in ${data.subcategory || 'India'}`,
                         description: data.description || "Get expert guidance for medical college admissions with comprehensive information about MBBS programs, colleges, and admission procedures.",
                         heroImage: data.heroImage || "/400x300.svg",
@@ -125,7 +126,7 @@ export default function MBBSIndiaPage() {
                             {mbbsData.title}
                         </h1>
                         <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                            {mbbsData.description}
+                            {mbbsData.customField}
                         </p>
                         <div className="flex flex-wrap justify-center gap-4">
                             <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
@@ -156,17 +157,9 @@ export default function MBBSIndiaPage() {
                                 {mbbsData.content ? (
                                     <div dangerouslySetInnerHTML={{ __html: mbbsData.content }} />
                                 ) : (
-                                    <>
-                                        <p className="mb-4">
-                                            {mbbsData.subcategory} has emerged as one of the most preferred destinations for MBBS in India. The state boasts excellent medical infrastructure, experienced faculty, and affordable fee structures that make it an ideal choice for medical aspirants.
-                                        </p>
-                                        <p className="mb-4">
-                                            With numerous government medical colleges and private institutions, {mbbsData.subcategory} offers ample opportunities for students to pursue their medical dreams. The colleges are well-equipped with modern facilities, experienced faculty, and excellent clinical exposure.
-                                        </p>
-                                        <p className="mb-6">
-                                            The admission process is conducted through NEET UG, and the state has a transparent counselling system that ensures fair allocation of seats based on merit and reservation policies.
-                                        </p>
-                                    </>
+                                    <p>
+                                        {mbbsData.description}
+                                    </p>
                                 )}
 
                                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
