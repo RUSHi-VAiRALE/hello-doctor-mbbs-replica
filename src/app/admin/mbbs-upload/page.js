@@ -58,6 +58,14 @@ export default function MBBSUploadPage() {
                         'mechanical': 'Mechanical Engineering',
                         'electrical': 'Electrical Engineering'
                     }
+                },
+                'Management': {
+                    label: 'Management',
+                    subSubcategories: {
+                        'mba': 'MBA',
+                        'mca': 'MCA',
+                        'mtech': 'M.Tech'
+                    }
                 }
             }
         },

@@ -738,7 +738,7 @@ export default function Navbar() {
                                   <div className="p-4 space-y-4">
                                     {subcategories && Object.entries(subcategories).map(([subcategoryKey, { name, programs }]) => (
                                       <div key={subcategoryKey} className="border-b last:border-b-0 border-blue-200 pb-3">
-                                        <div className="font-semibold text-lg mb-3 text-blue-800">{name}</div>
+                                        <div className="font-semibold text-lg mb-3 text-blue-800 uppercase">{name}</div>
                                         <div className="space-y-2">
                                           {programs.map((program, index) => (
                                             <Link
