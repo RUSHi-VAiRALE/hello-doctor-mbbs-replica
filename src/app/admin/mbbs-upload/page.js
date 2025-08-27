@@ -50,8 +50,7 @@ export default function MBBSUploadPage() {
                         'bpt': 'BPT',
                         'bscn': 'BSc Nursing',
                         'bhms': 'BHMS',
-                        'md': 'MD',
-                        'ms': 'MS',
+                        'md/ms': 'MD/MS',
                         'fcps': 'FCPS',
                     }
                 },

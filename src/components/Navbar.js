@@ -17,6 +17,7 @@ export default function Navbar() {
   const [selectedStudyType, setSelectedStudyType] = useState('medical')
   const [selectedSubcategory, setSelectedSubcategory] = useState(null)
   const [expandedMobileType, setExpandedMobileType] = useState(null)
+  const [expandedMobileSubcategory, setExpandedMobileSubcategory] = useState(null)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [notifications, setNotifications] = useState([])
   const [fetchLoading, setFetchLoading] = useState(false)
@@ -211,6 +212,7 @@ export default function Navbar() {
     setIsStudyAbroadOpen(false)
     setIsAboutOpen(false)
     setExpandedMobileType(null)
+    setExpandedMobileSubcategory(null)
     setActiveDropdown(null)
     setSelectedSubcategory(null)
   }, [pathname])
@@ -656,6 +658,7 @@ export default function Navbar() {
                             setIsStudyAbroadOpen(!isStudyAbroadOpen)
                           }
                           setExpandedMobileType(null)
+                          setExpandedMobileSubcategory(null)
                           setSelectedSubcategory(null)
                         }}
                         className={`w-full flex justify-between items-center text-left px-4 py-3 rounded-lg transition-colors ${isActive(link.href) ||
@@ -735,20 +738,44 @@ export default function Navbar() {
 
                                 <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
                                   }`}>
-                                  <div className="p-4 space-y-4">
+                                  <div className="p-4 max-h-64 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
                                     {subcategories && Object.entries(subcategories).map(([subcategoryKey, { name, programs }]) => (
                                       <div key={subcategoryKey} className="border-b last:border-b-0 border-blue-200 pb-3">
-                                        <div className="font-semibold text-lg mb-3 text-blue-800 uppercase">{name}</div>
-                                        <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
-                                          {programs.map((program, index) => (
-                                            <Link
-                                              key={index}
-                                              href={program.href}
-                                              className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-center font-medium text-sm"
-                                            >
-                                              {program.name}
-                                            </Link>
-                                          ))}
+                                        <button
+                                          onClick={() => {
+                                            if (expandedMobileSubcategory === subcategoryKey) {
+                                              setExpandedMobileSubcategory(null)
+                                            } else {
+                                              setExpandedMobileSubcategory(subcategoryKey)
+                                            }
+                                          }}
+                                          className="w-full flex justify-between items-center text-left py-2 px-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                                        >
+                                          <span className="font-semibold text-lg text-blue-800 uppercase">{name}</span>
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={2}
+                                            stroke="currentColor"
+                                            className={`w-4 h-4 transition-transform duration-200 text-blue-600 ${expandedMobileSubcategory === subcategoryKey ? 'rotate-180' : ''}`}
+                                          >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                          </svg>
+                                        </button>
+                                        <div className={`overflow-hidden transition-all duration-300 ${expandedMobileSubcategory === subcategoryKey ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                          }`}>
+                                          <div className="mt-3 max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                                            {programs.map((program, index) => (
+                                              <Link
+                                                key={index}
+                                                href={program.href}
+                                                className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-center font-medium text-sm"
+                                              >
+                                                {program.name}
+                                              </Link>
+                                            ))}
+                                          </div>
                                         </div>
                                       </div>
                                     ))}
