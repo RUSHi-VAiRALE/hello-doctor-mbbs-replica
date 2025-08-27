@@ -157,9 +157,41 @@ export default function MBBSIndiaPage() {
                                 {mbbsData.content ? (
                                     <div dangerouslySetInnerHTML={{ __html: mbbsData.content }} />
                                 ) : (
-                                    <p>
-                                        {mbbsData.description}
-                                    </p>
+                                    <>
+                                        {mbbsData.description ? (
+                                            mbbsData.description.split('.').filter(sentence => sentence.trim().length > 0).map((sentence, index) => (
+                                                <p key={index} className="mb-6 leading-relaxed text-gray-700">
+                                                    {sentence.trim()}.
+                                                </p>
+                                            ))
+                                        ) : (
+                                            <>
+                                                <p className="mb-6 leading-relaxed text-gray-700">
+                                                    {mbbsData.subcategory} has emerged as one of the most preferred destinations for MBBS in India. The state boasts excellent medical infrastructure, experienced faculty, and affordable fee structures that make it an ideal choice for medical aspirants from across the country.
+                                                </p>
+
+                                                <p className="mb-6 leading-relaxed text-gray-700">
+                                                    With numerous government medical colleges and private institutions, {mbbsData.subcategory} offers ample opportunities for students to pursue their medical dreams. The colleges are well-equipped with modern facilities, experienced faculty, and excellent clinical exposure that prepares students for successful medical careers.
+                                                </p>
+
+                                                <p className="mb-6 leading-relaxed text-gray-700">
+                                                    The admission process is conducted through NEET UG, and the state has a transparent counselling system that ensures fair allocation of seats based on merit and reservation policies. This systematic approach makes {mbbsData.subcategory} a reliable choice for medical education.
+                                                </p>
+
+                                                <p className="mb-6 leading-relaxed text-gray-700">
+                                                    Students choosing to study MBBS in {mbbsData.subcategory} benefit from a comprehensive curriculum that combines theoretical knowledge with practical training. The state's medical colleges are recognized by the Medical Council of India (MCI) and provide quality education that meets international standards.
+                                                </p>
+
+                                                <p className="mb-6 leading-relaxed text-gray-700">
+                                                    The cost of medical education in {mbbsData.subcategory} is significantly lower compared to other states, making it accessible to students from various economic backgrounds. Additionally, the state offers various scholarship programs and financial assistance to deserving candidates.
+                                                </p>
+
+                                                <p className="mb-6 leading-relaxed text-gray-700">
+                                                    After completing MBBS from {mbbsData.subcategory}, students have excellent career prospects both within India and internationally. The degree is recognized worldwide, opening doors to postgraduate studies and medical practice opportunities globally.
+                                                </p>
+                                            </>
+                                        )}
+                                    </>
                                 )}
 
                                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">

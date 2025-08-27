@@ -48,7 +48,11 @@ export default function MBBSUploadPage() {
                         'bams': 'BAMS',
                         'bpharm': 'BPharm',
                         'bpt': 'BPT',
-                        'bscn': 'BSc Nursing'
+                        'bscn': 'BSc Nursing',
+                        'bhms': 'BHMS',
+                        'md': 'MD',
+                        'ms': 'MS',
+                        'fcps': 'FCPS',
                     }
                 },
                 'Engineering': {

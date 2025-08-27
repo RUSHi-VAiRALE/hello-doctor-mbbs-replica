@@ -540,7 +540,7 @@ export default function Navbar() {
                         </div>
                         {/* Programs List */}
                         <div className="w-1/3 p-4">
-                          <div className="space-y-2">
+                          <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
                             {selectedSubcategory && studyIndiaTypes[selectedStudyType] && studyIndiaTypes[selectedStudyType].subcategories[selectedSubcategory] && studyIndiaTypes[selectedStudyType].subcategories[selectedSubcategory].programs.map((program, index) => (
                               <Link
                                 key={index}
@@ -563,7 +563,7 @@ export default function Navbar() {
                       onMouseLeave={() => setIsMbbsAbroadOpen(false)}
                     >
                       <div className="p-4">
-                        <div className="space-y-2">
+                        <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
                           {mbbsAbroadCourses.map((course, index) => (
                             <Link
                               key={index}
@@ -585,7 +585,7 @@ export default function Navbar() {
                       onMouseLeave={() => setIsStudyAbroadOpen(false)}
                     >
                       <div className="p-4">
-                        <div className="space-y-2">
+                        <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
                           {studyAbroadCourses.map((course, index) => (
                             <Link
                               key={index}
@@ -739,7 +739,7 @@ export default function Navbar() {
                                     {subcategories && Object.entries(subcategories).map(([subcategoryKey, { name, programs }]) => (
                                       <div key={subcategoryKey} className="border-b last:border-b-0 border-blue-200 pb-3">
                                         <div className="font-semibold text-lg mb-3 text-blue-800 uppercase">{name}</div>
-                                        <div className="space-y-2">
+                                        <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
                                           {programs.map((program, index) => (
                                             <Link
                                               key={index}
@@ -763,16 +763,18 @@ export default function Navbar() {
                       {/* MBBS Abroad Mobile Dropdown */}
                       {link.isMbbsAbroad && isMbbsAbroadOpen && (
                         <div className="mt-2 mx-2">
-                          <div className="bg-blue-50 rounded-lg shadow-lg p-3 space-y-2">
-                            {mbbsAbroadCourses.map((course, index) => (
-                              <Link
-                                key={index}
-                                href={course.href}
-                                className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-center font-medium"
-                              >
-                                {course.name}
-                              </Link>
-                            ))}
+                          <div className="bg-blue-50 rounded-lg shadow-lg p-3">
+                            <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                              {mbbsAbroadCourses.map((course, index) => (
+                                <Link
+                                  key={index}
+                                  href={course.href}
+                                  className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-center font-medium"
+                                >
+                                  {course.name}
+                                </Link>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       )}
@@ -780,16 +782,18 @@ export default function Navbar() {
                       {/* Study Abroad Mobile Dropdown */}
                       {link.isStudyAbroad && isStudyAbroadOpen && (
                         <div className="mt-2 mx-2">
-                          <div className="bg-blue-50 rounded-lg shadow-lg p-3 space-y-2">
-                            {studyAbroadCourses.map((course, index) => (
-                              <Link
-                                key={index}
-                                href={course.href}
-                                className="block px-3 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all text-center font-medium"
-                              >
-                                {course.name}
-                              </Link>
-                            ))}
+                          <div className="bg-blue-50 rounded-lg shadow-lg p-3">
+                            <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                              {studyAbroadCourses.map((course, index) => (
+                                <Link
+                                  key={index}
+                                  href={course.href}
+                                  className="block px-3 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all text-center font-medium"
+                                >
+                                  {course.name}
+                                </Link>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       )}

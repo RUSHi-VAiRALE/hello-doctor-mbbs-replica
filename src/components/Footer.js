@@ -26,27 +26,26 @@ const quickLinks = [
 ]
 
 const studyMBBSIndia = [
-  { text: 'MBBS in Rajasthan', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Maharashtra', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Gujarat', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Madhya Pradesh', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Uttar Pradesh', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Bihar', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Haryana', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Delhi', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Karnataka', link: '/mbbs-rajasthan' },
-  { text: 'Deemed Colleges UG', link: '/mbbs-rajasthan' }
+  { text: 'MBBS in Rajasthan', link: '/mbbs-india/study-mbbs-in-rajasthan' },
+  { text: 'MBBS in Maharashtra', link: '/mbbs-india/study-mbbs-in-maharashtra' },
+  { text: 'MBBS in Gujarat', link: '/mbbs-india/study-mbbs-in-gujarat' },
+  { text: 'MBBS in Madhya Pradesh', link: '/mbbs-india/study-mbbs-in-madhya-pradesh' },
+  { text: 'MBBS in Uttar Pradesh', link: '/mbbs-india/study-mbbs-in-uttar-pradesh' },
+  { text: 'MBBS in Bihar', link: '/mbbs-india/study-mbbs-in-bihar' },
+  { text: 'MBBS in Haryana', link: '/mbbs-india/study-mbbs-in-haryana' },
+  { text: 'MBBS in Delhi', link: '/mbbs-india/study-mbbs-in-delhi' },
+  { text: 'MBBS in Karnataka', link: '/mbbs-india/study-mbbs-in-karnataka' },
 ]
 
 const studyAbroad = [
-  { text: 'Study in USA', link: '/mbbs-rajasthan' },
-  { text: 'Study in Canada', link: '/mbbs-rajasthan' },
-  { text: 'Study in UK', link: '/mbbs-rajasthan' },
-  { text: 'Study in Australia', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Nepal', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Russia', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Georgia', link: '/mbbs-rajasthan' },
-  { text: 'MBBS in Kyrgyzstan', link: '/mbbs-rajasthan' }
+  { text: 'Study in USA', link: '/mbbs-india/study-mbbs-in-usa' },
+  { text: 'Study in Canada', link: '/mbbs-india/study-mbbs-in-canada' },
+  { text: 'Study in UK', link: '/mbbs-india/study-mbbs-in-uk' },
+  { text: 'Study in Australia', link: '/mbbs-india/study-mbbs-in-australia' },
+  { text: 'MBBS in Nepal', link: '/mbbs-india/study-mbbs-in-nepal' },
+  { text: 'MBBS in Russia', link: '/mbbs-india/study-mbbs-in-russia' },
+  { text: 'MBBS in Georgia', link: '/mbbs-india/study-mbbs-in-georgia' },
+  { text: 'MBBS in Kyrgyzstan', link: '/mbbs-india/study-mbbs-in-kyrgyzstan' }
 ]
 
 export default function Footer() {
