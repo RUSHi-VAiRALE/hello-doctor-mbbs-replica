@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { getFirestore, collection, addDoc, serverTimestamp, getDocs, deleteDoc, doc } from 'firebase/firestore'
+import { getFirestore, collection, addDoc, updateDoc, serverTimestamp, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import { app } from '@/firebase'
 import { FaPlus, FaTrash, FaUniversity, FaGraduationCap, FaFileAlt, FaCheckCircle, FaExclamationTriangle, FaEdit, FaEye } from 'react-icons/fa'
 
@@ -9,6 +9,7 @@ export default function MBBSUploadPage() {
     const [message, setMessage] = useState({ type: '', text: '' })
     const [existingPrograms, setExistingPrograms] = useState([])
     const [showExistingPrograms, setShowExistingPrograms] = useState(false)
+    const [editingProgramId, setEditingProgramId] = useState(null)
 
     const [formData, setFormData] = useState({
         category: '',
@@ -23,6 +24,7 @@ export default function MBBSUploadPage() {
         state: '',
         colleges: [
             {
+                id: Date.now(),
                 name: '',
                 location: '',
                 fees: '',
@@ -139,6 +141,7 @@ export default function MBBSUploadPage() {
         setFormData(prev => ({
             ...prev,
             colleges: [...prev.colleges, {
+                id: Date.now() + Math.random(),
                 name: '',
                 location: '',
                 fees: '',
@@ -242,26 +245,43 @@ export default function MBBSUploadPage() {
             const db = getFirestore(app, 'mbbsyatradb')
 
             // Clean up the data before submission
+            console.log('Colleges before processing:', formData.colleges);
+
             const cleanedData = {
                 ...formData,
-                colleges: formData.colleges.map(college => ({
-                    ...college,
-                    seats: college.seats.toString(),
-                    established: college.established.toString()
-                })),
+                colleges: formData.colleges.map(college => {
+                    const { id, ...collegeWithoutId } = college; // Remove id field for Firebase
+                    return {
+                        ...collegeWithoutId,
+                        seats: college.seats.toString(),
+                        established: college.established.toString()
+                    };
+                }),
                 eligibility: formData.eligibility.filter(item => item.trim()),
                 documents: formData.documents.filter(item => item.trim()),
-                createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp(),
                 status: 'active'
             }
 
-            await addDoc(collection(db, "mbbsPrograms"), cleanedData)
+            console.log('Cleaned colleges data:', cleanedData.colleges);
 
-            setMessage({
-                type: 'success',
-                text: 'MBBS program data uploaded successfully!'
-            })
+            if (editingProgramId) {
+                // Update existing program
+                await updateDoc(doc(db, "mbbsPrograms", editingProgramId), cleanedData)
+                setMessage({
+                    type: 'success',
+                    text: `MBBS program updated successfully with ${cleanedData.colleges.length} college(s)!`
+                })
+                setEditingProgramId(null)
+            } else {
+                // Create new program
+                cleanedData.createdAt = serverTimestamp()
+                await addDoc(collection(db, "mbbsPrograms"), cleanedData)
+                setMessage({
+                    type: 'success',
+                    text: `MBBS program created successfully with ${cleanedData.colleges.length} college(s)!`
+                })
+            }
 
             // Reset form
             setFormData({
@@ -276,6 +296,7 @@ export default function MBBSUploadPage() {
                 heroImage: '',
                 state: '',
                 colleges: [{
+                    id: Date.now(),
                     name: '',
                     location: '',
                     fees: '',
@@ -286,6 +307,7 @@ export default function MBBSUploadPage() {
                 eligibility: [''],
                 documents: ['']
             })
+            setEditingProgramId(null)
 
         } catch (error) {
             console.error("Error uploading MBBS data:", error)
@@ -336,6 +358,7 @@ export default function MBBSUploadPage() {
 
     // Edit program
     const editProgram = (program) => {
+        setEditingProgramId(program.id)
         setFormData({
             category: program.category || '',
             subcategory: program.subcategory || '',
@@ -347,7 +370,11 @@ export default function MBBSUploadPage() {
             description: program.description || '',
             heroImage: program.heroImage || '',
             state: program.state || '',
-            colleges: program.colleges || [{
+            colleges: program.colleges ? program.colleges.map((college, index) => ({
+                id: Date.now() + index,
+                ...college
+            })) : [{
+                id: Date.now(),
                 name: '',
                 location: '',
                 fees: '',
@@ -361,6 +388,34 @@ export default function MBBSUploadPage() {
         setShowExistingPrograms(false)
     }
 
+    // Cancel edit
+    const cancelEdit = () => {
+        setEditingProgramId(null)
+        setFormData({
+            category: '',
+            subcategory: '',
+            subSubcategory: '',
+            customField: '',
+            title: '',
+            slug: '',
+            subtitle: '',
+            description: '',
+            heroImage: '',
+            state: '',
+            colleges: [{
+                id: Date.now(),
+                name: '',
+                location: '',
+                fees: '',
+                seats: '',
+                ranking: '',
+                established: ''
+            }],
+            eligibility: [''],
+            documents: ['']
+        })
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="container mx-auto px-4 max-w-4xl">
@@ -368,9 +423,20 @@ export default function MBBSUploadPage() {
                 <div className="bg-white rounded-lg shadow-md p-6 mb-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center">
                         <FaGraduationCap className="mr-3 text-blue-600" />
-                        Upload MBBS Program Data
+                        {editingProgramId ? 'Edit MBBS Program Data' : 'Upload MBBS Program Data'}
                     </h1>
-                    <p className="text-gray-600">Add new MBBS program information to the database</p>
+                    <p className="text-gray-600">
+                        {editingProgramId ? 'Update existing MBBS program information' : 'Add new MBBS program information to the database'}
+                    </p>
+                    {editingProgramId && (
+                        <button
+                            type="button"
+                            onClick={cancelEdit}
+                            className="mt-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                        >
+                            Cancel Edit
+                        </button>
+                    )}
                 </div>
 
                 {/* Message Display */}
@@ -656,7 +722,7 @@ export default function MBBSUploadPage() {
                         </div>
 
                         {formData.colleges.map((college, index) => (
-                            <div key={index} className="border border-gray-200 rounded-lg p-4 mb-4">
+                            <div key={college.id} className="border border-gray-200 rounded-lg p-4 mb-4">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-lg font-medium text-gray-700">
                                         College {index + 1}
@@ -846,7 +912,10 @@ export default function MBBSUploadPage() {
                                 : 'bg-blue-600 hover:bg-blue-700'
                                 }`}
                         >
-                            {loading ? 'Uploading...' : 'Upload MBBS Program Data'}
+                            {loading
+                                ? (editingProgramId ? 'Updating...' : 'Uploading...')
+                                : (editingProgramId ? 'Update MBBS Program Data' : 'Upload MBBS Program Data')
+                            }
                         </button>
                     </div>
                 </form>
