@@ -11,7 +11,7 @@ export default function CourseCategories() {
     },
     {
       title: 'Books',
-      description: 'Explore CLATians LAW Preparation Books',
+      description: 'Explore Hello Doctor LAW Preparation Books',
       icon: 'bi bi-book',
       link: '/onlineResourses',
       bgColor: 'bg-purple-50'
@@ -25,7 +25,7 @@ export default function CourseCategories() {
     },
     {
       title: 'Booster Courses',
-      description: 'Click Here to Explore CLATians Booster Courses',
+      description: 'Click Here to Explore Hello Doctor Booster Courses',
       icon: 'bi bi-laptop',
       link: '/courses/online/5',
       bgColor: 'bg-red-50'

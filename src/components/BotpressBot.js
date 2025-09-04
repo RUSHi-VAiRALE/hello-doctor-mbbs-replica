@@ -32,7 +32,7 @@
 //               "hostUrl": "https://cdn.botpress.cloud/webchat/v2.5",
 //               "messagingUrl": "https://messaging.botpress.cloud",
 //               "configuration": {
-//                 "botName": "CLATians",
+//                 "botName": "Hello Doctor",
 //                 "website": {},
 //                 "email": {},
 //                 "phone": {},

@@ -3,13 +3,13 @@
 
 // // CUET-LAW exam data
 // const cuetLawData = {
-//   heroTitle: "Master CUET-LAW with Expert Coaching at CLATians",
+//   heroTitle: "Master CUET-LAW with Expert Coaching at Hello Doctor",
 //   heroSubtitle: "Your Pathway to Prestigious Law Universities",
 //   introduction: [
 //     "The Common University Entrance Test for Law (CUET-LAW) serves as the gateway to India's renowned central and state law universities. This comprehensive examination evaluates your proficiency in General Test, Domain-specific Test, and Language Test. At CLATians, we provide specialized CUET-LAW coaching designed by legal education experts to transform aspirants into successful law professionals.",
 //     "Our CUET-LAW preparation programs are meticulously structured to address individual learning needs, helping you master the exam and secure admission to your dream law school."
 //   ],
-//   whyChooseTitle: "Why Choose CLATians for CUET-LAW?",
+//   whyChooseTitle: "Why Choose Hello Doctor for CUET-LAW?",
 //   whyChoosePoints: [
 //     "Specialized CUET-LAW faculty",
 //     "Comprehensive study materials",
@@ -113,7 +113,7 @@
 //     ]
 //   },
 //   whyWeStandApart: {
-//     title: "Why CLATians Stands Apart for CUET-LAW Preparation",
+//     title: "Why Hello Doctor Stands Apart for CUET-LAW Preparation",
 //     intro: "Our success record speaks volumes about our coaching excellence:",
 //     points: [
 //       {
@@ -135,7 +135,7 @@
 //     ]
 //   },
 //   learningOptions: {
-//     title: "Flexible Learning Options at CLATians",
+//     title: "Flexible Learning Options at Hello Doctor",
 //     headers: ["Program Type", "Ideal For", "Key Features"],
 //     data: [
 //       {
@@ -162,20 +162,20 @@
 //   },
 //   feeStructure: {
 //     title: "Affordable Excellence: Fee Structure",
-//     description: "CLATians offers competitive pricing for all CUET-LAW coaching programs with flexible payment options. Our merit scholarships make quality coaching accessible to deserving students."
+//     description: "Hello Doctor offers competitive pricing for all CUET-LAW coaching programs with flexible payment options. Our merit scholarships make quality coaching accessible to deserving students."
 //   },
 //   successStories: {
-//     title: "Success Stories: From CLATians to Law Universities",
+//     title: "Success Stories: From Hello Doctor to Law Universities",
 //     stories: [
 //       {
 //         name: "Vikram Singh",
 //         institution: "Delhi University's Law Faculty",
-//         testimonial: "CLATians' focused CUET-LAW preparation and CBT practice sessions were crucial in securing my admission to Delhi University's Law Faculty."
+//         testimonial: "Hello Doctor's focused CUET-LAW preparation and CBT practice sessions were crucial in securing my admission to Delhi University's Law Faculty."
 //       },
 //       {
 //         name: "Nandini Reddy",
 //         institution: "CUET-LAW Success",
-//         testimonial: "The domain knowledge preparation at CLATians gave me the edge I needed to excel in the CUET-LAW examination."
+//         testimonial: "The domain knowledge preparation at Hello Doctor gave me the edge I needed to excel in the CUET-LAW examination."
 //       }
 //     ]
 //   },
@@ -205,12 +205,12 @@
 //     ]
 //   },
 //   cta: {
-//     title: "Begin Your CUET-LAW Journey with CLATians Today",
-//     description: "Ready to transform your law school aspirations into reality? Join CLATians and experience the difference that expert CUET-LAW coaching makes.",
+//     title: "Begin Your CUET-LAW Journey with Hello Doctor Today",
+//     description: "Ready to transform your law school aspirations into reality? Join Hello Doctor and experience the difference that expert CUET-LAW coaching makes.",
 //     primaryButton: "Contact Our Counselors",
 //     secondaryButton: "Enroll Now"
 //   },
-//   footer: "CLATians: Building Legal Minds, Creating Future Leaders"
+//   footer: "Hello Doctor: Building Legal Minds, Creating Future Leaders"
 // };
 
 // export default function CuetLawPage() {

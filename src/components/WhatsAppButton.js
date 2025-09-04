@@ -28,9 +28,9 @@ export default function WhatsAppButton() {
   }, []);
 
   const openWhatsApp = () => {
-    // Replace with your actual WhatsApp number
-    const phoneNumber = '9039038655';
-    const message = 'Hello! I would like to know more about MBBSYAATRA.';
+          // Replace with your actual WhatsApp number
+      const phoneNumber = '9211607005';
+    const message = 'Hello! I would like to know more about Hello Doctor.';
 
     // Create WhatsApp URL with pre-filled message
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

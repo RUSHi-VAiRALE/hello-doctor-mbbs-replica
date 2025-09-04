@@ -30,30 +30,30 @@ export default function BlogSection() {
           setBlogs(blogsData.slice(1))
         } else {
           // Fallback data
-          setFeaturedBlog({
-            id: 'featured',
-            title: 'The Role Of Online Tutors In Education',
-            content: 'Libero integer duis facilisis magna etiam tempor orci. Sem et tortor consequat egestas tellus.',
-            image: 'https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg',
-            date: '2024-04-01',
-            author: 'CLATians',
-            readTime: '5'
-          })
+                  setFeaturedBlog({
+          id: 'featured',
+          title: 'The Role Of Online Tutors In Education',
+          content: 'Libero integer duis facilisis magna etiam tempor orci. Sem et tortor consequat egestas tellus.',
+          image: 'https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg',
+          date: '2024-04-01',
+          author: 'Hello Doctor',
+          readTime: '5'
+        })
           setBlogs([])
         }
       } catch (error) {
         console.error("Error fetching blogs:", error)
         // Fallback datag
 
-        setFeaturedBlog({
-          id: 'featured',
-          title: 'The Role Of Online Tutors In Education',
-          content: 'Libero integer duis facilisis magna etiam tempor orci. Sem et tortor consequat egestas tellus.',
-          image: 'https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg',
-          date: '2024-04-01',
-          author: 'CLATians',
-          readTime: '5'
-        })
+                  setFeaturedBlog({
+            id: 'featured',
+            title: 'The Role Of Online Tutors In Education',
+            content: 'Libero integer duis facilisis magna etiam tempor orci. Sem et tortor consequat egestas tellus.',
+            image: 'https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg',
+            date: '2024-04-01',
+            author: 'Hello Doctor',
+            readTime: '5'
+          })
         setBlogs([])
       } finally {
         setLoading(false)

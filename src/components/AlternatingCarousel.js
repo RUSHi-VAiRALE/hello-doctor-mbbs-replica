@@ -112,7 +112,7 @@ export default function AlternatingCarousel() {
     <section className="py-8 md:py-16 overflow-hidden bg-gradient-to-br from-blue-50 to-red-50">
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Glimpses of CLATians</h2>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Glimpses of Hello Doctor</h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-sm md:text-base">
             Take a look at our vibrant community of students and faculty engaged in learning and growth.
           </p>

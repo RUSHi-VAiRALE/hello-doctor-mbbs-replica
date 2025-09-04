@@ -164,7 +164,7 @@ export default function BlogUploadPage() {
         setMessage({ type: '', text: '' })
 
         try {
-            const db = getFirestore(app, 'mbbsyatradb')
+            const db = getFirestore(app, 'hellodoctordb')
 
             // Clean up the data before submission
             const cleanedData = {
@@ -302,7 +302,7 @@ export default function BlogUploadPage() {
                                     value={formData.author}
                                     onChange={handleInputChange}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="e.g., MBBSYatra"
+                                    placeholder="e.g., Hello Doctor"
                                     required
                                 />
                             </div>

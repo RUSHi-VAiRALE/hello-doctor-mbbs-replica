@@ -219,8 +219,8 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Call Us</h4>
-                      <p className="text-gray-600">+91 7898025252</p>
-                      <p className="text-gray-600">+91 9039038655</p>
+                      <p className="text-gray-600">+91 9211607005</p>
+                      <p className="text-gray-600">+91 9211607005</p>
                     </div>
                   </div>
 
@@ -230,7 +230,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Email Us</h4>
-                      <p className="text-gray-600">mbbsyaatra@gmail.com</p>
+                      <p className="text-gray-600">info@hellodoctor.site</p>
                     </div>
                   </div>
                 </div>
@@ -246,10 +246,10 @@ export default function ContactSection() {
 
                 <div className="flex gap-4">
                   {[
-                    { href: "https://www.facebook.com/mbbsyaatra", icon: "bi-facebook", color: "from-blue-500 to-blue-600" },
-                    { href: "https://www.instagram.com/mbbsyaatra/", icon: "bi-instagram", color: "from-pink-500 to-purple-600" },
-                    { href: "https://www.linkedin.com/in/mbbsyaatra/", icon: "bi-linkedin", color: "from-blue-600 to-blue-700" },
-                    { href: "https://www.youtube.com/@mbbsyaatra", icon: "bi-youtube", color: "from-red-500 to-red-600" }
+                    { href: "https://www.facebook.com/hellodoctor", icon: "bi-facebook", color: "from-blue-500 to-blue-600" },
+                    { href: "https://www.instagram.com/hellodoctor/", icon: "bi-instagram", color: "from-pink-500 to-purple-600" },
+                    { href: "https://www.linkedin.com/in/hellodoctor/", icon: "bi-linkedin", color: "from-blue-600 to-blue-700" },
+                    { href: "https://www.youtube.com/@hellodoctor", icon: "bi-youtube", color: "from-red-500 to-red-600" }
                   ].map((social, index) => (
                     <a
                       key={index}

@@ -10,7 +10,7 @@
 // const data = [
 //   {
 //     "examName": "CLAT Entrance Exam",
-//     "description": "Candidates preparing for the CLAT 2025-2026 can enroll in our online coaching provided by Clatians at the most reasonable rates. We offer proper guidance, resources, and mock test series to help students prepare effectively.",
+//     "description": "Candidates preparing for the CLAT 2025-2026 can enroll in our online coaching provided by Hello Doctor at the most reasonable rates. We offer proper guidance, resources, and mock test series to help students prepare effectively.",
 //     "courses": [
 //       {
 //         id: 1,
@@ -66,7 +66,7 @@
 //           "Live Lectures and Recorded Videos",
 //           "Online Resource Access",
 //           "Practice Modules, Notes & DPD",
-//           "CLATians CA CODE",
+//           "Hello Doctor CA CODE",
 //           "Sectional & Topic-wise Test",
 //           "Online Mock Test Series",
 //           "CLAT Question Banks"
@@ -74,7 +74,7 @@
 //         "simple": [
 //           "Live Lectures",
 //           "Notes & DPD",
-//           "CLATians CA CODE",
+//           "Hello Doctor CA CODE",
 //           "Sectional & Topic-wise Test",
 //           "Online Mock Test Series",
 //           "CLAT Question Banks"
@@ -142,7 +142,7 @@
 //           "Live Lectures and Recorded Videos",
 //           "Online Resource Access",
 //           "Practice Modules, Notes & DPD",
-//           "CLATians CA CODE",
+//           "Hello Doctor CA CODE",
 //           "Sectional & Topic-wise Test",
 //           "Online Mock Test Series",
 //           "CLAT Question Banks"
@@ -150,7 +150,7 @@
 //         "simple": [
 //           "Live Lectures",
 //           "Notes & DPD",
-//           "CLATians CA CODE",
+//           "Hello Doctor CA CODE",
 //           "Sectional & Topic-wise Test",
 //           "Online Mock Test Series",
 //           "CLAT Question Banks"
@@ -166,7 +166,7 @@
 //       }
 //     ],
 //     "details": [
-//       <p>Are you searching for the best offline <strong>CLAT</strong> coaching institute to ace the <strong>Common Law Admission Test (CLAT)</strong>? Look no further! <strong>CLATians</strong>, India’s leading <strong>CLAT</strong> preparation institute, offers expert-led classroom training designed for top <strong>NLU</strong> admissions.</p>,
+//       <p>Are you searching for the best offline <strong>CLAT</strong> coaching institute to ace the <strong>Common Law Admission Test (CLAT)</strong>? Look no further! <strong>Hello Doctor</strong>, India’s leading <strong>CLAT</strong> preparation institute, offers expert-led classroom training designed for top <strong>NLU</strong> admissions.</p>,
 
 //       <p>With personalized mentorship, structured study material, and real-time mock tests, our <strong>Offline CLAT Course</strong> ensures focused, interactive learning to maximize your success.</p>,
 

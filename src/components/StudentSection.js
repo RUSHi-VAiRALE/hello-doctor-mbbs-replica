@@ -66,7 +66,7 @@ export default function StudentSection() {
         <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
           {/* Section Header */}
           <div className="text-center mb-6">
-            <h2 className="text-3xl font-bold">Students ❤️ CLATians</h2>
+            <h2 className="text-3xl font-bold">Students ❤️ Hello Doctor</h2>
             <p className="text-gray-600 mt-2">Hear from our students</p>
           </div>
 

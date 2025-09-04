@@ -6,8 +6,8 @@
 //   return (
 //     <div className="bg-[#E7EDFF] min-h-screen">
 //       <Head>
-//         <title>Privacy Policy - CLATians</title>
-//         <meta name="description" content="Privacy Policy for CLATians - Your trusted institute for CLAT, AILET, and other law entrance preparations." />
+//         <title>Privacy Policy - Hello Doctor</title>
+//         <meta name="description" content="Privacy Policy for Hello Doctor - Your trusted institute for medical entrance preparations." />
 //       </Head>
       
 //       <div className="container mx-auto px-4 py-12 max-w-5xl">
@@ -16,7 +16,7 @@
           
 //           <div className="space-y-6 text-gray-700">
 //             <p className="text-base md:text-lg">
-//               This Privacy Policy ("Policy") governs the manner in which IEE Education Private Limited, a company incorporated under the laws of India with its registered office at Patna ("Company", "we", "us", or "our"), collects, uses, stores, discloses, and protects the personal data of individuals ("you", "your", or "User") who access or use our services through the website <a href="https://clatians.com" className="text-blue-600 hover:underline">https://clatians.com</a> ("CLATians Website") and the corresponding CLATians Learning mobile application (collectively, the "Platform").
+//               This Privacy Policy ("Policy") governs the manner in which IEE Education Private Limited, a company incorporated under the laws of India with its registered office at Patna ("Company", "we", "us", or "our"), collects, uses, stores, discloses, and protects the personal data of individuals ("you", "your", or "User") who access or use our services through the website <a href="https://hellodoctor.site" className="text-blue-600 hover:underline">https://hellodoctor.site</a> ("Hello Doctor Website") and the corresponding Hello Doctor Learning mobile application (collectively, the "Platform").
 //             </p>
             
 //             <p className="text-base md:text-lg">
@@ -108,7 +108,7 @@
 //                 <li>Right to withdraw consent at any time (without affecting the legality of processing based on consent before its withdrawal)</li>
 //               </ul>
 //               <p>
-//                 To exercise any of these rights, please contact us at <a href="mailto:support@clatians.com" className="text-blue-600 hover:underline">support@clatians.com</a>.
+//                 To exercise any of these rights, please contact us at <a href="mailto:info@hellodoctor.site" className="text-blue-600 hover:underline">info@hellodoctor.site</a>.
 //               </p>
 //             </div>
             
@@ -148,9 +148,9 @@
 //     <p className="mb-2">If you have any questions, concerns, or grievances regarding this Privacy Policy or our data handling practices, please contact:</p>
 //     <p><strong>IEE Education Private Limited</strong></p>
 //     <br></br>
-//     Email: <a href="mailto:support@clatians.com">support@clatians.com</a>
+//     Email: <a href="mailto:info@hellodoctor.site">info@hellodoctor.site</a>
 //     <br></br>
-//     Website: <a href="https://clatians.com" className='text-blue-500'>https://clatians.com</a>
+//     Website: <a href="https://hellodoctor.site" className='text-blue-500'>https://hellodoctor.site</a>
 
 //             </div>
 //             {/* <div className="mt-8 border-t border-gray-200 pt-6">

@@ -108,7 +108,7 @@ export default function FAQ({ faqs }) {
                 <i className="bi bi-chat-dots-fill mr-2"></i>
                 Contact Us
               </a>
-              <a href="tel:+917898025252" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/50 inline-block text-center">
+              <a href="tel:+919211607005" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/50 inline-block text-center">
                 <i className="bi bi-telephone-fill mr-2"></i>
                 Call Now
               </a>

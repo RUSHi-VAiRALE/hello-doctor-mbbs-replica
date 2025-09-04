@@ -43,7 +43,7 @@ export default function ScholarshipSteps() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">
-            How to Take <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">CLATians</span> Scholarship Test
+            How to Take <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md">Hello Doctor</span> Scholarship Test
           </h2>
           <p className="text-gray-600">Follow these simple steps to get your scholarship</p>
         </div>

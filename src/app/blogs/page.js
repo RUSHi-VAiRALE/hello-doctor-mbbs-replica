@@ -13,7 +13,7 @@ export default function Blogs() {
             excerpt: 'Everything you need to know about studying MBBS in Russia - admission process, fees, universities, and student life.',
             image: 'https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg',
             date: '2024-04-01',
-            author: 'MBBSYatra',
+            author: 'Hello Doctor',
             readTime: '8',
             category: 'MBBS Abroad'
         },
@@ -23,7 +23,7 @@ export default function Blogs() {
             excerpt: 'Comprehensive list of the best government and private medical colleges in Rajasthan with admission details.',
             image: 'https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg',
             date: '2024-03-28',
-            author: 'MBBSYatra',
+            author: 'Hello Doctor',
             readTime: '6',
             category: 'MBBS in India'
         },
@@ -33,7 +33,7 @@ export default function Blogs() {
             excerpt: 'Expert tips and strategies to crack NEET UG 2025 and secure admission in top medical colleges.',
             image: 'https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_640.jpg',
             date: '2024-03-25',
-            author: 'MBBSYatra',
+            author: 'Hello Doctor',
             readTime: '10',
             category: 'Exam Prep'
         },
@@ -43,7 +43,7 @@ export default function Blogs() {
             excerpt: 'Step-by-step guide to study MBBS in Georgia - requirements, universities, fees, and career prospects.',
             image: 'https://cdn.pixabay.com/photo/2015/07/28/21/58/student-865073_640.jpg',
             date: '2024-03-20',
-            author: 'MBBSYatra',
+            author: 'Hello Doctor',
             readTime: '7',
             category: 'MBBS Abroad'
         },
@@ -53,7 +53,7 @@ export default function Blogs() {
             excerpt: 'Detailed comparison between MBBS and BAMS courses to help you make an informed decision.',
             image: 'https://cdn.pixabay.com/photo/2019/07/03/09/41/national-history-museum-4314035_1280.jpg',
             date: '2024-03-15',
-            author: 'MBBSYatra',
+            author: 'Hello Doctor',
             readTime: '9',
             category: 'Career Guidance'
         },
@@ -63,7 +63,7 @@ export default function Blogs() {
             excerpt: 'How professional counseling can help you choose the right medical college and career path.',
             image: 'https://cdn.pixabay.com/photo/2020/05/05/12/12/coffee-5132832_640.jpg',
             date: '2024-03-10',
-            author: 'MBBSYatra',
+            author: 'Hello Doctor',
             readTime: '5',
             category: 'Admission Guidance'
         }

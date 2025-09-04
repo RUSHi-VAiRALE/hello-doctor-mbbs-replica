@@ -10,7 +10,7 @@ const ChatUI = ({
 }) => (
   <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
     <div className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white p-4 text-center font-bold">
-      💬 Chat with CLATians
+      💬 Chat with Hello Doctor
     </div>
 
     <div className="h-[350px] overflow-y-auto p-4 space-y-4">
@@ -78,10 +78,10 @@ export default function ChatComponent() {
   const [userInput, setUserInput] = useState('')
 
   const initialConversation = [
-    { type: "user", text: "Hello! What is CLATians?" },
-    { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna..." },
-    { type: "user", text: "Hello! What is CLATians?" },
-    { type: "bot", text: "CLATians is one of the best CLAT coaching institutes in Patna..." },
+    { type: "user", text: "Hello! What is Hello Doctor?" },
+    { type: "bot", text: "Hello Doctor is one of the best medical coaching institutes in Patna..." },
+    { type: "user", text: "Hello! What is Hello Doctor?" },
+    { type: "bot", text: "Hello Doctor is one of the best medical coaching institutes in Patna..." },
 
   ]
 
@@ -122,7 +122,7 @@ export default function ChatComponent() {
         setIsTyping(false)
         setMessages(prev => [...prev, {
           type: 'bot',
-          text: "Thank you for your message. How can I help you with CLAT preparation?"
+          text: "Thank you for your message. How can I help you with medical preparation?"
         }])
       }, 2000)
     }
@@ -132,7 +132,7 @@ export default function ChatComponent() {
     return (
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white p-4 text-center font-bold">
-          💬 Chat with CLATians
+          💬 Chat with Hello Doctor
         </div>
         <div className="h-[350px]"></div>
       </div>

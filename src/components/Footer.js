@@ -7,9 +7,9 @@ import { app } from '@/firebase'
 import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 const socialLinks = [
-  { platform: 'https://www.facebook.com/mbbsyaatra', icon: 'bi-facebook', color: 'text-[#1877F2] hover:bg-[#1877F2]' },
-  { platform: 'https://www.instagram.com/mbbsyaatra/', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
-  { platform: 'https://www.linkedin.com/in/mbbsyaatra/', icon: 'bi-linkedin', color: 'text-[#0A66C2] hover:bg-[#0A66C2]' },
+  { platform: 'https://www.facebook.com/hellodoctor', icon: 'bi-facebook', color: 'text-[#1877F2] hover:bg-[#1877F2]' },
+  { platform: 'https://www.instagram.com/hellodoctor/', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
+  { platform: 'https://www.linkedin.com/in/hellodoctor/', icon: 'bi-linkedin', color: 'text-[#0A66C2] hover:bg-[#0A66C2]' },
 ]
 
 const quickLinks = [
@@ -252,25 +252,25 @@ export default function Footer() {
                   <div className="flex items-start space-x-3">
                     <i className="bi bi-geo-alt-fill text-orange-400 text-lg mt-1"></i>
                     <p className="text-blue-100 leading-relaxed">
-                      MBBS YAATRA, 11/5, Nath Mandir Rd, in front of Arora Bhawan, South Tukoganj, Indore, Madhya Pradesh 452001
+                      Hello Doctor, 11/5, Nath Mandir Rd, in front of Arora Bhawan, South Tukoganj, Indore, Madhya Pradesh 452001
                     </p>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-telephone-fill text-green-400"></i>
                     <div>
-                      <p className="text-blue-100">+91 7898025252</p>
+                      <p className="text-blue-100">+91 9211607005</p>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-telephone-fill text-blue-400"></i>
-                    <p className="text-blue-100">+91 9039038655</p>
+                    <p className="text-blue-100">+91 9211607005</p>
                   </div>
 
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-envelope-fill text-red-400"></i>
-                    <p className="text-blue-100">Email : mbbsyaatra@gmail.com</p>
+                    <p className="text-blue-100">Email : info@hellodoctor.site</p>
                   </div>
                 </div>
 
@@ -300,7 +300,7 @@ export default function Footer() {
           <div className="container mx-auto px-6 py-6 max-w-7xl">
             <div className="text-center">
               <p className="text-blue-200/80 text-sm">
-                © {new Date().getFullYear()} MBBS YAATRA - All rights reserved.
+                © {new Date().getFullYear()} Hello Doctor - All rights reserved.
               </p>
             </div>
           </div>

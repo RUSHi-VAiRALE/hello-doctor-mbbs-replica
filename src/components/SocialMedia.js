@@ -1,25 +1,25 @@
 export default function SocialMedia() {
   const socialLinks = [
     {
-      platform: 'https://www.facebook.com/mbbsyaatra',
+              platform: 'https://www.facebook.com/hellodoctor',
       icon: 'bi-facebook',
       color: 'from-blue-600 to-blue-700',
       name: 'Facebook'
     },
     {
-      platform: 'https://www.instagram.com/mbbsyaatra/',
+              platform: 'https://www.instagram.com/hellodoctor/',
       icon: 'bi-instagram',
       color: 'from-pink-500 to-purple-600',
       name: 'Instagram'
     },
     {
-      platform: 'https://www.youtube.com/@mbbsyaatra',
+              platform: 'https://www.youtube.com/@hellodoctor',
       icon: 'bi-youtube',
       color: 'from-red-500 to-red-600',
       name: 'YouTube'
     },
     {
-      platform: 'https://t.me/mbbsyaatra',
+              platform: 'https://t.me/hellodoctor',
       icon: 'bi-telegram',
       color: 'from-blue-400 to-blue-500',
       name: 'Telegram'
@@ -31,7 +31,7 @@ export default function SocialMedia() {
       name: 'Google'
     },
     {
-      platform: 'https://www.linkedin.com/in/mbbsyaatra/',
+              platform: 'https://www.linkedin.com/in/hellodoctor/',
       icon: 'bi-linkedin',
       color: 'from-blue-600 to-blue-700',
       name: 'LinkedIn'

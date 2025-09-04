@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
           <div className={`md:w-1/2 lg:h-[450px] flex flex-col transition-all justify-between gap-6 md:gap-2 lg:gap-4 duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div>
               <h2 className="md:text-xl text-2xl/10 lg:text-4xl font-bold leading-tight text-center md:text-left mb-2">
-                CLATians
+                Hello Doctor
               </h2>
               <p className="md:text-lg text-xl lg:text-2xl font-semibold text-gray-700 text-center md:text-left mb-4">
                 India's Most Trusted & Best CLAT Coaching Institute

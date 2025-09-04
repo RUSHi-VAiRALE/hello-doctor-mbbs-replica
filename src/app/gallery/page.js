@@ -54,8 +54,8 @@
 //   return (
 //     <>
 //       <Head>
-//         <title>Clatians Ai</title>
-//         <meta property="og:title" content="Hello clatians Seo" />
+//         <title>Hello Doctor Ai</title>
+//         <meta property="og:title" content="Hello Doctor Seo" />
 //       </Head>
 //       <AboutHero route="Home" page="Gallery" />
 
@@ -64,7 +64,7 @@
 //           <div className="text-center mb-12">
 //             <h1 className="text-3xl md:text-5xl font-bold mb-6">Our Gallery</h1>
 //             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-//               Take a visual tour of our classrooms, events, and student activities at CLATians.
+//               Take a visual tour of our classrooms, events, and student activities at Hello Doctor.
 //             </p>
 //           </div>
 

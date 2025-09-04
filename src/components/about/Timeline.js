@@ -137,7 +137,7 @@ export default function Timeline() {
             Our Success Story
           </h2>
           <p className="text-blue-100 max-w-2xl mx-auto text-lg">
-            Tracing CLATians' remarkable journey from inception to becoming India's leading legal education institute
+            Tracing Hello Doctor's remarkable journey from inception to becoming India's leading medical education institute
           </p>
         </div>
 

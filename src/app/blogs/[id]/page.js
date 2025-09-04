@@ -60,7 +60,7 @@ export default function BlogPost() {
                 
                 <p>In conclusion, MBBS in Russia is an excellent choice for Indian students looking for quality medical education at an affordable cost with global recognition.</p>
             `,
-            author: 'MBBSYatra',
+            author: 'Hello Doctor',
             date: '2024-04-01',
             readTime: '8',
             category: 'MBBS Abroad',
@@ -425,7 +425,7 @@ export default function BlogPost() {
 
     // Function to handle social media sharing
     const handleShare = (platform) => {
-        const title = blogData?.title || 'MBBSYatra Blog Post'
+        const title = blogData?.title || 'Hello Doctor Blog Post'
         const url = encodeURIComponent(shareUrl)
 
         let shareLink = ''

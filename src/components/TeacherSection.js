@@ -31,13 +31,13 @@ export default function TeacherSection() {
             {
               id: 1,
               name: "A. K. Singh",
-              role: "Director CLATians",
+              role: "Director Hello Doctor",
               location: "Patna, India",
               exp: 15,
               description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
               image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-              email: "alexendra@clatwallah.com",
-              phone: "+91-98765-43210"
+              email: "info@hellodoctor.site",
+              phone: "+91 9211607005"
             },
             {
               id: 2,
@@ -47,8 +47,8 @@ export default function TeacherSection() {
               exp: 12,
               description: "Specialist in Constitutional Law and Current Affairs with extensive teaching experience.",
               image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
-              email: "priya.sharma@clatwallah.com",
-              phone: "+91-98765-43211"
+              email: "info@hellodoctor.site",
+              phone: "+91 9211607005"
             },
             {
               id: 3,
@@ -58,8 +58,8 @@ export default function TeacherSection() {
               exp: 18,
               description: "Renowned expert in Logical Reasoning and Critical Thinking for law entrance examinations.",
               image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-              email: "rajesh.kumar@clatwallah.com",
-              phone: "+91-98765-43212"
+              email: "info@hellodoctor.site",
+              phone: "+91 9211607005"
             }
           ]
           setTeachers(fallbackTeachers)
@@ -72,13 +72,13 @@ export default function TeacherSection() {
           {
             id: 1,
             name: "A. K. Singh",
-            role: "Director CLATians",
+            role: "Director Hello Doctor",
             location: "Patna, India",
             exp: 15,
             description: "Expert in teaching Legal Reasoning and Legal Awareness for CLAT and other law entrance exams.",
             image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-            email: "alexendra@clatwallah.com",
-            phone: "+91-98765-43210"
+            email: "info@hellodoctor.site",
+            phone: "+91 9211607005"
           }
         ]
         setTeachers(fallbackTeachers)

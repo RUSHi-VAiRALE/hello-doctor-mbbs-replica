@@ -242,7 +242,7 @@ export default function MBBSUploadPage() {
         setMessage({ type: '', text: '' })
 
         try {
-            const db = getFirestore(app, 'mbbsyatradb')
+            const db = getFirestore(app, 'hellodoctordb')
 
             // Clean up the data before submission
             console.log('Colleges before processing:', formData.colleges);
@@ -323,7 +323,7 @@ export default function MBBSUploadPage() {
     // Fetch existing programs
     const fetchExistingPrograms = async () => {
         try {
-            const db = getFirestore(app, 'mbbsyatradb')
+            const db = getFirestore(app, 'hellodoctordb')
             const querySnapshot = await getDocs(collection(db, "mbbsPrograms"))
             const programs = querySnapshot.docs.map(doc => ({
                 id: doc.id,
@@ -339,7 +339,7 @@ export default function MBBSUploadPage() {
     const deleteProgram = async (programId) => {
         if (window.confirm('Are you sure you want to delete this program?')) {
             try {
-                const db = getFirestore(app, 'mbbsyatradb')
+                const db = getFirestore(app, 'hellodoctordb')
                 await deleteDoc(doc(db, "mbbsPrograms", programId))
                 setMessage({
                     type: 'success',

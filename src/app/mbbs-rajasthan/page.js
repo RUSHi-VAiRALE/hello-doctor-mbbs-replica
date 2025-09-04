@@ -325,13 +325,13 @@ export default function MBBSRajasthanPage() {
                                 <div className="flex items-center">
                                     <FaPhone className="mr-3 text-yellow-300" />
                                     <div>
-                                        <div className="text-sm">India: +91 94270 77337</div>
-                                        <div className="text-sm">Overseas: +91 91739 13939</div>
+                                                        <div className="text-sm">India: +91 9211607005</div>
+                <div className="text-sm">Overseas: +91 9211607005</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center">
                                     <FaEnvelope className="mr-3 text-yellow-300" />
-                                    <span className="text-sm">info@mbbsyaatra.com</span>
+                                    <span className="text-sm">info@hellodoctor.site</span>
                                 </div>
                             </div>
                             <button className="w-full bg-white text-blue-600 py-2 px-4 rounded-lg font-semibold mt-4 hover:bg-blue-50 transition-colors">

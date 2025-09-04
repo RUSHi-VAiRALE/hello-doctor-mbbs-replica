@@ -12,7 +12,7 @@ export default function LearningResources() {
       <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-8">
-            <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md inline-block">CLATians</span> SPECIAL
+            <span className="bg-gradient-to-r from-[#ad4a16] via-[#8f3a17] to-[#312518] text-white px-4 py-2 rounded-md inline-block">Hello Doctor</span> SPECIAL
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Explore resources to enhance your preparation for exams with our curated blogs, courses, test

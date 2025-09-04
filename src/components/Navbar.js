@@ -295,7 +295,7 @@ export default function Navbar() {
                 </svg>
                 <div className="text-sm">
                   {/* <div className="font-semibold text-red-800">Study Abroad</div> */}
-                  <div className="text-red-600">+91-7898025252</div>
+                  <div className="text-red-600">+91 9211607005</div>
                 </div>
               </div>
             </div>
@@ -308,7 +308,7 @@ export default function Navbar() {
                 </svg>
                 <div className="text-sm">
                   {/* <div className="font-semibold text-red-800">Study in India</div> */}
-                  <div className="text-red-600">+91-9039038655</div>
+                  <div className="text-red-600">+91 9211607005</div>
                 </div>
               </div>
             </div>
@@ -320,7 +320,7 @@ export default function Navbar() {
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
                 <div className="text-sm">
-                  <div className="text-red-600">mbbsyaatra@gmail.com</div>
+                  <div className="text-red-600">info@hellodoctor.site</div>
                 </div>
               </div>
             </div>
@@ -337,9 +337,9 @@ export default function Navbar() {
               <Image
                 src={mbbslogo}
                 alt="Education-Hub-Logo"
-                width={120}
-                height={62}
-                className="w-auto h-[62px]"
+                width={160}
+                height={82}
+                className="w-auto h-[82px]"
               />
             </Link>
 
@@ -608,7 +608,7 @@ export default function Navbar() {
             {/* Desktop Right Buttons */}
             <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
               <button className="px-5 py-2 border-2 border-blue-600 text-blue-600 font-medium text-md rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 whitespace-nowrap">
-                <a href='tel:9039038655'>Call Us</a>
+                <a href='tel:+919211607005'>Call Us</a>
               </button>
               <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-5 py-2 bg-blue-600 text-white font-medium text-md rounded-full hover:bg-blue-700 hover:shadow-lg transition-all duration-300 shadow-md whitespace-nowrap">
                 Download App
