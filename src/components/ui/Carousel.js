@@ -40,8 +40,9 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
             <Image
               src={slide.image}
               alt={slide.alt}
-              fill
               className="object-contain hidden md:block"
+              width={1920}
+              height={1080}
               priority={isActive}
               sizes="100vw"
               quality={isActive ? 90 : 75}
@@ -53,6 +54,8 @@ export function Carousel({ slides, currentSlide, setCurrentSlide, autoPlay = tru
               src={slide.mobileImage}
               alt={slide.alt}
               className="object-cover aspect-square md:hidden"
+              width={800}
+              height={800}
               priority={isActive}
               sizes="100vw"
               quality={isActive ? 90 : 75}
