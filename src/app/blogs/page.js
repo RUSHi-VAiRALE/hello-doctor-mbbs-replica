@@ -73,14 +73,14 @@ export default function Blogs() {
         <>
             <AboutHero route="Home" page="Blog" />
 
-            <section className="py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+            <section className="py-16 bg-gradient-to-br from-teal-100 to-green-100">
                 <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
                     {/* Header */}
                     <div className="text-center mb-16">
-                        <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg">
+                        <span className="inline-block bg-gradient-to-r from-teal-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg">
                             LATEST ARTICLES
                         </span>
-                        <h1 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">
+                        <h1 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">
                             Our Blog
                         </h1>
                         <p className="text-slate-600 text-lg max-w-3xl mx-auto">
@@ -100,7 +100,7 @@ export default function Blogs() {
                                         className="w-full h-full object-cover transition-transform hover:scale-105"
                                     />
                                     <div className="absolute top-4 left-4">
-                                        <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                        <span className="bg-gradient-to-r from-teal-500 to-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
                                             {blog.category}
                                         </span>
                                     </div>
@@ -138,7 +138,7 @@ export default function Blogs() {
                                     {/* Read More Button */}
                                     <Link
                                         href={`/blogs/${blog.id}`}
-                                        className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group"
+                                        className="inline-flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors group"
                                     >
                                         Read More
                                         <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -150,7 +150,7 @@ export default function Blogs() {
 
                     {/* Load More Button */}
                     <div className="text-center mt-12">
-                        <button className="px-8 py-3 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg">
+                        <button className="px-8 py-3 bg-gradient-to-r from-teal-500 via-green-500 to-teal-600 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg">
                             Load More Articles
                         </button>
                     </div>

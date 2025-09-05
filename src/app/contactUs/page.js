@@ -63,9 +63,9 @@ export default function ContactSection() {
   return (
     <>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-teal-100 to-green-100 text-gray-800 relative overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-200/30 via-green-200/30 to-teal-200/30"></div>
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
@@ -74,17 +74,17 @@ export default function ContactSection() {
 
         <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl text-center">
           {/* Badge */}
-          <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+          <div className="inline-flex items-center bg-gradient-to-r from-teal-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
             <i className="bi bi-envelope-fill mr-2"></i>
             GET IN TOUCH
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">
             Contact Us
           </h1>
 
-          <p className="text-blue-100 max-w-2xl mx-auto text-lg mb-8">
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg mb-8">
             Ready to start your journey to studying abroad? Get in touch with our expert consultants today and let us help you achieve your educational dreams.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function ContactSection() {
             <div className="w-full">
               <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100">
                 <div className="mb-8">
-                  <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-teal-500 to-green-600 bg-clip-text text-transparent">
                     Send us a Message
                   </h2>
                   <p className="text-gray-600">
@@ -128,7 +128,7 @@ export default function ContactSection() {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300"
                       placeholder="Enter your full name"
                       required
                     />
@@ -141,7 +141,7 @@ export default function ContactSection() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300"
                       placeholder="Enter your email address"
                       required
                     />
@@ -154,7 +154,7 @@ export default function ContactSection() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300"
                       placeholder="Enter your phone number"
                       required
                     />
@@ -166,7 +166,7 @@ export default function ContactSection() {
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300"
                       rows="5"
                       placeholder="Tell us about your study abroad goals and how we can help you..."
                       required
@@ -175,7 +175,7 @@ export default function ContactSection() {
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                    className="w-full bg-gradient-to-r from-teal-500 to-green-600 text-white font-semibold py-4 px-6 rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -198,23 +198,23 @@ export default function ContactSection() {
             <div className="w-full space-y-8">
               {/* Contact Information */}
               <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-teal-500 to-green-600 bg-clip-text text-transparent">
                   Get in Touch
                 </h3>
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg">
+                    <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg">
                       <i className="bi bi-geo-alt-fill"></i>
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">Visit Our Office</h4>
-                      <p className="text-gray-600">11/5, Nath Mandir Rd, in front of Arora Bhawan,<br /> South Tukoganj, Indore, Madhya Pradesh 452001</p>
+                      <p className="text-gray-600">Hello Doctor, TH .NO-C - 1/36,<br /> New Ashok Nagar, Delhi, 110096, India</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg">
+                    <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg">
                       <i className="bi bi-telephone-fill"></i>
                     </div>
                     <div>
@@ -225,7 +225,7 @@ export default function ContactSection() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg">
+                    <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg">
                       <i className="bi bi-envelope-fill"></i>
                     </div>
                     <div>
@@ -238,7 +238,7 @@ export default function ContactSection() {
 
               {/* Social Media */}
               <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-teal-500 to-green-600 bg-clip-text text-transparent">
                   Follow Us
                 </h3>
 

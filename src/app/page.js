@@ -69,7 +69,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-gradient-to-br from-teal-50 to-green-50">
       <Hero slides={slides} height={"250px"} />
       {/* <WhyChooseUs /> */}
       <Features />

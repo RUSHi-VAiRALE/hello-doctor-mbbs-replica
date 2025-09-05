@@ -57,26 +57,26 @@ export default function Features() {
   ]
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden" ref={sectionRef}>
+    <section className="py-16 bg-gradient-to-br from-teal-100 to-green-100 text-gray-800 relative overflow-hidden" ref={sectionRef}>
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-200/30 via-green-200/30 to-teal-200/30"></div>
       <div className="absolute inset-0" style={{
-        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                         radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                         radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%)`
+        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                         radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                         radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`
       }}></div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+          <div className="inline-flex items-center bg-gradient-to-r from-teal-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
             <i className="bi bi-star-fill mr-2"></i>
             OUR FEATURES
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">
             Why Choose Us
           </h2>
-          <p className="text-blue-100 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Experience excellence in education with our comprehensive features designed for your success
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function Features() {
               className="group relative"
             >
               <div
-                className={`bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl min-h-[220px] flex flex-col justify-center ${hasAnimated ? 'animate-fade-up' : 'opacity-0 translate-y-8'}`}
+                className={`bg-white/80 backdrop-blur-sm border border-teal-200/50 rounded-2xl p-8 text-center hover:bg-white/90 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl min-h-[220px] flex flex-col justify-center ${hasAnimated ? 'animate-fade-up' : 'opacity-0 translate-y-8'}`}
                 style={{
                   animationDelay: `${index * 200}ms`,
                   animationFillMode: 'both'
@@ -99,15 +99,15 @@ export default function Features() {
                   <i className={`bi ${feature.icon} text-2xl text-white`}></i>
                 </div>
 
-                <h5 className="text-xl font-bold mb-3 text-white group-hover:text-blue-100 transition-colors duration-300">
+                <h5 className="text-xl font-bold mb-3 text-gray-800 group-hover:text-teal-700 transition-colors duration-300">
                   {feature.title}
                 </h5>
-                <p className="text-blue-200 text-sm leading-relaxed group-hover:text-blue-100 transition-colors duration-300">
+                <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                   {feature.description}
                 </p>
 
                 {/* Hover effect border */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-400/50 rounded-2xl transition-all duration-300"></div>
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-teal-400/50 rounded-2xl transition-all duration-300"></div>
               </div>
             </div>
           ))}
@@ -115,7 +115,7 @@ export default function Features() {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <button className="bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl">
+          <button className="bg-gradient-to-r from-teal-500 via-green-500 to-teal-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl">
             Explore All Features
           </button>
         </div>

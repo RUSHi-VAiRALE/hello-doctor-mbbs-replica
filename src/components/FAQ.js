@@ -10,26 +10,26 @@ export default function FAQ({ faqs }) {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+    <section className="py-16 bg-gradient-to-br from-teal-100 to-green-100 text-gray-800 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-200/30 via-green-200/30 to-teal-200/30"></div>
       <div className="absolute inset-0" style={{
-        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                         radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                         radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%)`
+        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                         radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                         radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`
       }}></div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+          <div className="inline-flex items-center bg-gradient-to-r from-teal-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
             <i className="bi bi-question-circle-fill mr-2"></i>
             HELP CENTER
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">
             Frequently Asked Questions
           </h2>
-          <p className="text-blue-100 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Find answers to common questions about MBBS abroad, medical education, and our consultation services
           </p>
         </div>
@@ -38,7 +38,7 @@ export default function FAQ({ faqs }) {
           {faqs.map((faq, index) => (
             <div
               key={faq.index || index}
-              className={`group relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-white/20 ${activeIndex === index ? 'bg-white/20 shadow-2xl' : 'hover:shadow-xl'
+              className={`group relative bg-white/80 backdrop-blur-sm border border-teal-200/50 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-white/90 ${activeIndex === index ? 'bg-white/90 shadow-2xl' : 'hover:shadow-xl'
                 }`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -50,22 +50,22 @@ export default function FAQ({ faqs }) {
               >
                 <div className="flex items-start">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 transition-all duration-300 ${hoveredIndex === index || activeIndex === index
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg'
-                      : 'bg-white/20'
+                    ? 'bg-gradient-to-r from-teal-500 to-green-600 shadow-lg'
+                    : 'bg-teal-100/50'
                     }`}>
-                    <i className="bi bi-question-circle text-white"></i>
+                    <i className="bi bi-question-circle text-teal-700"></i>
                   </div>
-                  <span className={`font-semibold text-lg leading-relaxed transition-colors duration-300 ${hoveredIndex === index || activeIndex === index ? 'text-white' : 'text-blue-100'
+                  <span className={`font-semibold text-lg leading-relaxed transition-colors duration-300 ${hoveredIndex === index || activeIndex === index ? 'text-teal-800' : 'text-gray-700'
                     }`}>
                     {faq.question}
                   </span>
                 </div>
 
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ml-4 transition-all duration-300 ${hoveredIndex === index || activeIndex === index
-                    ? 'bg-gradient-to-r from-purple-500 to-indigo-600'
-                    : 'bg-white/20'
+                  ? 'bg-gradient-to-r from-green-500 to-teal-600'
+                  : 'bg-teal-100/50'
                   }`}>
-                  <i className={`bi bi-chevron-down transition-all duration-300 text-white ${activeIndex === index ? 'rotate-180' : ''
+                  <i className={`bi bi-chevron-down transition-all duration-300 text-teal-700 ${activeIndex === index ? 'rotate-180' : ''
                     }`}></i>
                 </div>
               </button>
@@ -74,8 +74,8 @@ export default function FAQ({ faqs }) {
               {activeIndex === index && (
                 <div className="px-6 pb-6 animate-fade-in">
                   <div className="pl-14 pr-12">
-                    <div className="h-px bg-gradient-to-r from-blue-400/50 via-purple-400/50 to-transparent mb-4"></div>
-                    <p className="text-blue-100 leading-relaxed text-base">
+                    <div className="h-px bg-gradient-to-r from-teal-400/50 via-green-400/50 to-transparent mb-4"></div>
+                    <p className="text-gray-600 leading-relaxed text-base">
                       {faq.answer}
                     </p>
                   </div>
@@ -84,13 +84,13 @@ export default function FAQ({ faqs }) {
 
               {/* Hover Border Effect */}
               <div className={`absolute inset-0 border-2 rounded-2xl transition-all duration-300 pointer-events-none ${hoveredIndex === index || activeIndex === index
-                  ? 'border-blue-400/50'
-                  : 'border-transparent'
+                ? 'border-teal-400/50'
+                : 'border-transparent'
                 }`}></div>
 
               {/* Active Indicator */}
               {activeIndex === index && (
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-teal-400 to-green-500 rounded-full"></div>
               )}
             </div>
           ))}
@@ -98,17 +98,17 @@ export default function FAQ({ faqs }) {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4 text-white">Still have questions?</h3>
-            <p className="text-blue-100 mb-6">
+          <div className="bg-white/80 backdrop-blur-sm border border-teal-200/50 rounded-2xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-4 text-gray-800">Still have questions?</h3>
+            <p className="text-gray-600 mb-6">
               Can't find the answer you're looking for? Our medical education consultants are here to help you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contactUs" className="bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center">
+              <a href="/contactUs" className="bg-gradient-to-r from-teal-500 via-green-500 to-teal-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center">
                 <i className="bi bi-chat-dots-fill mr-2"></i>
                 Contact Us
               </a>
-              <a href="tel:+919211607005" className="border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/50 inline-block text-center">
+              <a href="tel:+919211607005" className="border-2 border-teal-300/50 text-teal-700 font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-teal-50 hover:border-teal-400/70 inline-block text-center">
                 <i className="bi bi-telephone-fill mr-2"></i>
                 Call Now
               </a>

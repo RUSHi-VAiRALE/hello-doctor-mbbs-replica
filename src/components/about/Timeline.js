@@ -117,9 +117,9 @@ export default function Timeline() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-teal-100 to-green-100 text-gray-800 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-200/30 via-green-200/30 to-teal-200/30"></div>
       <div className="absolute inset-0" style={{
         backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                          radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
@@ -129,21 +129,21 @@ export default function Timeline() {
       <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+          <div className="inline-flex items-center bg-gradient-to-r from-teal-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
             <i className="bi bi-clock-history mr-2"></i>
             OUR JOURNEY
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">
             Our Success Story
           </h2>
-          <p className="text-blue-100 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Tracing Hello Doctor's remarkable journey from inception to becoming India's leading medical education institute
           </p>
         </div>
 
         {/* Mobile view - vertical timeline */}
         <div className="md:hidden">
-          <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-blue-400 before:to-purple-500 before:left-4">
+          <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-teal-400 before:to-green-500 before:left-4">
             {milestones.map((milestone, index) => (
               <div key={`mobile-${milestone.year}-${index}`} className="relative">
                 {/* Dot */}
@@ -152,13 +152,13 @@ export default function Timeline() {
                 </div>
 
                 {/* Content */}
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-lg">
+                <div className="bg-white/80 backdrop-blur-sm border border-teal-200/50 p-4 rounded-xl shadow-lg">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg font-bold text-blue-300">{milestone.year}</span>
-                    <div className="h-px bg-gradient-to-r from-blue-400 to-transparent flex-1"></div>
+                    <span className="text-lg font-bold text-teal-600">{milestone.year}</span>
+                    <div className="h-px bg-gradient-to-r from-teal-400 to-transparent flex-1"></div>
                   </div>
-                  <h3 className="font-bold text-white mb-2">{milestone.title}</h3>
-                  <p className="text-blue-200 text-sm">{milestone.description}</p>
+                  <h3 className="font-bold text-gray-800 mb-2">{milestone.title}</h3>
+                  <p className="text-gray-600 text-sm">{milestone.description}</p>
                 </div>
               </div>
             ))}
@@ -226,15 +226,15 @@ export default function Timeline() {
                     w-40 absolute z-20
                     ${isTop ? '-top-24' : 'top-20'} left-1/2 -translate-x-1/2`}
                   >
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-xl shadow-xl hover:-translate-y-1 transition-transform duration-300">
+                    <div className="bg-white/80 backdrop-blur-sm border border-teal-200/50 p-4 rounded-xl shadow-xl hover:-translate-y-1 transition-transform duration-300">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-sm font-bold text-blue-300">{milestone.year}</span>
-                        <div className="h-px bg-gradient-to-r from-blue-400 to-transparent flex-1"></div>
+                        <span className="text-sm font-bold text-teal-600">{milestone.year}</span>
+                        <div className="h-px bg-gradient-to-r from-teal-400 to-transparent flex-1"></div>
                       </div>
-                      <h3 className="text-sm font-bold text-white mb-2 leading-tight">
+                      <h3 className="text-sm font-bold text-gray-800 mb-2 leading-tight">
                         {milestone.title}
                       </h3>
-                      <p className="text-xs text-blue-200 leading-relaxed">
+                      <p className="text-xs text-gray-600 leading-relaxed">
                         {milestone.description}
                       </p>
                     </div>
@@ -249,16 +249,16 @@ export default function Timeline() {
         <div className="mt-16 text-center">
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">25+</div>
-              <div className="text-blue-200 text-sm">Years Journey</div>
+              <div className="text-3xl font-bold text-gray-800 mb-2">25+</div>
+              <div className="text-gray-600 text-sm">Years Journey</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">10K+</div>
-              <div className="text-blue-200 text-sm">Success Stories</div>
+              <div className="text-3xl font-bold text-gray-800 mb-2">10K+</div>
+              <div className="text-gray-600 text-sm">Success Stories</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-2">98%</div>
-              <div className="text-blue-200 text-sm">Success Rate</div>
+              <div className="text-3xl font-bold text-gray-800 mb-2">98%</div>
+              <div className="text-gray-600 text-sm">Success Rate</div>
             </div>
           </div>
         </div>

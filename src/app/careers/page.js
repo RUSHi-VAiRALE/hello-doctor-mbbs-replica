@@ -73,13 +73,13 @@ export default function CareersPage() {
         <>
             <AboutHero route="Home" page="Careers" />
 
-            <section className="py-16 md:py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+            <section className="py-16 md:py-24 bg-gradient-to-br from-teal-100 to-green-100">
                 <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
                     <div className="text-center mb-16">
-                        <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg">
+                        <span className="inline-block bg-gradient-to-r from-teal-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4 shadow-lg">
                             CAREER OPPORTUNITIES
                         </span>
-                        <h1 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">Join Our Growing Team</h1>
+                        <h1 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">Join Our Growing Team</h1>
                         <p className="text-slate-600 text-lg max-w-3xl mx-auto">
                             We're building a team of passionate educators and professionals dedicated to helping law aspirants achieve their dreams.
                         </p>
@@ -87,7 +87,7 @@ export default function CareersPage() {
 
                     {loading ? (
                         <div className="flex justify-center items-center py-20">
-                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
                         </div>
                     ) : (
                         <>
@@ -99,10 +99,10 @@ export default function CareersPage() {
                                         className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 cursor-pointer overflow-hidden"
                                         onClick={() => setSelectedCareer(career)}
                                     >
-                                        <div className="h-3 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900"></div>
+                                        <div className="h-3 bg-gradient-to-r from-teal-500 via-green-500 to-teal-600"></div>
                                         <div className="p-6">
                                             <div className="flex items-center mb-4">
-                                                <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-600 rounded-full flex items-center justify-center mr-4 shadow-md">
+                                                <div className="w-12 h-12 bg-gradient-to-r from-teal-100 to-green-100 text-teal-600 rounded-full flex items-center justify-center mr-4 shadow-md">
                                                     <FaUserTie className="text-xl" />
                                                 </div>
                                                 <h3 className="text-xl font-bold text-slate-800">{career.role}</h3>
@@ -111,7 +111,7 @@ export default function CareersPage() {
                                                 {career.shortDescription || "Join our team and make a difference in the lives of law aspirants."}
                                             </p>
                                             <div className="flex justify-end">
-                                                <button className="text-blue-600 font-medium flex items-center hover:text-blue-700 transition-colors">
+                                                <button className="text-teal-600 font-medium flex items-center hover:text-teal-700 transition-colors">
                                                     View Details <FaArrowRight className="ml-2" />
                                                 </button>
                                             </div>
@@ -126,10 +126,10 @@ export default function CareersPage() {
                                     <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                                         <div className="sticky top-0 bg-white z-10 p-6 border-b border-slate-100 flex justify-between items-center">
                                             <div className="flex items-center">
-                                                <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-600 rounded-full flex items-center justify-center mr-4 shadow-md">
+                                                <div className="w-12 h-12 bg-gradient-to-r from-teal-100 to-green-100 text-teal-600 rounded-full flex items-center justify-center mr-4 shadow-md">
                                                     <FaUserTie className="text-xl" />
                                                 </div>
-                                                <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">{selectedCareer.role}</h2>
+                                                <h2 className="text-2xl font-bold bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">{selectedCareer.role}</h2>
                                             </div>
                                             <button
                                                 onClick={(e) => {
@@ -145,7 +145,7 @@ export default function CareersPage() {
                                         <div className="p-6">
                                             <div className="mb-6">
                                                 <div className="flex items-center mb-3">
-                                                    <FaTasks className="text-blue-500 mr-2" />
+                                                    <FaTasks className="text-teal-500 mr-2" />
                                                     <h4 className="font-semibold text-lg text-slate-800">Responsibilities</h4>
                                                 </div>
                                                 <ul className="pl-6 text-slate-600 space-y-2 list-disc">
@@ -168,7 +168,7 @@ export default function CareersPage() {
 
                                             <div className="mb-6">
                                                 <div className="flex items-center mb-3">
-                                                    <FaCalendarAlt className="text-purple-500 mr-2" />
+                                                    <FaCalendarAlt className="text-green-500 mr-2" />
                                                     <h4 className="font-semibold text-lg text-slate-800">Day-to-Day Tasks</h4>
                                                 </div>
                                                 <ul className="pl-6 text-slate-600 space-y-2 list-disc">
@@ -191,7 +191,7 @@ export default function CareersPage() {
 
                                             <div className="mt-8 flex justify-center">
                                                 <button
-                                                    className="px-6 py-3 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg"
+                                                    className="px-6 py-3 bg-gradient-to-r from-teal-500 via-green-500 to-teal-600 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity shadow-lg"
                                                     onClick={() => {
                                                         setShowApplicationForm(true);
                                                     }}
@@ -220,7 +220,7 @@ export default function CareersPage() {
 
                     <div id="career-notification-form" className="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto border border-slate-100">
                         <div className="text-center mb-8">
-                            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">Get Notified About Job Openings</h2>
+                            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">Get Notified About Job Openings</h2>
                             <p className="text-slate-600">
                                 Be the first to know when we start hiring. We'll notify you as soon as positions become available.
                             </p>
@@ -237,7 +237,7 @@ export default function CareersPage() {
                             />
                             <button
                                 type="submit"
-                                className="px-6 py-3 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center whitespace-nowrap shadow-lg"
+                                className="px-6 py-3 bg-gradient-to-r from-teal-500 via-green-500 to-teal-600 text-white font-semibold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center whitespace-nowrap shadow-lg"
                             >
                                 Join Talent Pool <FaBell className="ml-2" />
                             </button>
@@ -251,7 +251,7 @@ export default function CareersPage() {
                     <div className="mt-16 text-center">
                         <Link
                             href="/contactUs"
-                            className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors"
+                            className="inline-flex items-center text-teal-600 font-medium hover:text-teal-700 transition-colors"
                         >
                             Have questions? Contact us <FaArrowRight className="ml-2" />
                         </Link>

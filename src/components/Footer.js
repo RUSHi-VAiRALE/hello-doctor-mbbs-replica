@@ -103,9 +103,9 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-teal-100 to-green-100 text-gray-800 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-200/30 via-green-200/30 to-teal-200/30"></div>
       <div className="absolute inset-0" style={{
         backgroundImage: `radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
                          radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
@@ -116,14 +116,14 @@ export default function Footer() {
         {/* Newsletter Section */}
         <div className="container mx-auto px-6 py-16 max-w-7xl">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
+            <div className="inline-flex items-center bg-gradient-to-r from-teal-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
               <i className="bi bi-envelope-heart mr-2"></i>
               GET LATEST UPDATES
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-800 to-green-800 bg-clip-text text-transparent">
               Subscribe to Our Newsletter
             </h2>
-            <p className="text-blue-100 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
+            <p className="text-gray-600 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
               Stay updated with the latest news, exam strategies, and special offers! Join our newsletter today.
             </p>
 
@@ -135,14 +135,14 @@ export default function Footer() {
                     placeholder="Enter Your E-Mail"
                     value={email}
                     onChange={handleEmailChange}
-                    className="w-full px-6 py-4 rounded-xl text-gray-900 bg-white/95 backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-blue-400/50 border border-white/20 shadow-lg placeholder-gray-500"
+                    className="w-full px-6 py-4 rounded-xl text-gray-900 bg-white/95 backdrop-blur-sm focus:outline-none focus:ring-4 focus:ring-teal-400/50 border border-white/20 shadow-lg placeholder-gray-500"
                     required
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap disabled:opacity-70 text-white shadow-lg"
+                  className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-teal-500 via-green-500 to-teal-600 rounded-xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap disabled:opacity-70 text-white shadow-lg"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center">
@@ -165,7 +165,7 @@ export default function Footer() {
               )}
             </form>
 
-            <p className="text-sm text-blue-200/80 flex items-center justify-center">
+            <p className="text-sm text-gray-600 flex items-center justify-center">
               <i className="bi bi-shield-check mr-2"></i>
               No ads, No spam, Unsubscribe anytime.
             </p>
@@ -173,14 +173,14 @@ export default function Footer() {
         </div>
 
         {/* Main Footer Content */}
-        <div className="bg-gradient-to-r from-slate-800/50 to-blue-800/50 backdrop-blur-sm border-t border-white/10">
+        <div className="bg-gradient-to-r from-teal-200/50 to-green-200/50 backdrop-blur-sm border-t border-teal-300/20">
           <div className="container mx-auto px-6 py-12 max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
               {/* Quick Links */}
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                  <div className="w-1 h-6 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full mr-3"></div>
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-teal-400 to-green-500 rounded-full mr-3"></div>
                   Quick Links
                 </h3>
                 <ul className="space-y-3">
@@ -188,9 +188,9 @@ export default function Footer() {
                     <li key={index}>
                       <Link
                         href={link.link}
-                        className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300 flex items-center group"
+                        className="text-gray-600 hover:text-teal-700 hover:pl-2 transition-all duration-300 flex items-center group"
                       >
-                        <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>
+                        <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-teal-400"></i>
                         {link.text}
                       </Link>
                     </li>
@@ -200,8 +200,8 @@ export default function Footer() {
 
               {/* Study MBBS In India */}
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                  <div className="w-1 h-6 bg-gradient-to-b from-green-400 to-blue-500 rounded-full mr-3"></div>
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-green-400 to-teal-500 rounded-full mr-3"></div>
                   Study MBBS In India
                 </h3>
                 <ul className="space-y-3">
@@ -209,7 +209,7 @@ export default function Footer() {
                     <li key={index}>
                       <Link
                         href={link.link}
-                        className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300 flex items-center group"
+                        className="text-gray-600 hover:text-teal-700 hover:pl-2 transition-all duration-300 flex items-center group"
                       >
                         <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-green-400"></i>
                         {link.text}
@@ -221,8 +221,8 @@ export default function Footer() {
 
               {/* Study Abroad */}
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                  <div className="w-1 h-6 bg-gradient-to-b from-purple-400 to-pink-500 rounded-full mr-3"></div>
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-teal-400 to-green-500 rounded-full mr-3"></div>
                   Study Abroad
                 </h3>
                 <ul className="space-y-3">
@@ -230,9 +230,9 @@ export default function Footer() {
                     <li key={index}>
                       <Link
                         href={link.link}
-                        className="text-blue-100 hover:text-white hover:pl-2 transition-all duration-300 flex items-center group"
+                        className="text-gray-600 hover:text-teal-700 hover:pl-2 transition-all duration-300 flex items-center group"
                       >
-                        <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-purple-400"></i>
+                        <i className="bi bi-chevron-right text-xs mr-2 group-hover:text-teal-400"></i>
                         {link.text}
                       </Link>
                     </li>
@@ -242,16 +242,16 @@ export default function Footer() {
 
               {/* Get in Touch */}
               <div className="space-y-6">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                  <div className="w-1 h-6 bg-gradient-to-b from-orange-400 to-red-500 rounded-full mr-3"></div>
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div className="w-1 h-6 bg-gradient-to-b from-teal-400 to-green-500 rounded-full mr-3"></div>
                   Get in Touch
                 </h3>
 
                 {/* Address */}
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <i className="bi bi-geo-alt-fill text-orange-400 text-lg mt-1"></i>
-                    <p className="text-blue-100 leading-relaxed">
+                    <i className="bi bi-geo-alt-fill text-teal-400 text-lg mt-1"></i>
+                    <p className="text-gray-600 leading-relaxed">
                       Hello Doctor, TH .NO-C - 1/36, New Ashok Nagar, Delhi, 110096, India
                     </p>
                   </div>
@@ -259,18 +259,18 @@ export default function Footer() {
                   <div className="flex items-center space-x-3">
                     <i className="bi bi-telephone-fill text-green-400"></i>
                     <div>
-                      <p className="text-blue-100">+91 9211607005</p>
+                      <p className="text-gray-600">+91 9211607005</p>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <i className="bi bi-telephone-fill text-blue-400"></i>
-                    <p className="text-blue-100">+91 9211607005</p>
+                    <i className="bi bi-telephone-fill text-teal-400"></i>
+                    <p className="text-gray-600">+91 9211607005</p>
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <i className="bi bi-envelope-fill text-red-400"></i>
-                    <p className="text-blue-100">Email : info@hellodoctor.site</p>
+                    <i className="bi bi-envelope-fill text-teal-400"></i>
+                    <p className="text-gray-600">Email : info@hellodoctor.site</p>
                   </div>
                 </div>
 
@@ -296,10 +296,10 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="bg-slate-900/80 backdrop-blur-sm border-t border-white/10">
+        <div className="bg-teal-200/80 backdrop-blur-sm border-t border-teal-300/20">
           <div className="container mx-auto px-6 py-6 max-w-7xl">
             <div className="text-center">
-              <p className="text-blue-200/80 text-sm">
+              <p className="text-gray-600 text-sm">
                 © {new Date().getFullYear()} Hello Doctor - All rights reserved.
               </p>
             </div>

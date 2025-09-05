@@ -236,14 +236,14 @@ export default function Navbar() {
   return (
     <>
       {/* Top Navbar */}
-      <div className="container mx-auto px-4 bg-gradient-to-r from-red-50 to-red-100">
-        <div className="flex flex-col lg:flex-row justify-between items-center py-2 border-b border-red-200">
+      <div className="container mx-auto px-4 bg-gradient-to-r from-teal-50 to-green-50">
+        <div className="flex flex-col lg:flex-row justify-between items-center py-2 border-b border-teal-200">
           {/* Left: Notification Marquee */}
           <div className="w-full lg:w-auto overflow-hidden mb-2 lg:mb-0">
             <marquee className="py-1.5 text-sm">
               <>
                 <span
-                  className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
+                  className="bg-teal-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
                   onMouseOver={(e) => {
                     const marquee = e.target.closest('marquee');
                     if (marquee) marquee.stop();
@@ -256,7 +256,7 @@ export default function Navbar() {
                   🎓 New Admissions Open!
                 </span>
                 <span
-                  className="bg-red-700 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
+                  className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold mr-3"
                   onMouseOver={(e) => {
                     const marquee = e.target.closest('marquee');
                     if (marquee) marquee.stop();
@@ -269,7 +269,7 @@ export default function Navbar() {
                   🌟 Apply Now
                 </span>
                 <span
-                  className="bg-red-800 text-white px-3 py-1 rounded-full text-sm font-semibold"
+                  className="bg-teal-700 text-white px-3 py-1 rounded-full text-sm font-semibold"
                   onMouseOver={(e) => {
                     const marquee = e.target.closest('marquee');
                     if (marquee) marquee.stop();
@@ -290,12 +290,12 @@ export default function Navbar() {
             {/* Study Abroad */}
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.525 3.687" />
                 </svg>
                 <div className="text-sm">
-                  {/* <div className="font-semibold text-red-800">Study Abroad</div> */}
-                  <div className="text-red-600">+91 9211607005</div>
+                  {/* <div className="font-semibold text-teal-800">Study Abroad</div> */}
+                  <div className="text-teal-600">+91 9211607005</div>
                 </div>
               </div>
             </div>
@@ -303,12 +303,12 @@ export default function Navbar() {
             {/* Study in India */}
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                 </svg>
                 <div className="text-sm">
-                  {/* <div className="font-semibold text-red-800">Study in India</div> */}
-                  <div className="text-red-600">+91 9211607005</div>
+                  {/* <div className="font-semibold text-green-800">Study in India</div> */}
+                  <div className="text-green-600">+91 9211607005</div>
                 </div>
               </div>
             </div>
@@ -316,11 +316,11 @@ export default function Navbar() {
             {/* Email */}
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
                 <div className="text-sm">
-                  <div className="text-red-600">info@hellodoctor.site</div>
+                  <div className="text-teal-600">info@hellodoctor.site</div>
                 </div>
               </div>
             </div>
@@ -329,23 +329,27 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar */}
-      <nav className="sticky top-0 bg-white shadow-lg z-50 border-t-2 border-blue-500">
+      <nav className="sticky top-0 bg-white shadow-lg z-50 border-t-2 border-teal-500">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
           <div className="flex items-center justify-between py-3">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0">
+            <Link href="/" className="flex-shrink-0 flex items-center gap-1">
               <Image
                 src={mbbslogo}
-                alt="Education-Hub-Logo"
-                width={160}
-                height={82}
-                className="w-auto h-[82px]"
+                alt="Hello Doctor Medical Education Consultancy Logo"
+                width={200}
+                height={102}
+                className="w-auto h-[102px]"
               />
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-teal-600 leading-tight">Hello Doctor</span>
+                <span className="text-sm font-medium text-gray-700 leading-tight">Medical Education Consultancy</span>
+              </div>
             </Link>
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 rounded-lg hover:bg-blue-50 z-50 text-blue-700"
+              className="lg:hidden p-2 rounded-lg hover:bg-teal-50 z-50 text-teal-700"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -429,8 +433,8 @@ export default function Navbar() {
                           link.isStudyIndia ? isStudyIndiaOpen :
                             link.isMbbsAbroad ? isMbbsAbroadOpen :
                               link.isStudyAbroad ? isStudyAbroadOpen : false)
-                        ? 'text-blue-700'
-                        : 'text-gray-700 hover:text-blue-700'
+                        ? 'text-teal-700'
+                        : 'text-gray-700 hover:text-teal-700'
                         }`}
                     >
                       <span>{link.label}</span>
@@ -453,15 +457,15 @@ export default function Navbar() {
                           link.isStudyIndia ? isStudyIndiaOpen :
                             link.isMbbsAbroad ? isMbbsAbroadOpen :
                               link.isStudyAbroad ? isStudyAbroadOpen : false)) && (
-                          <span className="absolute -bottom-3 left-0 w-full h-0.5 bg-blue-500 rounded-full"></span>
+                          <span className="absolute -bottom-3 left-0 w-full h-0.5 bg-teal-500 rounded-full"></span>
                         )}
                     </button>
                   ) : (
                     <Link
                       href={link.href}
                       className={`relative font-medium text-md transition-colors whitespace-nowrap ${isActive(link.href)
-                        ? 'text-blue-700'
-                        : 'text-gray-700 hover:text-blue-700'
+                        ? 'text-teal-700'
+                        : 'text-gray-700 hover:text-teal-700'
                         }`}
                     >
                       {link.label}
@@ -474,7 +478,7 @@ export default function Navbar() {
                   {/* About Us Dropdown */}
                   {link.hasDropdown && link.isAbout && isAboutOpen && (
                     <div
-                      className="absolute top-full left-0 mt-3 w-64 bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      className="absolute top-full left-0 mt-3 w-64 bg-white shadow-xl rounded-lg overflow-hidden border border-teal-100"
                       onMouseLeave={() => setIsAboutOpen(false)}
                     >
                       <div className="p-4">
@@ -482,7 +486,7 @@ export default function Navbar() {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors"
+                            className="block px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-700 rounded-lg transition-colors"
                           >
                             {item.name}
                           </Link>
@@ -494,7 +498,7 @@ export default function Navbar() {
                   {/* Study in India Dropdown */}
                   {link.hasDropdown && link.isStudyIndia && isStudyIndiaOpen && (
                     <div
-                      className="absolute top-full left-0 mt-3 w-[800px] bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      className="absolute top-full left-0 mt-3 w-[800px] bg-white shadow-xl rounded-lg overflow-hidden border border-teal-100"
                       onMouseLeave={() => {
                         setIsStudyIndiaOpen(false)
                         setSelectedSubcategory(null)
@@ -502,13 +506,13 @@ export default function Navbar() {
                     >
                       <div className="flex">
                         {/* Study Types (Subcategories) */}
-                        <div className="w-1/3 bg-blue-50 border-r border-blue-100">
+                        <div className="w-1/3 bg-teal-50 border-r border-teal-100">
                           {Object.entries(studyIndiaTypes).map(([type, { label }]) => (
                             <button
                               key={type}
                               className={`w-full flex justify-between items-center text-left py-4 px-4 ${selectedStudyType === type
-                                ? 'bg-blue-100 text-blue-800 font-semibold border-r-2 border-blue-500'
-                                : 'hover:bg-blue-100 text-gray-700'
+                                ? 'bg-teal-100 text-teal-800 font-semibold border-r-2 border-teal-500'
+                                : 'hover:bg-teal-100 text-gray-700'
                                 }`}
                               onMouseEnter={() => {
                                 setSelectedStudyType(type)
@@ -523,13 +527,13 @@ export default function Navbar() {
                           ))}
                         </div>
                         {/* Subsubcategories */}
-                        <div className="w-1/3 bg-gray-50 border-r border-gray-200">
+                        <div className="w-1/3 bg-green-50 border-r border-green-200">
                           {studyIndiaTypes[selectedStudyType] && studyIndiaTypes[selectedStudyType].subcategories && Object.entries(studyIndiaTypes[selectedStudyType].subcategories).map(([subcategoryKey, { name }]) => (
                             <button
                               key={subcategoryKey}
                               className={`w-full flex justify-between items-center text-left py-3 px-4 ${selectedSubcategory === subcategoryKey
-                                ? 'bg-gray-100 text-gray-800 font-semibold border-r-2 border-gray-400'
-                                : 'hover:bg-gray-100 text-gray-700'
+                                ? 'bg-green-100 text-green-800 font-semibold border-r-2 border-green-400'
+                                : 'hover:bg-green-100 text-gray-700'
                                 }`}
                               onMouseEnter={() => setSelectedSubcategory(subcategoryKey)}
                             >
@@ -542,12 +546,12 @@ export default function Navbar() {
                         </div>
                         {/* Programs List */}
                         <div className="w-1/3 p-4">
-                          <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                          <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 hover:scrollbar-thumb-teal-400">
                             {selectedSubcategory && studyIndiaTypes[selectedStudyType] && studyIndiaTypes[selectedStudyType].subcategories[selectedSubcategory] && studyIndiaTypes[selectedStudyType].subcategories[selectedSubcategory].programs.map((program, index) => (
                               <Link
                                 key={index}
                                 href={program.href}
-                                className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all shadow-md font-medium text-sm"
+                                className="block px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all shadow-md font-medium text-sm"
                               >
                                 {program.name}
                               </Link>
@@ -561,16 +565,16 @@ export default function Navbar() {
                   {/* MBBS Abroad Dropdown */}
                   {link.hasDropdown && link.isMbbsAbroad && isMbbsAbroadOpen && (
                     <div
-                      className="absolute top-full left-0 mt-3 w-80 bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      className="absolute top-full left-0 mt-3 w-80 bg-white shadow-xl rounded-lg overflow-hidden border border-teal-100"
                       onMouseLeave={() => setIsMbbsAbroadOpen(false)}
                     >
                       <div className="p-4">
-                        <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                        <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 hover:scrollbar-thumb-teal-400">
                           {mbbsAbroadCourses.map((course, index) => (
                             <Link
                               key={index}
                               href={course.href}
-                              className="block px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-md font-medium"
+                              className="block px-4 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all shadow-md font-medium"
                             >
                               {course.name}
                             </Link>
@@ -583,16 +587,16 @@ export default function Navbar() {
                   {/* Study Abroad Dropdown */}
                   {link.hasDropdown && link.isStudyAbroad && isStudyAbroadOpen && (
                     <div
-                      className="absolute top-full left-0 mt-3 w-80 bg-white shadow-xl rounded-lg overflow-hidden border border-blue-100"
+                      className="absolute top-full left-0 mt-3 w-80 bg-white shadow-xl rounded-lg overflow-hidden border border-teal-100"
                       onMouseLeave={() => setIsStudyAbroadOpen(false)}
                     >
                       <div className="p-4">
-                        <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                        <div className="max-h-64 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 hover:scrollbar-thumb-teal-400">
                           {studyAbroadCourses.map((course, index) => (
                             <Link
                               key={index}
                               href={course.href}
-                              className="block px-4 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all shadow-md font-medium"
+                              className="block px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all shadow-md font-medium"
                             >
                               {course.name}
                             </Link>
@@ -607,10 +611,10 @@ export default function Navbar() {
 
             {/* Desktop Right Buttons */}
             <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
-              <button className="px-5 py-2 border-2 border-blue-600 text-blue-600 font-medium text-md rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 whitespace-nowrap">
+              <button className="px-5 py-2 border-2 border-teal-600 text-teal-600 font-medium text-md rounded-full hover:bg-teal-600 hover:text-white transition-all duration-300 whitespace-nowrap">
                 <a href='tel:+919211607005'>Call Us</a>
               </button>
-              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-5 py-2 bg-blue-600 text-white font-medium text-md rounded-full hover:bg-blue-700 hover:shadow-lg transition-all duration-300 shadow-md whitespace-nowrap">
+              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-5 py-2 bg-teal-600 text-white font-medium text-md rounded-full hover:bg-teal-700 hover:shadow-lg transition-all duration-300 shadow-md whitespace-nowrap">
                 Download App
               </Link>
             </div>
@@ -621,7 +625,7 @@ export default function Navbar() {
             className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
               }`}
           >
-            <div className="py-4 space-y-4 border-t border-blue-200">
+            <div className="py-4 space-y-4 border-t border-teal-200">
               {navLinks.map((link) => (
                 <div key={link.href}>
                   {link.hasDropdown ? (
@@ -666,8 +670,8 @@ export default function Navbar() {
                             link.isStudyIndia ? isStudyIndiaOpen :
                               link.isMbbsAbroad ? isMbbsAbroadOpen :
                                 link.isStudyAbroad ? isStudyAbroadOpen : false)
-                          ? 'bg-blue-50 text-blue-700 font-semibold'
-                          : 'text-gray-700 hover:bg-blue-50'
+                          ? 'bg-teal-50 text-teal-700 font-semibold'
+                          : 'text-gray-700 hover:bg-teal-50'
                           }`}
                       >
                         <span>{link.label}</span>
@@ -690,12 +694,12 @@ export default function Navbar() {
                       {/* About Mobile Dropdown */}
                       {link.isAbout && isAboutOpen && (
                         <div className="mt-2 mx-2">
-                          <div className="bg-blue-50 rounded-lg shadow-lg p-3">
+                          <div className="bg-teal-50 rounded-lg shadow-lg p-3">
                             {aboutSubmenus.map((item) => (
                               <Link
                                 key={item.href}
                                 href={item.href}
-                                className="block px-3 py-2 text-gray-700 hover:text-blue-700 hover:bg-white rounded transition-colors"
+                                className="block px-3 py-2 text-gray-700 hover:text-teal-700 hover:bg-white rounded transition-colors"
                               >
                                 {item.name}
                               </Link>
@@ -719,8 +723,8 @@ export default function Navbar() {
                                     }
                                   }}
                                   className={`w-full flex justify-between items-center text-left py-3 px-4 ${expandedMobileType === type
-                                    ? 'bg-blue-100 text-blue-800 font-semibold'
-                                    : 'hover:bg-blue-100 text-gray-700'
+                                    ? 'bg-teal-100 text-teal-800 font-semibold'
+                                    : 'hover:bg-teal-100 text-gray-700'
                                     }`}
                                 >
                                   <span>{label}</span>
@@ -738,9 +742,9 @@ export default function Navbar() {
 
                                 <div className={`overflow-hidden transition-all duration-300 bg-white ${expandedMobileType === type ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
                                   }`}>
-                                  <div className="p-4 max-h-64 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                                  <div className="p-4 max-h-64 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 hover:scrollbar-thumb-teal-400">
                                     {subcategories && Object.entries(subcategories).map(([subcategoryKey, { name, programs }]) => (
-                                      <div key={subcategoryKey} className="border-b last:border-b-0 border-blue-200 pb-3">
+                                      <div key={subcategoryKey} className="border-b last:border-b-0 border-teal-200 pb-3">
                                         <button
                                           onClick={() => {
                                             if (expandedMobileSubcategory === subcategoryKey) {
@@ -749,28 +753,28 @@ export default function Navbar() {
                                               setExpandedMobileSubcategory(subcategoryKey)
                                             }
                                           }}
-                                          className="w-full flex justify-between items-center text-left py-2 px-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                                          className="w-full flex justify-between items-center text-left py-2 px-3 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
                                         >
-                                          <span className="font-semibold text-lg text-blue-800 uppercase">{name}</span>
+                                          <span className="font-semibold text-lg text-teal-800 uppercase">{name}</span>
                                           <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             strokeWidth={2}
                                             stroke="currentColor"
-                                            className={`w-4 h-4 transition-transform duration-200 text-blue-600 ${expandedMobileSubcategory === subcategoryKey ? 'rotate-180' : ''}`}
+                                            className={`w-4 h-4 transition-transform duration-200 text-teal-600 ${expandedMobileSubcategory === subcategoryKey ? 'rotate-180' : ''}`}
                                           >
                                             <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                           </svg>
                                         </button>
                                         <div className={`overflow-hidden transition-all duration-300 ${expandedMobileSubcategory === subcategoryKey ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                                           }`}>
-                                          <div className="mt-3 max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                                          <div className="mt-3 max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 hover:scrollbar-thumb-teal-400">
                                             {programs.map((program, index) => (
                                               <Link
                                                 key={index}
                                                 href={program.href}
-                                                className="block px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all text-center font-medium text-sm"
+                                                className="block px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all text-center font-medium text-sm"
                                               >
                                                 {program.name}
                                               </Link>
@@ -790,13 +794,13 @@ export default function Navbar() {
                       {/* MBBS Abroad Mobile Dropdown */}
                       {link.isMbbsAbroad && isMbbsAbroadOpen && (
                         <div className="mt-2 mx-2">
-                          <div className="bg-blue-50 rounded-lg shadow-lg p-3">
-                            <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                          <div className="bg-teal-50 rounded-lg shadow-lg p-3">
+                            <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 hover:scrollbar-thumb-teal-400">
                               {mbbsAbroadCourses.map((course, index) => (
                                 <Link
                                   key={index}
                                   href={course.href}
-                                  className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-center font-medium"
+                                  className="block px-3 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all text-center font-medium"
                                 >
                                   {course.name}
                                 </Link>
@@ -809,13 +813,13 @@ export default function Navbar() {
                       {/* Study Abroad Mobile Dropdown */}
                       {link.isStudyAbroad && isStudyAbroadOpen && (
                         <div className="mt-2 mx-2">
-                          <div className="bg-blue-50 rounded-lg shadow-lg p-3">
-                            <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-50 hover:scrollbar-thumb-blue-400">
+                          <div className="bg-teal-50 rounded-lg shadow-lg p-3">
+                            <div className="max-h-48 overflow-y-auto space-y-2 pr-2 scrollbar-thin scrollbar-thumb-teal-300 scrollbar-track-teal-50 hover:scrollbar-thumb-teal-400">
                               {studyAbroadCourses.map((course, index) => (
                                 <Link
                                   key={index}
                                   href={course.href}
-                                  className="block px-3 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all text-center font-medium"
+                                  className="block px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all text-center font-medium"
                                 >
                                   {course.name}
                                 </Link>
@@ -841,10 +845,10 @@ export default function Navbar() {
 
               {/* Mobile Buttons */}
               <div className="px-4 py-3 space-y-3">
-                <button className="w-full px-4 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                <button className="w-full px-4 py-3 border-2 border-teal-600 text-teal-600 font-semibold rounded-full hover:bg-teal-600 hover:text-white transition-colors">
                   <a href='tel:9039038655' className='w-full'>Call Us</a>
                 </button>
-                <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-full text-center hover:bg-blue-700 transition-all shadow-md">
+                <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="block w-full px-6 py-3 bg-teal-600 text-white font-semibold rounded-full text-center hover:bg-teal-700 transition-all shadow-md">
                   Download App
                 </Link>
               </div>
