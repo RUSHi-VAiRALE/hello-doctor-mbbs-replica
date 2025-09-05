@@ -8,7 +8,7 @@ import ClatiansLogo from '../../public/CLATiansLogo.webp'
 
 const socialLinks = [
   { platform: 'https://www.facebook.com/hellodoctor', icon: 'bi-facebook', color: 'text-[#1877F2] hover:bg-[#1877F2]' },
-  { platform: 'https://www.instagram.com/hellodoctor/', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
+  { platform: 'https://www.instagram.com/_hellodoctor._/?igsh=MWRtdGJxMXBwbXNvNA%3D%3D#', icon: 'bi-instagram', color: 'text-[#E4405F] hover:bg-[#E4405F]' },
   { platform: 'https://www.linkedin.com/in/hellodoctor/', icon: 'bi-linkedin', color: 'text-[#0A66C2] hover:bg-[#0A66C2]' },
 ]
 
@@ -252,7 +252,7 @@ export default function Footer() {
                   <div className="flex items-start space-x-3">
                     <i className="bi bi-geo-alt-fill text-orange-400 text-lg mt-1"></i>
                     <p className="text-blue-100 leading-relaxed">
-                      Hello Doctor, 11/5, Nath Mandir Rd, in front of Arora Bhawan, South Tukoganj, Indore, Madhya Pradesh 452001
+                      Hello Doctor, TH .NO-C - 1/36, New Ashok Nagar, Delhi, 110096, India
                     </p>
                   </div>
 
