@@ -156,7 +156,7 @@ export default function Navbar() {
 
   // Fetch data from Firebase
   useEffect(() => {
-    const db = getFirestore(app, 'mbbsyatradb')
+    const db = getFirestore(app, 'hellodoctor')
 
     const fetchData = async () => {
       setFetchLoading(true);

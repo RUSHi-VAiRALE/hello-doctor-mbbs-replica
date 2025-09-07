@@ -18,7 +18,7 @@ export default function MBBSIndiaPage() {
         const fetchMBBSData = async () => {
             try {
                 setLoading(true)
-                const db = getFirestore(app, 'mbbsyatradb')
+                const db = getFirestore(app, 'hellodoctor')
 
                 // Query the mbbsPrograms collection for the specific slug
                 const q = query(collection(db, "mbbsPrograms"), where("slug", "==", slug))

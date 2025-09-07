@@ -164,7 +164,7 @@ export default function BlogUploadPage() {
         setMessage({ type: '', text: '' })
 
         try {
-            const db = getFirestore(app, 'hellodoctordb')
+            const db = getFirestore(app, 'hellodoctor')
 
             // Clean up the data before submission
             const cleanedData = {
