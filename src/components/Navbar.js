@@ -330,20 +330,20 @@ export default function Navbar() {
 
       {/* Main Navbar */}
       <nav className="sticky top-0 bg-white shadow-lg z-50 border-t-2 border-teal-500">
-        <div className="container mx-auto px-4 md:px-8 lg:px-16">
-          <div className="flex items-center justify-between py-3">
+        <div className="container mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
+          <div className="flex items-center justify-between py-2 lg:py-3">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 flex items-center gap-1">
+            <Link href="/" className="flex-shrink-0 flex items-center gap-1 mr-4">
               <Image
                 src={mbbslogo}
                 alt="Hello Doctor Medical Education Consultancy Logo"
-                width={200}
-                height={102}
-                className="w-auto h-[102px]"
+                width={180}
+                height={92}
+                className="w-auto h-[70px] sm:h-[80px] lg:h-[92px]"
               />
               <div className="flex flex-col">
-                <span className="text-2xl font-bold text-teal-600 leading-tight">Hello Doctor</span>
-                <span className="text-sm font-medium text-gray-700 leading-tight">Medical Education Consultancy</span>
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-600 leading-tight">Hello Doctor</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">Medical Education Consultancy</span>
               </div>
             </Link>
 
@@ -369,7 +369,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-2 xl:space-x-4 flex-1 justify-center">
               {navLinks.map((link) => (
                 <div key={link.href} className="relative">
                   {link.hasDropdown ? (
@@ -428,7 +428,7 @@ export default function Navbar() {
                           setSelectedSubcategory(null)
                         }
                       }}
-                      className={`relative font-medium text-md transition-colors flex items-center gap-1 whitespace-nowrap ${isActive(link.href) ||
+                      className={`relative font-medium text-sm lg:text-md transition-colors flex items-center gap-1 whitespace-nowrap ${isActive(link.href) ||
                         (link.isAbout ? isAboutOpen :
                           link.isStudyIndia ? isStudyIndiaOpen :
                             link.isMbbsAbroad ? isMbbsAbroadOpen :
@@ -463,7 +463,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={link.href}
-                      className={`relative font-medium text-md transition-colors whitespace-nowrap ${isActive(link.href)
+                      className={`relative font-medium text-sm lg:text-md transition-colors whitespace-nowrap ${isActive(link.href)
                         ? 'text-teal-700'
                         : 'text-gray-700 hover:text-teal-700'
                         }`}
@@ -610,11 +610,11 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Right Buttons */}
-            <div className="hidden lg:flex items-center space-x-3 flex-shrink-0">
-              <button className="px-5 py-2 border-2 border-teal-600 text-teal-600 font-medium text-md rounded-full hover:bg-teal-600 hover:text-white transition-all duration-300 whitespace-nowrap">
+            <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 flex-shrink-0">
+              <button className="px-3 xl:px-5 py-2 border-2 border-teal-600 text-teal-600 font-medium text-sm lg:text-md rounded-full hover:bg-teal-600 hover:text-white transition-all duration-300 whitespace-nowrap">
                 <a href='tel:+919211607005'>Call Us</a>
               </button>
-              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-5 py-2 bg-teal-600 text-white font-medium text-md rounded-full hover:bg-teal-700 hover:shadow-lg transition-all duration-300 shadow-md whitespace-nowrap">
+              <Link href="https://play.google.com/store/apps/details?id=com.educationhub&pcampaignid=web_share" target="_blank" className="px-3 xl:px-5 py-2 bg-teal-600 text-white font-medium text-sm lg:text-md rounded-full hover:bg-teal-700 hover:shadow-lg transition-all duration-300 shadow-md whitespace-nowrap">
                 Download App
               </Link>
             </div>
