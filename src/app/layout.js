@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import Footer from '@/components/Footer'
+import PopupForm from '@/components/PopupForm'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <WhatsAppButton />
+        <PopupForm />
       </body>
     </html>
   )

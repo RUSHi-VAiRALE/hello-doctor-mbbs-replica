@@ -5,6 +5,7 @@ import StudentTestimonials from '@/components/StudentTestimonials'
 import Events from '@/components/Events'
 import FAQ from '@/components/FAQ'
 import SocialMedia from '@/components/SocialMedia'
+import HowItWorks from '@/components/HowItWorks'
 
 export default function Home() {
   const faqs = [
@@ -73,6 +74,7 @@ export default function Home() {
       <Hero slides={slides} height={"250px"} />
       {/* <WhyChooseUs /> */}
       <Features />
+      <HowItWorks />
       {/* <CourseCards /> */}
       {/* <ExploreTopCourses /> */}
       {/* <Milestones /> */}

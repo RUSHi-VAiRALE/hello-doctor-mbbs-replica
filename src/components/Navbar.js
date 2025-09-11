@@ -337,9 +337,9 @@ export default function Navbar() {
               <Image
                 src={mbbslogo}
                 alt="Hello Doctor Medical Education Consultancy Logo"
-                width={180}
-                height={92}
-                className="w-auto h-[70px] sm:h-[80px] lg:h-[92px]"
+                width={220}
+                height={112}
+                className="w-auto h-[85px] sm:h-[95px] lg:h-[112px]"
               />
               <div className="flex flex-col">
                 <span className="text-lg sm:text-xl lg:text-2xl font-bold text-teal-600 leading-tight">Hello Doctor</span>
