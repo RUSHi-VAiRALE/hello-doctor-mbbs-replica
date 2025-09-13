@@ -37,12 +37,15 @@ export default function MBBSIndiaPage() {
                         heroImage: data.heroImage || "/400x300.svg",
                         colleges: data.colleges || [
                             {
-                                name: "Sample Medical College",
-                                location: "Sample Location",
-                                fees: "₹2,00,000",
-                                seats: "150",
-                                ranking: "NIRF Rank 50",
-                                established: "2000"
+                                name: "Mahatma Gandhi Medical College, Jaipur",
+                                location: "Jaipur",
+                                tuitionFeeStateQuota: "19.5 Lakh",
+                                tuitionFeeMgmtQuota: "26.75 Lakh",
+                                otherFeesAnnual: "-",
+                                oneTimeFee: "-",
+                                cautionMoney: "3 Lakh",
+                                hostelFee: "2,93,300 Lakh",
+                                messFee: "Included",
                             }
                         ],
                         eligibility: data.eligibility || [
@@ -241,25 +244,31 @@ export default function MBBSIndiaPage() {
                             <div className="bg-white rounded-lg shadow-md p-8">
                                 <h2 className="text-2xl font-bold text-gray-800 mb-6">TOP MEDICAL COLLEGES IN {mbbsData.subcategory?.toUpperCase()}</h2>
 
-                                <div className="overflow-x-auto">
+                                <div className="overflow-x-auto rounded-lg shadow-lg">
                                     <table className="w-full">
                                         <thead>
-                                            <tr className="bg-teal-600 text-white">
-                                                <th className="px-4 py-3 text-left text-sm font-semibold">College Name</th>
-                                                <th className="px-4 py-3 text-left text-sm font-semibold">Location</th>
-                                                <th className="px-4 py-3 text-left text-sm font-semibold">Established</th>
-                                                <th className="px-4 py-3 text-left text-sm font-semibold">Total Fees</th>
-                                                <th className="px-4 py-3 text-left text-sm font-semibold">MBBS Seats</th>
+                                            <tr className="bg-gradient-to-r from-teal-500 to-green-600 text-white">
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">College Name</th>
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">Tuition Fee (State Quota)</th>
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">Tuition Fee (Mgmt. Quota)</th>
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">Other Fees Annual</th>
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">One Time Fee</th>
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">Caution Money INR One Time (Refundable)</th>
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">Hostel Fee INR (Triple Seated)</th>
+                                                <th className="px-4 py-4 text-left text-sm font-semibold">Mess Fee INR</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className="bg-white">
                                             {mbbsData.colleges.map((college, index) => (
-                                                <tr key={index} className={`border-b ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
-                                                    <td className="px-4 py-3 text-sm font-medium text-gray-800">{college.name}</td>
-                                                    <td className="px-4 py-3 text-sm text-gray-600">{college.location}</td>
-                                                    <td className="px-4 py-3 text-sm text-gray-600">{college.established}</td>
-                                                    <td className="px-4 py-3 text-sm text-green-600 font-semibold">{college.fees}</td>
-                                                    <td className="px-4 py-3 text-sm text-teal-600 font-semibold">{college.seats}</td>
+                                                <tr key={index} className={`border-b border-teal-100 hover:bg-teal-50 transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+                                                    <td className="px-4 py-4 text-sm font-semibold text-gray-800">{college.name}</td>
+                                                    <td className="px-4 py-4 text-sm text-teal-600 font-bold">{college.tuitionFeeStateQuota || "-"}</td>
+                                                    <td className="px-4 py-4 text-sm text-teal-600 font-bold">{college.tuitionFeeMgmtQuota || "-"}</td>
+                                                    <td className="px-4 py-4 text-sm text-gray-600">{college.otherFeesAnnual || "-"}</td>
+                                                    <td className="px-4 py-4 text-sm text-gray-600">{college.oneTimeFee || "-"}</td>
+                                                    <td className="px-4 py-4 text-sm text-gray-700 font-medium">{college.cautionMoney || "-"}</td>
+                                                    <td className="px-4 py-4 text-sm text-gray-700 font-medium">{college.hostelFee || "-"}</td>
+                                                    <td className="px-4 py-4 text-sm text-gray-700 font-medium">{college.messFee || "-"}</td>
                                                 </tr>
                                             ))}
                                         </tbody>

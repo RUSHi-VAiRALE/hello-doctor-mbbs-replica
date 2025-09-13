@@ -26,11 +26,14 @@ export default function MBBSUploadPage() {
             {
                 id: Date.now(),
                 name: '',
-                location: '',
-                fees: '',
-                seats: '',
-                ranking: '',
-                established: ''
+                tuitionFeeStateQuota: '',
+                tuitionFeeMgmtQuota: '',
+                otherFeesAnnual: '',
+                oneTimeFee: '',
+                cautionMoney: '',
+                hostelFee: '',
+                messFee: '',
+
             }
         ],
         eligibility: [''],
@@ -144,7 +147,13 @@ export default function MBBSUploadPage() {
                 id: Date.now() + Math.random(),
                 name: '',
                 location: '',
-                fees: '',
+                tuitionFeeStateQuota: '',
+                tuitionFeeMgmtQuota: '',
+                otherFeesAnnual: '',
+                oneTimeFee: '',
+                cautionMoney: '',
+                hostelFee: '',
+                messFee: '',
                 seats: '',
                 ranking: '',
                 established: ''
@@ -210,9 +219,10 @@ export default function MBBSUploadPage() {
         formData.colleges.forEach((college, index) => {
             if (!college.name.trim()) errors.push(`College ${index + 1}: Name is required`)
             if (!college.location.trim()) errors.push(`College ${index + 1}: Location is required`)
-            if (!college.fees.trim()) errors.push(`College ${index + 1}: Fees is required`)
-            if (!college.seats.trim()) errors.push(`College ${index + 1}: Seats is required`)
-            if (!college.established.trim()) errors.push(`College ${index + 1}: Established year is required`)
+            if (!college.tuitionFeeStateQuota.trim()) errors.push(`College ${index + 1}: Tuition Fee (State Quota) is required`)
+            if (!college.tuitionFeeMgmtQuota.trim()) errors.push(`College ${index + 1}: Tuition Fee (Mgmt. Quota) is required`)
+            // if (!college.seats.trim()) errors.push(`College ${index + 1}: Seats is required`)
+            // if (!college.established.trim()) errors.push(`College ${index + 1}: Established year is required`)
         })
 
         // Validate eligibility criteria
@@ -253,8 +263,8 @@ export default function MBBSUploadPage() {
                     const { id, ...collegeWithoutId } = college; // Remove id field for Firebase
                     return {
                         ...collegeWithoutId,
-                        seats: college.seats.toString(),
-                        established: college.established.toString()
+                        // seats: college.seats.toString(),
+                        // established: college.established.toString()
                     };
                 }),
                 eligibility: formData.eligibility.filter(item => item.trim()),
@@ -299,7 +309,13 @@ export default function MBBSUploadPage() {
                     id: Date.now(),
                     name: '',
                     location: '',
-                    fees: '',
+                    tuitionFeeStateQuota: '',
+                    tuitionFeeMgmtQuota: '',
+                    otherFeesAnnual: '',
+                    oneTimeFee: '',
+                    cautionMoney: '',
+                    hostelFee: '',
+                    messFee: '',
                     seats: '',
                     ranking: '',
                     established: ''
@@ -377,7 +393,13 @@ export default function MBBSUploadPage() {
                 id: Date.now(),
                 name: '',
                 location: '',
-                fees: '',
+                tuitionFeeStateQuota: '',
+                tuitionFeeMgmtQuota: '',
+                otherFeesAnnual: '',
+                oneTimeFee: '',
+                cautionMoney: '',
+                hostelFee: '',
+                messFee: '',
                 seats: '',
                 ranking: '',
                 established: ''
@@ -406,7 +428,13 @@ export default function MBBSUploadPage() {
                 id: Date.now(),
                 name: '',
                 location: '',
-                fees: '',
+                tuitionFeeStateQuota: '',
+                tuitionFeeMgmtQuota: '',
+                otherFeesAnnual: '',
+                oneTimeFee: '',
+                cautionMoney: '',
+                hostelFee: '',
+                messFee: '',
                 seats: '',
                 ranking: '',
                 established: ''
@@ -748,7 +776,7 @@ export default function MBBSUploadPage() {
                                             value={college.name}
                                             onChange={(e) => handleCollegeChange(index, 'name', e.target.value)}
                                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                            placeholder="College name"
+                                            placeholder="Mahatma Gandhi Medical College, Jaipur"
                                             required
                                         />
                                     </div>
@@ -762,26 +790,105 @@ export default function MBBSUploadPage() {
                                             value={college.location}
                                             onChange={(e) => handleCollegeChange(index, 'location', e.target.value)}
                                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                            placeholder="City"
+                                            placeholder="Jaipur"
                                             required
                                         />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Fees *
+                                            Tuition Fee (State Quota) *
                                         </label>
                                         <input
                                             type="text"
-                                            value={college.fees}
-                                            onChange={(e) => handleCollegeChange(index, 'fees', e.target.value)}
+                                            value={college.tuitionFeeStateQuota}
+                                            onChange={(e) => handleCollegeChange(index, 'tuitionFeeStateQuota', e.target.value)}
                                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                            placeholder="₹2,18,000"
+                                            placeholder="19.5 Lakh"
                                             required
                                         />
                                     </div>
 
                                     <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Tuition Fee (Mgmt. Quota) *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={college.tuitionFeeMgmtQuota}
+                                            onChange={(e) => handleCollegeChange(index, 'tuitionFeeMgmtQuota', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="26.75 Lakh"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Other Fees Annual
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={college.otherFeesAnnual}
+                                            onChange={(e) => handleCollegeChange(index, 'otherFeesAnnual', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="Enter amount or leave empty for dash"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            One Time Fee
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={college.oneTimeFee}
+                                            onChange={(e) => handleCollegeChange(index, 'oneTimeFee', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="Enter amount or leave empty for dash"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Caution Money INR One Time (Refundable)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={college.cautionMoney}
+                                            onChange={(e) => handleCollegeChange(index, 'cautionMoney', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="3 Lakh"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Hostel Fee INR (Triple Seated)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={college.hostelFee}
+                                            onChange={(e) => handleCollegeChange(index, 'hostelFee', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="2,93,300 Lakh"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Mess Fee INR
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={college.messFee}
+                                            onChange={(e) => handleCollegeChange(index, 'messFee', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="Included"
+                                        />
+                                    </div>
+
+                                    {/* <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">
                                             Seats *
                                         </label>
@@ -793,9 +900,9 @@ export default function MBBSUploadPage() {
                                             placeholder="250"
                                             required
                                         />
-                                    </div>
+                                    </div> */}
 
-                                    <div>
+                                    {/* <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">
                                             Ranking
                                         </label>
@@ -806,9 +913,9 @@ export default function MBBSUploadPage() {
                                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                             placeholder="NIRF Rank 28"
                                         />
-                                    </div>
+                                    </div> */}
 
-                                    <div>
+                                    {/* <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">
                                             Established *
                                         </label>
@@ -820,7 +927,7 @@ export default function MBBSUploadPage() {
                                             placeholder="1947"
                                             required
                                         />
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         ))}
